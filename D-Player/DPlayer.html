@@ -1,0 +1,2377 @@
+<!DOCTYPE HTML>
+<html>
+
+<head>
+    <title>Video Work Area</title>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link href="http://127.0.0.1:5555/bootstrap-5.3.3-dist/css/bootstrap.min.css">
+    <!-- Fichiers Bootstrap principaux -->
+    <link rel="stylesheet" href="http://127.0.0.1:5555/bootstrap-5.3.3-dist/css/bootstrap.css">
+    <link rel="stylesheet" href="http://127.0.0.1:5555/bootstrap-5.3.3-dist/css/bootstrap.min.css">
+    <link rel="stylesheet" href="http://127.0.0.1:5555/bootstrap-5.3.3-dist/css/bootstrap.rtl.css">
+    <link rel="stylesheet" href="http://127.0.0.1:5555/bootstrap-5.3.3-dist/css/bootstrap.rtl.min.css">
+
+    <!-- Fichiers pour le système de grille -->
+    <link rel="stylesheet" href="http://127.0.0.1:5555/bootstrap-5.3.3-dist/css/bootstrap-grid.css">
+    <link rel="stylesheet" href="http://127.0.0.1:5555/bootstrap-5.3.3-dist/css/bootstrap-grid.rtl.css">
+    <link rel="stylesheet" href="http://127.0.0.1:5555/bootstrap-5.3.3-dist/css/bootstrap-grid.min.css">
+    <link rel="stylesheet" href="http://127.0.0.1:5555/bootstrap-5.3.3-dist/css/bootstrap-grid.rtl.min.css">
+
+    <!-- Fichiers pour les utilitaires -->
+    <link rel="stylesheet" href="http://127.0.0.1:5555/bootstrap-5.3.3-dist/css/bootstrap-utilities.css">
+    <link rel="stylesheet" href="http://127.0.0.1:5555/bootstrap-5.3.3-dist/css/bootstrap-utilities.rtl.css">
+    <link rel="stylesheet" href="http://127.0.0.1:5555/bootstrap-5.3.3-dist/css/bootstrap-utilities.min.css">
+    <link rel="stylesheet" href="http://127.0.0.1:5555/bootstrap-5.3.3-dist/css/bootstrap-utilities.rtl.min.css">
+
+    <!-- Fichiers pour le reboot -->
+    <link rel="stylesheet" href="http://127.0.0.1:5555/bootstrap-5.3.3-dist/css/bootstrap-reboot.css">
+    <link rel="stylesheet" href="http://127.0.0.1:5555/bootstrap-5.3.3-dist/css/bootstrap-reboot.rtl.css">
+    <link rel="stylesheet" href="http://127.0.0.1:5555/bootstrap-5.3.3-dist/css/bootstrap-reboot.min.css">
+    <link rel="stylesheet" href="http://127.0.0.1:5555/bootstrap-5.3.3-dist/css/bootstrap-reboot.rtl.min.css">
+
+    <script src="http://127.0.0.1:5555/bootstrap-5.3.3-dist/js/bootstrap.min.js"></script>
+    <!-- Fichiers JavaScript principaux avec les bundles -->
+    <script src="http://127.0.0.1:5555/bootstrap-5.3.3-dist/js/bootstrap.bundle.js"></script>
+    <script src="http://127.0.0.1:5555/bootstrap-5.3.3-dist/js/bootstrap.bundle.min.js"></script>
+
+    <!-- Fichiers JavaScript sans les plugins de dépendance -->
+    <script src="http://127.0.0.1:5555/bootstrap-5.3.3-dist/js/bootstrap.js"></script>
+    <script src="http://127.0.0.1:5555/bootstrap-5.3.3-dist/js/bootstrap.min.js"></script>
+
+    <script src="http://127.0.0.1:5555/jquery/jquery-3.7.1.js"></script>
+    <link href="http://127.0.0.1:5555/ressources/util/variables.css">
+
+    <style id="media-lector-style">
+        @import url("http://127.0.0.1:5555/ressources/util/variables.css");
+
+        body {
+            overflow: hidden;
+        }
+
+        body.fade-cursor {
+            cursor: none;
+
+        }
+
+        a {
+            color: white;
+            text-decoration: none;
+        }
+
+        #media-container {
+            width: 100%;
+            height: 100%;
+            margin: 0;
+            padding: 0;
+            background-color: black;
+            position: absolute;
+            z-index: 1;
+        }
+
+        #media {
+            width: 100%;
+            height: 100%;
+            margin: 0;
+            position: absolute;
+            left: 50%;
+            top: 50%;
+            transform: translate(-50%, -50%);
+            z-index: 2;
+        }
+
+        #media-big-pause {
+            width: clamp(50px, 12%, 100px);
+            position: absolute;
+            left: 50%;
+            top: 50%;
+            transform: translate(-50%, -50%);
+            z-index: 3;
+            border-radius: 50%;
+
+            svg {
+                cursor: pointer;
+            }
+        }
+
+        #media-preview {
+            width: 40%;
+            height: 80%;
+            position: absolute;
+            left: 50%;
+            top: 50%;
+            transform: translate(-50%, -50%);
+            border-radius: 50%;
+            border-radius: 50%;
+            animation-duration: 10s;
+            animation-name: media-preview;
+            animation-iteration-count: infinite;
+            animation-direction: normal;
+            animation-timing-function: linear;
+            z-index: 1;
+        }
+
+        #media-preview svg,
+        #media-preview img,
+        #media-preview div {
+            position: absolute;
+            left: 50%;
+            top: 50%;
+            transform: translate(-50%, -50%);
+        }
+
+        @keyframes media-preview {
+            0% {
+                transform: translate(-50%, -50%) rotate(0deg);
+            }
+
+            100% {
+                transform: translate(-50%, -50%) rotate(360deg);
+            }
+        }
+
+        #media-controls {
+            width: 100%;
+            height: 60px;
+            margin: 0;
+            padding: 0;
+            position: absolute;
+            bottom: 0;
+            left: 0;
+            background: linear-gradient(to top, var(--dark-color-1-trans-80),
+                    var(--dark-color-1-trans-70),
+                    var(--dark-color-1-trans-50));
+            z-index: 2;
+        }
+
+        #time-control {
+            width: 100%;
+            height: 25px;
+            margin: 0;
+            padding: 0;
+            position: relative;
+        }
+
+        #tmc-from-to {
+            width: 100%;
+            height: 10px;
+            padding: 0;
+            margin: 0;
+            position: relative;
+        }
+
+        #tmc-from-to span {
+            display: block;
+            font-size: 9px;
+            font-weight: 400;
+            position: absolute;
+            padding: 0;
+            margin: 0;
+            top: 50%;
+            transform: translateY(-50%);
+        }
+
+        #tmc-from {
+            left: 3px;
+        }
+
+        #tmc-to {
+            right: 3px;
+        }
+
+        #tmc-time-line {
+            width: 100%;
+            height: 15px;
+            position: relative;
+            margin: 0;
+            padding: 10px auto;
+        }
+
+        #tmc-line {
+            width: calc(100% - 20px);
+            height: 7px;
+            position: absolute;
+            left: 50%;
+            top: 50%;
+            transform: translate(-50%, -50%);
+            border-radius: 0;
+            cursor: pointer;
+        }
+
+        #tmc-line:hover::-webkit-slider-thumb {
+            opacity: 1;
+            pointer-events: auto;
+        }
+
+        #tmc-line::-webkit-slider-thumb {
+            opacity: 0;
+            pointer-events: none;
+            transition: opacity .2s ease-in-out;
+            border-radius: 0;
+            background-color: var(--dark-purple);
+        }
+
+        #tmc-line::-webkit-slider-runnable-track {
+            border-radius: 0;
+        }
+
+        #tmc-where-preview {
+            width: 130px;
+            height: 80px;
+            border-radius: 6px;
+            border: 1px solid var(--dark-blue-trans-30);
+            position: absolute;
+            top: 10px;
+            transform: translateY(-100%);
+            background-color: black;
+            overflow: hidden;
+            margin: 0;
+            padding: 0;
+        }
+
+        #tmc-preview {
+            width: 100% !important;
+            height: 100% !important;
+            border-radius: 6px;
+            position: absolute;
+            top: 0;
+            left: 0;
+        }
+
+        #tmc-where {
+            display: block;
+            background-color: var(--dark-color-1-trans-80);
+            border-radius: 2px;
+            padding: 1px;
+            color: var(--light-color);
+            position: absolute;
+            top: 100%;
+            left: 50%;
+            transform: translate(-50%, -100%);
+        }
+
+        #global-control {
+            width: 100%;
+            height: 35px;
+            margin: 0;
+            padding: 0;
+            position: relative;
+        }
+
+        #global-control wataba {
+            width: 25px !important;
+            height: 25px !important;
+            min-width: 25px !important;
+            min-height: 25px !important;
+            background-color: transparent;
+            color: var(--light-color);
+            transition: all .3s;
+            margin: auto 3px;
+            border-radius: 50%;
+            border: 0;
+            position: relative;
+            cursor: pointer;
+        }
+
+        #global-control wataba:hover {
+            filter: drop-shadow(0px 0px 5px white);
+        }
+
+        #global-control wataba svg {
+            position: absolute;
+            left: 50%;
+            top: 50%;
+            transform: translate(-50%, -50%);
+        }
+
+        #gc-left {
+            width: calc(100% - 75px);
+            height: 100%;
+            margin: 0;
+            padding: 5px 5px;
+
+        }
+
+        .gc-empty {
+            width: 10px;
+        }
+
+        #gc-volume {
+            width: 0px;
+            transition: all .5s ease-in-out;
+            cursor: pointer;
+        }
+
+        #gc-volume:hover::-webkit-slider-thumb {
+            opacity: 1;
+            pointer-events: auto;
+        }
+
+        #gc-volume::-webkit-slider-thumb {
+            opacity: 0;
+            pointer-events: none;
+            transition: opacity .3s ease-in-out;
+        }
+
+        #gc-time-duration {
+            font-size: 13px;
+            font-weight: 500;
+            margin: auto 3px;
+        }
+
+        #gc-title {
+            font-size: 13px;
+            font-weight: 400;
+            overflow: hidden;
+            text-overflow: ellipsis;
+            text-wrap: nowrap;
+            margin: auto 3px;
+            text-wrap: nowrap;
+            padding-right: 100px;
+            max-height: 100%;
+            cursor: pointer;
+            transition: all .3s;
+        }
+
+        #gc-title:hover {
+            filter: drop-shadow(0px 0px 2px var(--light-color));
+        }
+
+        #gc-right {
+            width: 74px;
+            height: 100%;
+            margin: 0;
+            padding: 5px 5px;
+        }
+
+        #gc-speed {
+            width: 30px;
+            height: 100%;
+            position: relative;
+            margin: auto 3px;
+        }
+
+        #gcs-list {
+            position: absolute;
+            top: 0;
+            right: 0;
+            transform: translateY(-100%);
+            background-color: var(--dark-color-trans-99);
+            border-radius: 3px;
+            list-style: none;
+            padding: 0;
+            width: 100px;
+            text-align: center;
+        }
+
+        #gcs-list li {
+            border-top: 1px solid var(--dark-color-1-trans-51);
+            border-bottom: 1px solid var(--dark-color-1-trans-51);
+            padding: 3px;
+            width: 100%;
+            cursor: pointer;
+            font-weight: 500;
+            font-size: 15px;
+            transition: all .0s;
+        }
+
+        #gcs-list li:hover {
+            background-color: var(--dark-color-1-trans-70);
+        }
+
+        #gcs-list li:first-of-type {
+            border-top: 0;
+        }
+
+        #gcs-list li:last-of-type {
+            border-bottom: 0;
+        }
+
+        #gcs-list .gcs-selected {
+            background-color: var(--light-color-trans-80);
+        }
+
+        #gcs-preview {
+            font-weight: 600;
+        }
+
+        #media-context {
+            position: absolute;
+            width: clamp(200px, auto 80%) !important;
+            height: clamp(400px, auto, 80%) !important;
+            max-height: 80% !important;
+            border-radius: 5px;
+            background-color: var(--dark-color-trans-99);
+            border: 1px solid var(--dark-color-1);
+            z-index: 5;
+            padding: 0;
+            overflow-y: scroll;
+        }
+
+        #mc-list {
+            padding: 0;
+            text-align: center;
+            list-style: none;
+        }
+
+        #mc-list li {
+            padding: 5px 5px;
+            cursor: pointer;
+            font-weight: 500;
+            font-size: 15px;
+            transition: all .0s;
+            min-width: 200px;
+            text-wrap: nowrap;
+        }
+
+        #mc-list li:hover {
+            background-color: var(--dark-color-1-trans-70);
+        }
+
+        #mc-list hr {
+            margin: 1px 0;
+            height: 2px;
+            border: 0;
+            background-color: white;
+        }
+
+        #media-context::-webkit-scrollbar {
+            width: 2px;
+        }
+
+        #media-context::-webkit-scrollbar-thumb {
+            border-radius: 1px;
+            background-color: var(--light-color);
+        }
+
+        #media-context::-webkit-scrollbar-track {
+            background-color: transparent;
+        }
+
+        #media-container,
+        #media-controls,
+        #media-context {
+            user-select: none;
+        }
+
+        .gc-selected {
+            stroke: white;
+            stroke-width: .5px;
+        }
+
+        #media-interval {
+            position: absolute;
+            border-radius: 5px;
+            background-color: var(--dark-color-trans-99);
+            border: 1px solid var(--dark-color-1);
+            overflow: hidden;
+            z-index: 4;
+            padding: 0;
+            display: none;
+        }
+
+        #mdi-head {
+            width: 100%;
+            height: 25px;
+            position: relative;
+            margin: 0;
+            padding: 0;
+            border-bottom: 1px solid var(--dark-color-1-trans-99);
+        }
+
+        #mdih-close {
+            width: 25px;
+            height: 25px;
+            position: absolute;
+            right: 0;
+            padding: 2px;
+            transition: all.3s;
+            cursor: pointer;
+        }
+
+        #mdih-close svg {
+            position: absolute;
+            left: 50%;
+            top: 50%;
+            transform: translate(-50%, -50%);
+        }
+
+        #mdih-close:hover {
+            color: var(--dark-red);
+            filter: drop-shadow(0px 0px 2px var(--dark-red));
+        }
+
+        #mdi-body {
+            position: relative;
+        }
+
+        .mdib-line {
+            position: relative;
+            width: 100%;
+            padding: auto 5px;
+        }
+
+        .mdib-line input[type="number"] {
+            width: 70px;
+            margin: 2px 1px 2px 5px;
+            background-color: var(--dark-color-1-trans-50);
+            outline: 0;
+            border: 1px solid var(--dark-blue-trans-50)
+        }
+
+        .mdib-line input[type="number"]::-webkit-inner-spin-button,
+        .mdib-line input[type="number"]::-webkit-outer-spin-button {
+            -webkit-appearance: none;
+            margin: 0;
+        }
+
+        .mdib-line span {
+            align-content: center;
+            margin: 2px 5px 2px 1px;
+            user-select: none;
+        }
+
+        .mdib-indicator {
+            width: 50px;
+            align-content: center;
+            text-align: left;
+            font-weight: 600;
+            margin: auto 2px auto 5px
+        }
+
+        #mdib-reset {
+            position: relative;
+            padding: 3px 10px;
+            margin: 3px auto;
+            user-select: none;
+            cursor: pointer;
+            transition: all .3s;
+            border-radius: 3px;
+            border: 1px solid var(--dark-color-1);
+        }
+
+        #mdib-reset:hover {
+            box-shadow: 0px 0px 4px var(--light-color-trans-80);
+
+        }
+    </style>
+    <style id="modal-queu-style">
+        @import url("http://127.0.0.1:5555/ressources/util/variables.css");
+
+        .global-modal {
+            width: 100%;
+            height: 100%;
+            position: absolute;
+            left: 0;
+            top: 0;
+            background-color: var(--dark-color-trans-50);
+            z-index: 100;
+            user-select: none;
+            /*display: none;*/
+        }
+
+        .modal-show-container {
+            width: 500px;
+            height: 80%;
+            border: 1px solid var(--dark-color-1);
+            background-color: var(--dark-color-trans-99);
+            border-radius: 20px;
+            position: absolute;
+            left: calc(50% - 250px);
+            top: calc(50% - 40%);
+            box-shadow: 0px 0px 3px white;
+            overflow: hidden;
+            z-index: 100;
+        }
+
+        .ms-head {
+            width: 100%;
+            height: 50px;
+            margin: 0;
+            border-bottom: 1px solid var(--dark-color-1);
+            position: relative;
+            z-index: 3;
+        }
+
+        .ms-head h1 {
+            width: calc(100% - 50px);
+            text-align: left;
+            padding: 5px 20px;
+            font-size: 30px;
+            display: none;
+        }
+
+        .ms-close {
+            width: 40px;
+            height: 40px;
+            background-color: var(--light-color-trans-0);
+            border-radius: 10px;
+            transition: all .3s;
+            position: absolute;
+            top: 50%;
+            right: 5px;
+            transform: translate(0, -50%);
+            cursor: pointer;
+            border: 0;
+        }
+
+        .ms-close:hover {
+            box-shadow: inset 0px 0px 5px var(--dark-red);
+            stroke-width: 1px;
+            stroke: var(--light-color);
+        }
+
+        .ms-body {
+            width: 100%;
+            height: calc(100% - 100px);
+            max-height: calc(100% - 100px) !important;
+            margin: 0;
+            overflow-y: auto;
+            overflow-x: hidden;
+            position: relative;
+        }
+
+        .ms-body::-webkit-scrollbar {
+            width: 10px;
+        }
+
+        .ms-body::-webkit-scrollbar-thumb {
+            border-radius: 3px;
+            background-color: var(--dark-color-1-trans-99);
+            transition: background-color .3s;
+        }
+
+        .ms-body::-webkit-scrollbar-thumb:hover {
+            background-color: var(--dark-color-1);
+        }
+
+        .ms-body::-webkit-scrollbar-track {
+            background-color: transparent;
+        }
+
+        .msb-item {
+            width: 100%;
+            height: 70px;
+            transition: all .3s;
+            position: relative;
+            cursor: pointer;
+            z-index: 1;
+            transition: all .3s ease-in-out;
+        }
+
+        .msb-item:hover {
+            background-color: var(--light-color-1-trans-30);
+
+
+        }
+
+        .msb-item:hover .msb-del button {
+            display: inline;
+        }
+
+        .msbi-selected {
+            background: linear-gradient(to top, var(--dark-purple-trans-30), rgba(0, 0, 0, 0));
+        }
+
+        .msbi-top {
+            border-top: 1px solid var(--dark-blue);
+        }
+
+        .msbi-bottom {
+            border-bottom: 1px solid var(--dark-purple);
+        }
+
+        .msb-drag {
+            width: 50px;
+            min-width: 50px;
+            height: 100%;
+            padding: 10px;
+        }
+
+        .msb-drag svg {
+            cursor: grab;
+        }
+
+        .msb-type {
+            width: 60px;
+            min-width: 60px;
+            height: 100%;
+            padding: 10px;
+        }
+
+        .msb-type .msbt-video {
+            color: var(--dark-orange);
+        }
+
+        .msb-type .msbt-audio {
+            color: var(--dark-pink);
+            display: none;
+        }
+
+        .msb-type .msbt-file {
+            color: gray;
+            display: none;
+        }
+
+        .msb-del {
+            width: 50px;
+            min-width: 50px;
+            height: 100%;
+            cursor: pointer;
+        }
+
+        .msb-del button {
+            color: var(--light-red);
+            background-color: var(--light-color-trans-0);
+            border: 0;
+            padding: 0;
+            height: 100%;
+            width: 100%;
+            display: none;
+        }
+
+        .msb-del button:hover {
+            filter: drop-shadow(0 0 5px var(--dark-red));
+        }
+
+        .msb-name {
+            text-align: left;
+            font-size: 30px;
+            font-weight: 500;
+            text-wrap: nowrap;
+            overflow: hidden;
+            text-overflow: ellipsis;
+            position: relative;
+            padding: 10px 5px;
+        }
+
+        .ms-foot {
+            width: 100%;
+            height: 50px;
+            overflow-x: scroll;
+            overflow-y: hidden;
+            border-top: 1px solid var(--dark-color-1);
+            padding: 2px 20px 0px 20px;
+        }
+
+        .ms-foot::-webkit-scrollbar {
+            height: 7px;
+            width: 0;
+        }
+
+        .ms-foot::-webkit-scrollbar-thumb {
+            background-color: var(--dark-color-1-trans-99);
+            transition: all .3s;
+        }
+
+        .ms-foot::-webkit-scrollbar-thumb:hover {
+            background-color: var(--dark-color-1);
+        }
+
+        .ms-foot::-webkit-scrollbar-track {
+            background-color: transparent;
+        }
+
+        .ms-foot button {
+            border-radius: 5px;
+            border: 0;
+            background-color: var(--light-color-trans-0);
+            font-weight: 500;
+            transition: all .3s;
+            margin: auto 10px;
+            padding: 3px 7px;
+        }
+
+        .ms-foot button:hover {
+            box-shadow: inset 0px 0px 3px var(--dark-blue-trans-50);
+        }
+    </style>
+    <script>
+        function createMedia() {
+            let media = document.createElement("video");
+            let mediaP = document.createElement("video");
+            let canvas = document.createElement("canvas");
+            return [media, canvas, mediaP];
+        }
+
+        /*This class will make the video controler*/
+        class MediaCommands {
+            constructor(media, father, canvas, preview, timerFunction = null) {
+                this.media = media;
+                this.preview = preview;
+                this.time = media.currentTime;
+                this.play = false;
+                this.prev = [];
+                this.next = [];
+                this.current = media.getAttribute("src");
+                this.minus = 10;
+                this.maxus = 10;
+                this.loop = null;
+                this.random = false;
+                this.duration = media.duration;
+                this.speed = media.playbackRate;
+                this.volume = media.volume;
+                this.muted = false;
+                this.mutedValue = 1;
+                this.fullscreen = document.fullscreenElement === father ? true : false;
+                this.name = media.getAttribute("src").split("/").pop();
+                this.pip = document.pictureInPictureElement === media ? true : false;
+                this.queu = [];
+                document.addEventListener("fullscreenchange", () => {
+                    this.fullscreen = document.fullscreenElement === father ? true : false;
+                })
+                document.addEventListener("leavepictureinpicture", () => {
+                    this.pip = document.pictureInPictureElement === media ? true : false;
+                })
+                this.interval = [0, media.duration];
+                this.type = "audio";
+                this.father = father;
+                this.canvas = canvas;
+                this.tf = timerFunction;
+                this.listName = [];
+                this.MLC = {};
+            }
+            newMedia(path = null, play = false, prev = [], next = []) {
+                this.media.src = path ? path : this.media.getAttribute("src");
+                this.preview.src = path ? path : this.media.getAttribute("src");
+                if (path) {
+                    this.media.load();
+                    this.preview.load();
+                }
+                this.time = this.media.currentTime;
+                this.play = play;
+                this.prev = prev;
+                this.next = next;
+                this.current = this.media.getAttribute("src");
+                this.duration = this.media.duration;
+                this.name = this.media.getAttribute("src").split("/").pop();
+                this.queu = this.prev.concat(this.current, this.next)
+                this.media.playbackRate = this.speed;
+                this.media.loop = this.loop ? this.loop : false;
+                if (this.play) {
+                    this.play = false;
+                    this.Play();
+                }
+                this.interval = [0, this.media.duration];
+                this.media.addEventListener("timeupdate", () => {
+                    this.duration = this.media.duration;
+                    this.interval = [this.interval[0] ? this.interval[0] : 0, this.interval[1] ? this.interval[1] : this.duration];
+                    try {
+                        if (this.tf) this.tf(this.media.currentTime, this.duration);
+                        if (this.media.currentTime >= this.interval[1]) {
+                            this.media.currentTime = this.interval[1];
+                            if (this.loop === false || this.loop === null) {
+                                this.Next();
+                            }
+                            else {
+                                this.media.currentTime = this.interval[0];
+                            }
+                        }
+                        if (this.media.currentTime <= this.interval[0]) {
+                            this.media.currentTime = this.interval[0];
+                        }
+                    }
+                    catch (e) {
+                        console.log(e)
+                    }
+                    if (this.media.currentTime >= this.duration) {
+                        this.Next();
+                    }
+                })
+                if (["avi", "flv", "mkv", "mov", "mp4", "wmv", "webm"].includes(this.name.split(".").pop().toLowerCase())) {
+                    $(this.media).show();
+                    this.type = "video";
+                }
+                else {
+                    $(this.media).show();
+                    this.type = "audio";
+                }
+                this.media.addEventListener("contextmenu", (e) => {
+                    e.preventDefault();
+                });
+            }
+            Play() {
+                if (this.play) {
+                    this.media.pause();
+                    this.play = false
+                }
+                else {
+                    this.media.play();
+                    this.play = true;
+                }
+                return this.play;
+            }
+            Prev() {
+                if (this.prev.length > 0) {
+                    this.next.unshift(this.current);
+                    this.current = this.prev[this.prev.length - 1];
+                    this.prev.pop();
+                    this.newMedia(this.current, true, this.prev, this.next);
+                }
+                else if (this.loop === false) {
+                    this.next.unshift(this.current);
+                    this.current = this.next[this.next.length - 1];
+                    this.next.pop();
+                    this.newMedia(this.current, true, this.next, []);
+                }
+                return this.prev;
+            }
+            Next() {
+                if (this.next.length > 0) {
+                    this.prev.push(this.current);
+                    this.current = this.next[0];
+                    this.next.shift();
+                    this.newMedia(this.current, true, this.prev, this.next);
+                }
+                else if (this.loop === false) {
+                    this.prev.push(this.current);
+                    this.current = this.prev[0];
+                    this.prev.shift();
+                    this.newMedia(this.current, true, [], this.prev);
+                }
+                else {
+                    this.media.addEventListener("timeupdate", (e) => {
+                        e.preventDefault();
+                    });
+                }
+                return this.next;
+            }
+            newMinus(minus = null) {
+                this.minus = minus ? minus : 10;
+                return this.minus;
+            }
+            Minus() {
+                this.media.currentTime = Math.max(this.interval[0], this.media.currentTime - this.minus);
+                return this.minus;
+            }
+            newMaxus(maxus = null) {
+                this.maxus = maxus ? maxus : 10;
+                return this.maxus;
+            }
+            Maxus() {
+                this.media.currentTime = Math.min(this.interval[1], this.media.currentTime + this.maxus);
+                return this.maxus
+            }
+            newLoop(loop = null) {
+                this.loop = loop;
+                if (this.loop === true) this.media.loop = true;
+                else this.media.loop = false;
+                return this.loop;
+            }
+            Random() {
+                let mdc = this.MLC;
+                if (this.random) {
+                    this.random = false;
+                    let b = [];
+                    this.listName.sort();
+                    this.listName.forEach(function (el) {
+                        b.push(mdc[el]);
+                    });
+                    b.sort();
+                    this.queu = b;
+                    this.prev = b.slice(0, b.indexOf(this.current));
+                    this.next = b.slice((b.indexOf(this.current) >= b.length) ? b.indexOf(this.current) : b.indexOf(this.current) + 1);
+                }
+                else {
+                    this.random = true;
+                    let a = [];
+                    if (this.prev.length > 0) {
+                        for (let ww = 0; ww < this.prev.length; ww++)a.push(this.prev[ww]);
+                    }
+                    if (this.next.length > 0) {
+                        for (let ww = 0; ww < this.next.length; ww++)a.push(this.next[ww]);
+                    }
+                    if (a.length > 0) {
+                        for (let i = a.length - 1; i > 0; i--) {
+                            let j = Math.floor(Math.random() * (i + 1));
+                            [a[i], a[j]] = [a[j], a[i]];
+                        }
+                    }
+                    this.queu = [this.current]
+                    if (a.length > 0) {
+                        for (let ww = 0; ww < a.length; ww++) {
+                            this.queu.push(a[ww]);
+                        }
+                    }
+                    this.prev = [];
+                    this.next = a;
+                }
+                return this.random;
+            }
+            newSpeed(speed = 1) {
+                this.speed = speed;
+                this.media.playbackRate = this.speed;
+                return this.speed;
+            }
+            newVolume(volume = 100) {
+                this.volume = volume / 100;
+                this.media.volume = this.volume;
+                return this.volume;
+            }
+            Muted() {
+                if (this.muted) {
+                    this.media.muted = false;
+                    this.muted = false;
+                    this.volume = this.mutedValue * 100;
+                }
+                else {
+                    this.mutedValue = this.media.volume;
+                    this.volume = 0;
+                    this.media.muted = true;
+                    this.muted = true;
+                }
+                this.newVolume(this.volume);
+                return this.muted;
+            }
+            Fullscreen() {
+                askFullscreen(this);
+                // if (!fs) {
+                //     this.fullscreen = false;
+                //     try {
+                //         document.exitFullscreen();
+                //     }
+                //     catch (e) {
+                //         console.log(e);
+                //     }
+                // }
+                // else {
+                //     this.father.requestFullscreen();
+                //     this.fullscreen = true;
+
+                // }
+                return !this.fullscreen;
+            }
+            PIP() {
+                if (this.pip) {
+                    document.exitPictureInPicture();
+                    this.pip = false;
+                }
+                else {
+                    this.media.requestPictureInPicture();
+                    this.pip = true;
+                }
+                return this.pip;
+            }
+            newQueu(queu = [], name = []) {
+                if (queu.length > 0) {
+                    this.newMedia(queu.shift(), true, [], queu);
+                    this.listName = name.sort();
+                }
+                else {
+                    this.newMedia("", false, [], []);
+                    this.listName = [];
+                }
+                return this.queu;
+            }
+            pushQueu(queu, name) {
+                this.queu = this.queu.concat(Array.from(queu));
+                this.next = this.next.concat(Array.from(queu));
+                if (!this.current) {
+                    this.newMedia(this.queu.shift(), false, [], this.queu);
+                }
+                this.listName = this.listName.concat(Array.from(name));
+                this.listName.sort();
+            }
+            removeInQueu(which) {
+                if (this.queu.includes(which)) {
+                    console.log(which);
+                    console.log("queu");
+                    this.queu.slice(this.queu.indexOf(which), 1);
+                    let b = this.queu;
+                    this.prev = b.slice(0, b.indexOf(this.current));
+                    this.next = b.slice((b.indexOf(this.current) >= b.length) ? b.indexOf(this.current) : b.indexOf(this.current) + 1);
+                    if (this.current === which) {
+                        if (this.next.length > 0) {
+                            this.Next();
+                            this.prev.shift();
+                        }
+                        else if (this.prev.length > 0) {
+                            this.Prev();
+                            this.prev.pop();
+                        }
+                        else {
+                            this.current = undefined;
+                            $("#media").attr("src", "").prop("src", "")
+                            this.newMedia(null, false, [], []);
+                            $("#gc-title").find("span").text("");
+                        }
+                    }
+
+                    delete this.MLC[this.MLC[which]];
+                    delete this.MLC[which];
+                }
+
+            }
+            newInterval(interval = null) {
+                this.duration = this.media.duration;
+                if (interval) {
+                    this.interval = [interval[0] ? interval[0] : 0, interval[1] ? interval[1] : this.duration]
+                }
+                else {
+                    this.interval = [0, this.duration];
+                }
+                $(this.media).on("timeupdate", () => {
+                    this.current = this.media.currentTime;
+
+                })
+                return this.interval;
+            }
+            Image(where = null) {
+                where = where ? where : this.media.currentTime;
+                this.preview.currentTime = where;
+                const ctx = this.canvas.getContext('2d');
+                this.canvas.width = this.media.videoWidth;
+                this.canvas.height = this.media.videoHeight;
+                ctx.drawImage(this.preview, 0, 0, this.canvas.width, this.canvas.height);
+                const imageURL = this.canvas.toDataURL('image/png');
+                return imageURL;
+            }
+            setCurrent(current) {
+                if (this.queu.includes(current) && this.current !== current) {
+                    if (this.prev.includes(current)) {
+                        this.Prev();
+                    }
+                    else {
+                        this.Next();
+                    }
+                    this.setCurrent(current);
+
+                }
+            }
+
+        }
+
+        function askFullscreen(what) {
+            pywebview.api.fullscreen().then(response => {
+                what.fullscreen = response.message;
+            });
+        }
+        function convertToTime(value, brut = false) {
+            let h = Math.floor(value / 3600);
+            let m = Math.floor(value % 3600 / 60);
+            let s = value % 3600 % 60;
+            if (brut) {
+                return [h, m, s];
+            }
+            else {
+                m = (m >= 10) ? m : `0${m}`;
+                h = (h >= 10) ? h : `0${h}`;
+                let final = (s >= 10) ? s : `0${s}`;
+                final = m + ":" + final;
+                if (h > 0) final = h + ":" + final;
+                return final;
+            }
+        }
+        function convertToSec(h = 0, m = 0, s = 0) {
+            s = s + m * 60 + h * 3600;
+            return s;
+        }
+        /*This class will create modal*/
+        class ModalQueu {
+            constructor(title = "", id = undefined, mdc = undefined) {
+                this.gm = document.createElement("div");
+                this.msc = document.createElement("div");
+                this.msHead = document.createElement("div");
+                this.msBody = document.createElement("div");
+                this.msFoot = document.createElement("div");
+                this.msc.appendChild(this.msHead);
+                this.msc.appendChild(this.msBody);
+                this.msc.appendChild(this.msFoot);
+                this.gm.appendChild(this.msc);
+                this.title = document.createElement("h1");
+                this.close = document.createElement("button");
+                this.msHead.appendChild(this.title);
+                this.msHead.appendChild(this.close);
+                $(this.title).text(title)
+                $(this.close).html(`<svg xmlns="http://www.w3.org/2000/svg" width="100%" height="100%" fill="currentColor"
+                            class="bi bi-x-lg" viewBox="0 0 16 16">
+                            <path
+                                d="M2.146 2.854a.5.5 0 1 1 .708-.708L8 7.293l5.146-5.147a.5.5 0 0 1 .708.708L8.707 8l5.147 5.146a.5.5 0 0 1-.708.708L8 8.707l-5.146 5.147a.5.5 0 0 1-.708-.708L7.293 8z" />
+                        </svg>`);
+                $(this.gm).addClass("global-modal");
+                this.gm.id = id;
+                $(this.msc).addClass("modal-show-container");
+                $(this.msHead).addClass("ms-head");
+                $(this.msBody).addClass("ms-body");
+                $(this.msFoot).addClass("ms-foot");
+                $(this.close).addClass("ms-close");
+                this.listItems = [];
+                this.listButtons = [];
+                $(this.gm).on("contextmenu", function (e) {
+                    e.stopImmediatePropagation();
+                    e.stopPropagation();
+                    e.preventDefault();
+                });
+                let ths = this
+                $(this.close,).on("click", function () {
+                    ths.hide();
+                });
+                $(this.gm).on("click", function () {
+                    ths.hide();
+                });
+                $(this.msc).on("click", function (e) {
+                    e.stopImmediatePropagation();
+                    e.stopPropagation();
+                });
+                this.msbiClicked;
+                this.MDC = mdc;
+                this.msbdnDraged;
+                this.currentMSBItem = undefined;
+                this.startMSBPosY = 0;
+                this.msbdnListe;
+
+
+            }
+            show() {
+                $(this.gm).attr("hidden", false);
+            }
+            hide() {
+                $(this.gm).attr("hidden", true);
+            }
+            addItem(link = "", name = "", type = "file") {
+                let msbType = `<div class="msb-type">
+                <svg xmlns="http://www.w3.org/2000/svg" width="100%" height="100%" fill="currentColor"
+                                class="bi bi-film" viewBox="0 0 16 16">
+                                <path class="msbt-video" ${type === "video" ? "" : "hidden"}
+                                    d="M0 1a1 1 0 0 1 1-1h14a1 1 0 0 1 1 1v14a1 1 0 0 1-1 1H1a1 1 0 0 1-1-1zm4 0v6h8V1zm8 8H4v6h8zM1 1v2h2V1zm2 3H1v2h2zM1 7v2h2V7zm2 3H1v2h2zm-2 3v2h2v-2zM15 1h-2v2h2zm-2 3v2h2V4zm2 3h-2v2h2zm-2 3v2h2v-2zm2 3h-2v2h2z" />
+                                <path class="msbt-audio" ${type === "audio" ? "" : "hidden"}
+                                    d="M6 13c0 1.105-1.12 2-2.5 2S1 14.105 1 13s1.12-2 2.5-2 2.5.896 2.5 2m9-2c0 1.105-1.12 2-2.5 2s-2.5-.895-2.5-2 1.12-2 2.5-2 2.5.895 2.5 2" />
+                                <path class="msbt-audio" ${type === "audio" ? "" : "hidden"} fill-rule="evenodd" d="M14 11V2h1v9zM6 3v10H5V3z" />
+                                <path class="msbt-audio" ${type === "audio" ? "" : "hidden"} d="M5 2.905a1 1 0 0 1 .9-.995l8-.8a1 1 0 0 1 1.1.995V3L5 4z" />
+                                <path class="msbt-file" ${type === "file" ? "" : "hidden"}
+                                    d="M14 4.5V14a2 2 0 0 1-2 2H4a2 2 0 0 1-2-2V2a2 2 0 0 1 2-2h5.5zm-3 0A1.5 1.5 0 0 1 9.5 3V1H4a1 1 0 0 0-1 1v12a1 1 0 0 0 1 1h8a1 1 0 0 0 1-1V4.5z" />
+                            </svg>
+                </div>`;
+                let msbName = `<div class="msb-name flex-fill">
+                            ${name}
+                        </div>
+                `;
+                let item = document.createElement("div");
+                $(item).addClass("msb-item d-flex flex-row");
+                $(item).attr("cible", link);
+                item.innerHTML += `<div class="msb-drag">
+                            <svg xmlns="http://www.w3.org/2000/svg" width="100%" height="100%" fill="currentColor"
+                                class="bi bi-list" viewBox="0 0 16 16">
+                                <path fill-rule="evenodd"
+                                    d="M2.5 12a.5.5 0 0 1 .5-.5h10a.5.5 0 0 1 0 1H3a.5.5 0 0 1-.5-.5m0-4a.5.5 0 0 1 .5-.5h10a.5.5 0 0 1 0 1H3a.5.5 0 0 1-.5-.5m0-4a.5.5 0 0 1 .5-.5h10a.5.5 0 0 1 0 1H3a.5.5 0 0 1-.5-.5" />
+                            </svg>
+                        </div>
+                `;
+                item.innerHTML += msbType;
+                item.innerHTML += msbName;
+                item.innerHTML += `<div class="msb-del">
+                            <button>
+                                <svg xmlns="http://www.w3.org/2000/svg" width="100%" height="100%" fill="currentColor"
+                                    class="bi bi-x" viewBox="0 0 16 16">
+                                    <path
+                                        d="M4.646 4.646a.5.5 0 0 1 .708 0L8 7.293l2.646-2.647a.5.5 0 0 1 .708.708L8.707 8l2.647 2.646a.5.5 0 0 1-.708.708L8 8.707l-2.646 2.647a.5.5 0 0 1-.708-.708L7.293 8 4.646 5.354a.5.5 0 0 1 0-.708" />
+                                </svg>
+                            </button>
+                        </div>
+                `;
+                this.msBody.appendChild(item);
+                this.listItems.push(item);
+                let ths = this;
+                $(this.listItems).on("click", function () {
+                    $(".msb-item").removeClass("msbi-selected");
+                    $(this).addClass("msbi-selected");
+                    ths.setCurrentItem(this, $(this).attr("cible"));
+                    if (ths.msbiClicked) {
+                        ths.msbiClicked($(this).attr("cible"), this);
+                    }
+                });
+                $(".msb-del").on("click", function (e) {
+                    e.stopImmediatePropagation();
+                    e.stopPropagation();
+                    if (ths.msbdClicked) {
+                        ths.msbdClicked($(this).closest(".msb-item").attr("cible"), $(this).closest(".msb-item"));
+                    }
+                    let cible = $(this).closest(".msb-item").attr("cible");
+                    ths.MDC.removeInQueu(cible);
+                    ths.removeItem(null, cible);
+
+                });
+                $(".msb-drag").on("mousedown", function (e) {
+                    $(this).find("svg").css("cursor", "grabbing");
+                    $(this).closest(".ms-body").css("cursor", "grabbing");
+                    $(this).closest(".msb-item").siblings(".msb-item").css("cursor", "grabbing");
+                    ths.currentMSBItem = $(this).closest(".msb-item");
+                    $(ths.currentMSBItem).css("cursor", "grabbing");
+                    ths.startPosY = e.pageY;
+                });
+
+                $(".ms-body").on("mouseup mouseleave focusout", function () {
+                    if (ths.currentMSBItem) {
+                        $(ths.currentMSBItem).find("svg").css("cursor", "grab");
+                        $(".ms-body").css("cursor", "default");
+                        $(".msb-item").css("cursor", "pointer");
+                        $(ths.currentMSBItem).css("cursor", "pointer");
+                        ths.currentMSBItem = undefined;
+                    }
+                });
+                $(".ms-body").on("mousemove", function (e) {
+                    if (ths.currentMSBItem) {
+                        let diffY = e.pageY - ths.startMSBPosY;
+                        let previousSibling = $(ths.currentMSBItem).prev(".msb-item");
+                        let nextSibling = $(ths.currentMSBItem).next(".msb-item");
+
+                        if (diffY > 35 && nextSibling.length > 0) {
+                            $(ths.currentMSBItem).insertAfter(nextSibling);
+                            ths.startMSBPosY = e.pageY;
+                        }
+                        else if (diffY < -35 && previousSibling.length > 0) {
+                            $(ths.currentMSBItem).insertBefore(previousSibling);
+                            ths.startMSBPosY = e.pageY;
+                        }
+                        let liste = [];
+                        $(ths.currentMSBItem).closest(".ms-body").find(".msb-item").each(function () {
+                            liste.push($(this).attr("cible"));
+                        });
+
+                        if (diffY > 35 && nextSibling.length > 0 || diffY < -35 && previousSibling.length > 0) {
+                            if (ths.msbdnDraged) {
+                                ths.msbdnDraged(liste, $(ths.currentMSBItem).attr("cible"));
+                            }
+                        }
+                    }
+                });
+                
+                return item;
+            }
+            removeItem(item = null, cible = null) {
+                let cbl = cible
+                if (item) {
+                    cbl = $(item).attr("cible");
+                }
+                let ths = this;
+                ths.listItems.splice(ths.listItems.indexOf(cbl), 1);
+                $(this.msBody).find('.msb-item[cible="' + cbl + '"]').remove();
+                
+            }
+            setCurrentItem(item = null, cible = null) {
+                let cbl = cible;
+                if (item) {
+                    cbl = $(item).attr("cible");
+                }
+                let ths = this;
+                ths.listItems.splice(ths.listItems.indexOf(cbl), 1);
+                $(".msb-item").removeClass("msbi-selected");
+                $(this.msBody).find('.msb-item[cible="' + cbl + '"]').addClass("msbi-selected");
+                this.MDC.setCurrent(cbl);
+            }
+            clearBody() {
+                $(this.msBody).html("");
+                this.listItems = [];
+            }
+            addButton(name = "", id = undefined, funct = undefined) {
+                let but = document.createElement("button");
+                $(but).text(name);
+                $(but).addClass("msf-button");
+                $(but).attr("cible", name);
+                if (funct != undefined) {
+                    $(but).on("click", () => {
+                        funct();
+                    });
+                }
+                this.msFoot.appendChild(but)
+                return but;
+            }
+            removeButton(button = null, cible = null) {
+                let cbl = cible;
+                if (button) {
+                    cbl = $(button).attr("cible");
+                }
+                let ths = this;
+                ths.listButtons.splice(ths.listButtons.indexOf(cbl), 1);
+                $(this.msFoot).find('.msf-button[cible="' + cbl + '"]').remove();
+            }
+        }
+    </script>
+</head>
+
+<body data-bs-theme="dark" class="text-white" style="width: 100%; height: 100%; overflow: hidden;">
+    <div id="div" style="width: 100vw; height: 100vh; border: 1px solid black; position: relative;">
+        <div id="media-container">
+            <video id="media" src="">
+                This video is not supported
+            </video>
+            <div id="media-big-pause">
+                <svg id="smbp" xmlns="http://www.w3.org/2000/svg" width="100%" height="100%" fill="currentColor"
+                    class="bi bi-pause-circle" viewBox="0 0 16 16">
+                    <path id="smbp1" d="M8 15A7 7 0 1 1 8 1a7 7 0 0 1 0 14m0 1A8 8 0 1 0 8 0a8 8 0 0 0 0 16" />
+                    <path id="smbp2"
+                        d="M5 6.25a1.25 1.25 0 1 1 2.5 0v3.5a1.25 1.25 0 1 1-2.5 0zm3.5 0a1.25 1.25 0 1 1 2.5 0v3.5a1.25 1.25 0 1 1-2.5 0z" />
+                    <!-- CUT HERE -->
+                    <path id="smbp3"
+                        d="M6.271 5.055a.5.5 0 0 1 .52.038l3.5 2.5a.5.5 0 0 1 0 .814l-3.5 2.5A.5.5 0 0 1 6 10.5v-5a.5.5 0 0 1 .271-.445" />
+                </svg>
+                <script>
+                    $("#smbp2").hide();
+                </script>
+            </div>
+            <div id="media-preview">
+            </div>
+            <div id="media-interval">
+                <div id="mdi-head" class="flex-fill">
+                    <wataba id="mdih-close">
+                        <svg xmlns="http://www.w3.org/2000/svg" width="100%" height="100%" fill="currentColor"
+                            class="bi bi-x" viewBox="0 0 16 16">
+                            <path
+                                d="M4.646 4.646a.5.5 0 0 1 .708 0L8 7.293l2.646-2.647a.5.5 0 0 1 .708.708L8.707 8l2.647 2.646a.5.5 0 0 1-.708.708L8 8.707l-2.646 2.647a.5.5 0 0 1-.708-.708L7.293 8 4.646 5.354a.5.5 0 0 1 0-.708" />
+                        </svg>
+                    </wataba>
+                </div>
+                <div id="mdi-body">
+                    <div class="mdib-line d-flex flex-row">
+                        <div class="mdib-indicator">
+                            From :
+                        </div>
+                        <input type="number" id="mdib-h1" min="0" max="Math.infinite" value="0">
+                        <span>h</span>
+                        <input type="number" id="mdib-m1" min="0" max="59" value="0">
+                        <span>m</span>
+                        <input type="number" id="mdib-s1" min="0" max="50" value="0">
+                        <span>s</span>
+                    </div>
+                    <div class="mdib-line d-flex flex-row">
+                        <div class="mdib-indicator">
+                            To:
+                        </div>
+                        <input type="number" id="mdib-h2" min="0" max="Math.infinite" value="0">
+                        <span>h</span>
+                        <input type="number" id="mdib-m2" min="0" max="50" value="0">
+                        <span>m</span>
+                        <input type="number" id="mdib-s2" min="0" max="50" value="0">
+                        <span>s</span>
+                    </div>
+                    <div class="mdib-line d-flex flex-row" style="border-top: 1px solid var(--dark-color-1);">
+                        <wataba id="mdib-reset">Reset</wataba>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div id="media-controls">
+            <div id="time-control">
+                <div id="tmc-from-to">
+                    <span id="tmc-from"></span>
+                    <span id="tmc-to"></span>
+                </div>
+                <div id="tmc-time-line">
+                    <input type="range" id="tmc-line" min="0" max="10" value="0" step=".1">
+                </div>
+                <div id="tmc-where-preview">
+                    <img id="tmc-preview" src="" alt="">
+                    <p id="tmc-where"></p>
+                </div>
+                <script>
+                    $("#tmc-where-preview").hide();
+                </script>
+            </div>
+            <div id="global-control" class="d-flex flex-row">
+                <div id="gc-left" class="d-flex flex-row">
+                    <wataba id="gc-prev" title="Prev">
+                        <svg xmlns="http://www.w3.org/2000/svg" width="100%" height="100%" fill="currentColor"
+                            class="bi bi-skip-start-fill" viewBox="0 0 16 16">
+                            <path
+                                d="M4 4a.5.5 0 0 1 1 0v3.248l6.267-3.636c.54-.313 1.232.066 1.232.696v7.384c0 .63-.692 1.01-1.232.697L5 8.753V12a.5.5 0 0 1-1 0z" />
+                        </svg>
+                    </wataba>
+                    <wataba id="gc-minus" title="-10s">
+                        <svg xmlns="http://www.w3.org/2000/svg" width="100%" height="100%" fill="currentColor"
+                            class="bi bi-rewind-fill" viewBox="0 0 16 16">
+                            <path
+                                d="M8.404 7.304a.802.802 0 0 0 0 1.392l6.363 3.692c.52.302 1.233-.043 1.233-.696V4.308c0-.653-.713-.998-1.233-.696z" />
+                            <path
+                                d="M.404 7.304a.802.802 0 0 0 0 1.392l6.363 3.692c.52.302 1.233-.043 1.233-.696V4.308c0-.653-.713-.998-1.233-.696z" />
+                        </svg>
+                    </wataba>
+                    <wataba id="gc-pause-play" title="Pause/Play">
+                        <svg xmlns="http://www.w3.org/2000/svg" width="100%" height="100%" fill="currentColor"
+                            class="bi bi-pause-fill" viewBox="0 0 16 16">
+                            <path id="gc-pause"
+                                d="M5.5 3.5A1.5 1.5 0 0 1 7 5v6a1.5 1.5 0 0 1-3 0V5a1.5 1.5 0 0 1 1.5-1.5m5 0A1.5 1.5 0 0 1 12 5v6a1.5 1.5 0 0 1-3 0V5a1.5 1.5 0 0 1 1.5-1.5" />
+                            <path id="gc-play"
+                                d="m11.596 8.697-6.363 3.692c-.54.313-1.233-.066-1.233-.697V4.308c0-.63.692-1.01 1.233-.696l6.363 3.692a.802.802 0 0 1 0 1.393" />
+                        </svg>
+                        <script>
+                            $("#gc-pause").hide();
+                        </script>
+                    </wataba>
+                    <wataba id="gc-maxus" title="+10s">
+                        <svg xmlns="http://www.w3.org/2000/svg" width="100%" height="100%" fill="currentColor"
+                            class="bi bi-fast-forward-fill" viewBox="0 0 16 16">
+                            <path
+                                d="M7.596 7.304a.802.802 0 0 1 0 1.392l-6.363 3.692C.713 12.69 0 12.345 0 11.692V4.308c0-.653.713-.998 1.233-.696z" />
+                            <path
+                                d="M15.596 7.304a.802.802 0 0 1 0 1.392l-6.363 3.692C8.713 12.69 8 12.345 8 11.692V4.308c0-.653.713-.998 1.233-.696z" />
+                        </svg>
+                    </wataba>
+                    <wataba id="gc-next" title="Next">
+                        <svg xmlns="http://www.w3.org/2000/svg" width="100%" height="100%" fill="currentColor"
+                            class="bi bi-caret-right-fill" viewBox="0 0 16 16">
+                            <path
+                                d="M12.5 4a.5.5 0 0 0-1 0v3.248L5.233 3.612C4.693 3.3 4 3.678 4 4.308v7.384c0 .63.692 1.01 1.233.697L11.5 8.753V12a.5.5 0 0 0 1 0z" />
+                        </svg>
+                    </wataba>
+                    <span class="gc-empty"></span>
+                    <div id="gc-mute-volume" class="d-flex flex-row">
+                        <wataba id="gc-vol" title="Volume">
+                            <svg xmlns="http://www.w3.org/2000/svg" width="100%" height="100%" fill="currentColor"
+                                class="bi bi-volume-off-fill" viewBox="0 0 16 16">
+                                <path id="gc-mute"
+                                    d="M6.717 3.55A.5.5 0 0 1 7 4v8a.5.5 0 0 1-.812.39L3.825 10.5H1.5A.5.5 0 0 1 1 10V6a.5.5 0 0 1 .5-.5h2.325l2.363-1.89a.5.5 0 0 1 .529-.06m7.137 2.096a.5.5 0 0 1 0 .708L12.207 8l1.647 1.646a.5.5 0 0 1-.708.708L11.5 8.707l-1.646 1.647a.5.5 0 0 1-.708-.708L10.793 8 9.146 6.354a.5.5 0 1 1 .708-.708L11.5 7.293l1.646-1.647a.5.5 0 0 1 .708 0" />
+                                <path id="gc-vol-l0"
+                                    d="M10.717 3.55A.5.5 0 0 1 11 4v8a.5.5 0 0 1-.812.39L7.825 10.5H5.5A.5.5 0 0 1 5 10V6a.5.5 0 0 1 .5-.5h2.325l2.363-1.89a.5.5 0 0 1 .529-.06" />
+                                <path id="gc-vol-l1"
+                                    d="M9 4a.5.5 0 0 0-.812-.39L5.825 5.5H3.5A.5.5 0 0 0 3 6v4a.5.5 0 0 0 .5.5h2.325l2.363 1.89A.5.5 0 0 0 9 12zm3.025 4a4.5 4.5 0 0 1-1.318 3.182L10 10.475A3.5 3.5 0 0 0 11.025 8 3.5 3.5 0 0 0 10 5.525l.707-.707A4.5 4.5 0 0 1 12.025 8" />
+                                <path id="gc-vol-l2-1"
+                                    d="M11.536 14.01A8.47 8.47 0 0 0 14.026 8a8.47 8.47 0 0 0-2.49-6.01l-.708.707A7.48 7.48 0 0 1 13.025 8c0 2.071-.84 3.946-2.197 5.303z" />
+                                <path id="gc-vol-l2-2"
+                                    d="M10.121 12.596A6.48 6.48 0 0 0 12.025 8a6.48 6.48 0 0 0-1.904-4.596l-.707.707A5.48 5.48 0 0 1 11.025 8a5.48 5.48 0 0 1-1.61 3.89z" />
+                                <path id="gc-vol-l2-3"
+                                    d="M8.707 11.182A4.5 4.5 0 0 0 10.025 8a4.5 4.5 0 0 0-1.318-3.182L8 5.525A3.5 3.5 0 0 1 9.025 8 3.5 3.5 0 0 1 8 10.475zM6.717 3.55A.5.5 0 0 1 7 4v8a.5.5 0 0 1-.812.39L3.825 10.5H1.5A.5.5 0 0 1 1 10V6a.5.5 0 0 1 .5-.5h2.325l2.363-1.89a.5.5 0 0 1 .529-.06" />
+                            </svg>
+                            <script>
+                                $("#gc-mute, #gc-vol-l0, #gc-vol-l1").hide()
+                            </script>
+                        </wataba>
+                        <input type="range" id="gc-volume" min="0" max="100" value="100" step="1">
+                    </div>
+                    <span class="gc-empty"></span>
+                    <wataba id="gc-true-false-null" title="Play mode">
+                        <svg xmlns="http://www.w3.org/2000/svg" width="100%" height="100%" fill="currentColor"
+                            class="bi bi-repeat" viewBox="0 0 16 16">
+                            <path id="gc-true1"
+                                d="M11 4v1.466a.25.25 0 0 0 .41.192l2.36-1.966a.25.25 0 0 0 0-.384l-2.36-1.966a.25.25 0 0 0-.41.192V3H5a5 5 0 0 0-4.48 7.223.5.5 0 0 0 .896-.446A4 4 0 0 1 5 4zm4.48 1.777a.5.5 0 0 0-.896.446A4 4 0 0 1 11 12H5.001v-1.466a.25.25 0 0 0-.41-.192l-2.36 1.966a.25.25 0 0 0 0 .384l2.36 1.966a.25.25 0 0 0 .41-.192V13h6a5 5 0 0 0 4.48-7.223Z" />
+                            <path id="gc-true2"
+                                d="M9 5.5a.5.5 0 0 0-.854-.354l-1.75 1.75a.5.5 0 1 0 .708.708L8 6.707V10.5a.5.5 0 0 0 1 0z" />
+                            <path id="gc-false"
+                                d="M11 5.466V4H5a4 4 0 0 0-3.584 5.777.5.5 0 1 1-.896.446A5 5 0 0 1 5 3h6V1.534a.25.25 0 0 1 .41-.192l2.36 1.966c.12.1.12.284 0 .384l-2.36 1.966a.25.25 0 0 1-.41-.192m3.81.086a.5.5 0 0 1 .67.225A5 5 0 0 1 11 13H5v1.466a.25.25 0 0 1-.41.192l-2.36-1.966a.25.25 0 0 1 0-.384l2.36-1.966a.25.25 0 0 1 .41.192V12h6a4 4 0 0 0 3.585-5.777.5.5 0 0 1 .225-.67Z" />
+                            <path id="gc-null" fill-rule="evenodd"
+                                d="M1 8a.5.5 0 0 1 .5-.5h11.793l-3.147-3.146a.5.5 0 0 1 .708-.708l4 4a.5.5 0 0 1 0 .708l-4 4a.5.5 0 0 1-.708-.708L13.293 8.5H1.5A.5.5 0 0 1 1 8" />
+                        </svg>
+                        <script>
+                            $("#gc-true1, #gc-true2, #gc-false").hide();
+                        </script>
+                    </wataba>
+                    <wataba id="gc-random" title="Radom mode">
+                        <svg xmlns="http://www.w3.org/2000/svg" width="100%" height="100%" fill="currentColor"
+                            class="bi bi-shuffle" viewBox="0 0 16 16">
+                            <path id="gc-random1" fill-rule="evenodd"
+                                d="M0 3.5A.5.5 0 0 1 .5 3H1c2.202 0 3.827 1.24 4.874 2.418.49.552.865 1.102 1.126 1.532.26-.43.636-.98 1.126-1.532C9.173 4.24 10.798 3 13 3v1c-1.798 0-3.173 1.01-4.126 2.082A9.6 9.6 0 0 0 7.556 8a9.6 9.6 0 0 0 1.317 1.918C9.828 10.99 11.204 12 13 12v1c-2.202 0-3.827-1.24-4.874-2.418A10.6 10.6 0 0 1 7 9.05c-.26.43-.636.98-1.126 1.532C4.827 11.76 3.202 13 1 13H.5a.5.5 0 0 1 0-1H1c1.798 0 3.173-1.01 4.126-2.082A9.6 9.6 0 0 0 6.444 8a9.6 9.6 0 0 0-1.317-1.918C4.172 5.01 2.796 4 1 4H.5a.5.5 0 0 1-.5-.5" />
+                            <path id="gc-random2"
+                                d="M13 5.466V1.534a.25.25 0 0 1 .41-.192l2.36 1.966c.12.1.12.284 0 .384l-2.36 1.966a.25.25 0 0 1-.41-.192m0 9v-3.932a.25.25 0 0 1 .41-.192l2.36 1.966c.12.1.12.284 0 .384l-2.36 1.966a.25.25 0 0 1-.41-.192" />
+                        </svg>
+                    </wataba>
+                    <span class="gc-empty"></span>
+                    <div id="gc-time-duration" class="d-flex flex-row">
+                        <span id="gc-time">00:00</span>
+                        /
+                        <span id="gc-duration">00:00</span>
+                    </div>
+                    <div id="gc-title" class="flex-fill">
+                        <span></span>
+                    </div>
+                </div>
+                <div id="gc-right" class="d-flex flex-row">
+                    <div id="gc-speed">
+                        <wataba id="gcs-preview" title="Speed">
+                            ×1
+                        </wataba>
+                        <ul id="gcs-list">
+                            <li id="gcs-25" value=".25">×0.25</li>
+                            <li id="gcs-50" value=".5">×0.5</li>
+                            <li id="gcs-75" value=".75">×0.75</li>
+                            <li id="gcs-100" class="gcs-selected" value="1">×1</li>
+                            <li id="gcs-125" value="1.25">×1.25</li>
+                            <li id="gcs-150" value="1.5">×1.50</li>
+                            <li id="gcs-175" value="1.75">×1.75</li>
+                            <li id="gcs-200" value="2">×2</li>
+                        </ul>
+                        <script>
+                            $("#gcs-list").fadeOut(0);
+                        </script>
+                    </div>
+                    <wataba id="gc-fullscreen" title="Fullscreen">
+                        <svg xmlns="http://www.w3.org/2000/svg" width="100%" height="100%" fill="currentColor"
+                            class="bi bi-fullscreen" viewBox="0 0 16 16">
+                            <path id="gcf-full"
+                                d="M1.5 1a.5.5 0 0 0-.5.5v4a.5.5 0 0 1-1 0v-4A1.5 1.5 0 0 1 1.5 0h4a.5.5 0 0 1 0 1zM10 .5a.5.5 0 0 1 .5-.5h4A1.5 1.5 0 0 1 16 1.5v4a.5.5 0 0 1-1 0v-4a.5.5 0 0 0-.5-.5h-4a.5.5 0 0 1-.5-.5M.5 10a.5.5 0 0 1 .5.5v4a.5.5 0 0 0 .5.5h4a.5.5 0 0 1 0 1h-4A1.5 1.5 0 0 1 0 14.5v-4a.5.5 0 0 1 .5-.5m15 0a.5.5 0 0 1 .5.5v4a1.5 1.5 0 0 1-1.5 1.5h-4a.5.5 0 0 1 0-1h4a.5.5 0 0 0 .5-.5v-4a.5.5 0 0 1 .5-.5" />
+                            <path id="gcf-part"
+                                d="M5.5 0a.5.5 0 0 1 .5.5v4A1.5 1.5 0 0 1 4.5 6h-4a.5.5 0 0 1 0-1h4a.5.5 0 0 0 .5-.5v-4a.5.5 0 0 1 .5-.5m5 0a.5.5 0 0 1 .5.5v4a.5.5 0 0 0 .5.5h4a.5.5 0 0 1 0 1h-4A1.5 1.5 0 0 1 10 4.5v-4a.5.5 0 0 1 .5-.5M0 10.5a.5.5 0 0 1 .5-.5h4A1.5 1.5 0 0 1 6 11.5v4a.5.5 0 0 1-1 0v-4a.5.5 0 0 0-.5-.5h-4a.5.5 0 0 1-.5-.5m10 1a1.5 1.5 0 0 1 1.5-1.5h4a.5.5 0 0 1 0 1h-4a.5.5 0 0 0-.5.5v4a.5.5 0 0 1-1 0z" />
+                        </svg>
+                        <script>
+                            $("#gcf-part").hide()
+                        </script>
+                    </wataba>
+                </div>
+            </div>
+        </div>
+        <div id="media-context">
+            <ul id="mc-list">
+                <!-- <li id="mc-location">
+                    open location
+                </li> -->
+                <li id="mc-queu">
+                    Show list
+                </li>
+                <li id="mc-interval">
+                    Set interval
+                </li>
+                <hr>
+                <!-- <li id="mc-properties">
+                    Properties
+                </li> -->
+                <!-- <hr>
+                <li id="mc-flex">
+                    open with .flex
+                </li>
+                <hr> -->
+                <li id="mc-pip">
+                    PIP mode
+                </li>
+                <!-- <li id="mc-screen">
+                    save image
+                    <a id="mc-ascreen" href="#" hidden></a>
+                </li> -->
+            </ul>
+        </div>
+        <script id="first-execute">
+            $("#media-context").fadeOut(0);
+        </script>
+        <script id="media-control-script">
+            $(document).ready(() => {
+                let med = createMedia();
+                const MDC = new MediaCommands(document.getElementById("media"), document.getElementById("div"), med[1], med[2], actuallyPlaying);
+                const MLC = {};
+                const MQC = new ModalQueu("Queu", "mc-mqc", MDC);
+                const BROWSE1 = document.createElement("input");
+                const BROWSE2 = document.createElement("input");
+
+                $(BROWSE1).attr({
+                    type: "file",
+                    multiple: true,
+                    accept: ".avi,.flv,.mkv,.mov,.mp4,.wmv,.webm,.aac,.aif,.aiff,.3gp,.mp3,.m4a,.wav",
+                });
+                $(BROWSE2).attr({
+                    type: "file",
+                    multiple: true,
+                    accept: ".avi,.flv,.mkv,.mov,.mp4,.wmv,.webm,.aac,.aif,.aiff,.3gp,.mp3,.m4a,.wav",
+                });
+
+                $("img").on("dragstart", (e) => {
+                    e.preventDefault();
+                });
+                $("*").on("contextmenu", (e) => {
+                    e.preventDefault();
+                });
+
+                function __pause__(bll) {
+                    if (bll) {
+                        $("#gc-play, #smbp3").hide();
+                        $("#gc-pause, #smbp2, #smbp1").show();
+                        $("#smbp1, #smbp2").fadeOut(500);
+                        clearTimeout(hideControlTimeOut);
+                        document.body.classList.remove("fade-cursor");
+                        hideControlTimeOut = setTimeout(() => {
+                            if (MDC.play) {
+                                $("#media-controls").fadeOut(300);
+                                if (MDC.fullscreen) {
+                                    document.body.classList.add("fade-cursor");
+                                }
+                            }
+                        }, 2000);
+                    }
+                    else {
+                        $("#gc-play, #smbp3, #smbp1").show();
+                        $("#gc-pause, #smbp2").hide();
+                        $("#media-controls").show();
+                        document.body.classList.remove("fade-cursor");
+                    }
+                }
+                $(document).on("keydown", (e) => {
+                    e.stopPropagation();
+                    let cvvlm = parseInt($("#gc-volume").val(), 10);
+                    if (e.target.tagName !== "INPUT") {
+                        switch (e.key) {
+                            case ("Escape"):
+                                if (MDC.fullscreen) $("#gc-fullscreen").click();
+                                break;
+                            case (" "):
+                                let a = MDC.Play();
+                                __pause__(a);
+                                break;
+                            case ("ArrowRight"):
+                                __maxus__();
+                                break;
+                            case ("ArrowLeft"):
+                                __minus__();
+                                break;
+                            case ("ArrowUp"):
+                                let vlm = cvvlm + 10;
+                                vlm = (vlm <= 100) ? vlm : 100;
+                                __volume__(vlm);
+                                break;
+                            case ("ArrowDown"):
+                                let vlmD = cvvlm - 10;
+                                vlmD = (vlmD >= 0) ? vlmD : 0;
+                                __volume__(vlmD);
+                                break;
+                            case ("m"):
+                            case ("M"):
+                                MDC.Muted();
+                                __volume__(MDC.media.volume * 100);
+                                break;
+                            case ("l"):
+                            case ("L"):
+                                switch (MDC.loop) {
+                                    case (true):
+                                        MDC.newLoop(false);
+                                        $("#gc-true1, #gc-true2, #gc-null").hide();
+                                        $("#gc-false").show();
+                                        break;
+                                    case (false):
+                                        MDC.newLoop(null);
+                                        $("#gc-true1, #gc-true2, #gc-false").hide();
+                                        $("#gc-null").show();
+                                        break;
+                                    case (null):
+                                        MDC.newLoop(true);
+                                        $("#gc-false, #gc-null").hide();
+                                        $("#gc-true1, #gc-true2").show();
+                                        break;
+                                }
+                                break;
+                            case ("f"):
+                            case ("F"):
+                                if (MDC.Fullscreen()) {
+                                    $("#gcf-part").show();
+                                    $("#gcf-full").hide();
+                                }
+                                else {
+                                    $("#gcf-part").hide();
+                                    $("#gcf-full").show();
+                                }
+                                break;
+                            case ("0"):
+                            case ("1"):
+                            case ("2"):
+                            case ("3"):
+                            case ("4"):
+                            case ("5"):
+                            case ("6"):
+                            case ("7"):
+                            case ("8"):
+                            case ("9"):
+                                if (!e.ctrlKey && !e.shiftKey && !e.altKey) MDC.media.currentTime = MDC.duration * parseInt(e.key) / 10
+                                break;
+                        }
+                    }
+                });
+                $("#gc-pause-play, #media-big-pause, #media").on("click", () => {
+                    let a = MDC.Play();
+                    __pause__(a);
+
+                });
+                $("#gc-prev").on("click", () => {
+                    let b = MDC.current;
+                    let a = MDC.Prev();
+                    if (b !== MDC.current) {
+                        $("#smbp2, #gc-play, #smbp3, #smbp1").hide();
+                        $("#gc-pause").show();
+                        $("#gc-title").find("span").text(MDC.current.split("/").pop());
+                    }
+                });
+                $("#gc-next").on("click", () => {
+                    let b = MDC.current;
+                    let a = MDC.Next();
+                    if (b !== MDC.current) {
+                        $("#smbp2, #gc-play, #smbp3, #smbp1").hide();
+                        $("#gc-pause").show();
+                        $("#gc-title").find("span").text(MDC.current.split("/").pop());
+                    }
+                });
+                function __maxus__() {
+                    let a = MDC.Maxus();
+                    $("#gc-title").find("span").text(MDC.current.split("/").pop());
+                }
+                function __minus__() {
+                    let a = MDC.Minus();
+                }
+                $("#gc-maxus").on("click", __maxus__);
+                $("#gc-minus").on("click", __minus__);
+                function __volume__(value) {
+                    MDC.newVolume(value);
+                    $("#gc-volume").val(value);
+                    if (parseInt($("#gc-volume").val(), 10) >= 70) {
+                        $("#gc-vol-l2-1, #gc-vol-l2-2, #gc-vol-l2-3").show();
+                        $("#gc-mute, #gc-vol-l0, #gc-vol-l1").hide();
+                        MDC.muted = false;
+                        MDC.media.muted = false;
+                    }
+                    else if (parseInt($("#gc-volume").val(), 10) >= 30) {
+                        $("#gc-vol-l1").show();
+                        $("#gc-vol-l2-1, #gc-vol-l2-2, #gc-vol-l2-3, #gc-mute, #gc-vol-l0").hide();
+                        MDC.muted = false;
+                        MDC.media.muted = false;
+                    }
+                    else if (parseInt($("#gc-volume").val(), 10) > 0) {
+                        $("#gc-vol-l0").show();
+                        $("#gc-vol-l2-1, #gc-vol-l2-2, #gc-vol-l2-3, #gc-mute, #gc-vol-l1").hide();
+                        MDC.muted = false;
+                        MDC.media.muted = false;
+                    }
+                    else {
+                        $("#gc-mute").show();
+                        $("#gc-vol-l2-1, #gc-vol-l2-2, #gc-vol-l2-3, #gc-vol-l0, #gc-vol-l1").hide();
+                        MDC.muted = true;
+                        MDC.media.muted = true;
+                    }
+                }
+                $("#gc-volume").on("input", () => {
+                    MDC.newVolume($("#gc-volume").val())
+                    if (parseInt($("#gc-volume").val(), 10) >= 70) {
+                        $("#gc-vol-l2-1, #gc-vol-l2-2, #gc-vol-l2-3").show();
+                        $("#gc-mute, #gc-vol-l0, #gc-vol-l1").hide();
+                        MDC.muted = false;
+                        MDC.media.muted = false;
+                    }
+                    else if (parseInt($("#gc-volume").val(), 10) >= 30) {
+                        $("#gc-vol-l1").show();
+                        $("#gc-vol-l2-1, #gc-vol-l2-2, #gc-vol-l2-3, #gc-mute, #gc-vol-l0").hide();
+                        MDC.muted = false;
+                        MDC.media.muted = false;
+                    }
+                    else if (parseInt($("#gc-volume").val(), 10) > 0) {
+                        $("#gc-vol-l0").show();
+                        $("#gc-vol-l2-1, #gc-vol-l2-2, #gc-vol-l2-3, #gc-mute, #gc-vol-l1").hide();
+                        MDC.muted = false;
+                        MDC.media.muted = false;
+                    }
+                    else {
+                        $("#gc-mute").show();
+                        $("#gc-vol-l2-1, #gc-vol-l2-2, #gc-vol-l2-3, #gc-vol-l0, #gc-vol-l1").hide();
+                        MDC.muted = true;
+                        MDC.media.muted = true;
+                    }
+                });
+                $("#gc-vol, #gc-volume").on("mousemove mouseenter mouseleave focusin focusout", (e) => {
+                    switch (e.type) {
+                        case "mouseenter":
+                            $("#gc-volume").css("width", "100px");
+                            break;
+                        case "mousemove":
+                            $("#gc-volume").css("width", "100px");
+                            break;
+                        case "mouseleave":
+                            $("#gc-volume").css("width", "0px");
+                            break;
+                        case "focusout":
+                            $("#gc-volume").css("width", "0px");
+                            break;
+                        case "focusin":
+                            $("#gc-volume").css("width", "100px");
+                            break;
+                    }
+                });
+                $("#gc-vol").on("click", () => {
+                    MDC.Muted();
+                    __volume__(MDC.media.volume * 100);
+                });
+                $("#gc-true-false-null").on("click", () => {
+                    switch (MDC.loop) {
+                        case (true):
+                            MDC.newLoop(false);
+                            $("#gc-true1, #gc-true2, #gc-null").hide();
+                            $("#gc-false").show();
+                            break;
+                        case (false):
+                            MDC.newLoop(null);
+                            $("#gc-true1, #gc-true2, #gc-false").hide();
+                            $("#gc-null").show();
+                            break;
+                        case (null):
+                            MDC.newLoop(true);
+                            $("#gc-false, #gc-null").hide();
+                            $("#gc-true1, #gc-true2").show();
+                            break;
+                    }
+                });
+                $("#gc-random").on("click", () => {
+                    if (MDC.Random()) {
+                        $("#gc-random").addClass("gc-selected");
+                    }
+                    else {
+                        $("#gc-random").removeClass("gc-selected")
+                    }
+                    actualListe();
+                });
+                $("#gc-title").on("click", () => $("#mc-queu").click());
+                $("#gc-fullscreen").on("click", () => {
+                    if (MDC.Fullscreen()) {
+                        $("#gcf-part").show();
+                        $("#gcf-full").hide();
+                    }
+                    else {
+                        $("#gcf-part").hide();
+                        $("#gcf-full").show();
+                    }
+                });
+                document.addEventListener("fullscreenchange", () => {
+                    if (MDC.fullscreen) {
+                        $("#gcf-part").show();
+                        $("#gcf-full").hide();
+                    }
+                    else {
+                        $("#gcf-part").hide();
+                        $("#gcf-full").show();
+                    }
+                })
+                $("#media").on("dblclick", () => {
+                    if (MDC.Fullscreen()) {
+                        $("#gcf-part").show();
+                        $("#gcf-full").hide();
+                    }
+                    else {
+                        $("#gcf-part").hide();
+                        $("#gcf-full").show();
+                    }
+                });
+                $("#gcs-preview").on("click", () => {
+                    $("#gcs-list").fadeIn(200);
+                });
+                $("#gc-speed").on("mouseleave focusout", () => {
+                    $("#gcs-list").fadeOut(200);
+                });
+                $("#gcs-list").find("li").on("click", function () {
+                    $("#gcs-list").find("li").removeClass("gcs-selected");
+                    $(this).addClass("gcs-selected");
+                    MDC.newSpeed(parseFloat($(this).attr("value")));
+                    $("#gcs-preview").text($(this).text());
+                });
+                function actualListe() {
+                    if (MDC.current) {
+                        MQC.clearBody();
+                        MDC.queu.forEach(function (el) {
+                            let link = el;
+                            let name = MDC.MLC[link];
+                            let vid = ["avi", "flv", "mkv", "mov", "mp4", "wmv", "webm"];
+                            let aud = ["aac", "aif", "aiff", "3gp", "mp3", "m4a", "wav"];
+                            let type = "file";
+                            if (vid.includes(name.split(".").pop().toLowerCase())) {
+                                type = "video";
+                            }
+                            else if (aud.includes(name.split(".").pop().toLowerCase())) {
+                                type = "audio";
+                            }
+                            let a = MQC.addItem(link, name, type);
+                            if (el === MDC.current) {
+                                $(a).addClass("msbi-selected");
+                                $(".ms-body").animate({
+                                    scrollTop: $(a).offset().top - $(".ms-body").offset().top + $(".ms-body").scrollTop()
+                                }, 10, "swing");
+                            }
+                        });
+                    }
+
+                }
+                function actualQueu(liste, cible = null) {
+                    MDC.queu = liste;
+                    let b = MDC.queu;
+                    MDC.prev = b.slice(0, b.indexOf(MDC.current));
+                    MDC.next = b.slice((b.indexOf(MDC.current) >= b.length) ? b.indexOf(MDC.current) : b.indexOf(MDC.current) + 1);
+                    // let l = {};
+                    // let index;
+                    // MDC.queu.forEach(function (el) {
+                    //     let fn = MDC.MLC[el].split("/").pop();
+                    //     l[fn] = el;
+                    // });
+                    // MDC.queu = [];
+                    // liste.forEach(function (el, i) {
+                    //     MDC.queu.push(l[el]);
+                    //     if (el === MDC.current) {
+                    //         index = i;
+                    //     }
+                    // });
+                    // MDC.prev = [];
+                    // MDC.next = [];
+                    // for (let i = 0; i < index; i++) {
+                    //     MDC.prev.push(MDC.queu[i]);
+                    // }
+                    // for (let i = index + 1; i < MDC.queu.length; i++) {
+                    //     MDC.next.push(MDC.queu[i]);
+                    // }
+                }
+                MQC.msbdnDraged = actualQueu;
+                MQC.msbdnListe = actualListe;
+                function delInQueu(cible, item) {
+                    let l = {};
+                    let index;
+                    MDC.queu.forEach(function (el, i) {
+                        let fn = el.split("/").pop().split("\\").pop()
+                        l[fn] = el;
+                        if (fn === MDC.current) {
+                            index = i;
+                        }
+                    });
+                    MDC.queu.splice(MDC.queu.indexOf(l[cible]), 1);
+                    if (cible === MDC.current) {
+                        if (MDC.prev.length > 0) {
+                            MDC.newMedia(MDC.prev.pop(), true, MDC.prev, MDC.next);
+                        }
+                        else if (MDC.next.length > 0) {
+                            MDC.newMedia(MDC.next.shift(), true, [], MDC.next);
+                        }
+                        else {
+                            MDC.newMedia("", false, [], []);
+                            __pause__(false);
+                            actualListe();
+                            actuallyPlaying("", 0)
+                        }
+                    }
+                    else {
+                        let p = {};
+                        let n = {};
+                        MDC.prev.forEach(function (el) {
+                            p[el.split("/").pop().split("\\").pop()] = el;
+                        });
+                        MDC.next.forEach(function (el) {
+                            n[el.split("/").pop().split("\\").pop()] = el;
+                        });
+                        if (Object.keys(p).includes(cible)) {
+                            MDC.prev.splice(Object.keys(p).indexOf(cible), 1);
+                        }
+                        else {
+                            MDC.next.splice(Object.keys(n).indexOf(cible), 1);
+                        }
+                    }
+                }
+                MQC.msbdClicked = delInQueu;
+                var IfActual;
+                function actuallyPlaying(cur, fin) {
+                    $("#tmc-line").attr("max", fin);
+                    $("#tmc-line").attr("step", Math.min(.1, fin / 100));
+                    let p = cur / fin * 100;
+                    let reste = convertToTime(parseInt(fin - cur));
+                    cur = convertToTime(parseInt(cur));
+                    fin = convertToTime(parseInt(fin));
+                    $("#tmc-from").text(cur ? cur : 0);
+                    $("#tmc-to").text("-" + (reste ? reste : 0));
+                    $("#gc-time").text(cur ? cur : 0);
+                    $("#gc-duration").text(fin ? fin : 0);
+                    $("#gc-title").find("span").text(MDC.MLC[MDC.current]);
+                    $("#tmc-line").val(parseInt($("#tmc-line").attr("max") * p / 100) ? parseInt($("#tmc-line").attr("max") * p / 100) : 0);
+                    if (MDC.media.currentTime >= MDC.duration && MDC.next.length == 0 && MDC.loop === null) {
+                        __pause__(false);
+                        MDC.play = true;
+                        MDC.Play();
+                        MDC.media.currentTime = 0;
+                    }
+                    if (IfActual !== MDC.current) {
+                        actualListe();
+                        IfActual = MDC.current;
+                    }
+                }
+                $("#tmc-line").on("input", () => {
+                    MDC.media.currentTime = ($("#tmc-line").val());
+                });
+                $("#tmc-line").on("mousemove mouseenter", (e) => {
+                    if (!["avi", "flv", "mkv", "mov", "mp4", "wmv", "webm"].includes(MDC.MLC[MDC.current].split(".").pop().toLowerCase())) {
+                        $("#tmc-preview").hide();
+                        $("#tmc-where-preview").css({ "width": $("#tmc-where").width() + 20 + "px", "height": 25 + "px" });
+                    }
+                    else {
+                        $("#tmc-preview").show();
+                        $("#tmc-where-preview").css({ "width": 130 + "px", "height": 80 + "px" });
+                    }
+                    let x = e.pageX - $(e.currentTarget).offset().left;
+                    let lineWidth = $(e.currentTarget).width();
+                    let previewWidth = $("#tmc-where-preview").width();
+                    let newX = x - previewWidth / 2;
+                    if (newX <= 10) newX = 10;
+                    if (newX >= lineWidth - previewWidth - 10) newX = lineWidth - previewWidth - 10;
+                    $("#tmc-where-preview").css("left", newX + "px");
+                    $("#tmc-where-preview").show();
+                    let wdur = ((e.pageX - $(e.currentTarget).offset().left) / lineWidth) * 100;
+                    wdur = wdur * MDC.media.duration / 100;
+                    $("#tmc-preview").attr("src", MDC.Image(wdur));
+                    $("#tmc-where").text(convertToTime(parseInt(MDC.preview.currentTime)));
+                });
+                $("#tmc-line").on("mouseleave focusout", () => {
+                    $("#tmc-where-preview").hide();
+                });
+                $("#media-container").on("contextmenu", (e) => {
+                    e.preventDefault();
+                    let x = e.pageX - $(e.currentTarget).offset().left;
+                    let y = e.pageY - $(e.currentTarget).offset().top;
+                    let containerWidth = $(e.currentTarget).width();
+                    let containerHeight = $(e.currentTarget).height();
+                    let contextWidth = $("#media-context").outerWidth();
+                    let contextHeight = $("#media-context").outerHeight();
+                    let newX = x;
+                    if (x + contextWidth > containerWidth) {
+                        newX = containerWidth - contextWidth;
+                    }
+                    let newY = y;
+                    if (containerHeight - newY <= contextHeight) {
+                        newY = containerHeight - contextHeight;
+                    }
+                    $("#media-context").css({
+                        left: newX + "px",
+                        top: newY + "px"
+                    });
+                    $("#media-context").fadeIn(200);
+                });
+                $("#media-context").on("mouseleave focusout", () => {
+                    $("#media-context").fadeOut(200);
+                });
+                $("#mc-list").find("li").on("click", () => {
+                    $("#media-context").fadeOut(200);
+                });
+                $("#mc-pip").on("click", () => {
+                    MDC.PIP();
+                });
+                $("#mc-screen").on("click", () => {
+                    $("#mc-ascreen").attr("src", MDC.Image());
+                    $("#mc-ascreen").attr("download", "image.png");
+                    $("#mc-ascreen").click();
+                });
+                let hideControlTimeOut;
+                $("#media-container, #media-controls, #media-context").on("mousemove mousein click", () => {
+                    $("#media-controls").show();
+                    clearTimeout(hideControlTimeOut);
+                    document.body.classList.remove("fade-cursor");
+                    hideControlTimeOut = setTimeout(() => {
+                        if (MDC.play) {
+                            $("#media-controls").fadeOut(300);
+                            if (MDC.fullscreen) {
+                                document.body.classList.add("fade-cursor");
+                            }
+                        }
+                    }, 2000);
+                });
+                $("#mc-queu").on("click", () => {
+                    MQC.show();
+                });
+
+                //current assignement
+                $("#gc-title").find("span").text(MDC.current.split("/").pop());
+                $("#tmc-from").text(0);
+                $("#tmc-to").text("-" + convertToTime(MDC.media.duration));
+                $("#gc-time").text(0);
+                $("#gc-duration").text(convertToTime(MDC.media.duration));
+                $("#mc-interval").on("click", () => {
+                    $("#media-interval").fadeIn(250);
+                    $("#mdib-h1").val(parseInt(convertToTime(MDC.interval[0], true)[0]));
+                    $("#mdib-m1").val(parseInt(convertToTime(MDC.interval[0], true)[1]));
+                    $("#mdib-s1").val(parseInt(convertToTime(MDC.interval[0], true)[2]));
+                    $("#mdib-h2").val(parseInt(convertToTime(MDC.interval[1], true)[0]));
+                    $("#mdib-m2").val(parseInt(convertToTime(MDC.interval[1], true)[1]));
+                    $("#mdib-s2").val(parseInt(convertToTime(MDC.interval[1], true)[2]));
+                });
+                $("#mdih-close").on("click", function (e) {
+                    e.stopPropagation();
+                    $("#media-interval").fadeOut(250);
+                    $("#mdib-h1").val(parseInt(convertToTime(MDC.interval[0], true)[0]));
+                    $("#mdib-m1").val(parseInt(convertToTime(MDC.interval[0], true)[1]));
+                    $("#mdib-s1").val(parseInt(convertToTime(MDC.interval[0], true)[2]));
+                    $("#mdib-h2").val(parseInt(convertToTime(MDC.interval[1], true)[0]));
+                    $("#mdib-m2").val(parseInt(convertToTime(MDC.interval[1], true)[1]));
+                    $("#mdib-s2").val(parseInt(convertToTime(MDC.interval[1], true)[2]));
+                });
+                var isMediaIntervalDown = false;
+                var mediaIntervalCoordPoint = [0, 0];
+                $("#mdi-head").on("mousedown", function (e) {
+                    e.stopImmediatePropagation();
+                    e.stopPropagation();
+                    e.preventDefault();
+                    isMediaIntervalDown = true;
+                    mediaIntervalCoordPoint = [e.offsetX, e.offsetY];
+                });
+                $(document).on("mouseup mouseleave focusout", () => {
+                    isMediaIntervalDown = false;
+                    mediaIntervalCoordPoint = [0, 0];
+                });
+                $(document).on("mousemove", function (e) {
+                    if (isMediaIntervalDown) {
+                        let x = e.clientX - mediaIntervalCoordPoint[0];
+                        let y = e.clientY - mediaIntervalCoordPoint[1];
+
+                        let maxX = $(window).width() - $("#media-interval").outerWidth();
+                        let maxY = $(window).height() - $("#media-interval").outerHeight();
+
+                        x = Math.max(0, Math.min(x, maxX));
+                        y = Math.max(0, Math.min(y, maxY));
+
+                        $("#media-interval").css({ "left": x, "top": y });
+
+                        $("#mdib-h1").val(parseInt(convertToTime(MDC.interval[0], true)[0]));
+                        $("#mdib-m1").val(parseInt(convertToTime(MDC.interval[0], true)[1]));
+                        $("#mdib-s1").val(parseInt(convertToTime(MDC.interval[0], true)[2]));
+                        $("#mdib-h2").val(parseInt(convertToTime(MDC.interval[1], true)[0]));
+                        $("#mdib-m2").val(parseInt(convertToTime(MDC.interval[1], true)[1]));
+                        $("#mdib-s2").val(parseInt(convertToTime(MDC.interval[1], true)[2]));
+                    }
+                });
+                $("#mdib-h1, #mdib-m1, #mdib-s1").on("input change", function (e) {
+                    e.stopImmediatePropagation();
+                    e.stopPropagation();
+                    e.preventDefault();
+
+                    let s = parseInt($("#mdib-s1").val()) ? parseInt($("#mdib-s1").val()) : 0;
+                    let m = parseInt($("#mdib-m1").val()) ? parseInt($("#mdib-m1").val()) : 0;
+                    let h = parseInt($("#mdib-h1").val()) ? parseInt($("#mdib-h1").val()) : 0;
+                    m = m > 59 ? 59 : m;
+                    s = s > 59 ? 59 : s;
+                    let f = convertToSec(h, m, s);
+                    if (f < MDC.interval[1]) {
+                        MDC.interval[0] = f;
+                    }
+                });
+                $("#mdib-h2, #mdib-m2, #mdib-s2").on("input change", function (e) {
+                    e.stopImmediatePropagation();
+                    e.stopPropagation();
+                    e.preventDefault();
+
+                    let s = parseInt($("#mdib-s2").val()) ? parseInt($("#mdib-s2").val()) : 0;
+                    let m = parseInt($("#mdib-m2").val()) ? parseInt($("#mdib-m2").val()) : 0;
+                    let h = parseInt($("#mdib-h2").val()) ? parseInt($("#mdib-h2").val()) : 0;
+                    m = m > 59 ? 59 : m;
+                    s = s > 59 ? 59 : s;
+                    let f = convertToSec(h, m, s);
+                    if (f > MDC.interval[0]) {
+                        MDC.interval[1] = f;
+                    }
+                });
+                $("#mdib-reset").on("click", () => {
+                    MDC.interval = [0, MDC.duration];
+                    $("#mdib-h1").val(parseInt(convertToTime(MDC.interval[0], true)[0]));
+                    $("#mdib-m1").val(parseInt(convertToTime(MDC.interval[0], true)[1]));
+                    $("#mdib-s1").val(parseInt(convertToTime(MDC.interval[0], true)[2]));
+                    $("#mdib-h2").val(parseInt(convertToTime(MDC.interval[1], true)[0]));
+                    $("#mdib-m2").val(parseInt(convertToTime(MDC.interval[1], true)[1]));
+                    $("#mdib-s2").val(parseInt(convertToTime(MDC.interval[1], true)[2]));
+                });
+
+                document.querySelector("#media-container").appendChild(MQC.gm);
+                // MDC.queu.forEach(function (el) {
+                //     let name = el.split("/").pop();
+                //     let vid = ["avi", "flv", "mkv", "mov", "mp4", "wmv", "webm"];
+                //     let aud = ["aac", "aif", "aiff", "3gp", "mp3", "m4a", "wav"];
+                //     let type = "file";
+                //     if (vid.includes(name.split(".").pop().toLowerCase())) {
+                //         type = "video";
+                //     }
+                //     else if (aud.includes(name.split(".").pop().toLowerCase())) {
+                //         type = "audio";
+                //     }
+                //     let a = MQC.addItem(name, type);
+                //     if (el === MDC.current) {
+                //         $(a).addClass("msbi-selected")
+                //     }
+                // });
+
+                function newTitles() {
+                    $(BROWSE1).on("change", function () {
+                        let files = Array.from(this.files);
+                        if (files.length > 0) {
+                            let fileName = files.map(el => el.name);
+                            let fileList = files.map(el => URL.createObjectURL(el));
+                            Object.keys(MDC.MLC).forEach(function (el) {
+                                delete MDC.MLC[el];
+                                delete MDC.MLC[el];
+                            });
+                            fileList.forEach(function (el, ind) {
+                                MDC.MLC[el] = fileName[ind];
+                                MDC.MLC[fileName[ind]] = el;
+                            });
+                            MDC.newQueu(fileList, fileName);
+                            MQC.clearBody();
+                            MDC.queu.forEach(function (el) {
+                                if (MDC.MLC[el] !== undefined) {
+                                    let link = el;
+                                    let name = MDC.MLC[el];
+                                    let vid = ["avi", "flv", "mkv", "mov", "mp4", "wmv", "webm"];
+                                    let aud = ["aac", "aif", "aiff", "3gp", "mp3", "m4a", "wav"];
+                                    let type = "file";
+                                    if (vid.includes(name.split(".").pop().toLowerCase())) {
+                                        type = "video";
+                                    }
+                                    else if (aud.includes(name.split(".").pop().toLowerCase())) {
+                                        type = "audio";
+                                    }
+                                    let a = MQC.addItem(link, name, type);
+                                    if (el === MDC.current) {
+                                        $(a).addClass("msbi-selected")
+                                    }
+                                }
+                            });
+                            MDC.play = true;
+                            MDC.media.play();
+                            __pause__(MDC.play);
+
+                        }
+                    });
+                    $(BROWSE1).click();
+                }
+                function addTitles() {
+                    $(BROWSE2).on("change", function () {
+                        let files = Array.from(this.files);
+                        if (files.length > 0) {
+                            let fileName = files.map(el => el.name);
+                            let fileList = files.map(el => URL.createObjectURL(el));
+                            let empL = [];
+                            let empM = [];
+                            fileName.forEach(function (el, ind) {
+                                if (!Object.keys(MDC.MLC).includes(el)) {
+                                    MDC.MLC[fileList[ind]] = el;
+                                    MDC.MLC[el] = fileList[ind];
+                                    empL.push(fileList[ind]);
+                                    empM.push(el);
+                                }
+                            });
+                            MDC.pushQueu(empL, empM);
+                            MQC.clearBody();
+                            MDC.queu.forEach(function (el) {
+                                if (MDC.MLC[el] !== undefined) {
+                                    let link = el;
+                                    let name = MDC.MLC[el];
+                                    let vid = ["avi", "flv", "mkv", "mov", "mp4", "wmv", "webm"];
+                                    let aud = ["aac", "aif", "aiff", "3gp", "mp3", "m4a", "wav"];
+                                    let type = "file";
+                                    if (vid.includes(name.split(".").pop().toLowerCase())) {
+                                        type = "video";
+                                    }
+                                    else if (aud.includes(name.split(".").pop().toLowerCase())) {
+                                        type = "audio";
+                                    }
+                                    let a = MQC.addItem(link, name, type);
+                                    if (el === MDC.current) {
+                                        $(a).addClass("msbi-selected")
+                                    }
+                                }
+                            });
+
+                        }
+                    });
+                    $(BROWSE2).click();
+                }
+                MQC.addButton("\tNew list", undefined, function () {
+                    newTitles();
+                });
+                MQC.addButton("\tAdd\t", undefined, function () {
+                    addTitles();
+                });
+                MQC.addButton("\tOrder\t", undefined, function () {
+                    MDC.random = true;
+                    $("#gc-random").click();
+                })
+
+            });
+        </script>
+    </div>
+
+
+</body>
+
+</html>

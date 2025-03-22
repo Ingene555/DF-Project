@@ -1,0 +1,1611 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <title>Text Work Area</title>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link href="http://127.0.0.1:5555/bootstrap-5.3.3-dist/css/bootstrap.min.css">
+    <!-- Fichiers Bootstrap principaux -->
+    <link rel="stylesheet" href="http://127.0.0.1:5555/bootstrap-5.3.3-dist/css/bootstrap.css">
+    <link rel="stylesheet" href="http://127.0.0.1:5555/bootstrap-5.3.3-dist/css/bootstrap.min.css">
+    <link rel="stylesheet" href="http://127.0.0.1:5555/bootstrap-5.3.3-dist/css/bootstrap.rtl.css">
+    <link rel="stylesheet" href="http://127.0.0.1:5555/bootstrap-5.3.3-dist/css/bootstrap.rtl.min.css">
+
+    <!-- Fichiers pour le système de grille -->
+    <link rel="stylesheet" href="http://127.0.0.1:5555/bootstrap-5.3.3-dist/css/bootstrap-grid.css">
+    <link rel="stylesheet" href="http://127.0.0.1:5555/bootstrap-5.3.3-dist/css/bootstrap-grid.rtl.css">
+    <link rel="stylesheet" href="http://127.0.0.1:5555/bootstrap-5.3.3-dist/css/bootstrap-grid.min.css">
+    <link rel="stylesheet" href="http://127.0.0.1:5555/bootstrap-5.3.3-dist/css/bootstrap-grid.rtl.min.css">
+
+    <!-- Fichiers pour les utilitaires -->
+    <link rel="stylesheet" href="http://127.0.0.1:5555/bootstrap-5.3.3-dist/css/bootstrap-utilities.css">
+    <link rel="stylesheet" href="http://127.0.0.1:5555/bootstrap-5.3.3-dist/css/bootstrap-utilities.rtl.css">
+    <link rel="stylesheet" href="http://127.0.0.1:5555/bootstrap-5.3.3-dist/css/bootstrap-utilities.min.css">
+    <link rel="stylesheet" href="http://127.0.0.1:5555/bootstrap-5.3.3-dist/css/bootstrap-utilities.rtl.min.css">
+
+    <!-- Fichiers pour le reboot -->
+    <link rel="stylesheet" href="http://127.0.0.1:5555/bootstrap-5.3.3-dist/css/bootstrap-reboot.css">
+    <link rel="stylesheet" href="http://127.0.0.1:5555/bootstrap-5.3.3-dist/css/bootstrap-reboot.rtl.css">
+    <link rel="stylesheet" href="http://127.0.0.1:5555/bootstrap-5.3.3-dist/css/bootstrap-reboot.min.css">
+    <link rel="stylesheet" href="http://127.0.0.1:5555/bootstrap-5.3.3-dist/css/bootstrap-reboot.rtl.min.css">
+
+    <script src="http://127.0.0.1:5555/bootstrap-5.3.3-dist/js/bootstrap.min.js"></script>
+    <!-- Fichiers JavaScript principaux avec les bundles -->
+    <script src="http://127.0.0.1:5555/bootstrap-5.3.3-dist/js/bootstrap.bundle.js"></script>
+    <script src="http://127.0.0.1:5555/bootstrap-5.3.3-dist/js/bootstrap.bundle.min.js"></script>
+
+    <!-- Fichiers JavaScript sans les plugins de dépendance -->
+    <script src="http://127.0.0.1:5555/bootstrap-5.3.3-dist/js/bootstrap.js"></script>
+    <script src="http://127.0.0.1:5555/bootstrap-5.3.3-dist/js/bootstrap.min.js"></script>
+
+    <script src="http://127.0.0.1:5555/jquery/jquery-3.7.1.js"></script>
+    <link href="http://127.0.0.1:5555/ressources/util/variables.css">
+
+    <style>
+        @import url("http://127.0.0.1:5555/ressources/util/variables.css");
+
+        #text-taskbar {
+            width: 100%;
+            height: 30px;
+            margin: 0;
+            padding: 0;
+            position: relative;
+            user-select: none;
+        }
+
+        #tta-container {
+            height: 100%;
+            position: relative;
+            padding: 0 10px 0 0;
+            margin: 0;
+        }
+
+        .tt-wataba {
+            width: 18px;
+            height: 28px;
+            padding: 1px;
+            margin: 0 2px;
+            border: 0;
+            transition: all .3s;
+            cursor: pointer;
+            position: relative;
+        }
+
+        .tt-wataba svg {
+            position: absolute;
+            left: 50%;
+            top: 50%;
+            transform: translate(-50%, -50%);
+        }
+
+        .tt-wataba:hover {
+            filter: drop-shadow(0px 0px 5px white);
+
+        }
+
+        .tt-separator {
+            width: 2px;
+            background-color: var(--light-color);
+            border-radius: 2px;
+            height: 20px;
+            margin: 5px 8px;
+        }
+
+        .tt-divtext {
+            height: 25px;
+            display: block;
+            position: relative;
+            font-weight: 400;
+            font-size: 13px;
+            transition: all .3s;
+            cursor: pointer;
+            margin: 0 2px;
+            padding: 2px;
+            text-wrap: nowrap;
+        }
+
+        #tts-main {
+            transition: all .3s;
+            height: 100%;
+            padding: 2px 8px;
+            border-radius: 2px 0 0 2px;
+        }
+
+        #tts-main:hover {
+            background-color: var(--light-color-trans-20);
+        }
+
+        #tts-select {
+            position: relative;
+            width: 15px;
+        }
+
+        #tts-select:hover #ttss-container {
+            display: inline;
+        }
+
+        #ttss-down {
+            width: 100%;
+            height: 100%;
+            margin: 0;
+            transition: all .3s;
+            border-radius: 0 2px 2px 0;
+            padding: 2px;
+        }
+
+        #ttss-down:hover {
+            background-color: var(--light-color-trans-20);
+        }
+
+        #ttss-container {
+            position: absolute;
+            top: 100%;
+            right: 0;
+            z-index: 10;
+            height: 55px;
+            width: initial;
+            box-shadow: 1px 1px 5px var(--light-color-trans-20);
+            display: none;
+            background-color: var(--dark-color);
+        }
+
+        .ttssca-selected {
+            height: 25px;
+            margin: 1px;
+            padding: 0;
+            border-radius: 5px;
+            transition: all .3s;
+            cursor: pointer;
+            text-align: center;
+            text-wrap: nowrap;
+        }
+
+        .ttssca-selected:hover {
+            background-color: var(--light-color-trans-20);
+        }
+
+        .ttssca-check {
+            width: 25px;
+            height: 100%;
+            position: relative;
+        }
+
+        .ttssca-check svg {
+            width: 50%;
+            position: absolute;
+            left: 50%;
+            top: 50%;
+            transform: translate(-50%, -50%);
+            display: none;
+        }
+
+        .ttssca-name {
+            padding: 0 10px;
+            text-align: center;
+        }
+
+        #tt-date,
+        #tt-font,
+        #tt-convert,
+        #tt-dflex {
+            border-radius: 2px;
+            padding: 1px 8px;
+            margin: 2px 3px;
+        }
+
+        #tt-date:hover,
+        #tt-font:hover,
+        #tt-convert:hover,
+        #tt-dflex:hover {
+            background-color: var(--light-color-trans-20);
+        }
+
+        #tta-button,
+        #ttb-button {
+            width: 55px;
+            height: 25px;
+            padding: 0;
+            margin: 0;
+        }
+
+        .ttb-button {
+            width: 25px;
+            height: 100%;
+            transition: all .3s;
+            cursor: pointer;
+            margin: auto auto;
+            border-radius: 5px;
+        }
+
+        .ttb-button:hover {
+            box-shadow: 0px 0px 3px white;
+        }
+
+        .t-hover {
+            display: none;
+        }
+
+        .t-svg:hover .t-hover {
+            display: inline;
+        }
+
+        #text-tabbar {
+            width: 100%;
+            height: 35px;
+            position: relative;
+            padding: 0;
+            margin: 0;
+            border-bottom: 1px solid var(--light-color);
+            overflow: hidden;
+        }
+
+        #ttb-container {
+            position: relative;
+            overflow: hidden;
+            overflow-x: auto;
+        }
+
+        #ttb-container::-webkit-scrollbar {
+            width: 0;
+            height: 5px;
+        }
+
+        #ttb-container::-webkit-scrollbar-thumb {
+            border-radius: 2px;
+            background-color: var(--light-color-trans-50);
+        }
+
+        #ttb-container::-webkit-scrollbar-track {
+            background-color: var(--dark-color-1-trans-0);
+        }
+
+        .ttb-tab {
+            display: inline-block;
+            height: 100%;
+            border: 1px solid var(--light-color-trans-10);
+            border-top: 5px solid var(--dark-color-1-trans-0);
+            text-wrap: nowrap;
+            flex-wrap: nowrap;
+            white-space: nowrap;
+            position: relative;
+            user-select: none;
+        }
+
+        .ttb-tab:hover .ttbt-close {
+            display: inline;
+        }
+
+        .ttb-selected {
+            border-top: 5px solid var(--dark-blue);
+            background-color: var(--light-color-trans-20);
+        }
+
+        .ttbt-name {
+            display: block;
+            margin-right: 18px;
+            padding-left: 15px;
+            max-width: 150px;
+            overflow: hidden;
+            text-overflow: ellipsis;
+        }
+
+        .ttbt-close {
+            width: 15px;
+            height: 100%;
+            position: absolute;
+            top: 50%;
+            right: 0;
+            transform: translateY(-50%);
+            stroke-width: 5px;
+            display: none;
+            cursor: pointer;
+            transition: all .3s;
+            padding: 0;
+        }
+
+        .ttbt-close svg {
+            position: absolute;
+            left: 50%;
+            top: 50%;
+            transform: translate(-50%, -50%);
+        }
+
+        .ttbt-close:hover {
+            color: var(--dark-red);
+        }
+
+        #ttb-plus {
+            width: 30px;
+            height: 30px;
+            border-radius: 50%;
+            position: relative;
+            margin: 2.5px;
+            transition: all .3s
+        }
+
+        #ttb-plus:hover {
+            background-color: var(--light-color-trans-20);
+        }
+
+        #ttb-button wataba {
+            display: inline;
+            height: 90%;
+            position: relative;
+        }
+
+        #ttb-button wataba svg {
+            position: absolute;
+            left: 50%;
+            top: 50%;
+            transform: translate(-50%, -50%);
+        }
+
+        #text-text {
+            width: 100%;
+            height: calc(100% - 30px - 35px - 30px);
+            position: relative;
+            border: 1px solid var(--light-color-trans-20);
+            overflow: hidden;
+        }
+
+        .ttxt-container {
+            width: 100%;
+            height: 100%;
+            position: relative;
+            margin: 0;
+            padding: 0 2px;
+            overflow: hidden;
+            overflow-y: auto;
+            background-color: var(--dark-color-1-trans-50);
+        }
+
+        .ttxt-container::-webkit-scrollbar {
+            width: 10px;
+            height: 10px;
+        }
+
+        .ttxt-container::-webkit-scrollbar-thumb {
+            background-color: var(--dark-blue-trans-99);
+        }
+
+        .ttxt-linenumber {
+            min-height: 100%;
+            height: auto;
+            display: block;
+            border-right: 1px solid var(--light-color-trans-20);
+            user-select: none;
+        }
+
+        .ttxt-linenumber span {
+            display: block;
+            padding: 0 3px;
+            text-align: right;
+            width: 90%;
+            margin-right: 10%;
+            height: 20px;
+            margin-top: 0;
+            margin-bottom: 0;
+            font-weight: 500;
+        }
+
+        .ttxt-textarea {
+            min-height: 100%;
+            height: auto;
+        }
+
+        .ttxt-textarea textarea {
+            width: 100%;
+            min-height: 100%;
+            height: auto;
+            white-space: nowrap;
+            resize: none;
+            overflow-x: scroll;
+            overflow-y: hidden;
+            resize: none;
+            border: 0;
+            outline: 0;
+            background-color: transparent;
+            line-height: 20px;
+            font-weight: 400;
+            color: white;
+        }
+        .ttxt-textarea textarea::-webkit-scrollbar{
+            width: 0;
+            height: 10px;
+        }
+        .ttxt-textarea textarea::-webkit-scrollbar-thumb{
+            background-color: var(--dark-blue-trans-99);
+            cursor: default;
+        }
+
+        .ttxt-font {
+            font-size: 15px;
+            font-family: 'Courier New', Courier, monospace;
+        }
+
+        #text-editinfo {
+            width: 100%;
+            margin: 0;
+            padding: 0;
+            padding-right: 10px;
+            position: relative;
+            height: 30px;
+            border: 1px solid var(--light-color-trans-20);
+            user-select: none;
+            text-wrap: nowrap;
+            overflow: hidden;
+            text-overflow: ellipsis;
+        }
+
+        #text-context {
+            position: absolute;
+            top: 0;
+            left: 0;
+            z-index: 100;
+            border-radius: 5px;
+            border: 1px solid var(--light-color-trans-50);
+            box-shadow: 1px 1px 5px var(--light-color-trans-20);
+            background-color: var(--dark-color);
+            padding: 0;
+            max-height: 100%;
+            overflow-y: auto;
+            display: none;
+        }
+
+        #text-context::-webkit-scrollbar {
+            width: 10px;
+        }
+
+        #text-context::-webkit-scrollbar-thumb {
+            border-radius: 5px;
+            background-color: var(--light-color);
+        }
+
+        #text-context::-webkit-scrollbar-track {
+            background-color: var(--dark-color-1-trans-0);
+        }
+
+        #tc-list {
+            width: 100%;
+            height: 100%;
+            padding: 0;
+            position: relative;
+            list-style: none;
+        }
+
+        #tc-list li {
+            padding: 2px 20px;
+            width: 100%;
+            margin: 0;
+            border-radius: 3px;
+            transition: all .3s;
+            text-align: left;
+            cursor: pointer;
+            font-size: 13px;
+            user-select: none;
+        }
+
+        #tc-list li:hover {
+            background-color: var(--light-color-trans-20);
+        }
+
+        #tc-list hr {
+            width: 100%;
+            margin: 0;
+        }
+
+        #text-fr {
+            position: absolute;
+            top: 0;
+            left: 0;
+            z-index: 99;
+            border-radius: 5px;
+            border: 1px solid var(--light-color-trans-50);
+            box-shadow: 1px 1px 5px var(--light-color-trans-20);
+            background-color: var(--dark-color-1-trans-99);
+            padding: 0;
+            display: none;
+        }
+
+        #tfr-head {
+            height: 25px;
+            width: 100%;
+            position: relative;
+            border-radius: 5px 5px 0 0;
+            border-bottom: 1px solid var(--light-color-trans-20);
+            padding: 0;
+            margin: 0;
+        }
+
+        #tfr-close {
+            width: 25px;
+            height: 24px;
+            border-radius: 50%;
+            position: absolute;
+            top: 50%;
+            right: 0;
+            transform: translateY(-50%);
+            transition: all .3s;
+            cursor: pointer;
+        }
+
+        #tfr-closee svg {
+            position: absolute;
+            left: 50%;
+            top: 50%;
+            transform: translate(-50%, -50%);
+        }
+
+        #tfr-close:hover {
+            color: var(--dark-red);
+            filter: drop-shadow(0px 0px 2px var(--dark-red));
+        }
+
+        #tfr-left {
+            width: 25px;
+            height: calc(100% - 25px);
+            border-radius: 0 0 0 5px;
+            border-left: 4px solid var(--light-color-trans-50);
+            position: absolute;
+            bottom: 0;
+            transition: all .3s;
+        }
+
+        #tfr-show {
+            width: 100%;
+            height: 100%;
+            position: absolute;
+            left: 50%;
+            top: 50%;
+            transform: translate(-50%, -50%);
+            transition: all .3s;
+        }
+
+        #tfr-show svg {
+            position: absolute;
+            left: 50%;
+            top: 50%;
+            transform: translate(-50%, -50%) rotate(-90deg);
+            transition: all .3s ease-in-out;
+        }
+
+        #tfr-show:hover {
+            background-color: var(--light-color-trans-20);
+            cursor: pointer;
+        }
+
+        #tfr-body {
+            position: relative;
+            margin-left: 25px;
+        }
+
+        #tfr-body wataba {
+            width: 26px;
+            height: 26px;
+            padding: 4px;
+            margin: 2px 4px;
+            border-radius: 2px;
+            cursor: pointer;
+            transition: all .3s;
+            position: relative;
+        }
+
+        #tfr-body wataba svg {
+            position: absolute;
+            left: 50%;
+            top: 50%;
+            transform: translate(-50%, -50%);
+        }
+
+        #tfr-body wataba:hover {
+            background-color: var(--light-color-trans-20);
+        }
+
+        #tfr-body input {
+            margin-right: 10px;
+            outline: 0;
+            transition: all .3s;
+            color: var(--light-color);
+            width: 320px;
+        }
+
+        .tfr-line {
+            height: 30px;
+            margin: 2px 0;
+        }
+
+        #tfr-result {
+            margin-right: 10px;
+            font-size: 13px;
+            text-align: center;
+            user-select: none;
+            text-wrap: nowrap;
+        }
+
+        .tfr-selected {
+            box-shadow: 0px 0px 5px var(--dark-blue);
+            color: var(--dark-blue);
+        }
+
+        textarea::selection {
+            background: rgba(0, 120, 215, 0.5);
+        }
+    </style>
+    <script>
+        function countLinesWithWraps(el) {
+            let tempDiv = $("<div></div>").css({
+                "font-family": $(el).css("font-family"),
+                "font-size": $(el).css("font-size"),
+                "line-height": $(el).css("line-height"),
+                "white-space": "pre-wrap",
+                "word-wrap": "break-word",
+                "visibility": "hidden",
+                "position": "absolute",
+                "color": "white",
+            }).text($(el).val()).appendTo("body");
+            let linesCount = Math.ceil(tempDiv[0].scrollHeight / parseInt($(el).css("line-height")));
+            tempDiv.remove();
+
+            return [linesCount];
+        }
+        function selectTab(cible) {
+            if (LC.includes(cible)) {
+                $(".ttb-tab").removeClass("ttb-selected");
+                $(".ttxt-container").attr("hidden", true);
+                $("#ttb-container").find('.ttb-tab[cible="' + cible + '"]').addClass("ttb-selected");
+                $("#text-text").find('.ttxt-container[cible="' + cible + '"]').attr("hidden", false);
+                $("#text-text").find('.ttxt-container[cible="' + cible + '"]').find("textarea").focus();
+                CC = cible;
+                $("#te-current").text(CC);
+                let text = $("#text-text").find(`.ttxt-container[cible="${cible}"]`).find("textarea");
+                currentLines(text[0]);
+                return cible;
+            }
+            return null;
+        }
+        function addNewFile() {
+            let a = 0; let t;
+            let ar;
+            do {
+                a += 1;
+            }
+            while (LC.includes("new " + a));
+            let tab = document.createElement("div");
+            $(tab).addClass("ttb-tab ttb-selected");
+            $(tab).attr("cible", "new " + a);
+            $(tab).html(`<div class="ttbt-name">new ${a}</div>
+                    <wataba class="ttbt-close">
+                        <svg xmlns="http://www.w3.org/2000/svg" width="100%" height="100%" fill="currentColor"
+                            class="bi bi-x" viewBox="0 0 16 16">
+                            <path
+                                d="M4.646 4.646a.5.5 0 0 1 .708 0L8 7.293l2.646-2.647a.5.5 0 0 1 .708.708L8.707 8l2.647 2.646a.5.5 0 0 1-.708.708L8 8.707l-2.646 2.647a.5.5 0 0 1-.708-.708L7.293 8 4.646 5.354a.5.5 0 0 1 0-.708" />
+                        </svg>
+                    </wataba>`);
+            $("#ttb-plus").before($(tab));
+            let area = document.createElement("div");
+            $(area).addClass("ttxt-container d-flex flex-row");
+            $(area).attr("cible", "new " + a);
+            $(area).html(`<div class="ttxt-linenumber ttxt-font">
+                    <span cible="1">1</span>
+                </div>
+                <div class="ttxt-textarea ttxt-font flex-fill">
+                    <textarea class="flex-fill"></textarea>
+                </div>`);
+            document.querySelector("#text-text").appendChild(area);
+            $(".ttb-tab").on("click", function () {
+                selectTab($(this).attr("cible"));
+            })
+            t = tab;
+            ar = area;
+            CC = "new " + a;
+            LC.push(CC);
+            DC[CC] = "";
+            selectTab(CC);
+            $(".ttbt-close").on("click", function (e) {
+                e.stopImmediatePropagation();
+                e.stopPropagation(); closeFile(CC);
+                closeFile($(this).closest(".ttb-tab").attr("cible"));
+            });
+            $("textarea").on("input change keydown keyup", function (e) {
+                if (e.altKey && e.key === "F4") {
+                    e.stopPropagation();
+                    e.stopImmediatePropagation()
+                    e.preventDefault();
+                    $("#tt-closeall").click();
+                    pywebview.api.close();
+                    return;
+                }
+                currentLines(this);
+            });
+            $(`.ttxt-container[cible="${CC}"]`).find("textarea").on("contextmenu", function (e) {
+                e.stopImmediatePropagation();
+                e.stopPropagation();
+                e.preventDefault();
+                let x = e.offsetX;
+                let y = e.offsetY;
+                openContext(x, y);
+            });
+            return [t, ar];
+        }
+        function openFile() {
+            // $("#browse").attr({
+            //     type: "file",
+            //     multiple: true,
+            //     accept: ".txt",
+            // });
+            // $("#browse").on("change", function () {
+            //     let files = Array.from(this.files);
+            //     if (files.length > 0) {
+            //         files.forEach(function (el) {
+            //             if (!LC.includes(el.name)) {
+            //                 let reader = new FileReader();
+            //                 reader.onload = function (event) {
+            //                     let contain = event.target.result;
+            //                     let t = addNewFile();
+            //                     let r = $(t[0]).attr("cible");
+            //                     $(document).find('*[cible="' + $(t[0]).attr("cible") + '"]').attr("cible", el.name);
+            //                     $(t[0]).find(".ttbt-name").text(el.name);
+            //                     $(t[1]).find("textarea").text(contain);
+            //                     currentLines($(t[1]).find("textarea"));
+            //                     CC = el.name;
+            //                     LC[LC.indexOf(r)] = el.name;
+            //                     DC[el.name] = contain;
+            //                 };
+            //                 reader.readAsText(el);
+            //             }
+            //             else {
+            //                 selectTab(el.name);
+            //             }
+            //         });
+            //     }
+            // });
+            // $("#browse").click();
+            pywebview.api.openFile().then(response => {
+                if (Object.keys(response).length > 0) {
+                    let keys = Object.keys(response);
+                    let name = keys.map(el => el.split("/").pop());
+                    let values = Object.values(response);
+                    name.forEach(function (el, ind) {
+                        if (!LC.includes(el)) {
+                            let contain = values[ind];
+                            let t = addNewFile();
+                            let r = $(t[0]).attr("cible");
+                            $(document).find('*[cible="' + $(t[0]).attr("cible") + '"]').attr("cible", keys[ind]);
+                            $(t[0]).find(".ttbt-name").text(el);
+                            $(t[1]).find("textarea").text(values[ind]);
+                            currentLines($(t[1]).find("textarea"));
+                            CC = keys[ind];
+                            LC[LC.indexOf(r)] = keys[ind];
+                            DC[keys[ind]] = values[ind];
+                        }
+                        else {
+                            selectTab(keys[ind]);
+                            $("#te-current").text(keys[ind])
+                        }
+                    });
+                }
+            });
+        }
+        function saveFile(file) {
+            let content = $("#text-text").find('.ttxt-container[cible="' + file + '"]').find("textarea").val();
+            pywebview.api.saveFile(file, content).then(response => {
+                if (response.message === true) {
+                    let new_ = response.new;
+                    let past = response.past;
+                    let content = response.content
+                    $("#ttb-container").find(`.ttb-tab[cible="${past}"]`).attr("cible", new_).prop("cible", new_);
+                    $("#ttb-container").find(`.ttb-tab[cible="${new_}"]`).find(".ttbt-name").text(new_.split("/").pop());
+                    console.log(document.querySelector(`.ttxt-container[cible="${past}"]`));
+                    $("#text-text").find(`.ttxt-container[cible="${past}"]`).attr("cible", new_).prop("cible", new_);
+                    let ind = LC.indexOf(past);
+                    DC[new_] = content;
+                    delete DC[past];
+                    LC[ind] = new_;
+                    CC = LC[ind];
+                    selectTab(CC);
+                }
+            });
+
+        }
+        function closeFile(file) {
+            let content = $("#text-text").find('.ttxt-container[cible="' + file + '"]').find("textarea").text();
+            if (DC[file] !== content) {
+                saveFile(file);
+            }
+            let tb = $("#ttb-container").find('.ttb-tab[cible="' + file + '"]');
+            let ta = $("#text-text").find('.ttxt-container[cible="' + file + '"]');
+            LC.splice(LC.indexOf(file), 1);
+            $(tb).remove();
+            $(ta).remove();
+            if (LC.length === 0) {
+                addNewFile();
+            }
+            selectTab(LC[LC.length - 1])
+        }
+        function currentLines(el) {
+            let len = countLinesWithWraps(el)[0];
+            $(el).css("height", Math.max(20 * len, parseInt($(el).closest(".ttxt-container").css("height"))));
+            let inner = "";
+            for (let ww = 1; ww <= len; ww++) {
+                inner += `<span cible = "${ww}">${ww}</span>`;
+            }
+            if (inner.length === 0) inner = "<span cible='1'>1</span>"
+            $(el).closest(".ttxt-container").find(".ttxt-linenumber").html(inner);
+        }
+        function copyEl(el) {
+            let s = el.selectionStart;
+            let e = el.selectionEnd;
+            let val = el.value.substring(s, e);
+            if (val) {
+                navigator.clipboard.writeText(val)
+            }
+            el.setSelectionRange(s, s);
+            el.focus();
+            return [val, s, e];
+        }
+        function cutEl(el) {
+            let ret = copyEl(el);
+            el.value = el.value.substring(0, ret[1]) + el.value.substring(ret[2]);
+            return ret;
+        }
+        function pasteEl(el) {
+            let s = el.selectionStart;
+            let e = el.selectionEnd;
+            navigator.clipboard.readText().then((val) => {
+                el.value = el.value.substring(0, s) + val + el.value.substring(e);
+            })
+            el.setSelectionRange(s, s)
+            $(el).focus;
+        }
+        function insertText(el, text = "") {
+            let s = el.selectionStart;
+            let e = el.selectionEnd;
+            el.value = el.value.substring(0, s) + text + el.value.substring(e);
+            el.setSelectionRange(s, s);
+            $(el).focus;
+        }
+        function undoEl(el) {
+            el.focus();
+            document.execCommand("undo");
+            currentLines(el);
+        }
+        function redoEl(el) {
+            el.focus();
+            document.execCommand("redo");
+            currentLines(el);
+        }
+        function searchEl(el, which = "", from = 0, cas = false, trim = true) {
+            if (which.length > 0) {
+                if (trim) {
+                    which = which.trim();
+                }
+                let contain = el.value;
+                if (!cas) {
+                    which = which.toLowerCase();
+                    contain = contain.toLowerCase();
+                }
+                let howMuch = contain.split(which).length - 1;
+                let where = howMuch - (contain.substring(from).split(which).length - 1);
+                let selectFrom = contain.indexOf(which, from);
+                let selectTo = selectFrom + which.split("").length;
+                return [selectFrom, selectTo, howMuch, where + 1, contain.split(which), which];
+            }
+            else {
+                return [-1, 0, 0, 0, [""], ""]
+            }
+        }
+        function scrollEL(el) {
+            textarea = el;
+            const cursorPosition = textarea.selectionStart;
+            const textBeforeCursor = textarea.value.substring(0, cursorPosition);
+            const lines = textBeforeCursor.split("\n");
+            const lineHeight = parseInt(window.getComputedStyle(textarea).lineHeight, 10);
+            const positionY = lines.length * lineHeight;
+            el.closest(".ttxt-container").scrollTop = positionY;
+        }
+        function selectALL(el) {
+            el.setSelectionRange(0, el.value.split("").length);
+            el.focus();
+        }
+        function openContext(x, y) {
+            let wdt = parseInt($("#text-context").css("width"));
+            let hgt = parseInt($("#text-context").css("height"));
+            let txt = $(`.ttxt-container[cible="${CC}"]`).find("textarea");
+            let tw = parseInt($(txt[0]).css("width"));
+            let th = parseInt($(txt[0]).css("height"));
+            if (tw - x < wdt) x = tw - wdt;
+            if (th - y < hgt) y = th - hgt;
+            x += txt[0].getBoundingClientRect().left;
+            y += txt[0].getBoundingClientRect().top;
+            $("#text-context").fadeIn(200).css({ "left": x - 1, "top": y - 1 });
+
+        }
+        function closeAll() {
+            LC.forEach(function (el) {
+                closeFile(el);
+            });
+        }
+        var CC = "";
+        var LC = [];
+        var DC = {};
+        var TFR = {
+            "case": false,
+            "trim": true,
+            "from": 0,
+            "result": [-1, 0, 0, 0, [""], ""]
+        }
+    </script>
+</head>
+
+<body data-bs-theme="dark" style="width: 100%; height: 100%; overflow: hidden;">
+    <div id="div" style="width: 100vw; height: 100vh; position: relative;">
+        <div id="text-taskbar" class="d-flex flex-row">
+            <div id="tta-container" class="flex-fill d-flex flex-row">
+                <wabata id="tt-plusfile" class="tt-wataba" title="New file">
+                    <svg xmlns="http://www.w3.org/2000/svg" width="100%" height="100%" fill="currentColor"
+                        class="bi bi-file-earmark-plus" viewBox="0 0 16 16">
+                        <path
+                            d="M8 6.5a.5.5 0 0 1 .5.5v1.5H10a.5.5 0 0 1 0 1H8.5V11a.5.5 0 0 1-1 0V9.5H6a.5.5 0 0 1 0-1h1.5V7a.5.5 0 0 1 .5-.5" />
+                        <path
+                            d="M14 4.5V14a2 2 0 0 1-2 2H4a2 2 0 0 1-2-2V2a2 2 0 0 1 2-2h5.5zm-3 0A1.5 1.5 0 0 1 9.5 3V1H4a1 1 0 0 0-1 1v12a1 1 0 0 0 1 1h8a1 1 0 0 0 1-1V4.5z" />
+                    </svg>
+                </wabata>
+                <wabata id="tt-openfile" class="tt-wataba" title="Open file">
+                    <svg xmlns="http://www.w3.org/2000/svg" width="100%" height="100%" fill="currentColor"
+                        class="bi bi-folder2-open" viewBox="0 0 16 16">
+                        <path
+                            d="M1 3.5A1.5 1.5 0 0 1 2.5 2h2.764c.958 0 1.76.56 2.311 1.184C7.985 3.648 8.48 4 9 4h4.5A1.5 1.5 0 0 1 15 5.5v.64c.57.265.94.876.856 1.546l-.64 5.124A2.5 2.5 0 0 1 12.733 15H3.266a2.5 2.5 0 0 1-2.481-2.19l-.64-5.124A1.5 1.5 0 0 1 1 6.14zM2 6h12v-.5a.5.5 0 0 0-.5-.5H9c-.964 0-1.71-.629-2.174-1.154C6.374 3.334 5.82 3 5.264 3H2.5a.5.5 0 0 0-.5.5zm-.367 1a.5.5 0 0 0-.496.562l.64 5.124A1.5 1.5 0 0 0 3.266 14h9.468a1.5 1.5 0 0 0 1.489-1.314l.64-5.124A.5.5 0 0 0 14.367 7z" />
+                    </svg>
+                </wabata>
+                <wabata id="tt-savefile" class="tt-wataba" title="Save file">
+                    <svg xmlns="http://www.w3.org/2000/svg" width="100%" height="100%" fill="currentColor"
+                        class="bi bi-floppy" viewBox="0 0 16 16">
+                        <path d="M11 2H9v3h2z" />
+                        <path
+                            d="M1.5 0h11.586a1.5 1.5 0 0 1 1.06.44l1.415 1.414A1.5 1.5 0 0 1 16 2.914V14.5a1.5 1.5 0 0 1-1.5 1.5h-13A1.5 1.5 0 0 1 0 14.5v-13A1.5 1.5 0 0 1 1.5 0M1 1.5v13a.5.5 0 0 0 .5.5H2v-4.5A1.5 1.5 0 0 1 3.5 9h9a1.5 1.5 0 0 1 1.5 1.5V15h.5a.5.5 0 0 0 .5-.5V2.914a.5.5 0 0 0-.146-.353l-1.415-1.415A.5.5 0 0 0 13.086 1H13v4.5A1.5 1.5 0 0 1 11.5 7h-7A1.5 1.5 0 0 1 3 5.5V1H1.5a.5.5 0 0 0-.5.5m3 4a.5.5 0 0 0 .5.5h7a.5.5 0 0 0 .5-.5V1H4zM3 15h10v-4.5a.5.5 0 0 0-.5-.5h-9a.5.5 0 0 0-.5.5z" />
+                    </svg>
+                </wabata>
+                <!-- <wabata id="tt-saveall" class="tt-wataba" title="Save all">
+                    <svg xmlns="http://www.w3.org/2000/svg" width="100%" height="100%" fill="currentColor"
+                        class="bi bi-floppy2" viewBox="0 0 16 16">
+                        <path
+                            d="M1.5 0h11.586a1.5 1.5 0 0 1 1.06.44l1.415 1.414A1.5 1.5 0 0 1 16 2.914V14.5a1.5 1.5 0 0 1-1.5 1.5h-13A1.5 1.5 0 0 1 0 14.5v-13A1.5 1.5 0 0 1 1.5 0M1 1.5v13a.5.5 0 0 0 .5.5H2v-4.5A1.5 1.5 0 0 1 3.5 9h9a1.5 1.5 0 0 1 1.5 1.5V15h.5a.5.5 0 0 0 .5-.5V2.914a.5.5 0 0 0-.146-.353l-1.415-1.415A.5.5 0 0 0 13.086 1H13v3.5A1.5 1.5 0 0 1 11.5 6h-7A1.5 1.5 0 0 1 3 4.5V1H1.5a.5.5 0 0 0-.5.5m9.5-.5a.5.5 0 0 0-.5.5v3a.5.5 0 0 0 .5.5h1a.5.5 0 0 0 .5-.5v-3a.5.5 0 0 0-.5-.5z" />
+                    </svg>
+                </wabata> -->
+                <wabata id="tt-closefile" class="tt-wataba" title="Close file">
+                    <svg xmlns="http://www.w3.org/2000/svg" width="100%" height="100%" fill="currentColor"
+                        class="bi bi-file-earmark-minus" viewBox="0 0 16 16">
+                        <path d="M5.5 9a.5.5 0 0 1 .5-.5h4a.5.5 0 0 1 0 1H6a.5.5 0 0 1-.5-.5" />
+                        <path
+                            d="M14 4.5V14a2 2 0 0 1-2 2H4a2 2 0 0 1-2-2V2a2 2 0 0 1 2-2h5.5zm-3 0A1.5 1.5 0 0 1 9.5 3V1H4a1 1 0 0 0-1 1v12a1 1 0 0 0 1 1h8a1 1 0 0 0 1-1V4.5z" />
+                    </svg>
+                </wabata>
+                <wabata id="tt-closeall" class="tt-wataba" title="Close all" hidden>
+                    <svg xmlns="http://www.w3.org/2000/svg" width="100%" height="100%" fill="currentColor"
+                        class="bi bi-file-minus" viewBox="0 0 16 16">
+                        <path d="M5.5 8a.5.5 0 0 1 .5-.5h4a.5.5 0 0 1 0 1H6a.5.5 0 0 1-.5-.5" />
+                        <path
+                            d="M4 0a2 2 0 0 0-2 2v12a2 2 0 0 0 2 2h8a2 2 0 0 0 2-2V2a2 2 0 0 0-2-2zm0 1h8a1 1 0 0 1 1 1v12a1 1 0 0 1-1 1H4a1 1 0 0 1-1-1V2a1 1 0 0 1 1-1" />
+                    </svg>
+                </wabata>
+                <!-- <wabata id="tt-history" class="tt-wataba" title="History">
+                    <svg xmlns="http://www.w3.org/2000/svg" width="100%" height="100%" fill="currentColor"
+                        class="bi bi-clock-history" viewBox="0 0 16 16">
+                        <path
+                            d="M8.515 1.019A7 7 0 0 0 8 1V0a8 8 0 0 1 .589.022zm2.004.45a7 7 0 0 0-.985-.299l.219-.976q.576.129 1.126.342zm1.37.71a7 7 0 0 0-.439-.27l.493-.87a8 8 0 0 1 .979.654l-.615.789a7 7 0 0 0-.418-.302zm1.834 1.79a7 7 0 0 0-.653-.796l.724-.69q.406.429.747.91zm.744 1.352a7 7 0 0 0-.214-.468l.893-.45a8 8 0 0 1 .45 1.088l-.95.313a7 7 0 0 0-.179-.483m.53 2.507a7 7 0 0 0-.1-1.025l.985-.17q.1.58.116 1.17zm-.131 1.538q.05-.254.081-.51l.993.123a8 8 0 0 1-.23 1.155l-.964-.267q.069-.247.12-.501m-.952 2.379q.276-.436.486-.908l.914.405q-.24.54-.555 1.038zm-.964 1.205q.183-.183.35-.378l.758.653a8 8 0 0 1-.401.432z" />
+                        <path d="M8 1a7 7 0 1 0 4.95 11.95l.707.707A8.001 8.001 0 1 1 8 0z" />
+                        <path
+                            d="M7.5 3a.5.5 0 0 1 .5.5v5.21l3.248 1.856a.5.5 0 0 1-.496.868l-3.5-2A.5.5 0 0 1 7 9V3.5a.5.5 0 0 1 .5-.5" />
+                    </svg>
+                </wabata> -->
+                <div class="tt-separator"></div>
+                <wabata id="tt-cut" class="tt-wataba" title="Cut">
+                    <svg xmlns="http://www.w3.org/2000/svg" width="100%" height="100%" fill="currentColor"
+                        class="bi bi-scissors" viewBox="0 0 16 16">
+                        <path
+                            d="M3.5 3.5c-.614-.884-.074-1.962.858-2.5L8 7.226 11.642 1c.932.538 1.472 1.616.858 2.5L8.81 8.61l1.556 2.661a2.5 2.5 0 1 1-.794.637L8 9.73l-1.572 2.177a2.5 2.5 0 1 1-.794-.637L7.19 8.61zm2.5 10a1.5 1.5 0 1 0-3 0 1.5 1.5 0 0 0 3 0m7 0a1.5 1.5 0 1 0-3 0 1.5 1.5 0 0 0 3 0" />
+                    </svg>
+                </wabata>
+                <wabata id="tt-copy" class="tt-wataba" title="Copy">
+                    <svg xmlns="http://www.w3.org/2000/svg" width="100%" height="100%" fill="currentColor"
+                        class="bi bi-copy" viewBox="0 0 16 16">
+                        <path fill-rule="evenodd"
+                            d="M4 2a2 2 0 0 1 2-2h8a2 2 0 0 1 2 2v8a2 2 0 0 1-2 2H6a2 2 0 0 1-2-2zm2-1a1 1 0 0 0-1 1v8a1 1 0 0 0 1 1h8a1 1 0 0 0 1-1V2a1 1 0 0 0-1-1zM2 5a1 1 0 0 0-1 1v8a1 1 0 0 0 1 1h8a1 1 0 0 0 1-1v-1h1v1a2 2 0 0 1-2 2H2a2 2 0 0 1-2-2V6a2 2 0 0 1 2-2h1v1z" />
+                    </svg>
+                </wabata>
+                <wabata id="tt-paste" class="tt-wataba" title="Paste">
+                    <svg xmlns="http://www.w3.org/2000/svg" width="100%" height="100%" fill="currentColor"
+                        class="bi bi-clipboard-check" viewBox="0 0 16 16">
+                        <path fill-rule="evenodd"
+                            d="M10.854 7.146a.5.5 0 0 1 0 .708l-3 3a.5.5 0 0 1-.708 0l-1.5-1.5a.5.5 0 1 1 .708-.708L7.5 9.793l2.646-2.647a.5.5 0 0 1 .708 0" />
+                        <path
+                            d="M4 1.5H3a2 2 0 0 0-2 2V14a2 2 0 0 0 2 2h10a2 2 0 0 0 2-2V3.5a2 2 0 0 0-2-2h-1v1h1a1 1 0 0 1 1 1V14a1 1 0 0 1-1 1H3a1 1 0 0 1-1-1V3.5a1 1 0 0 1 1-1h1z" />
+                        <path
+                            d="M9.5 1a.5.5 0 0 1 .5.5v1a.5.5 0 0 1-.5.5h-3a.5.5 0 0 1-.5-.5v-1a.5.5 0 0 1 .5-.5zm-3-1A1.5 1.5 0 0 0 5 1.5v1A1.5 1.5 0 0 0 6.5 4h3A1.5 1.5 0 0 0 11 2.5v-1A1.5 1.5 0 0 0 9.5 0z" />
+                    </svg>
+                </wabata>
+                <div class="tt-separator"></div>
+                <wabata id="tt-undo" class="tt-wataba" title="Undo">
+                    <svg xmlns="http://www.w3.org/2000/svg" width="100%" height="100%" fill="currentColor"
+                        class="bi bi-arrow-counterclockwise" viewBox="0 0 16 16">
+                        <path fill-rule="evenodd" d="M8 3a5 5 0 1 1-4.546 2.914.5.5 0 0 0-.908-.417A6 6 0 1 0 8 2z" />
+                        <path
+                            d="M8 4.466V.534a.25.25 0 0 0-.41-.192L5.23 2.308a.25.25 0 0 0 0 .384l2.36 1.966A.25.25 0 0 0 8 4.466" />
+                    </svg>
+                </wabata>
+                <wabata id="tt-redo" class="tt-wataba" title="Redo">
+                    <svg xmlns="http://www.w3.org/2000/svg" width="100%" height="100%" fill="currentColor"
+                        class="bi bi-arrow-clockwise" viewBox="0 0 16 16">
+                        <path fill-rule="evenodd" d="M8 3a5 5 0 1 0 4.546 2.914.5.5 0 0 1 .908-.417A6 6 0 1 1 8 2z" />
+                        <path
+                            d="M8 4.466V.534a.25.25 0 0 1 .41-.192l2.36 1.966c.12.1.12.284 0 .384L8.41 4.658A.25.25 0 0 1 8 4.466" />
+                    </svg>
+                </wabata>
+                <div class="tt-separator"></div>
+                <wabata id="tt-search" class="tt-wataba" title="Find">
+                    <svg xmlns="http://www.w3.org/2000/svg" width="100%" height="100%" fill="currentColor"
+                        class="bi bi-search" viewBox="0 0 16 16">
+                        <path
+                            d="M11.742 10.344a6.5 6.5 0 1 0-1.397 1.398h-.001q.044.06.098.115l3.85 3.85a1 1 0 0 0 1.415-1.414l-3.85-3.85a1 1 0 0 0-.115-.1zM12 6.5a5.5 5.5 0 1 1-11 0 5.5 5.5 0 0 1 11 0" />
+                    </svg>
+                </wabata>
+                <wataba id="tt-replace" class="tt-wataba" title="Replace">
+                    <svg xmlns="http://www.w3.org/2000/svg" width="100%" height="100%" fill="currentColor"
+                        class="bi bi-repeat" viewBox="0 0 16 16">
+                        <path
+                            d="M11 5.466V4H5a4 4 0 0 0-3.584 5.777.5.5 0 1 1-.896.446A5 5 0 0 1 5 3h6V1.534a.25.25 0 0 1 .41-.192l2.36 1.966c.12.1.12.284 0 .384l-2.36 1.966a.25.25 0 0 1-.41-.192m3.81.086a.5.5 0 0 1 .67.225A5 5 0 0 1 11 13H5v1.466a.25.25 0 0 1-.41.192l-2.36-1.966a.25.25 0 0 1 0-.384l2.36-1.966a.25.25 0 0 1 .41.192V12h6a4 4 0 0 0 3.585-5.777.5.5 0 0 1 .225-.67Z" />
+                    </svg>
+                </wataba>
+                <div class="tt-separator"></div>
+                <div id="tt-select" class="tt-divtext d-flex flex-row">
+                    <wataba id="tts-main" title="Select all">Select All</wataba>
+                    <!-- <div id="tts-select">
+                        <div id="ttss-down">
+                            <svg xmlns="http://www.w3.org/2000/svg" width="100%" height="100%" fill="currentColor"
+                                class="bi bi-caret-down t-svg" viewBox="0 0 16 16">
+                                <path class="t-wire"
+                                    d="M3.204 5h9.592L8 10.481zm-.753.659 4.796 5.48a1 1 0 0 0 1.506 0l4.796-5.48c.566-.647.106-1.659-.753-1.659H3.204a1 1 0 0 0-.753 1.659" />
+                                <path class="t-hover"
+                                    d="M7.247 11.14 2.451 5.658C1.885 5.013 2.345 4 3.204 4h9.592a1 1 0 0 1 .753 1.659l-4.796 5.48a1 1 0 0 1-1.506 0z" />
+                            </svg>
+                        </div>
+                        <div id="ttss-container" data-bs-theme="dark">
+                            <div id="ttssc-all" class="ttssca-selected d-flex flex-row" cible="all">
+                                <div class="ttssca-check">
+                                    <svg xmlns="http://www.w3.org/2000/svg" width="100%" height="100%"
+                                        style="display: inline;" fill="currentColor" class="bi bi-check-lg"
+                                        viewBox="0 0 16 16">
+                                        <path
+                                            d="M12.736 3.97a.733.733 0 0 1 1.047 0c.286.289.29.756.01 1.05L7.88 12.01a.733.733 0 0 1-1.065.02L3.217 8.384a.757.757 0 0 1 0-1.06.733.733 0 0 1 1.047 0l3.052 3.093 5.4-6.425z" />
+                                    </svg>
+                                </div>
+                                <div class="ttssca-name">
+                                    Select all
+                                </div>
+                            </div>
+                            <div id="ttssc-all" class="ttssca-selected d-flex flex-row" cible="invert">
+                                <div class="ttssca-check">
+                                    <svg xmlns="http://www.w3.org/2000/svg" width="100%" height="100%"
+                                        fill="currentColor" class="bi bi-check-lg" viewBox="0 0 16 16">
+                                        <path
+                                            d="M12.736 3.97a.733.733 0 0 1 1.047 0c.286.289.29.756.01 1.05L7.88 12.01a.733.733 0 0 1-1.065.02L3.217 8.384a.757.757 0 0 1 0-1.06.733.733 0 0 1 1.047 0l3.052 3.093 5.4-6.425z" />
+                                    </svg>
+                                </div>
+                                <div class="ttssca-name">
+                                    Invert selection
+                                </div>
+                            </div>
+                        </div>
+                    </div> -->
+                </div>
+                <div class="tt-separator"></div>
+                <wataba id="tt-date" class="tt-divtext" title="Date">
+                    Date
+                </wataba>
+                <!-- <div class="tt-separator"></div>
+                <wataba id="tt-font" class="tt-divtext">
+                    Font
+                </wataba>
+                <div class="tt-separator"></div>
+                <wataba id="tt-convert" class="tt-divtext">
+                    Export as
+                </wataba>
+                <wataba id="tt-dflex" class="tt-divtext">
+                    .Flex
+                </wataba> -->
+            </div>
+            <!-- <div id="tta-button" class="d-flex flex-row">
+                <wataba id="ttab-left" class="ttb-button">
+                    <svg xmlns="http://www.w3.org/2000/svg" width="100%" height="100%" fill="currentColor"
+                        class="bi bi-caret-left t-svg" viewBox="0 0 16 16">
+                        <path class="t-wire"
+                            d="M10 12.796V3.204L4.519 8zm-.659.753-5.48-4.796a1 1 0 0 1 0-1.506l5.48-4.796A1 1 0 0 1 11 3.204v9.592a1 1 0 0 1-1.659.753" />
+                        <path class="t-hover"
+                            d="m3.86 8.753 5.482 4.796c.646.566 1.658.106 1.658-.753V3.204a1 1 0 0 0-1.659-.753l-5.48 4.796a1 1 0 0 0 0 1.506z" />
+                    </svg>
+                </wataba>
+                <wataba id="ttab-right" class="ttb-button">
+                    <svg xmlns="http://www.w3.org/2000/svg" width="100%" height="100%" fill="currentColor"
+                        class="bi bi-caret-right t-svg" viewBox="0 0 16 16">
+                        <path class="t-wire"
+                            d="M6 12.796V3.204L11.481 8zm.659.753 5.48-4.796a1 1 0 0 0 0-1.506L6.66 2.451C6.011 1.885 5 2.345 5 3.204v9.592a1 1 0 0 0 1.659.753" />
+                        <path class="t-hover"
+                            d="m12.14 8.753-5.482 4.796c-.646.566-1.658.106-1.658-.753V3.204a1 1 0 0 1 1.659-.753l5.48 4.796a1 1 0 0 1 0 1.506z" />
+                    </svg>
+                </wataba>
+            </div> -->
+        </div>
+        <div id="text-tabbar" class="d-flex flex-row">
+            <div id="ttb-container" class="flex-fill d-flex flex-row">
+
+                <div id="ttb-plus" title="New file">
+                    <svg xmlns="http://www.w3.org/2000/svg" width="100%" height="100%" fill="currentColor"
+                        class="bi bi-plus" viewBox="0 0 16 16">
+                        <path
+                            d="M8 4a.5.5 0 0 1 .5.5v3h3a.5.5 0 0 1 0 1h-3v3a.5.5 0 0 1-1 0v-3h-3a.5.5 0 0 1 0-1h3v-3A.5.5 0 0 1 8 4" />
+                    </svg>
+                </div>
+            </div>
+            <div id="ttb-button" class="d-flex flex-row" hidden>
+                <wataba id="ttbb-left" class="ttb-button">
+                    <svg xmlns="http://www.w3.org/2000/svg" width="100%" height="100%" fill="currentColor"
+                        class="bi bi-caret-left t-svg" viewBox="0 0 16 16">
+                        <path class="t-wire"
+                            d="M10 12.796V3.204L4.519 8zm-.659.753-5.48-4.796a1 1 0 0 1 0-1.506l5.48-4.796A1 1 0 0 1 11 3.204v9.592a1 1 0 0 1-1.659.753" />
+                        <path class="t-hover"
+                            d="m3.86 8.753 5.482 4.796c.646.566 1.658.106 1.658-.753V3.204a1 1 0 0 0-1.659-.753l-5.48 4.796a1 1 0 0 0 0 1.506z" />
+                    </svg>
+                </wataba>
+                <wataba id="ttbb-right" class="ttb-button">
+                    <svg xmlns="http://www.w3.org/2000/svg" width="100%" height="100%" fill="currentColor"
+                        class="bi bi-caret-right t-svg" viewBox="0 0 16 16">
+                        <path class="t-wire"
+                            d="M6 12.796V3.204L11.481 8zm.659.753 5.48-4.796a1 1 0 0 0 0-1.506L6.66 2.451C6.011 1.885 5 2.345 5 3.204v9.592a1 1 0 0 0 1.659.753" />
+                        <path class="t-hover"
+                            d="m12.14 8.753-5.482 4.796c-.646.566-1.658.106-1.658-.753V3.204a1 1 0 0 1 1.659-.753l5.48 4.796a1 1 0 0 1 0 1.506z" />
+                    </svg>
+                </wataba>
+            </div>
+        </div>
+        <div id="text-text" class="flex-fill">
+
+        </div>
+        <div id="text-editinfo" class="d-flex flex-row">
+            <div id="te-current" class="tt-divtext flex-fill">File name</div>
+            <div class="tt-separator"></div>
+            <!-- <div id="te-words" class="tt-divtext">Words length</div>
+            <div id="te-letters" class="tt-divtext">Letters lentgh</div>
+            <div class="tt-separator"></div> -->
+            <!-- <div id="te-line" class="tt-divtext">Ln: 1</div>
+            <div id="te-col" class="tt-divtext">col: 1</div>
+            <div id="te-where" class="tt-divtext">Pos: 0w 0l</div> -->
+        </div>
+        <div id="text-context">
+            <ul id="tc-list">
+                <li id="tcl-cut">
+                    Cut
+                </li>
+                <li id="tcl-copy">
+                    Copy
+                </li>
+                <li id="tcl-past">
+                    Past
+                </li>
+                <hr>
+                <li id="tcl-find">
+                    Find
+                </li>
+                <li id="tcl-replace">
+                    Replace
+                </li>
+                <hr>
+                <li id="tcl-selectall">
+                    Select All
+                </li>
+                <hr>
+                <li id="tcl-close">
+                    Close
+                </li>
+            </ul>
+        </div>
+        <div id="text-fr">
+            <div id="tfr-head" class="flex-fill">
+                <wataba id="tfr-close">
+                    <svg xmlns="http://www.w3.org/2000/svg" width="100%" height="100%" fill="currentColor"
+                        class="bi bi-x" viewBox="0 0 16 16">
+                        <path
+                            d="M4.646 4.646a.5.5 0 0 1 .708 0L8 7.293l2.646-2.647a.5.5 0 0 1 .708.708L8.707 8l2.647 2.646a.5.5 0 0 1-.708.708L8 8.707l-2.646 2.647a.5.5 0 0 1-.708-.708L7.293 8 4.646 5.354a.5.5 0 0 1 0-.708" />
+                    </svg>
+                </wataba>
+            </div>
+            <div id="tfr-left">
+                <wataba id="tfr-show">
+                    <svg xmlns="http://www.w3.org/2000/svg" width="100%" height="100%" fill="currentColor"
+                        class="bi bi-chevron-down" viewBox="0 0 16 16">
+                        <path fill-rule="evenodd"
+                            d="M1.646 4.646a.5.5 0 0 1 .708 0L8 10.293l5.646-5.647a.5.5 0 0 1 .708.708l-6 6a.5.5 0 0 1-.708 0l-6-6a.5.5 0 0 1 0-.708" />
+                    </svg>
+                </wataba>
+            </div>
+            <div id="tfr-body">
+                <div class="tfr-line d-flex flex-row" id="tfr-find-container">
+                    <input type="text" id="tfr-find">
+                    <div id="tfr-result">No results</div>
+                    <wataba id="tfr-case" title="Match case">
+                        <svg xmlns="http://www.w3.org/2000/svg" width="100%" height="100%" fill="currentColor"
+                            class="bi bi-alphabet-uppercase" viewBox="0 0 16 16">
+                            <path
+                                d="M1.226 10.88H0l2.056-6.26h1.42l2.047 6.26h-1.29l-.48-1.61H1.707l-.48 1.61ZM2.76 5.818h-.054l-.75 2.532H3.51zm3.217 5.062V4.62h2.56c1.09 0 1.808.582 1.808 1.54 0 .762-.444 1.22-1.05 1.372v.055c.736.074 1.365.587 1.365 1.528 0 1.119-.89 1.766-2.133 1.766zM7.18 5.55v1.675h.8c.812 0 1.171-.308 1.171-.853 0-.51-.328-.822-.898-.822zm0 2.537V9.95h.903c.951 0 1.342-.312 1.342-.909 0-.591-.382-.954-1.095-.954zm5.089-.711v.775c0 1.156.49 1.803 1.347 1.803.705 0 1.163-.454 1.212-1.096H16v.12C15.942 10.173 14.95 11 13.607 11c-1.648 0-2.573-1.073-2.573-2.849v-.78c0-1.775.934-2.871 2.573-2.871 1.347 0 2.34.849 2.393 2.087v.115h-1.172c-.05-.665-.516-1.156-1.212-1.156-.849 0-1.347.67-1.347 1.83" />
+                        </svg>
+                    </wataba>
+                    <wataba id="tfr-trim" class="tfr-selected" title="Match trim">
+                        <svg xmlns="http://www.w3.org/2000/svg" width="100%" height="100%" fill="currentColor"
+                            class="bi bi-distribute-horizontal" viewBox="0 0 16 16">
+                            <path fill-rule="evenodd"
+                                d="M14.5 1a.5.5 0 0 0-.5.5v13a.5.5 0 0 0 1 0v-13a.5.5 0 0 0-.5-.5m-13 0a.5.5 0 0 0-.5.5v13a.5.5 0 0 0 1 0v-13a.5.5 0 0 0-.5-.5" />
+                            <path d="M6 13a1 1 0 0 0 1 1h2a1 1 0 0 0 1-1V3a1 1 0 0 0-1-1H7a1 1 0 0 0-1 1z" />
+                        </svg>
+                    </wataba>
+                    <wataba id="tfr-backward" title="Next">
+                        <svg xmlns="http://www.w3.org/2000/svg" width="100%" height="100%" fill="currentColor"
+                            class="bi bi-arrow-up" viewBox="0 0 16 16">
+                            <path fill-rule="evenodd"
+                                d="M8 15a.5.5 0 0 0 .5-.5V2.707l3.146 3.147a.5.5 0 0 0 .708-.708l-4-4a.5.5 0 0 0-.708 0l-4 4a.5.5 0 1 0 .708.708L7.5 2.707V14.5a.5.5 0 0 0 .5.5" />
+                        </svg>
+                    </wataba>
+                    <wataba id="tfr-foreward" title="Prev">
+                        <svg xmlns="http://www.w3.org/2000/svg" width="100%" height="100%" fill="currentColor"
+                            class="bi bi-arrow-down" viewBox="0 0 16 16">
+                            <path fill-rule="evenodd"
+                                d="M8 1a.5.5 0 0 1 .5.5v11.793l3.146-3.147a.5.5 0 0 1 .708.708l-4 4a.5.5 0 0 1-.708 0l-4-4a.5.5 0 0 1 .708-.708L7.5 13.293V1.5A.5.5 0 0 1 8 1" />
+                        </svg>
+                    </wataba>
+                </div>
+                <div class="tfr-line d-flex flex-row" id="tfr-replace-container" hidden>
+                    <input type="text" id="tfr-replace">
+                    <wataba id="tfr-replace-single" title="Replace">
+                        <svg xmlns="http://www.w3.org/2000/svg" width="100%" height="100%" fill="currentColor"
+                            class="bi bi-reply-fill" viewBox="0 0 16 16">
+                            <path
+                                d="M5.921 11.9 1.353 8.62a.72.72 0 0 1 0-1.238L5.921 4.1A.716.716 0 0 1 7 4.719V6c1.5 0 6 0 7 8-2.5-4.5-7-4-7-4v1.281c0 .56-.606.898-1.079.62z" />
+                        </svg>
+                    </wataba>
+                    <wataba id="tfr-replace-all" title="Replace all">
+                        <svg xmlns="http://www.w3.org/2000/svg" width="100%" height="100%" fill="currentColor"
+                            class="bi bi-reply-all-fill" viewBox="0 0 16 16">
+                            <path
+                                d="M8.021 11.9 3.453 8.62a.72.72 0 0 1 0-1.238L8.021 4.1a.716.716 0 0 1 1.079.619V6c1.5 0 6 0 7 8-2.5-4.5-7-4-7-4v1.281c0 .56-.606.898-1.079.62z" />
+                            <path
+                                d="M5.232 4.293a.5.5 0 0 1-.106.7L1.114 7.945l-.042.028a.147.147 0 0 0 0 .252l.042.028 4.012 2.954a.5.5 0 1 1-.593.805L.539 9.073a1.147 1.147 0 0 1 0-1.946l3.994-2.94a.5.5 0 0 1 .699.106" />
+                        </svg>
+                    </wataba>
+                </div>
+            </div>
+        </div>
+        <input type="file" id="browse" hidden>
+        <script>
+            $(document).ready(() => {
+                $(document.body).on("contextmenu", function (e) {
+                    e.stopImmediatePropagation();
+                    e.stopPropagation();
+                    e.preventDefault();
+                });
+                $("#tt-plusfile, #ttb-plus").on("click", () => {
+                    addNewFile();
+                });
+                $("textarea").on("input change keydown keyup", function () {
+                    currentLines(this);
+                });
+                $(".ttb-tab").on("click", function () {
+                    selectTab($(this).attr("cible"));
+                })
+                $("#tt-openfile").on("click", () => {
+                    openFile();
+                });
+                $("#tt-savefile").on("click", () => {
+                    saveFile(CC);
+                });
+                $("#tt-saveall").on("click", () => {
+                    LC.forEach(function (el) {
+                        saveFile(el);
+                    });
+                });
+                $("#tt-closefile, #tcl-close").on("click", () => {
+                    closeFile(CC)
+                });
+                $("#tt-closeall").on('click', () => {
+                    LC.forEach(function (el) {
+                        closeFile(el);
+                    });
+                });
+                $('#tt-copy, #tcl-copy').on("click", function () {
+                    let txt = $(`.ttxt-container[cible="${CC}"]`).find("textarea");
+                    copyEl(txt[0]);
+                });
+                $("#tt-cut, #tcl-cut").on("click", function () {
+                    let txt = $(`.ttxt-container[cible="${CC}"]`).find("textarea");
+                    cutEl(txt[0]);
+                });
+                $("#tt-paste, #tcl-paste").on("click", function () {
+                    let txt = $(`.ttxt-container[cible="${CC}"]`).find("textarea");
+                    pasteEl(txt[0]);
+                });
+                $("#tt-undo").on("click", () => {
+                    let txt = $(`.ttxt-container[cible="${CC}"]`).find("textarea");
+                    undoEl(txt[0]);
+                });
+                $("#tt-redo").on("click", () => {
+                    let txt = $(`.ttxt-container[cible="${CC}"]`).find("textarea");
+                    redoEl(txt[0]);
+                });
+                $("#tt-search, #tcl-find").on("click", () => {
+                    $("#text-fr").show();
+                    $("#tfr-replace-container").attr("hidden", true);
+                    $("#tfr-show").find("svg").css("transform", "translate(-50%, -50%) rotate(-90deg)");
+                    $("#tfr-find").focus();
+                });
+                $("#tt-replace, #tcl-replace").on("click", () => {
+                    $("#text-fr").show();
+                    $("#tfr-replace-container").attr("hidden", false);
+                    $("#tfr-show").find("svg").css("transform", "translate(-50%, -50%) rotate(0deg)");
+                    $("#tfr-find").focus();
+                });
+                $("#tts-main").on("click", () => {
+                    let txt = $(`.ttxt-container[cible="${CC}"]`).find("textarea");
+                    selectALL(txt[0]);
+                });
+                $(`.ttxt-container[cible="${CC}"]`).find("textarea").on("contextmenu", function (e) {
+                    e.stopImmediatePropagation();
+                    e.stopPropagation();
+                    e.preventDefault();
+                    let x = e.offsetX;
+                    let y = e.offsetY;
+                    openContext(x, y);
+                });
+                $("#text-context").on("mouseleave focusout ", function () {
+                    $(this).fadeOut(200);
+                });
+                $("#text-context").find("li").on("click", function () {
+                    $("#text-context").fadeOut(200);
+                });
+                var isModalMovable = false;
+                var modalCoordPoint = [0, 0];
+                $("#tfr-head").on("mousedown", function (e) {
+                    e.stopImmediatePropagation();
+                    e.stopPropagation();
+                    e.preventDefault();
+                    isModalMovable = true;
+                    modalCoordPoint = [e.offsetX, e.offsetY];
+                });
+                $(document).on("mouseup mouseleave focusout", function () {
+                    isModalMovable = false;
+                    modalCoordPoint = [0, 0];
+                });
+                $(document).on("mousemove", function (e) {
+                    if (isModalMovable) {
+                        let x = e.clientX - modalCoordPoint[0];
+                        let y = e.clientY - modalCoordPoint[1];
+
+                        let maxX = $(window).width() - $("#text-fr").outerWidth();
+                        let maxY = $(window).height() - $("#text-fr").outerHeight();
+
+                        x = Math.max(0, Math.min(x, maxX));
+                        y = Math.max(0, Math.min(y, maxY));
+
+                        $("#text-fr").css({ "left": x, "top": y });
+                    }
+                });
+                $("#tfr-close").on("click mousedown", function (e) {
+                    e.stopImmediatePropagation();
+                    e.stopPropagation();
+                    e.preventDefault();
+                    $("#text-fr").hide();
+                });
+                $("#tfr-close, #tfr-head").on("contextmenu", function (e) {
+                    e.stopImmediatePropagation();
+                    e.stopPropagation();
+                    e.preventDefault();
+                });
+                $("#tfr-show").on("click", function () {
+                    if (document.getElementById("tfr-replace-container").getAttribute("hidden")) {
+                        $("#tfr-replace-container").attr("hidden", false);
+                        $(this).find("svg").css("transform", "translate(-50%, -50%) rotate(0deg)");
+                    }
+                    else {
+                        $("#tfr-replace-container").attr("hidden", true);
+                        $(this).find("svg").css("transform", "translate(-50%, -50%) rotate(-90deg)");
+                    }
+                });
+                $("#tfr-find").on("input change", function () {
+                    let txt = $(`.ttxt-container[cible="${CC}"]`).find("textarea");
+                    TFR.from = 0;
+                    let w = searchEl(txt[0], $(this).val(), TFR.from, TFR.case, TFR.trim);
+                    $("#tfr-result").text("No results");
+                    if (w[2] > 0) {
+                        $("#tfr-result").text(w[3] + " / " + w[2]);
+                        txt[0].setSelectionRange(w[0], w[1]);
+                        scrollEL(txt[0])
+                    }
+                    TFR.result = w;
+                });
+                $("#tfr-case").on("click", () => {
+                    if (TFR.case) {
+                        TFR.case = false;
+                        $("#tfr-case").removeClass("tfr-selected");
+                    }
+                    else {
+                        TFR.case = true;
+                        $("#tfr-case").addClass("tfr-selected");
+                    }
+                    let txt = $(`.ttxt-container[cible="${CC}"]`).find("textarea");
+                    TFR.from = 0;
+                    let w = searchEl(txt[0], $("#tfr-find").val(), TFR.from, TFR.case, TFR.trim);
+                    $("#tfr-result").text("No results");
+                    if (w[2] > 0) {
+                        $("#tfr-result").text(w[3] + " / " + w[2]);
+                        txt[0].setSelectionRange(w[0], w[1]);
+                        scrollEL(txt[0])
+                    }
+                    TFR.result = w;
+                    txt[0].focus();
+                });
+                $("#tfr-trim").on("click", () => {
+                    if (TFR.trim) {
+                        TFR.trim = false;
+                        $("#tfr-trim").removeClass("tfr-selected");
+                    }
+                    else {
+                        TFR.trim = true;
+                        $("#tfr-trim").addClass("tfr-selected");
+                    }
+                    let txt = $(`.ttxt-container[cible="${CC}"]`).find("textarea");
+                    TFR.from = 0;
+                    let w = searchEl(txt[0], $("#tfr-find").val(), TFR.from, TFR.case, TFR.trim);
+                    $("#tfr-result").text("No results");
+                    if (w[2] > 0) {
+                        $("#tfr-result").text(w[3] + " / " + w[2]);
+                        txt[0].setSelectionRange(w[0], w[1]);
+                        scrollEL(txt[0])
+                    }
+                    TFR.result = w;
+                    txt[0].focus();
+                });
+                $("#tfr-backward").on("click", () => {
+                    let txt = $(`.ttxt-container[cible="${CC}"]`).find("textarea");
+                    if (TFR.result[0] >= 0 && TFR.result[2] > 0) {
+                        TFR.result[3] -= 1;
+                        if (TFR.result[3] < 1) {
+                            TFR.result[3] = TFR.result[2];
+                        }
+                        let a = "";
+                        for (let i = 0; i < TFR.result[3]; i++) {
+                            a += TFR.result[4][i];
+                            a += TFR.result[5];
+                        }
+                        TFR.result[0] = a.length - TFR.result[5].length;
+                        TFR.result[1] = a.length;
+                        txt[0].setSelectionRange(TFR.result[0], TFR.result[1]);
+                        $("#tfr-result").text(TFR.result[3] + " / " + TFR.result[2]);
+                        scrollEL(txt[0]);
+                    }
+                    else {
+                        txt[0].setSelectionRange(txt[0].selectionStart, txt[0].selectionStart);
+                    }
+                    txt[0].focus();
+                });
+                $("#tfr-foreward").on("click", () => {
+                    let txt = $(`.ttxt-container[cible="${CC}"]`).find("textarea");
+                    if (TFR.result[0] >= 0 && TFR.result[2] > 0) {
+                        TFR.result[3] += 1;
+                        if (TFR.result[3] > TFR.result[2]) {
+                            TFR.result[3] = 1;
+                        }
+                        let ind = 0;
+                        let a = "";
+                        for (let i = 0; i < TFR.result[3]; i++) {
+                            a += TFR.result[4][i];
+                            a += TFR.result[5];
+                        }
+                        TFR.result[0] = a.length - TFR.result[5].length;
+                        TFR.result[1] = a.length;
+                        txt[0].setSelectionRange(TFR.result[0], TFR.result[1]);
+                        $("#tfr-result").text(TFR.result[3] + " / " + TFR.result[2]);
+                        scrollEL(txt[0]);
+                    }
+                    else {
+                        txt[0].setSelectionRange(txt[0].selectionStart, txt[0].selectionStart);
+                    }
+                    txt[0].focus();
+                });
+                $("#tfr-replace-single").on("click", () => {
+                    let txt = $(`.ttxt-container[cible="${CC}"]`).find("textarea");
+                    if (TFR.result[3]) {
+                        let s = $(txt[0]).val().substring(0, TFR.result[0]);
+                        let e = $(txt[0]).val().substring(TFR.result[1]);
+                        $(txt[0]).val(s + $("#tfr-replace").val() + e);
+                        TFR.result[2] -= 1;
+                        let ind = TFR.result[3];
+                        TFR.result = searchEl(txt[0], $("#tfr-find").val(), TFR.result[0], TFR.case, TFR.trim);
+                        TFR.result[3] = ind - 1;
+                        $("#tfr-foreward").click();
+                    }
+                    txt[0].focus();
+                });
+                $("#tfr-replace-all").on("click", () => {
+                    let txt = $(`.ttxt-container[cible="${CC}"]`).find("textarea");
+                    if (TFR.result[3]) {
+                        do {
+                            $("#tfr-replace-single").click();
+                        }
+                        while (TFR.result[0] >= 0 && TFR.result[2] > 0)
+                    }
+                    $("#tfr-result").text("No result");
+                    txt[0].focus();
+                });
+                $("#tt-date").on("click", () => {
+                    let date = new Date();
+                    let txt = $(`.ttxt-container[cible="${CC}"]`).find("textarea");
+                    insertText(txt[0], date);
+                });
+                $(document).on("keydown", function (e) {
+                    e.stopImmediatePropagation();
+                    e.stopPropagation();
+                    if (e.altKey && e.key === "F4") {
+                        e.preventDefault();
+                        $("#tt-closeall").click();
+                        pywebview.api.close();
+                    }
+                    if (e.ctrlKey && e.key === "Tab") {
+                        e.preventDefault();
+                        let ind = LC.indexOf(CC) + 1;
+                        if (ind >= LC.length) {
+                            ind = 0;
+                        }
+                        selectTab(LC[ind]);
+                    }
+                    if (e.ctrlKey && e.shiftKey && e.key === "Tab") {
+                        e.preventDefault();
+                        let ind = LC.indexOf(CC) - 1;
+                        if (ind <= 0) {
+                            ind = LC.length - 1;
+                        }
+                        selectTab(LC[ind]);
+                    }
+                    if (e.ctrlKey && e.key === "t" || e.ctrlKey && e.key === "T") {
+                        e.preventDefault();
+                        addNewFile();
+                    }
+                    if (e.ctrlKey && e.key === "w" || e.ctrlKey && e.key === "W") {
+                        e.preventDefault();
+                        closeFile(CC);
+                    }
+                    if (e.ctrlKey && e.key === "f" || e.ctrlKey && e.key === "F") {
+                        e.preventDefault();
+                        $("#tt-search").click();
+                    }
+                    if (e.ctrlKey && e.key === "h" || e.ctrlKey && e.key === "H") {
+                        e.preventDefault();
+                        $("#tt-replace").click();
+                    }
+                    if (e.ctrlKey && e.key === "o" || e.ctrlKey && e.key === "O") {
+                        e.preventDefault();
+                        openFile();
+                    }
+                    if (e.ctrlKey && e.key === "n" || e.ctrlKey && e.key === "N") {
+                        e.preventDefault();
+                        addNewFile();
+                    }
+                    if (e.ctrlKey && e.key === "s" || e.ctrlKey && e.key === "S") {
+                        e.preventDefault();
+                        saveFile(CC);
+                    }
+                })
+                addNewFile();
+            });
+        </script>
+    </div>
+
+</body>
+
+</html>
