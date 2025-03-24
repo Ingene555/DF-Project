@@ -27,7 +27,7 @@ class API:
             q = qr.LinkToImg("").Convert([param.get("link")], [], param)
             inp = fr'{mf.Return(q[0]).getValues(0)}'.replace("\\", "/")
             
-            filename = secure_filename(os.path.basename(inp))  # Sécurise le nom du fichier
+            filename = secure_filename(os.path.basename(inp))
             save_path = os.path.join(tools.APP.config["UPLOAD_FOLDER"], filename)
             os.rename(inp, save_path)
             return {"isOk":True, "link": f"http://127.0.0.1:5555/static/img/{filename}"}
@@ -104,7 +104,7 @@ if __name__ == "__main__":
     tools.serverRequierement()
     
     UPLOAD_FOLDER = os.path.join(tools.APP.root_path, "static", "img")
-    os.makedirs(UPLOAD_FOLDER, exist_ok=True)  # Création automatique si inexistant
+    os.makedirs(UPLOAD_FOLDER, exist_ok=True)
     tools.APP.config["UPLOAD_FOLDER"] = UPLOAD_FOLDER
     
     @tools.APP.route('/static/img/<filename>')
