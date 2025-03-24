@@ -1,0 +1,987 @@
+<!DOCTYPE HTML>
+<html>
+
+<head>
+    <title>QRCode Work Area</title>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link href="http://127.0.0.1:5555/bootstrap-5.3.3-dist/css/bootstrap.min.css">
+    <!-- Fichiers Bootstrap principaux -->
+    <link rel="stylesheet" href="http://127.0.0.1:5555/bootstrap-5.3.3-dist/css/bootstrap.css">
+    <link rel="stylesheet" href="http://127.0.0.1:5555/bootstrap-5.3.3-dist/css/bootstrap.min.css">
+    <link rel="stylesheet" href="http://127.0.0.1:5555/bootstrap-5.3.3-dist/css/bootstrap.rtl.css">
+    <link rel="stylesheet" href="http://127.0.0.1:5555/bootstrap-5.3.3-dist/css/bootstrap.rtl.min.css">
+
+    <!-- Fichiers pour le système de grille -->
+    <link rel="stylesheet" href="http://127.0.0.1:5555/bootstrap-5.3.3-dist/css/bootstrap-grid.css">
+    <link rel="stylesheet" href="http://127.0.0.1:5555/bootstrap-5.3.3-dist/css/bootstrap-grid.rtl.css">
+    <link rel="stylesheet" href="http://127.0.0.1:5555/bootstrap-5.3.3-dist/css/bootstrap-grid.min.css">
+    <link rel="stylesheet" href="http://127.0.0.1:5555/bootstrap-5.3.3-dist/css/bootstrap-grid.rtl.min.css">
+
+    <!-- Fichiers pour les utilitaires -->
+    <link rel="stylesheet" href="http://127.0.0.1:5555/bootstrap-5.3.3-dist/css/bootstrap-utilities.css">
+    <link rel="stylesheet" href="http://127.0.0.1:5555/bootstrap-5.3.3-dist/css/bootstrap-utilities.rtl.css">
+    <link rel="stylesheet" href="http://127.0.0.1:5555/bootstrap-5.3.3-dist/css/bootstrap-utilities.min.css">
+    <link rel="stylesheet" href="http://127.0.0.1:5555/bootstrap-5.3.3-dist/css/bootstrap-utilities.rtl.min.css">
+
+    <!-- Fichiers pour le reboot -->
+    <link rel="stylesheet" href="http://127.0.0.1:5555/bootstrap-5.3.3-dist/css/bootstrap-reboot.css">
+    <link rel="stylesheet" href="http://127.0.0.1:5555/bootstrap-5.3.3-dist/css/bootstrap-reboot.rtl.css">
+    <link rel="stylesheet" href="http://127.0.0.1:5555/bootstrap-5.3.3-dist/css/bootstrap-reboot.min.css">
+    <link rel="stylesheet" href="http://127.0.0.1:5555/bootstrap-5.3.3-dist/css/bootstrap-reboot.rtl.min.css">
+
+    <script src="http://127.0.0.1:5555/bootstrap-5.3.3-dist/js/bootstrap.min.js"></script>
+    <!-- Fichiers JavaScript principaux avec les bundles -->
+    <script src="http://127.0.0.1:5555/bootstrap-5.3.3-dist/js/bootstrap.bundle.js"></script>
+    <script src="http://127.0.0.1:5555/bootstrap-5.3.3-dist/js/bootstrap.bundle.min.js"></script>
+
+    <!-- Fichiers JavaScript sans les plugins de dépendance -->
+    <script src="http://127.0.0.1:5555/bootstrap-5.3.3-dist/js/bootstrap.js"></script>
+    <script src="http://127.0.0.1:5555/bootstrap-5.3.3-dist/js/bootstrap.min.js"></script>
+
+    <script src="http://127.0.0.1:5555/jquery/jquery-3.7.1.js"></script>
+    <link href="http://127.0.0.1:5555/ressources/util/variables.css">
+    <style>
+        @import url("http://127.0.0.1:5555/ressources/util/variables.css");
+
+        #top {
+            width: 100%;
+            height: 35px;
+            position: relative;
+            overflow: hidden;
+            padding: 0 5px;
+            user-select: none;
+            border-bottom: 1px solid var(--light-color-trans-99);
+        }
+
+        #t-container {
+            width: 100%;
+            min-width: 100%;
+            height: calc(100% - 10px);
+            margin: 0;
+        }
+
+        #t-container wataba {
+            display: inline-block;
+            height: 25px;
+            border-radius: 5px;
+            margin: auto 5px;
+            padding: auto 5px;
+            align-content: center;
+            justify-items: center;
+            align-items: center;
+            justify-content: center;
+            cursor: pointer;
+            transition: all .3s;
+        }
+
+        #t-container wataba[stat="selected"] {
+            background-color: var(--dark-blue-trans-80);
+            border-bottom-left-radius: 0;
+            border-bottom-right-radius: 0;
+        }
+
+        #t-container wataba:hover {
+            background-color: var(--light-color-trans-45);
+        }
+
+        .w-icon {
+            width: 20px;
+            height: 100%;
+            margin: auto 2px;
+            position: relative;
+            align-content: center;
+            justify-items: center;
+            align-items: center;
+            justify-content: center;
+        }
+
+        .w-icon svg {
+            position: absolute;
+            left: 50%;
+            top: 50%;
+            transform: translate(-50%, -50%);
+        }
+
+        .w-name {
+            font-size: 16px;
+            font-weight: 500;
+            margin: auto 4px;
+            position: relative;
+            align-content: center;
+            justify-items: center;
+            align-items: center;
+            justify-content: center;
+        }
+
+        #t-way {
+            width: 100%;
+            min-width: 100%;
+            height: 7px;
+            position: relative;
+            margin: 0;
+        }
+
+        #t-thumb {
+            height: 100%;
+            background-color: var(--dark-blue);
+            border-bottom-right-radius: 5px;
+            border-bottom-left-radius: 5px;
+            transition: all .3s ease-in-out;
+            position: absolute;
+        }
+
+        #body {
+            width: 100%;
+            height: calc(100% - 40px);
+            margin: 0;
+            position: relative;
+            overflow: auto;
+        }
+
+        #body::-webkit-scrollbar {
+            width: 10px;
+            height: 10px;
+        }
+
+        #body::-webkit-scrollbar-thumb {
+            border-radius: 5px;
+            background-color: var(--light-color);
+        }
+
+        #b-info {
+            width: 80%;
+            min-width: 80%;
+            text-align: left;
+            font-size: 15px;
+            padding: 5px 25px;
+            user-select: none;
+            z-index: 2;
+            position: absolute;
+            top: 0;
+            left: 10%;
+            border-radius: 10px;
+            display: none;
+        }
+
+        #b-main {
+            width: calc(100% - 50px);
+            margin: 5px 25px;
+            margin-top: 25px;
+            border-radius: 20px;
+            background-color: var(--light-color-trans-25);
+            padding: 15px;
+            min-width: 800px;
+        }
+
+        #b-main>div {
+            width: 48%;
+            margin: auto 1%;
+            height: 100%;
+            position: relative;
+            overflow: auto;
+            padding-right: 10px;
+            max-height: 100vh;
+        }
+
+        #b-main>div::-webkit-scrollbar {
+            width: 7px;
+            height: 7px;
+        }
+
+        #b-main>div::-webkit-scrollbar-thumb {
+            border-radius: 5px;
+            background-color: var(--light-color);
+        }
+
+        #bm-url-comp,
+        #bm-text-comp {
+            width: 100%;
+        }
+
+        #bm-url-comp input,
+        #bm-text-comp textarea {
+            width: 100%;
+            font-size: 17px;
+            font-weight: 500;
+            border-radius: 5px;
+            background-color: var(--light-color);
+            color: black;
+            border: 2px solid var(--dark-color-1);
+            padding: 3px;
+            margin: 5px auto;
+        }
+
+        #bm-url-comp input:focus,
+        #bm-text-comp textarea:focus {
+            border: 2px solid var(--dark-blue);
+            outline: 1;
+        }
+
+        #bm-text-comp textarea {
+            min-height: 300px;
+            font-weight: 400 !important;
+            margin: 0;
+            resize: none;
+        }
+
+        #bm-text-open {
+            width: 100%;
+            align-items: center;
+            align-content: center;
+            justify-items: center;
+            justify-content: center;
+            text-align: center;
+            border: 1px solid var(--light-color-trans-50);
+            background-color: var(--dark-blue-trans-88);
+            border-radius: 5px;
+            user-select: none;
+            font-weight: 500;
+            transition: all .3s;
+        }
+
+        #bm-text-open:hover {
+            background-color: var(--dark-blue);
+        }
+
+        div[for="preview"] {
+            width: 250px;
+            max-width: 250px;
+            min-width: 250px;
+            height: 250px;
+            max-height: 250px;
+            min-height: 250px;
+            background-color: rgba(0, 0, 0, 0.512);
+            justify-items: center;
+            justify-content: center;
+            position: relative;
+            user-select: none;
+            margin: 10px calc(calc(100% - 250px) / 2);
+            cursor: default;
+            padding: 0;
+        }
+
+        div[for="preview"] img {
+            width: 100% !important;
+            height: 100% !important;
+            object-fit: contain;
+            margin: 0;
+            padding: 0;
+            background-color: black;
+        }
+
+        div[for="all"] {
+            width: 100%;
+            min-width: 100%;
+
+        }
+
+        .section {
+            width: 90%;
+            min-width: 200px;
+            margin: 10px auto;
+            border-radius: 5px;
+            background-color: var(--dark-color-1-trans-70);
+            user-select: none;
+            transition: all .3s ease-in-out;
+        }
+
+        .section-head {
+            font-size: 15px;
+            font-weight: 400;
+            padding: 2px;
+            cursor: pointer;
+        }
+
+        .section-head:hover .section-title {
+            color: var(--dark-blue);
+        }
+
+        .section-head * {
+            transition: all .3s;
+        }
+
+        .section-body {
+            position: relative;
+            width: 100%;
+        }
+
+        .sb-section {
+            width: 100%;
+            position: relative;
+            margin: 3px auto;
+        }
+
+        .sbs-name {
+            width: 30%;
+            min-width: 30%;
+            text-align: right;
+            font-size: 15px;
+            font-weight: 400;
+            margin-right: 7px;
+        }
+
+        .sbs-command {
+            position: relative;
+            overflow: hidden;
+        }
+
+        .sbs-command input[type="text"],
+        .sbs-command input[type="number"] {
+            width: 100%;
+            border-radius: 5px;
+            border: 0;
+            outline: 1;
+            background-color: var(--light-color);
+            color: black;
+            font-size: 15px;
+        }
+
+        .sbs-command input[type="button"] {
+            cursor: pointer;
+            width: 100%;
+            background-color: transparent;
+            text-align: left;
+            border: 0;
+            transition: all .3s;
+            overflow: hidden;
+            text-overflow: ellipsis;
+        }
+
+        .sbs-command input[type="button"]:hover {
+            filter: drop-shadow(0 0 1px var(--light-color));
+        }
+
+        .sbs-command input[type="file"]::-webkit-file-upload-button {
+            visibility: hidden;
+            width: 0;
+        }
+
+        .sbs-command section {
+            font-size: 15px;
+            height: 20px;
+            outline: 0;
+            border: 0;
+        }
+
+        .sbs-unit {
+            margin-left: 5px;
+            margin-right: 5px;
+        }
+
+        #global-modal {
+            width: 100vw;
+            height: 100vh;
+            left: 0;
+            top: 0;
+            position: fixed;
+            z-index: 10;
+        }
+
+        #gm-fill {
+            width: 100%;
+            height: 100%;
+        }
+
+        #gm-modal {
+            position: absolute;
+            left: 50%;
+            top: 50%;
+            transform: translate(-50%, -50%);
+            background-color: var(--dark-color);
+            width: clamp(400px, 45%, 600px);
+            height: clamp(200px, 25%, 400px);
+            border-radius: 10px;
+            overflow: hidden;
+            padding: 0;
+            user-select: none;
+        }
+
+        #gm-head {
+            width: 100%;
+            height: 25px;
+            background-color: rgba(0, 0, 0, 0.832);
+            color: white;
+            text-align: center;
+
+        }
+
+        #gmm-top {
+            padding: 5px;
+            width: 100%;
+            height: calc(100% - 30px - 30px);
+            align-items: center;
+            justify-items: center;
+            align-content: center;
+            justify-content: center;
+        }
+
+        #gmm-top input {
+            font-size: 16px;
+            outline: 0;
+            border: 2px solid var(--dark-color-1-trans-90);
+            height: 30px;
+            width: 100%;
+            background-color: var(--light-color);
+            color: black;
+            border-radius: 5px;
+        }
+
+        #gmm-top button {
+            width: 100px;
+            margin: 5px calc(calc(100% - 100px) / 2) !important;
+            margin: auto auto;
+            position: relative;
+            cursor: pointer;
+            border: 1px solid var(--light-color-trans-50);
+            background-color: transparent;
+            transition: all .3s;
+            border-radius: 5px;
+        }
+
+        #gmm-top button:hover {
+            background-color: var(--light-color-trans-25);
+        }
+
+        #gmm-bot {
+            padding: 5px;
+            width: 100%;
+            height: 30px;
+        }
+
+        #gmm-bot button {
+            border-radius: 5px;
+            border: 1px solid var(--light-color-trans-50);
+            margin: auto 5px;
+            font-size: 15px;
+            width: 100px;
+            background-color: transparent;
+            cursor: pointer;
+            transition: all .3s;
+        }
+
+        #gm-cancel {
+            color: var(--dark-red);
+        }
+
+        #gm-cancel:hover {
+            background-color: var(--dark-red-trans-25);
+        }
+
+        #gm-save {
+            color: var(--dark-blue);
+        }
+
+        #gm-save:hover {
+            background-color: var(--dark-blue-trans-25)
+        }
+    </style>
+    <script>
+        function placeBar() {
+            let el = $("#top").find(`wataba[stat="selected"]`);
+            let elx = parseInt($(el).offset().left) - 5;
+            let wdt = parseInt($(el).css("width"));
+            $("#t-thumb").css({ "left": elx, "width": wdt });
+        }
+        function setTypeOfQr(type = "link") {
+            if (type === "link") {
+                if (!$("#bm-text.comp").is(":visible")) {
+                    $("#w-url").attr("stat", "selected");
+                    $("#w-text").attr("stat", "");
+                    $("#bm-text-comp").fadeOut(300);
+                    $("#bm-url-comp").fadeIn(300).find("input").focus();
+                    $("#bm-text-comp").find("textarea").val("");
+                }
+            }
+            else {
+                if (!$("#bm-text-comp").is(":visible")) {
+                    $("#w-url").attr("stat", "");
+                    $("#w-text").attr("stat", "selected");
+                    $("#bm-url-comp").hide();
+                    $("#bm-text-comp").show().find("textarea").focus();;
+                    $("#bm-url-comp").find("input").val("");
+                }
+            }
+            placeBar();
+        }
+        function setParam() {
+            let lnk;
+            let el = $("#top").find(`wataba[stat="selected"]`);
+            if (el[0].id === "w-url") {
+                lnk = $("#bm-url-comp").find("input").val().trim();
+            }
+            else {
+                lnk = $("#bm-text-comp").find("textarea").val().trim();
+            }
+            let bg = $("#for-bg").val();
+            let fg = $("#for-fg").val();
+            let margin = parseInt($("#for-margin").val());
+            let pixel = parseFloat($("#for-pixel").val());
+            let cor = $("#for-correction").val();
+            let width = parseInt($("#for-width").val());
+            let height = parseInt($("#for-height").val());
+            let red = parseFloat($("#for-reduction").val());
+            let logo = $("#for-logo").attr("cible");
+            let impact = parseInt($("#for-impact")) / 100;
+            let param = {
+                "link": lnk,
+                "pixel": pixel,
+                "margin": margin,
+                "bg": bg,
+                "fg": fg,
+                "version": 1,
+                "correction": cor,
+                "width": width,
+                "height": height,
+                "impact": impact,
+                "reduction": red
+            }
+            if (logo.trim() !== "") {
+                param.image = logo;
+            }
+            return param;
+        }
+        function previewQr() {
+            let param = setParam();
+            $('div[for="preview"]').html("").addClass("placeholder");
+            GLOBAL.qr = null
+            pywebview.api.newQr(param).then(response => {
+                if (response.isOk === true) {
+                    $('div[for="preview"]').removeClass("placeholder");
+                    $('div[for="preview"]').html(`<img src="${response.link}" alt="preview">`);
+                    GLOBAL.qr = response.link;
+                }
+            });
+        }
+        function checkIfSuitable() {
+            let el = $("#top").find(`wataba[stat="selected"]`);
+            let condition = false;
+            GLOBAL.qr = null;
+            if (el[0].id === "w-url") {
+                let val = $("#bm-url-comp").find("input").val().trim();
+                let linkReg = /https?:\/\/[a-zA-Z0-9\-_.]+\.[a-zA-Z]+(\/[^\s]*)?/g;
+                let mailReg = /^[a-zA-Z0-9._%+-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,}$/;
+                if (linkReg.test(val) || mailReg.test(val)) {
+                    condition = true;
+                }
+                else {
+                    $('div[for="preview"]').html("").addClass("placeholder");
+                }
+            }
+            else {
+                let val = $("#bm-text-comp").find("textarea").val().trim();
+                if (val.length > 0) {
+                    condition = true;
+                }
+                else {
+                    $('div[for="preview"]').html("").addClass("placeholder");
+                }
+            }
+            return condition;
+        }
+        function messageToUser(message = "", type = "info") {
+            let bg;
+            switch (type) {
+                case "error":
+                    bg = "text-bg-danger";
+                    break;
+                case "warning":
+                    bg = "text-bg-warning";
+                    break;
+                case "success":
+                    bg = "text-bg-success";
+                    break;
+                case "primary":
+                    bg = "text-bg-primary";
+                    break;
+                case "info":
+                default:
+                    bg = "text-bg-info";
+                    break
+            }
+            clearTimeout(GLOBAL.messageTimeout);
+            $("#b-info").removeClass(GLOBAL.currentInfoClass).addClass(bg).text(message).fadeIn(500);
+            GLOBAL.currentInfoClass = bg;
+            GLOBAL.messageTimeout = setTimeout(() => {
+                $("#b-info").fadeOut(900, function () {
+                    $(this).removeClass(GLOBAL.currentInfoClass).text("");
+                });
+            }, 3500);
+        }
+        function saveQr() {
+            let liste = [];
+            pywebview.api.saveAs().then(response => {
+                liste.push(response.selected);
+                if (response.selected) {
+                    liste.push(response.direction);
+                }
+            });
+            return liste;
+        }
+
+        GLOBAL = {
+            "currentInfoClass": "",
+            "messageTimeout": undefined,
+            "changeable": true,
+            "qr": null
+        }
+    </script>
+</head>
+
+<body data-bs-theme="dark" style="width: 100%; height: 100%; overflow: hidden;">
+    <div id="div" style="width: 100vw; height: 100vh;">
+        <div id="top">
+            <div id="t-container" class="d-flex flex-row flex-fill">
+                <wataba id="w-url" class="d-flex flex-row" stat="selected">
+                    <div class="w-icon">
+                        <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor"
+                            class="bi bi-link-45deg" viewBox="0 0 16 16">
+                            <path
+                                d="M4.715 6.542 3.343 7.914a3 3 0 1 0 4.243 4.243l1.828-1.829A3 3 0 0 0 8.586 5.5L8 6.086a1 1 0 0 0-.154.199 2 2 0 0 1 .861 3.337L6.88 11.45a2 2 0 1 1-2.83-2.83l.793-.792a4 4 0 0 1-.128-1.287z" />
+                            <path
+                                d="M6.586 4.672A3 3 0 0 0 7.414 9.5l.775-.776a2 2 0 0 1-.896-3.346L9.12 3.55a2 2 0 1 1 2.83 2.83l-.793.792c.112.42.155.855.128 1.287l1.372-1.372a3 3 0 1 0-4.243-4.243z" />
+                        </svg>
+                    </div>
+                    <div class="w-name">
+                        Url
+                    </div>
+                </wataba>
+                <wataba id="w-text" class="d-flex flex-row">
+                    <div class="w-icon">
+                        <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor"
+                            class="bi bi-text-left" viewBox="0 0 16 16">
+                            <path fill-rule="evenodd"
+                                d="M2 12.5a.5.5 0 0 1 .5-.5h7a.5.5 0 0 1 0 1h-7a.5.5 0 0 1-.5-.5m0-3a.5.5 0 0 1 .5-.5h11a.5.5 0 0 1 0 1h-11a.5.5 0 0 1-.5-.5m0-3a.5.5 0 0 1 .5-.5h7a.5.5 0 0 1 0 1h-7a.5.5 0 0 1-.5-.5m0-3a.5.5 0 0 1 .5-.5h11a.5.5 0 0 1 0 1h-11a.5.5 0 0 1-.5-.5" />
+                        </svg>
+                    </div>
+                    <div class="w-name">
+                        Text
+                    </div>
+                </wataba>
+                <div class="flex-fill"></div>
+                <wataba id="w-save" class="d-flex flex-row" disabled>
+                    <div class="w-icon">
+                        <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor"
+                            class="bi bi-floppy" viewBox="0 0 16 16">
+                            <path d="M11 2H9v3h2z" />
+                            <path
+                                d="M1.5 0h11.586a1.5 1.5 0 0 1 1.06.44l1.415 1.414A1.5 1.5 0 0 1 16 2.914V14.5a1.5 1.5 0 0 1-1.5 1.5h-13A1.5 1.5 0 0 1 0 14.5v-13A1.5 1.5 0 0 1 1.5 0M1 1.5v13a.5.5 0 0 0 .5.5H2v-4.5A1.5 1.5 0 0 1 3.5 9h9a1.5 1.5 0 0 1 1.5 1.5V15h.5a.5.5 0 0 0 .5-.5V2.914a.5.5 0 0 0-.146-.353l-1.415-1.415A.5.5 0 0 0 13.086 1H13v4.5A1.5 1.5 0 0 1 11.5 7h-7A1.5 1.5 0 0 1 3 5.5V1H1.5a.5.5 0 0 0-.5.5m3 4a.5.5 0 0 0 .5.5h7a.5.5 0 0 0 .5-.5V1H4zM3 15h10v-4.5a.5.5 0 0 0-.5-.5h-9a.5.5 0 0 0-.5.5z" />
+                        </svg>
+                    </div>
+                    <div class="w-name">
+                        Save
+                    </div>
+                </wataba>
+            </div>
+            <div id="t-way">
+                <div id="t-thumb"></div>
+            </div>
+        </div>
+        <div id="body">
+            <div id="b-info"></div>
+            <div id="b-main" class="d-flex flex-row">
+                <div id="bm-left">
+                    <div id="bm-url-comp">
+                        <input type="text" placeholder="https://example.com | example@gmail.com">
+                    </div>
+                    <div id="bm-text-comp" style="display: none;">
+                        <textarea placeholder="Text..."></textarea>
+                        <button id="bm-text-open">Open text file</button>
+                    </div>
+                </div>
+                <div id="bm-right" class="placeholder-glow">
+                    <div for="preview" class=" placeholder"></div>
+                    <div for="all">
+                        <div class="section" for="shape">
+                            <div class="section-head d-flex flex-row">
+                                <div class="section-title flex-fill">Shape and Colors</div>
+                                <div class="section-wrapper">
+                                    <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor"
+                                        class="bi bi-chevron-down" viewBox="0 0 16 16">
+                                        <path fill-rule="evenodd"
+                                            d="M1.646 4.646a.5.5 0 0 1 .708 0L8 10.293l5.646-5.647a.5.5 0 0 1 .708.708l-6 6a.5.5 0 0 1-.708 0l-6-6a.5.5 0 0 1 0-.708" />
+                                    </svg>
+                                </div>
+                            </div>
+                            <div class="section-body">
+                                <div class="sb-section d-flex flex-row">
+                                    <div class="sbs-name">
+                                        Back color
+                                    </div>
+                                    <div class="sbs-command flex-fill">
+                                        <input type="color" id="for-bg" value="#ffffff">
+                                    </div>
+                                </div>
+                                <div class="sb-section d-flex flex-row">
+                                    <div class="sbs-name">
+                                        Fill
+                                    </div>
+                                    <div class="sbs-command flex-fill">
+                                        <input type="color" id="for-fg">
+                                    </div>
+                                </div>
+                                <div class="sb-section d-flex flex-row">
+                                    <div class="sbs-name">
+                                        Margin
+                                    </div>
+                                    <div class="sbs-command flex-fill">
+                                        <input type="number" id="for-margin" value="30" min="0">
+                                    </div>
+                                    <div class="sbs-unit">
+                                        px
+                                    </div>
+                                </div>
+                                <div class="sb-section d-flex flex-row">
+                                    <div class="sbs-name">
+                                        Pixel
+                                    </div>
+                                    <div class="sbs-command flex-fill">
+                                        <input type="number" id="for-pixel" value="10" min="0">
+                                    </div>
+                                    <div class="sbs-unit">
+                                        px
+                                    </div>
+                                </div>
+                                <div class="sb-section d-flex flex-row">
+                                    <div class="sbs-name">
+                                        Correction
+                                    </div>
+                                    <div class="sbs-command flex-fill">
+                                        <select id="for-correction">
+                                            <option value="L" selected>Low</option>
+                                            <option value="M">Medium</option>
+                                            <option value="Q">Quartile</option>
+                                            <option value="H">High</option>
+                                        </select>
+                                    </div>
+                                </div>
+                                <div class="sb-section d-flex flex-row">
+                                    <div class="sbs-name">
+                                        Width
+                                    </div>
+                                    <div class="sbs-command flex-fill">
+                                        <input type="number" id="for-width" value="300" min="100">
+                                    </div>
+                                    <div class="sbs-unit">
+                                        px
+                                    </div>
+                                </div>
+                                <div class="sb-section d-flex flex-row">
+                                    <div class="sbs-name">
+                                        Height
+                                    </div>
+                                    <div class="sbs-command flex-fill">
+                                        <input type="number" id="for-height" value="300" min="100">
+                                    </div>
+                                    <div class="sbs-unit">
+                                        px
+                                    </div>
+                                </div>
+                                <div class="sb-section d-flex flex-row">
+                                    <div class="sbs-name">
+                                        Reduction
+                                    </div>
+                                    <div class="sbs-command flex-fill">
+                                        <input type="number" id="for-reduction" value="0.5" min="0" max="1" step=".1">
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="section" for="logo">
+                            <div class="section-head d-flex flex-row">
+                                <div class="section-title flex-fill">Logo</div>
+                                <div class="section-wrapper">
+                                    <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor"
+                                        class="bi bi-chevron-down" viewBox="0 0 16 16">
+                                        <path fill-rule="evenodd"
+                                            d="M1.646 4.646a.5.5 0 0 1 .708 0L8 10.293l5.646-5.647a.5.5 0 0 1 .708.708l-6 6a.5.5 0 0 1-.708 0l-6-6a.5.5 0 0 1 0-.708" />
+                                    </svg>
+                                </div>
+                            </div>
+                            <div class="section-body">
+                                <div class="sb-section d-flex flex-row">
+                                    <div class="sbs-name">
+                                        File
+                                    </div>
+                                    <div class="sbs-command flex-fill">
+                                        <input type="button" id="for-logo" value="No file uploaded" cible="">
+                                    </div>
+                                    <div class="sbs-unit" style="cursor: pointer; transition: all .3s;">
+                                        <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16"
+                                            fill="currentColor" class="bi bi-x-lg" viewBox="0 0 16 16">
+                                            <path
+                                                d="M2.146 2.854a.5.5 0 1 1 .708-.708L8 7.293l5.146-5.147a.5.5 0 0 1 .708.708L8.707 8l5.147 5.146a.5.5 0 0 1-.708.708L8 8.707l-5.146 5.147a.5.5 0 0 1-.708-.708L7.293 8z" />
+                                        </svg>
+                                    </div>
+                                </div>
+                                <div class="sb-section d-flex flex-row">
+                                    <div class="sbs-name">
+                                        Width
+                                    </div>
+                                    <div class="sbs-command flex-fill">
+                                        <input type="number" id="for-impact" value="20" min="0" max="100">
+                                    </div>
+                                    <div class="sbs-unit">
+                                        %
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div id="global-modal" style="display: none;">
+            <div id="gm-fill"></div>
+            <div id="gm-modal">
+                <div id="gm-head">
+                    Select path
+                </div>
+                <div id="gmm-top">
+                    <input id="gm-path" type="text" class="flex-fill" placeholder="">
+                    <button id="gm-browse">
+                        Browse
+                    </button>
+                </div>
+                <div id="gmm-bot" class="d-flex flex-row">
+                    <div class="flex-fill"></div>
+                    <button id="gm-cancel">Cancel</button>
+                    <button id="gm-save">Save</button>
+                </div>
+            </div>
+        </div>
+        <script>
+            $(document).ready(() => {
+                placeBar();
+                $(document).on("contextmenu", function (e) {
+                    e.stopImmediatePropagation();
+                    e.stopPropagation();
+                    e.preventDefault();
+                });
+                $("img").on("dragstart", (e) => {
+                    e.preventDefault();
+                });
+                $("#t-container").find("wataba").on("click", function () {
+                    switch (this.id) {
+                        case "w-url":
+                            setTypeOfQr("link");
+                            break;
+                        case "w-text":
+                            setTypeOfQr("text");
+                            break;
+                        case "w-save":
+                            if (checkIfSuitable() === true) {
+                                $("#global-modal").show();
+                            }
+                            else {
+                                messageToUser("Enter valid values", "warning");
+                            }
+                    }
+                });
+                $("#gm-fill, #gm-cancel").on("click", () => {
+                    $("#global-modal").hide();
+                });
+                $(".section-head").on("click", function () {
+                    if ($(this).closest(".section").find(".section-body").is(":visible")) {
+                        $(this).closest(".section").find(".section-body").fadeOut(200);
+                        $(this).closest(".section").find(".section-wrapper").css("transform", "rotate(90deg)");
+                    }
+                    else {
+                        $(this).closest(".section").find(".section-body").fadeIn(200);
+                        $(this).closest(".section").find(".section-wrapper").css("transform", "rotate(0deg)");
+                    }
+                });
+                $(".sb-section").find("input, select").on("change input select keydown", function (e) {
+                    e.stopPropagation();
+                    if (e.key === "Enter" || ["change", "input", "select"].includes(e.type)) {
+                        if (GLOBAL.changeable === true && checkIfSuitable() === true) {
+                            GLOBAL.changeable = false;
+                            previewQr();
+                            setTimeout(function () {
+                                GLOBAL.changeable = true;
+                            }, 500);
+                        }
+                    }
+                });
+                $("#bm-left").find("input[type='text'], textarea").on("change input select keydown", function (e) {
+                    e.stopPropagation();
+                    if (e.key === "Enter" || ["change", "input", "select"].includes(e.type)) {
+                        if (GLOBAL.changeable === true && checkIfSuitable() === true) {
+                            GLOBAL.changeable = false;
+                            previewQr();
+                            setTimeout(function () {
+                                GLOBAL.changeable = true;
+                            }, 500);
+                        }
+                    }
+                });
+                $("#gm-browse").on("click", () => {
+                    pywebview.api.saveAs().then(response => {
+                        if (response.selected) {
+                            $("#gm-path").val(response.direction);
+                        }
+                    });
+                });
+                $("#gm-save").on("click", function () {
+                    let path = $("#gm-path").val().trim();
+                    pywebview.api.checkPath(path).then(pth => {
+                        if (pth.path === true) {
+                            let param = setParam();
+                            param.path = path;
+                            pywebview.api.saveQr(param).then(response => {
+                                if (response.isOk === true) {
+                                    messageToUser(`QR Code saved successfully at "${response.link}"`, "success");
+                                    $("#gm-cancel").click();
+                                    $("#gm-path").val("");
+                                }
+                                else {
+                                    messageToUser("An error occurred while saving", "error");
+                                }
+                            });
+                        }
+                        else {
+                            messageToUser("The specified path could not be found", "error");
+                        }
+                    })
+                })
+                $("#bm-text-open").on("click", () => {
+                    pywebview.api.openTextFile().then(response => {
+                        if (response.selected === true) {
+                            $("#bm-text-comp").find("textarea").val(response.text);
+                        }
+                        else if (response.why === "MISTAKE") {
+                            messageToUser("Unable to read the file", "error")
+                        }
+                    });
+                });
+                $("#for-logo").on("click", function () {
+                    pywebview.api.openLogo().then(response => {
+                        if (response.selected === true) {
+                            $(this).attr({
+                                "cible": response.path,
+                                "value": response.name
+                            });
+                        }
+                    });
+                });
+                $("#for-logo").closest(".sb-section").find(".sbs-unit").on("click mouseenter mouseleave", function (e) {
+                    if (e.type === "click") {
+                        $("#for-logo").attr({
+                            "cible": "",
+                            "value": "No file uploaded"
+                        });
+                    }
+                    else if(e.type==="mouseenter"){
+                        $(this).css("color", "var(--dark-red)");
+                    }
+                    else if(e.type==="mouseleave"){
+                        $(this).css("color", "var(--light-color)");
+                    }
+                });
+                $(".section[for='logo']").find(".section-head").click();
+            });
+        </script>
+    </div>
+</body>
+
+</html>
