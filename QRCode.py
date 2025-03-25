@@ -100,7 +100,7 @@ if __name__ == "__main__":
     # mf.run_as_admin
     mf.clearDirectory("tempcaches")
     mf.clearDirectory("static/img")
-    main = MainApp("DPlayer", url="QRCode/QRCode.html", api=API())
+    main = MainApp("QRCode", url="QRCode/QRCode.html", api=API())
     tools.serverRequierement()
     
     UPLOAD_FOLDER = os.path.join(tools.APP.root_path, "static", "img")
