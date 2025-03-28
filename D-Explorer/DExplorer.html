@@ -1,0 +1,2670 @@
+<!DOCTYPE HTML>
+<html>
+
+<head>
+    <title>Explorer Work Area</title>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link href="http://127.0.0.1:5555/bootstrap-5.3.3-dist/css/bootstrap.min.css">
+    <!-- Fichiers Bootstrap principaux -->
+    <link rel="stylesheet" href="http://127.0.0.1:5555/bootstrap-5.3.3-dist/css/bootstrap.css">
+    <link rel="stylesheet" href="http://127.0.0.1:5555/bootstrap-5.3.3-dist/css/bootstrap.min.css">
+    <link rel="stylesheet" href="http://127.0.0.1:5555/bootstrap-5.3.3-dist/css/bootstrap.rtl.css">
+    <link rel="stylesheet" href="http://127.0.0.1:5555/bootstrap-5.3.3-dist/css/bootstrap.rtl.min.css">
+
+    <!-- Fichiers pour le système de grille -->
+    <link rel="stylesheet" href="http://127.0.0.1:5555/bootstrap-5.3.3-dist/css/bootstrap-grid.css">
+    <link rel="stylesheet" href="http://127.0.0.1:5555/bootstrap-5.3.3-dist/css/bootstrap-grid.rtl.css">
+    <link rel="stylesheet" href="http://127.0.0.1:5555/bootstrap-5.3.3-dist/css/bootstrap-grid.min.css">
+    <link rel="stylesheet" href="http://127.0.0.1:5555/bootstrap-5.3.3-dist/css/bootstrap-grid.rtl.min.css">
+
+    <!-- Fichiers pour les utilitaires -->
+    <link rel="stylesheet" href="http://127.0.0.1:5555/bootstrap-5.3.3-dist/css/bootstrap-utilities.css">
+    <link rel="stylesheet" href="http://127.0.0.1:5555/bootstrap-5.3.3-dist/css/bootstrap-utilities.rtl.css">
+    <link rel="stylesheet" href="http://127.0.0.1:5555/bootstrap-5.3.3-dist/css/bootstrap-utilities.min.css">
+    <link rel="stylesheet" href="http://127.0.0.1:5555/bootstrap-5.3.3-dist/css/bootstrap-utilities.rtl.min.css">
+
+    <!-- Fichiers pour le reboot -->
+    <link rel="stylesheet" href="http://127.0.0.1:5555/bootstrap-5.3.3-dist/css/bootstrap-reboot.css">
+    <link rel="stylesheet" href="http://127.0.0.1:5555/bootstrap-5.3.3-dist/css/bootstrap-reboot.rtl.css">
+    <link rel="stylesheet" href="http://127.0.0.1:5555/bootstrap-5.3.3-dist/css/bootstrap-reboot.min.css">
+    <link rel="stylesheet" href="http://127.0.0.1:5555/bootstrap-5.3.3-dist/css/bootstrap-reboot.rtl.min.css">
+
+    <script src="http://127.0.0.1:5555/bootstrap-5.3.3-dist/js/bootstrap.min.js"></script>
+    <!-- Fichiers JavaScript principaux avec les bundles -->
+    <script src="http://127.0.0.1:5555/bootstrap-5.3.3-dist/js/bootstrap.bundle.js"></script>
+    <script src="http://127.0.0.1:5555/bootstrap-5.3.3-dist/js/bootstrap.bundle.min.js"></script>
+
+    <!-- Fichiers JavaScript sans les plugins de dépendance -->
+    <script src="http://127.0.0.1:5555/bootstrap-5.3.3-dist/js/bootstrap.js"></script>
+    <script src="http://127.0.0.1:5555/bootstrap-5.3.3-dist/js/bootstrap.min.js"></script>
+
+    <script src="http://127.0.0.1:5555/jquery/jquery-3.7.1.js"></script>
+    <link href="http://127.0.0.1/ressources/util/variables.css">
+    <style>
+        @import url("http://127.0.0.1:5555/ressources/util/variables.css");
+
+        #fv-taskbar {
+            width: 100%;
+            max-width: 100vw;
+            height: 40px;
+            margin: 0;
+            padding: 0;
+            align-content: center;
+            align-items: center;
+            position: relative;
+            border-bottom: 1px solid var(--light-color-trans-80);
+            user-select: none;
+            z-index: 3;
+        }
+
+        #fv-taskbar wataba {
+            width: 30px !important;
+            height: 30px !important;
+            min-width: 30px !important;
+            min-height: 30px !important;
+            border-radius: 5px;
+            background-color: rgba(128, 128, 128, 0.09);
+            transition: all .2s;
+            cursor: pointer;
+            position: relative;
+            margin: 17px 3px;
+            display: block !important;
+        }
+
+        #fv-taskbar svg {
+            position: absolute;
+            left: 50%;
+            top: 50%;
+            transform: translate(-50%, -50%);
+            width: 80%;
+            height: 80%;
+        }
+
+        #fv-taskbar wataba:hover {
+            background-color: rgba(128, 128, 128, 0.303);
+        }
+
+        .fv-svg-selected {
+            display: none;
+        }
+
+        .fvt-separator {
+            width: 0;
+            height: 100%;
+            margin: auto 5px;
+        }
+
+        #fv-taskbar input {
+            height: 30px;
+            border-radius: 5px;
+            outline: 0px;
+            border: 1px solid var(--light-color-trans-80);
+            margin: auto 5px;
+            padding: auto 3px;
+        }
+
+        #fvt-search {
+            width: 150px;
+        }
+
+        .fv-compressWtb {
+            display: block;
+            border: 1px solid rgba(128, 128, 128, 0.179);
+            border-radius: 5px;
+            margin: auto 5px;
+            padding: 0;
+            height: 32px;
+            position: relative;
+        }
+
+        .fv-compressWtb wataba {
+            margin: 0 0 !important;
+        }
+
+        #fvt-soption {
+            position: absolute;
+            top: 100%;
+            right: 0;
+            z-index: 2;
+            border: 1px solid rgba(128, 128, 128, 0.303);
+            border-radius: 5px;
+            box-shadow: 0px 5px 3px black;
+            max-height: 500px;
+            display: none;
+            padding: 5px 7px;
+            text-wrap: nowrap;
+            overflow: hidden;
+            overflow-y: auto;
+            background-color: var(--dark-color);
+        }
+
+        #fv-context {
+            position: absolute;
+            z-index: 5;
+            border: 1px solid rgba(128, 128, 128, 0.303);
+            border-radius: 5px;
+            box-shadow: 0px 5px 3px black;
+            max-height: 500px;
+            display: none;
+            padding: 5px 7px;
+            text-wrap: nowrap;
+            overflow: hidden;
+            overflow-y: auto;
+            background-color: var(--dark-color);
+        }
+
+        #fvt-soption::-webkit-scrollbar,
+        #fv-context::-webkit-scrollbar {
+            width: 8px;
+        }
+
+        #fvt-soption::-webkit-scrollbar-thumb,
+        #fv-context::-webkit-scrollbar-thumb {
+            background-color: darkgray;
+            border-radius: 5px;
+        }
+
+        #fvt-soption::-webkit-scrollbar-thumb:active,
+        #fv-context::-webkit-scrollbar-thumb:active {
+            background-color: grey;
+        }
+
+        .fv-vertical-separator {
+            width: 100%;
+            height: 1px;
+            background-color: var(--light-color-trans-80);
+            margin: 10px 0;
+        }
+
+        .fvtso-item * {
+            text-wrap: nowrap;
+        }
+
+        .fvtso-item {
+            cursor: pointer;
+            position: relative;
+            text-wrap: nowrap;
+            text-align: left;
+            transition: all .2s;
+            user-select: none;
+            border-radius: 2px;
+            padding: 2px 5px;
+            width: 100%;
+            height: 25px;
+            align-content: center;
+            font-size: 14px;
+        }
+
+        .fvtso-item:hover {
+            background-color: rgba(128, 128, 128, 0.303);
+        }
+
+        .fvtso-item div {
+            height: 20px;
+            margin: auto 0;
+        }
+
+        .fvtsoi-radio input {
+            height: 20px !important;
+        }
+
+        .fvtsoi-radio input:checked {
+            background-color: var(--dark-blue);
+            border-color: var(--dark-blue);
+        }
+
+
+        .fvtsoi-svg {
+            width: 20px;
+            height: 20px;
+            padding: 2px;
+            position: relative;
+        }
+
+        .fvtsoi-svg svg {
+            position: absolute;
+            left: 50%;
+            top: 50%;
+            transform: translate(-50%, -50%);
+            width: 98%;
+            height: 98%;
+        }
+
+        .fvtsoi-check input {
+            height: 100% !important;
+        }
+
+        .fvtsoi-name {
+            text-wrap: nowrap;
+            flex-wrap: nowrap;
+            width: 200px;
+        }
+
+        .fvtsoi-current {
+            background-color: var(--dark-light-color-trans-50);
+        }
+
+        .fvtsoi-selected,
+        .fvcbs-selected {
+            background-color: var(--dark-blue) !important;
+        }
+
+        .fvcbs-selected .fv-svg-selected {
+            display: inline !important;
+        }
+
+        #fv-main {
+            width: 100%;
+            height: calc(100% - 40px);
+            margin: 0;
+            padding: 0;
+            position: relative;
+            max-width: 100%;
+        }
+
+        #fv-leftvol {
+            width: 300px;
+            min-width: 300px;
+            height: 100%;
+            overflow: hidden;
+            overflow-y: scroll;
+            position: relative;
+            user-select: none;
+        }
+
+        #fv-leftvol::-webkit-scrollbar {
+            width: 10px;
+        }
+
+        #fv-leftvol::-webkit-scrollbar-thumb {
+            background-color: rgba(128, 128, 128, 0.303);
+            border-radius: 5px;
+        }
+
+        #fv-leftvol::-webkit-scrollbar-thumb:active {
+            background-color: rgba(128, 128, 128, 0.179);
+        }
+
+        .fvl-container {
+            width: 96%;
+            background-color: rgba(128, 128, 128, 0.056);
+            border-radius: 5px;
+            user-select: none;
+            position: relative;
+            transition: all .3s ease-in-out;
+            display: block;
+            margin: 10px 2%;
+            padding: 5px;
+        }
+
+        .fvlc-name {
+            width: 100%;
+            height: 25px;
+            position: relative;
+            cursor: pointer;
+            display: inline-block;
+        }
+
+        .fvlc-name:hover .fvlcn-name {
+            color: var(--light-blue);
+        }
+
+        .fvlcn-svg {
+            width: 25px;
+            height: 25px;
+            position: relative;
+            transition: all .2s;
+            transform: rotate(90deg);
+        }
+
+        .fvlcn-svg svg {
+            position: absolute;
+            left: 50%;
+            top: 50%;
+            transform: translate(-50%, -50%);
+            width: 60%;
+            height: 60%;
+        }
+
+        .fvlcn-name {
+            display: inline-block;
+            font-size: 15px;
+            height: 100%;
+        }
+
+        .fvlc-liste {
+            width: 96%;
+            margin: auto 2%;
+            border-radius: 5px;
+            padding: 3px;
+            display: block;
+            position: relative;
+            background-color: var(--dark-color-1-trans-30);
+            max-height: 30vh;
+            overflow: hidden;
+            overflow-y: auto;
+        }
+
+        .fvlc-liste::-webkit-scrollbar {
+            width: 7px;
+        }
+
+        .fvlc-liste::-webkit-scrollbar-thumb {
+            border-radius: 3px;
+            background-color: var(--light-color);
+        }
+
+        .fvlc-item {
+            width: 100%;
+            position: relative;
+            height: 20px;
+            border-radius: 5px;
+            transition: all .3s;
+        }
+
+        .fvlc-item:hover {
+            background-color: rgba(128, 128, 128, 0.179);
+        }
+
+        .fvlci-check {
+            width: 15px;
+            height: 15px;
+            margin-right: 3px;
+        }
+
+        .fvlci-check input {
+            width: 15px !important;
+            height: 15px !important;
+            border-radius: 2px !important;
+        }
+
+        .fvlci-name {
+            font-size: 13px;
+            text-wrap: nowrap;
+            overflow: hidden;
+            text-overflow: ellipsis;
+            max-width: calc(100% - 20px);
+        }
+
+        .fvlci-folder {
+            cursor: pointer;
+            width: 15px;
+            height: 100%;
+            position: relative;
+            transition: all .3s;
+        }
+
+        .fvlci-folder:hover {
+            background-color: rgba(128, 128, 128, 0.303);
+        }
+
+        .fvlci-folder svg {
+            position: absolute;
+            left: 50%;
+            top: 50%;
+            transform: translate(-50%, -50%);
+            width: 80%;
+            height: 80%;
+        }
+
+        #fv-middlevol {
+
+            width: 5px !important;
+            min-width: 5px !important;
+            height: 100%;
+            cursor: col-resize;
+            display: block;
+            z-index: 2;
+            border-top: 0;
+            border-bottom: 0;
+        }
+
+        #fv-middlevol:hover #fv-middlevol-inside {
+            width: 100% !important;
+        }
+
+        #fv-middlevol-inside {
+            width: 1px !important;
+            height: 100%;
+            background-color: var(--light-color-trans-80);
+            transition: all .4s ease;
+        }
+
+        #fv-rightvol {
+            height: 100%;
+            max-width: calc(100% - 300px - 10px);
+            position: relative;
+            padding: 0;
+            margin: 0;
+            user-select: none;
+        }
+
+        #fvr-top {
+            height: 20px !important;
+            position: relative !important;
+            padding: 0;
+            margin: 0;
+            background-color: rgba(128, 128, 128, 0.056);
+            font-size: 13px !important;
+            text-align: left !important;
+            text-transform: none !important;
+        }
+
+        .fvr-top div {
+            height: 100% !important;
+        }
+
+        #fvr-bottom {
+            height: 40px;
+            padding: 0;
+            margin: 0;
+            align-content: center;
+            position: relative;
+            border-top: 1px solid var(--light-color-trans-80)
+        }
+
+        #fvr-bottom input {
+            height: 30px;
+            border-radius: 5px;
+            outline: 0px;
+            border: 1px solid var(--light-color-trans-80);
+            margin: auto 10px;
+            padding: auto 3px;
+        }
+
+        #fvr-bottom wataba {
+            width: 120px;
+            height: 30px;
+            border-radius: 5px;
+            margin: auto 5px;
+            font-size: 15px;
+            font-weight: 500;
+            cursor: pointer;
+            user-select: none;
+            text-align: center;
+            position: relative;
+            overflow: hidden;
+        }
+
+        #fvr-bottom wataba span {
+            position: absolute;
+            left: 50%;
+            top: 50%;
+            transform: translate(-50%, -50%);
+        }
+
+        #fvr-bottom wataba:hover {
+            filter: brightness(110%);
+        }
+
+        #fvrb-open,
+        #fvrb-save {
+            background-color: var(--dark-blue);
+        }
+
+        #fvrb-form {
+            width: 200px;
+            max-width: 200px;
+        }
+
+        #fvrb-cancel {
+            background-color: rgba(128, 128, 128, 0.303);
+        }
+
+        #fvr-main {
+            height: calc(100% - 40px - 0px);
+            max-width: 100%;
+            position: relative;
+            padding: 10px;
+            margin: 0;
+            overflow: auto;
+            overflow-y: auto;
+        }
+
+        #fvr-main::-webkit-scrollbar {
+            width: 12px;
+            height: 12px;
+            transition: all .3s ease;
+        }
+
+        #fvr-main::-webkit-scrollbar:hover {
+            width: 12px;
+        }
+
+        #fvr-main::-webkit-scrollbar-thumb {
+            background-color: rgb(255, 255, 255);
+            border-radius: 6px;
+        }
+
+        #fvr-main::-webkit-scrollbar-thumb:hover {
+            background-color: rgba(128, 128, 128, 0.179);
+        }
+
+        .fvrm-item {
+            position: relative;
+            border-radius: 5px;
+            transition: all .3s;
+            padding: 2px;
+        }
+
+        #fvr-main .fvrm-item:hover {
+            background-color: rgba(128, 128, 128, 0.179);
+        }
+
+        .f-line {
+            width: 90%;
+            height: 30px;
+            text-wrap: nowrap;
+        }
+
+        .f-line .fvr-icon {
+            width: 30px;
+            height: 100%;
+            position: relative;
+            margin-right: 5px !important;
+        }
+
+        .f-line .fvr-icon svg,
+        .f-line .fvr-icon img {
+            position: absolute;
+            left: 50%;
+            top: 50%;
+            transform: translate(-50%, -50%);
+            width: 80%;
+            height: 80%;
+        }
+
+        .f-line .fvr-icon img {
+            display: none;
+        }
+
+        .f-line .fvr-name {
+            padding-left: 5px;
+            font-size: 14px;
+            align-items: center;
+            align-content: center;
+            overflow: hidden;
+            text-overflow: ellipsis;
+            max-width: calc(100% - 120px - 100px - 80px - 30px);
+            min-width: calc(100% - 120px - 100px - 80px - 30px);
+            outline: none;
+            border: 0;
+            background-color: transparent;
+        }
+
+        .f-line .fvr-type {
+            text-transform: uppercase;
+            padding-left: 5px;
+            font-size: 13px;
+            align-items: center;
+            align-content: center;
+            width: 100px;
+            overflow: hidden;
+            text-overflow: ellipsis;
+        }
+
+        .f-line .fvr-date {
+            width: 120px;
+            padding-left: 5px;
+            font-size: 13px;
+            align-items: center;
+            align-content: center;
+            overflow: hidden;
+            text-overflow: ellipsis;
+        }
+
+        .f-line .fvr-size {
+            width: 80px;
+            padding-left: 5px;
+            font-size: 13px;
+            align-items: center;
+            align-items: center;
+            overflow: hidden;
+            text-overflow: ellipsis;
+        }
+
+        .f-block {
+            display: inline-flex;
+            flex-wrap: wrap;
+            width: 120px;
+            margin: 20px;
+        }
+
+        .f-block .fvr-icon {
+            width: 96%;
+            margin: 2%;
+            height: 110px;
+            position: relative;
+            display: flex;
+        }
+
+        .f-block .fvr-icon img,
+        .f-block .fvr-icon svg {
+            width: 110px;
+            height: 110px;
+            position: relative;
+            position: absolute;
+        }
+
+        .f-block .fvr-name {
+            max-height: 50px;
+            max-width: 100%;
+            min-width: 100%;
+            overflow: hidden;
+            text-overflow: ellipsis;
+            text-align: center;
+            outline: none;
+            border: 0;
+            background-color: transparent;
+        }
+
+        .f-block .fvr-date {
+            width: 100%;
+            text-wrap: nowrap;
+            text-overflow: ellipsis;
+            font-size: 12px;
+            display: none;
+        }
+
+        .f-block .fvr-type,
+        .f-block .fvr-size {
+            width: 48%;
+            margin: auto 1%;
+            max-height: 20px;
+            text-wrap: nowrap;
+            overflow: hidden;
+            text-overflow: ellipsis;
+            font-size: 12px;
+            text-transform: uppercase;
+            text-align: center;
+            color: var(--dark-light-color);
+        }
+
+        .fvr-name-i {
+            display: none;
+        }
+
+        #fv-selector {
+            position: absolute;
+            z-index: 2;
+            border: 2px solid var(--dark-blue-trans-80);
+            background-color: var(--dark-blue-trans-10);
+            display: none;
+        }
+    </style>
+    <script>
+        function getIcon(fileType = "file") {
+            let dict = {
+                "open": `<svg xmlns="http://www.w3.org/2000/svg" width="100%" height="100%" fill="currentColor"
+                                    class="bi bi-folder-fill" viewBox="0 0 16 16">
+                                    <path
+                                        d="M9.828 3h3.982a2 2 0 0 1 1.992 2.181l-.637 7A2 2 0 0 1 13.174 14H2.825a2 2 0 0 1-1.991-1.819l-.637-7a2 2 0 0 1 .342-1.31L.5 3a2 2 0 0 1 2-2h3.672a2 2 0 0 1 1.414.586l.828.828A2 2 0 0 0 9.828 3m-8.322.12q.322-.119.684-.12h5.396l-.707-.707A1 1 0 0 0 6.172 2H2.5a1 1 0 0 0-1 .981z" />
+                                </svg>`,
+                "folder": `<svg xmlns="http://www.w3.org/2000/svg" width="100%" height="100%" fill="var(--dark-purple)"
+                                    class="bi bi-folder2" viewBox="0 0 16 16">
+                                    <path
+                                        d="M1 3.5A1.5 1.5 0 0 1 2.5 2h2.764c.958 0 1.76.56 2.311 1.184C7.985 3.648 8.48 4 9 4h4.5A1.5 1.5 0 0 1 15 5.5v7a1.5 1.5 0 0 1-1.5 1.5h-11A1.5 1.5 0 0 1 1 12.5zM2.5 3a.5.5 0 0 0-.5.5V6h12v-.5a.5.5 0 0 0-.5-.5H9c-.964 0-1.71-.629-2.174-1.154C6.374 3.334 5.82 3 5.264 3zM14 7H2v5.5a.5.5 0 0 0 .5.5h11a.5.5 0 0 0 .5-.5z" />
+                                </svg>`,
+                "image": `<svg xmlns="http://www.w3.org/2000/svg" width="00%" height="100%" fill="var(--light-yellow)"
+                                    class="bi bi-file-earmark-image" viewBox="0 0 16 16">
+                                    <path d="M6.502 7a1.5 1.5 0 1 0 0-3 1.5 1.5 0 0 0 0 3" />
+                                    <path
+                                        d="M14 14a2 2 0 0 1-2 2H4a2 2 0 0 1-2-2V2a2 2 0 0 1 2-2h5.5L14 4.5zM4 1a1 1 0 0 0-1 1v10l2.224-2.224a.5.5 0 0 1 .61-.075L8 11l2.157-3.02a.5.5 0 0 1 .76-.063L13 10V4.5h-2A1.5 1.5 0 0 1 9.5 3V1z" />
+                                </svg>`,
+                "video": `<svg xmlns="http://www.w3.org/2000/svg" width="100%" height="100%" fill="var(--dark-orange)"
+                                    class="bi bi-file-earmark-play" viewBox="0 0 16 16">
+                                    <path
+                                        d="M6 6.883v4.234a.5.5 0 0 0 .757.429l3.528-2.117a.5.5 0 0 0 0-.858L6.757 6.454a.5.5 0 0 0-.757.43z" />
+                                    <path
+                                        d="M14 14V4.5L9.5 0H4a2 2 0 0 0-2 2v12a2 2 0 0 0 2 2h8a2 2 0 0 0 2-2M9.5 3A1.5 1.5 0 0 0 11 4.5h2V14a1 1 0 0 1-1 1H4a1 1 0 0 1-1-1V2a1 1 0 0 1 1-1h5.5z" />
+                                </svg>`,
+                "pdf": `<svg xmlns="http://www.w3.org/2000/svg" width="100%" height="100%" fill="var(--dark-red)"
+                                    class="bi bi-file-earmark-pdf" viewBox="0 0 16 16">
+                                    <path
+                                        d="M14 14V4.5L9.5 0H4a2 2 0 0 0-2 2v12a2 2 0 0 0 2 2h8a2 2 0 0 0 2-2M9.5 3A1.5 1.5 0 0 0 11 4.5h2V14a1 1 0 0 1-1 1H4a1 1 0 0 1-1-1V2a1 1 0 0 1 1-1h5.5z" />
+                                    <path
+                                        d="M4.603 14.087a.8.8 0 0 1-.438-.42c-.195-.388-.13-.776.08-1.102.198-.307.526-.568.897-.787a7.7 7.7 0 0 1 1.482-.645 20 20 0 0 0 1.062-2.227 7.3 7.3 0 0 1-.43-1.295c-.086-.4-.119-.796-.046-1.136.075-.354.274-.672.65-.823.192-.077.4-.12.602-.077a.7.7 0 0 1 .477.365c.088.164.12.356.127.538.007.188-.012.396-.047.614-.084.51-.27 1.134-.52 1.794a11 11 0 0 0 .98 1.686 5.8 5.8 0 0 1 1.334.05c.364.066.734.195.96.465.12.144.193.32.2.518.007.192-.047.382-.138.563a1.04 1.04 0 0 1-.354.416.86.86 0 0 1-.51.138c-.331-.014-.654-.196-.933-.417a5.7 5.7 0 0 1-.911-.95 11.7 11.7 0 0 0-1.997.406 11.3 11.3 0 0 1-1.02 1.51c-.292.35-.609.656-.927.787a.8.8 0 0 1-.58.029m1.379-1.901q-.25.115-.459.238c-.328.194-.541.383-.647.547-.094.145-.096.25-.04.361q.016.032.026.044l.035-.012c.137-.056.355-.235.635-.572a8 8 0 0 0 .45-.606m1.64-1.33a13 13 0 0 1 1.01-.193 12 12 0 0 1-.51-.858 21 21 0 0 1-.5 1.05zm2.446.45q.226.245.435.41c.24.19.407.253.498.256a.1.1 0 0 0 .07-.015.3.3 0 0 0 .094-.125.44.44 0 0 0 .059-.2.1.1 0 0 0-.026-.063c-.052-.062-.2-.152-.518-.209a4 4 0 0 0-.612-.053zM8.078 7.8a7 7 0 0 0 .2-.828q.046-.282.038-.465a.6.6 0 0 0-.032-.198.5.5 0 0 0-.145.04c-.087.035-.158.106-.196.283-.04.192-.03.469.046.822q.036.167.09.346z" />
+                                </svg>`,
+                "audio": `<svg xmlns="http://www.w3.org/2000/svg" width="100%" height="100%" fill="var(--dark-pink)"
+                                    class="bi bi-file-earmark-music" viewBox="0 0 16 16">
+                                    <path
+                                        d="M11 6.64a1 1 0 0 0-1.243-.97l-1 .25A1 1 0 0 0 8 6.89v4.306A2.6 2.6 0 0 0 7 11c-.5 0-.974.134-1.338.377-.36.24-.662.628-.662 1.123s.301.883.662 1.123c.364.243.839.377 1.338.377s.974-.134 1.338-.377c.36-.24.662-.628.662-1.123V8.89l2-.5z" />
+                                    <path
+                                        d="M14 14V4.5L9.5 0H4a2 2 0 0 0-2 2v12a2 2 0 0 0 2 2h8a2 2 0 0 0 2-2M9.5 3A1.5 1.5 0 0 0 11 4.5h2V14a1 1 0 0 1-1 1H4a1 1 0 0 1-1-1V2a1 1 0 0 1 1-1h5.5z" />
+                                </svg>`,
+                "text": `<svg xmlns="http://www.w3.org/2000/svg" width="100%" height="100%" fill="var(--dark-color-1)"
+                                    class="bi bi-file-earmark-text" viewBox="0 0 16 16">
+                                    <path
+                                        d="M5.5 7a.5.5 0 0 0 0 1h5a.5.5 0 0 0 0-1zM5 9.5a.5.5 0 0 1 .5-.5h5a.5.5 0 0 1 0 1h-5a.5.5 0 0 1-.5-.5m0 2a.5.5 0 0 1 .5-.5h2a.5.5 0 0 1 0 1h-2a.5.5 0 0 1-.5-.5" />
+                                    <path
+                                        d="M9.5 0H4a2 2 0 0 0-2 2v12a2 2 0 0 0 2 2h8a2 2 0 0 0 2-2V4.5zm0 1v2A1.5 1.5 0 0 0 11 4.5h2V14a1 1 0 0 1-1 1H4a1 1 0 0 1-1-1V2a1 1 0 0 1 1-1z" />
+                                </svg>`,
+                "word": `<svg xmlns="http://www.w3.org/2000/svg" width="100%" height="100%" fill="var(--dark-blue)"
+                                    class="bi bi-file-earmark-word" viewBox="0 0 16 16">
+                                    <path
+                                        d="M5.485 6.879a.5.5 0 1 0-.97.242l1.5 6a.5.5 0 0 0 .967.01L8 9.402l1.018 3.73a.5.5 0 0 0 .967-.01l1.5-6a.5.5 0 0 0-.97-.242l-1.036 4.144-.997-3.655a.5.5 0 0 0-.964 0l-.997 3.655L5.485 6.88z" />
+                                    <path
+                                        d="M14 14V4.5L9.5 0H4a2 2 0 0 0-2 2v12a2 2 0 0 0 2 2h8a2 2 0 0 0 2-2M9.5 3A1.5 1.5 0 0 0 11 4.5h2V14a1 1 0 0 1-1 1H4a1 1 0 0 1-1-1V2a1 1 0 0 1 1-1h5.5z" />
+                                </svg>`,
+                "excel": `<svg xmlns="http://www.w3.org/2000/svg" width="100%" height="100%" fill="var(--dark-green)"
+                                    class="bi bi-file-earmark-excel" viewBox="0 0 16 16">
+                                    <path
+                                        d="M5.884 6.68a.5.5 0 1 0-.768.64L7.349 10l-2.233 2.68a.5.5 0 0 0 .768.64L8 10.781l2.116 2.54a.5.5 0 0 0 .768-.641L8.651 10l2.233-2.68a.5.5 0 0 0-.768-.64L8 9.219l-2.116-2.54z" />
+                                    <path
+                                        d="M14 14V4.5L9.5 0H4a2 2 0 0 0-2 2v12a2 2 0 0 0 2 2h8a2 2 0 0 0 2-2M9.5 3A1.5 1.5 0 0 0 11 4.5h2V14a1 1 0 0 1-1 1H4a1 1 0 0 1-1-1V2a1 1 0 0 1 1-1h5.5z" />
+                                </svg>`,
+                "pwp": `<svg xmlns="http://www.w3.org/2000/svg" width="100%" height="100%" fill="var(--dark-oranage-2)"
+                                    class="bi bi-file-earmark-ppt" viewBox="0 0 16 16">
+                                    <path
+                                        d="M7 5.5a1 1 0 0 0-1 1V13a.5.5 0 0 0 1 0v-2h1.188a2.75 2.75 0 0 0 0-5.5zM8.188 10H7V6.5h1.188a1.75 1.75 0 1 1 0 3.5" />
+                                    <path
+                                        d="M14 4.5V14a2 2 0 0 1-2 2H4a2 2 0 0 1-2-2V2a2 2 0 0 1 2-2h5.5zm-3 0A1.5 1.5 0 0 1 9.5 3V1H4a1 1 0 0 0-1 1v12a1 1 0 0 0 1 1h8a1 1 0 0 0 1-1V4.5z" />
+                                </svg>`,
+                "file": `<svg xmlns="http://www.w3.org/2000/svg" width="100%" height="100%" fill="currentColor"
+                                    class="bi bi-file-earmark" viewBox="0 0 16 16">
+                                    <path
+                                        d="M14 4.5V14a2 2 0 0 1-2 2H4a2 2 0 0 1-2-2V2a2 2 0 0 1 2-2h5.5zm-3 0A1.5 1.5 0 0 1 9.5 3V1H4a1 1 0 0 0-1 1v12a1 1 0 0 0 1 1h8a1 1 0 0 0 1-1V4.5z" />
+                                </svg>`,
+                "bin": `<svg xmlns="http://www.w3.org/2000/svg" width="100%" height="100%" fill="currentColor"
+                                    class="bi bi-file-earmark-binary" viewBox="0 0 16 16">
+                                    <path
+                                        d="M7.05 11.885c0 1.415-.548 2.206-1.524 2.206C4.548 14.09 4 13.3 4 11.885c0-1.412.548-2.203 1.526-2.203.976 0 1.524.79 1.524 2.203m-1.524-1.612c-.542 0-.832.563-.832 1.612q0 .133.006.252l1.559-1.143c-.126-.474-.375-.72-.733-.72zm-.732 2.508c.126.472.372.718.732.718.54 0 .83-.563.83-1.614q0-.129-.006-.25zm6.061.624V14h-3v-.595h1.181V10.5h-.05l-1.136.747v-.688l1.19-.786h.69v3.633z" />
+                                    <path
+                                        d="M14 14V4.5L9.5 0H4a2 2 0 0 0-2 2v12a2 2 0 0 0 2 2h8a2 2 0 0 0 2-2M9.5 3A1.5 1.5 0 0 0 11 4.5h2V14a1 1 0 0 1-1 1H4a1 1 0 0 1-1-1V2a1 1 0 0 1 1-1h5.5z" />
+                                </svg>`,
+                "code": `<svg xmlns="http://www.w3.org/2000/svg" width="100%" height="100%" fill="#777777"
+                                    class="bi bi-file-earmark-code" viewBox="0 0 16 16">
+                                    <path
+                                        d="M14 4.5V14a2 2 0 0 1-2 2H4a2 2 0 0 1-2-2V2a2 2 0 0 1 2-2h5.5zm-3 0A1.5 1.5 0 0 1 9.5 3V1H4a1 1 0 0 0-1 1v12a1 1 0 0 0 1 1h8a1 1 0 0 0 1-1V4.5z" />
+                                    <path
+                                        d="M8.646 6.646a.5.5 0 0 1 .708 0l2 2a.5.5 0 0 1 0 .708l-2 2a.5.5 0 0 1-.708-.708L10.293 9 8.646 7.354a.5.5 0 0 1 0-.708m-1.292 0a.5.5 0 0 0-.708 0l-2 2a.5.5 0 0 0 0 .708l2 2a.5.5 0 0 0 .708-.708L5.707 9l1.647-1.646a.5.5 0 0 0 0-.708" />
+                                </svg>`,
+                "ai": `<svg xmlns="http://www.w3.org/2000/svg" width="100%" height="100%" fill="#FF7C00"
+                                    class="bi bi-filetype-ai" viewBox="0 0 16 16">
+                                    <path fill-rule="evenodd"
+                                        d="M14 4.5V14a2 2 0 0 1-2 2H6v-1h6a1 1 0 0 0 1-1V4.5h-2A1.5 1.5 0 0 1 9.5 3V1H4a1 1 0 0 0-1 1v9H2V2a2 2 0 0 1 2-2h5.5zM1.113 14.82.8 15.85H0l1.342-3.999h.926l1.336 3.999h-.841l-.314-1.028H1.113Zm1.178-.588-.49-1.617h-.034l-.49 1.617zm2.425-2.382v3.999h-.791V11.85h.79Z" />
+                                </svg>`,
+                "cs": `<svg xmlns="http://www.w3.org/2000/svg" width="1àà5" height="1àà5" fill="#68217A"
+                                    class="bi bi-filetype-cs" viewBox="0 0 16 16">
+                                    <path fill-rule="evenodd"
+                                        d="M14 4.5V14a2 2 0 0 1-2 2H8v-1h4a1 1 0 0 0 1-1V4.5h-2A1.5 1.5 0 0 1 9.5 3V1H4a1 1 0 0 0-1 1v9H2V2a2 2 0 0 1 2-2h5.5zM3.629 15.29a1.2 1.2 0 0 1-.112-.449h.765a.58.58 0 0 0 .255.384q.105.073.249.114t.32.041q.245 0 .412-.07a.56.56 0 0 0 .255-.193.5.5 0 0 0 .085-.29.39.39 0 0 0-.152-.326q-.153-.12-.463-.193l-.618-.143a1.7 1.7 0 0 1-.54-.214 1 1 0 0 1-.35-.367 1.1 1.1 0 0 1-.124-.524q0-.366.19-.639.191-.272.528-.422t.776-.149q.458 0 .78.152.324.153.5.41.18.255.2.566h-.75a.56.56 0 0 0-.12-.258.6.6 0 0 0-.246-.181.9.9 0 0 0-.37-.068q-.324 0-.512.152a.47.47 0 0 0-.185.384q0 .18.144.3a1 1 0 0 0 .404.175l.621.143q.325.075.566.211t.375.358.134.56q0 .37-.187.656a1.2 1.2 0 0 1-.54.439q-.351.158-.858.158a2.2 2.2 0 0 1-.665-.09 1.4 1.4 0 0 1-.477-.252 1.1 1.1 0 0 1-.29-.375m-2.72-2.23a1.7 1.7 0 0 0-.103.633v.495q0 .369.102.627a.83.83 0 0 0 .299.392.85.85 0 0 0 .478.132.86.86 0 0 0 .4-.088.7.7 0 0 0 .273-.249.8.8 0 0 0 .118-.363h.764v.076a1.27 1.27 0 0 1-.225.674q-.205.29-.551.454a1.8 1.8 0 0 1-.785.164q-.54 0-.914-.217a1.4 1.4 0 0 1-.572-.626Q0 14.756 0 14.188v-.498q0-.569.196-.979a1.44 1.44 0 0 1 .572-.633q.378-.222.91-.222.33 0 .607.097.281.093.49.272a1.32 1.32 0 0 1 .465.964v.073h-.764a.85.85 0 0 0-.12-.38.7.7 0 0 0-.273-.261.8.8 0 0 0-.398-.097.8.8 0 0 0-.475.138.87.87 0 0 0-.302.398Z" />
+                                </svg>`,
+                "css": `<svg xmlns="http://www.w3.org/2000/svg" width="100%" height="1100%" fill="#1572B6"
+                                    class="bi bi-filetype-css" viewBox="0 0 16 16">
+                                    <path fill-rule="evenodd"
+                                        d="M14 4.5V14a2 2 0 0 1-2 2h-1v-1h1a1 1 0 0 0 1-1V4.5h-2A1.5 1.5 0 0 1 9.5 3V1H4a1 1 0 0 0-1 1v9H2V2a2 2 0 0 1 2-2h5.5zM3.397 14.841a1.13 1.13 0 0 0 .401.823q.195.162.478.252.284.091.665.091.507 0 .859-.158.354-.158.539-.44.187-.284.187-.656 0-.336-.134-.56a1 1 0 0 0-.375-.357 2 2 0 0 0-.566-.21l-.621-.144a1 1 0 0 1-.404-.176.37.37 0 0 1-.144-.299q0-.234.185-.384.188-.152.512-.152.214 0 .37.068a.6.6 0 0 1 .246.181.56.56 0 0 1 .12.258h.75a1.1 1.1 0 0 0-.2-.566 1.2 1.2 0 0 0-.5-.41 1.8 1.8 0 0 0-.78-.152q-.439 0-.776.15-.337.149-.527.421-.19.273-.19.639 0 .302.122.524.124.223.352.367.228.143.539.213l.618.144q.31.073.463.193a.39.39 0 0 1 .152.326.5.5 0 0 1-.085.29.56.56 0 0 1-.255.193q-.167.07-.413.07-.175 0-.32-.04a.8.8 0 0 1-.248-.115.58.58 0 0 1-.255-.384zM.806 13.693q0-.373.102-.633a.87.87 0 0 1 .302-.399.8.8 0 0 1 .475-.137q.225 0 .398.097a.7.7 0 0 1 .272.26.85.85 0 0 1 .12.381h.765v-.072a1.33 1.33 0 0 0-.466-.964 1.4 1.4 0 0 0-.489-.272 1.8 1.8 0 0 0-.606-.097q-.534 0-.911.223-.375.222-.572.632-.195.41-.196.979v.498q0 .568.193.976.197.407.572.626.375.217.914.217.439 0 .785-.164t.55-.454a1.27 1.27 0 0 0 .226-.674v-.076h-.764a.8.8 0 0 1-.118.363.7.7 0 0 1-.272.25.9.9 0 0 1-.401.087.85.85 0 0 1-.478-.132.83.83 0 0 1-.299-.392 1.7 1.7 0 0 1-.102-.627zM6.78 15.29a1.2 1.2 0 0 1-.111-.449h.764a.58.58 0 0 0 .255.384q.106.073.25.114.142.041.319.041.245 0 .413-.07a.56.56 0 0 0 .255-.193.5.5 0 0 0 .085-.29.39.39 0 0 0-.153-.326q-.152-.12-.463-.193l-.618-.143a1.7 1.7 0 0 1-.539-.214 1 1 0 0 1-.351-.367 1.1 1.1 0 0 1-.123-.524q0-.366.19-.639.19-.272.527-.422t.777-.149q.456 0 .779.152.326.153.5.41.18.255.2.566h-.75a.56.56 0 0 0-.12-.258.6.6 0 0 0-.246-.181.9.9 0 0 0-.37-.068q-.324 0-.512.152a.47.47 0 0 0-.184.384q0 .18.143.3a1 1 0 0 0 .404.175l.621.143q.326.075.566.211t.375.358.135.56q0 .37-.188.656a1.2 1.2 0 0 1-.539.439q-.351.158-.858.158-.381 0-.665-.09a1.4 1.4 0 0 1-.478-.252 1.1 1.1 0 0 1-.29-.375" />
+                                </svg>`,
+                "exe": `<svg xmlns="http://www.w3.org/2000/svg" width="100%" height="100%" fill="#00CC00"
+                                    class="bi bi-filetype-exe" viewBox="0 0 16 16">
+                                    <path fill-rule="evenodd"
+                                        d="M14 4.5V14a2 2 0 0 1-2 2h-1v-1h1a1 1 0 0 0 1-1V4.5h-2A1.5 1.5 0 0 1 9.5 3V1H4a1 1 0 0 0-1 1v9H2V2a2 2 0 0 1 2-2h5.5zM2.575 15.202H.785v-1.073H2.47v-.606H.785v-1.025h1.79v-.648H0v3.999h2.575zM6.31 11.85h-.893l-.823 1.439h-.036l-.832-1.439h-.931l1.227 1.983-1.239 2.016h.861l.853-1.415h.035l.85 1.415h.908l-1.254-1.992zm1.025 3.352h1.79v.647H6.548V11.85h2.576v.648h-1.79v1.025h1.684v.606H7.334v1.073Z" />
+                                </svg>`,
+                "html": `<svg xmlns="http://www.w3.org/2000/svg" width="100%" height="100%" fill="#E34F26"
+                                    class="bi bi-filetype-html" viewBox="0 0 16 16">
+                                    <path fill-rule="evenodd"
+                                        d="M14 4.5V11h-1V4.5h-2A1.5 1.5 0 0 1 9.5 3V1H4a1 1 0 0 0-1 1v9H2V2a2 2 0 0 1 2-2h5.5zm-9.736 7.35v3.999h-.791v-1.714H1.79v1.714H1V11.85h.791v1.626h1.682V11.85h.79Zm2.251.662v3.337h-.794v-3.337H4.588v-.662h3.064v.662zm2.176 3.337v-2.66h.038l.952 2.159h.516l.946-2.16h.038v2.661h.715V11.85h-.8l-1.14 2.596H9.93L8.79 11.85h-.805v3.999zm4.71-.674h1.696v.674H12.61V11.85h.79v3.325Z" />
+                                </svg>`,
+                "java": `<svg xmlns="http://www.w3.org/2000/svg" width="100%" height="100%" fill="#E76F00"
+                                    class="bi bi-filetype-java" viewBox="0 0 16 16">
+                                    <path fill-rule="evenodd"
+                                        d="M14 4.5V11h-1V4.5h-2A1.5 1.5 0 0 1 9.5 3V1H4a1 1 0 0 0-1 1v9H2V2a2 2 0 0 1 2-2h5.5zM1.521 15.175a1.3 1.3 0 0 1-.082-.466h.765a.6.6 0 0 0 .073.27.5.5 0 0 0 .454.246q.285 0 .422-.164.138-.165.138-.466V11.85h.79v2.725q0 .66-.357 1.005-.354.345-.984.345a1.6 1.6 0 0 1-.568-.094 1.1 1.1 0 0 1-.408-.266 1.1 1.1 0 0 1-.243-.39m3.972-.354-.314 1.028h-.8l1.342-3.999h.926l1.336 3.999h-.84l-.314-1.028zm1.178-.59-.49-1.616h-.035l-.49 1.617zm2.342 1.618h.952l1.327-3.999h-.878l-.888 3.138h-.038L8.59 11.85h-.917zm3.087-1.028-.314 1.028h-.8l1.342-3.999h.926l1.336 3.999h-.84l-.314-1.028zm1.178-.59-.49-1.616h-.035l-.49 1.617z" />
+                                </svg>`,
+                "js": `<svg xmlns="http://www.w3.org/2000/svg" width="100%" height="100%" fill="#F7DF1E"
+                                    class="bi bi-filetype-js" viewBox="0 0 16 16">
+                                    <path fill-rule="evenodd"
+                                        d="M14 4.5V14a2 2 0 0 1-2 2H8v-1h4a1 1 0 0 0 1-1V4.5h-2A1.5 1.5 0 0 1 9.5 3V1H4a1 1 0 0 0-1 1v9H2V2a2 2 0 0 1 2-2h5.5zM3.186 15.29a1.2 1.2 0 0 1-.111-.449h.765a.58.58 0 0 0 .255.384q.105.073.249.114.143.041.319.041.246 0 .413-.07a.56.56 0 0 0 .255-.193.5.5 0 0 0 .085-.29.39.39 0 0 0-.153-.326q-.151-.12-.462-.193l-.619-.143a1.7 1.7 0 0 1-.539-.214 1 1 0 0 1-.351-.367 1.1 1.1 0 0 1-.123-.524q0-.366.19-.639.19-.272.528-.422.336-.15.776-.149.457 0 .78.152.324.153.5.41.18.255.2.566h-.75a.56.56 0 0 0-.12-.258.6.6 0 0 0-.247-.181.9.9 0 0 0-.369-.068q-.325 0-.513.152a.47.47 0 0 0-.184.384q0 .18.143.3a1 1 0 0 0 .405.175l.62.143q.327.075.566.211.24.136.375.358t.135.56q0 .37-.188.656a1.2 1.2 0 0 1-.539.439q-.351.158-.858.158-.381 0-.665-.09a1.4 1.4 0 0 1-.478-.252 1.1 1.1 0 0 1-.29-.375m-3.104-.033A1.3 1.3 0 0 1 0 14.791h.765a.6.6 0 0 0 .073.27.5.5 0 0 0 .454.246q.285 0 .422-.164.138-.165.138-.466v-2.745h.79v2.725q0 .66-.357 1.005-.354.345-.984.345a1.6 1.6 0 0 1-.569-.094 1.15 1.15 0 0 1-.407-.266 1.1 1.1 0 0 1-.243-.39" />
+                                </svg>`,
+                "json": `<svg xmlns="http://www.w3.org/2000/svg" width="100%" height="100%" fill="#CCCCCC"
+                                    class="bi bi-filetype-json" viewBox="0 0 16 16">
+                                    <path fill-rule="evenodd"
+                                        d="M14 4.5V11h-1V4.5h-2A1.5 1.5 0 0 1 9.5 3V1H4a1 1 0 0 0-1 1v9H2V2a2 2 0 0 1 2-2h5.5zM4.151 15.29a1.2 1.2 0 0 1-.111-.449h.764a.58.58 0 0 0 .255.384q.105.073.25.114.142.041.319.041.245 0 .413-.07a.56.56 0 0 0 .255-.193.5.5 0 0 0 .084-.29.39.39 0 0 0-.152-.326q-.152-.12-.463-.193l-.618-.143a1.7 1.7 0 0 1-.539-.214 1 1 0 0 1-.352-.367 1.1 1.1 0 0 1-.123-.524q0-.366.19-.639.192-.272.528-.422.337-.15.777-.149.456 0 .779.152.326.153.5.41.18.255.2.566h-.75a.56.56 0 0 0-.12-.258.6.6 0 0 0-.246-.181.9.9 0 0 0-.37-.068q-.324 0-.512.152a.47.47 0 0 0-.185.384q0 .18.144.3a1 1 0 0 0 .404.175l.621.143q.326.075.566.211a1 1 0 0 1 .375.358q.135.222.135.56 0 .37-.188.656a1.2 1.2 0 0 1-.539.439q-.351.158-.858.158-.381 0-.665-.09a1.4 1.4 0 0 1-.478-.252 1.1 1.1 0 0 1-.29-.375m-3.104-.033a1.3 1.3 0 0 1-.082-.466h.764a.6.6 0 0 0 .074.27.5.5 0 0 0 .454.246q.285 0 .422-.164.137-.165.137-.466v-2.745h.791v2.725q0 .66-.357 1.005-.355.345-.985.345a1.6 1.6 0 0 1-.568-.094 1.15 1.15 0 0 1-.407-.266 1.1 1.1 0 0 1-.243-.39m9.091-1.585v.522q0 .384-.117.641a.86.86 0 0 1-.322.387.9.9 0 0 1-.47.126.9.9 0 0 1-.47-.126.87.87 0 0 1-.32-.387 1.55 1.55 0 0 1-.117-.641v-.522q0-.386.117-.641a.87.87 0 0 1 .32-.387.87.87 0 0 1 .47-.129q.265 0 .47.129a.86.86 0 0 1 .322.387q.117.255.117.641m.803.519v-.513q0-.565-.205-.973a1.46 1.46 0 0 0-.59-.63q-.38-.22-.916-.22-.534 0-.92.22a1.44 1.44 0 0 0-.589.628q-.205.407-.205.975v.513q0 .562.205.973.205.407.589.626.386.217.92.217.536 0 .917-.217.384-.22.589-.626.204-.41.205-.973m1.29-.935v2.675h-.746v-3.999h.662l1.752 2.66h.032v-2.66h.75v4h-.656l-1.761-2.676z" />
+                                </svg>`,
+                "jsx": `<svg xmlns="http://www.w3.org/2000/svg" width="100%" height="100%" fill="#F7DF1E"
+                                    class="bi bi-filetype-jsx" viewBox="0 0 16 16">
+                                    <path fill-rule="evenodd"
+                                        d="M14 4.5V14a2 2 0 0 1-2 2h-1v-1h1a1 1 0 0 0 1-1V4.5h-2A1.5 1.5 0 0 1 9.5 3V1H4a1 1 0 0 0-1 1v9H2V2a2 2 0 0 1 2-2h5.5zM3.075 14.841a1.13 1.13 0 0 0 .401.823q.194.162.478.252.284.091.665.091.507 0 .858-.158.355-.158.54-.44a1.17 1.17 0 0 0 .187-.656q0-.336-.135-.56a1 1 0 0 0-.375-.357 2 2 0 0 0-.565-.21l-.621-.144a1 1 0 0 1-.405-.176.37.37 0 0 1-.143-.299q0-.234.184-.384.188-.152.513-.152.214 0 .37.068a.6.6 0 0 1 .245.181.56.56 0 0 1 .12.258h.75a1.1 1.1 0 0 0-.199-.566 1.2 1.2 0 0 0-.5-.41 1.8 1.8 0 0 0-.78-.152q-.44 0-.776.15-.337.149-.528.421-.19.273-.19.639 0 .302.123.524t.351.367q.229.143.54.213l.618.144q.31.073.462.193a.39.39 0 0 1 .153.326.5.5 0 0 1-.085.29.56.56 0 0 1-.255.193q-.167.07-.413.07-.176 0-.32-.04a.8.8 0 0 1-.248-.115.58.58 0 0 1-.255-.384zM0 14.791q0 .247.082.466.083.22.243.39.165.17.407.267.246.093.569.093.63 0 .984-.346.357-.345.358-1.004v-2.725h-.791v2.745q0 .302-.138.466t-.422.164a.5.5 0 0 1-.454-.246.6.6 0 0 1-.073-.27zm8.907-2.859H9.8l-1.274 2.007L9.78 15.93h-.908l-.85-1.415h-.035l-.853 1.415h-.861l1.24-2.016-1.228-1.983h.931l.832 1.438h.036l.823-1.438Z" />
+                                </svg>`,
+                "md": `<svg xmlns="http://www.w3.org/2000/svg" width="100%" height="100%" fill="#4287f5"
+                                    class="bi bi-filetype-md" viewBox="0 0 16 16">
+                                    <path fill-rule="evenodd"
+                                        d="M14 4.5V14a2 2 0 0 1-2 2H9v-1h3a1 1 0 0 0 1-1V4.5h-2A1.5 1.5 0 0 1 9.5 3V1H4a1 1 0 0 0-1 1v9H2V2a2 2 0 0 1 2-2h5.5zM.706 13.189v2.66H0V11.85h.806l1.14 2.596h.026l1.14-2.596h.8v3.999h-.716v-2.66h-.038l-.946 2.159h-.516l-.952-2.16H.706Zm3.919 2.66V11.85h1.459q.609 0 1.005.234t.589.68q.195.445.196 1.075 0 .634-.196 1.084-.197.451-.595.689-.396.237-1 .237H4.626Zm1.353-3.354h-.562v2.707h.562q.279 0 .484-.082a.8.8 0 0 0 .334-.252 1.1 1.1 0 0 0 .196-.422q.067-.252.067-.592a2.1 2.1 0 0 0-.117-.753.9.9 0 0 0-.354-.454q-.238-.152-.61-.152" />
+                                </svg>`,
+                "mdx": `<svg xmlns="http://www.w3.org/2000/svg" width="100%" height="100%" fill="#4287f5"
+                                    class="bi bi-filetype-mdx" viewBox="0 0 16 16">
+                                    <path fill-rule="evenodd"
+                                        d="M14 4.5V14a2 2 0 0 1-2 2v-1a1 1 0 0 0 1-1V4.5h-2A1.5 1.5 0 0 1 9.5 3V1H4a1 1 0 0 0-1 1v9H2V2a2 2 0 0 1 2-2h5.5zM.706 15.849v-2.66h.038l.952 2.159h.516l.946-2.16h.038v2.661h.715V11.85h-.8l-1.14 2.596h-.026L.805 11.85H0v3.999zm3.559-3.999v3.999h1.459q.603 0 .999-.237a1.45 1.45 0 0 0 .595-.689q.195-.45.196-1.084 0-.63-.196-1.075a1.43 1.43 0 0 0-.59-.68q-.395-.234-1.004-.234zm.79.645h.563q.372 0 .61.152a.9.9 0 0 1 .354.454q.117.302.117.753 0 .34-.067.592a1.1 1.1 0 0 1-.196.422.8.8 0 0 1-.334.252 1.3 1.3 0 0 1-.484.082h-.562v-2.707Zm4.787-.645h.894L9.46 13.857l1.254 1.992h-.908l-.85-1.415h-.035l-.852 1.415h-.862l1.24-2.016L7.22 11.85h.932l.832 1.439h.035z" />
+                                </svg>`,
+                "php": `<svg xmlns="http://www.w3.org/2000/svg" width="100%" height="100%" fill="#777BB4"
+                                    class="bi bi-filetype-php" viewBox="0 0 16 16">
+                                    <path fill-rule="evenodd"
+                                        d="M14 4.5V14a2 2 0 0 1-2 2h-1v-1h1a1 1 0 0 0 1-1V4.5h-2A1.5 1.5 0 0 1 9.5 3V1H4a1 1 0 0 0-1 1v9H2V2a2 2 0 0 1 2-2h5.5zM1.6 11.85H0v3.999h.791v-1.342h.803q.43 0 .732-.173.305-.175.463-.474a1.4 1.4 0 0 0 .161-.677q0-.375-.158-.677a1.2 1.2 0 0 0-.46-.477q-.3-.18-.732-.179m.545 1.333a.8.8 0 0 1-.085.38.57.57 0 0 1-.238.241.8.8 0 0 1-.375.082H.788V12.48h.66q.327 0 .512.181.185.182.185.522m4.48 2.666V11.85h-.79v1.626H4.153V11.85h-.79v3.999h.79v-1.714h1.682v1.714zm.703-3.999h1.6q.433 0 .732.179.3.175.46.477.158.302.158.677t-.161.677q-.159.299-.463.474a1.45 1.45 0 0 1-.733.173H8.12v1.342h-.791zm2.06 1.714a.8.8 0 0 0 .084-.381q0-.34-.184-.521-.184-.182-.513-.182h-.66v1.406h.66a.8.8 0 0 0 .375-.082.57.57 0 0 0 .237-.24Z" />
+                                </svg>`,
+                "py": `<svg xmlns="http://www.w3.org/2000/svg" width="100%" height="100%" fill="#FFD43B"
+                                    class="bi bi-filetype-py" viewBox="0 0 16 16">
+                                    <path fill-rule="evenodd"
+                                        d="M14 4.5V14a2 2 0 0 1-2 2H7v-1h5a1 1 0 0 0 1-1V4.5h-2A1.5 1.5 0 0 1 9.5 3V1H4a1 1 0 0 0-1 1v9H2V2a2 2 0 0 1 2-2h5.5zM0 11.85h1.6q.434 0 .732.179.302.175.46.477t.158.677-.16.677q-.158.299-.464.474a1.45 1.45 0 0 1-.732.173H.79v1.342H0zm2.06 1.714a.8.8 0 0 0 .085-.381q0-.34-.185-.521-.185-.182-.513-.182H.788v1.406h.66a.8.8 0 0 0 .374-.082.57.57 0 0 0 .238-.24m2.963.75v1.535H4.23v-1.52L2.89 11.85h.876l.853 1.696h.032l.856-1.696h.855z" />
+                                </svg>`,
+                "sql": `<svg xmlns="http://www.w3.org/2000/svg" width="100%" height="100%" fill="#00758F"
+                                    class="bi bi-filetype-sql" viewBox="0 0 16 16">
+                                    <path fill-rule="evenodd"
+                                        d="M14 4.5V14a2 2 0 0 1-2 2v-1a1 1 0 0 0 1-1V4.5h-2A1.5 1.5 0 0 1 9.5 3V1H4a1 1 0 0 0-1 1v9H2V2a2 2 0 0 1 2-2h5.5zM0 14.841a1.13 1.13 0 0 0 .401.823q.194.162.478.252c.284.09.411.091.665.091q.507 0 .858-.158.355-.159.54-.44a1.17 1.17 0 0 0 .187-.656q0-.336-.135-.56a1 1 0 0 0-.375-.357 2 2 0 0 0-.565-.21l-.621-.144a1 1 0 0 1-.405-.176.37.37 0 0 1-.143-.299q0-.234.184-.384.187-.152.513-.152.214 0 .37.068a.6.6 0 0 1 .245.181.56.56 0 0 1 .12.258h.75a1.1 1.1 0 0 0-.199-.566 1.2 1.2 0 0 0-.5-.41 1.8 1.8 0 0 0-.78-.152q-.44 0-.776.15-.337.149-.528.421-.19.273-.19.639 0 .302.123.524t.351.367q.229.143.54.213l.618.144q.31.073.462.193a.39.39 0 0 1 .153.325q0 .165-.085.29A.56.56 0 0 1 2 15.31q-.167.07-.413.07-.176 0-.32-.04a.8.8 0 0 1-.248-.115.58.58 0 0 1-.255-.384zm6.878 1.489-.507-.739q.264-.243.401-.6.138-.358.138-.806v-.501q0-.556-.208-.967a1.5 1.5 0 0 0-.589-.636q-.383-.225-.917-.225-.527 0-.914.225-.384.223-.592.636a2.14 2.14 0 0 0-.205.967v.5q0 .554.205.965.208.41.592.636a1.8 1.8 0 0 0 .914.222 1.8 1.8 0 0 0 .6-.1l.294.422h.788ZM4.262 14.2v-.522q0-.369.114-.63a.9.9 0 0 1 .325-.398.9.9 0 0 1 .495-.138q.288 0 .495.138a.9.9 0 0 1 .325.398q.115.261.115.63v.522q0 .246-.053.445-.053.196-.155.34l-.106-.14-.105-.147h-.733l.451.65a.6.6 0 0 1-.251.047.87.87 0 0 1-.487-.147.9.9 0 0 1-.32-.404 1.7 1.7 0 0 1-.11-.644m3.986 1.057h1.696v.674H7.457v-3.999h.79z" />
+                                </svg>`,
+                "lnk": `<svg xmlns="http://www.w3.org/2000/svg" width="100%" height="100%" fill="#1E90FF"
+                                        class="bi bi-window" viewBox="0 0 16 16">
+                                        <path
+                                            d="M2.5 4a.5.5 0 1 0 0-1 .5.5 0 0 0 0 1m2-.5a.5.5 0 1 1-1 0 .5.5 0 0 1 1 0m1 .5a.5.5 0 1 0 0-1 .5.5 0 0 0 0 1" />
+                                        <path
+                                            d="M2 1a2 2 0 0 0-2 2v10a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V3a2 2 0 0 0-2-2zm13 2v2H1V3a1 1 0 0 1 1-1h12a1 1 0 0 1 1 1M2 14a1 1 0 0 1-1-1V6h14v7a1 1 0 0 1-1 1z" />
+                                    </svg>`,
+                "archive": `<svg xmlns="http://www.w3.org/2000/svg" width="100%" height="100%" fill="#FFD700"
+                                        class="bi bi-file-earmark-zip" viewBox="0 0 16 16">
+                                        <path
+                                            d="M5 7.5a1 1 0 0 1 1-1h1a1 1 0 0 1 1 1v.938l.4 1.599a1 1 0 0 1-.416 1.074l-.93.62a1 1 0 0 1-1.11 0l-.929-.62a1 1 0 0 1-.415-1.074L5 8.438zm2 0H6v.938a1 1 0 0 1-.03.243l-.4 1.598.93.62.929-.62-.4-1.598A1 1 0 0 1 7 8.438z" />
+                                        <path
+                                            d="M14 4.5V14a2 2 0 0 1-2 2H4a2 2 0 0 1-2-2V2a2 2 0 0 1 2-2h5.5zm-3 0A1.5 1.5 0 0 1 9.5 3V1h-2v1h-1v1h1v1h-1v1h1v1H6V5H5V4h1V3H5V2h1V1H4a1 1 0 0 0-1 1v12a1 1 0 0 0 1 1h8a1 1 0 0 0 1-1V4.5z" />
+                                    </svg>`,
+
+            }
+            let svg = Object.keys(dict).includes(fileType.trim().toLowerCase()) ? dict[fileType] : dict["file"];
+            return svg;
+        }
+    </script>
+    <script>
+        function toggleLeftSide(toggle = true) {
+            if (toggle == true) {
+                $("#fv-leftvol, #fv-middlevol").show();
+                $("#fvt-leftside").addClass("fvcbs-selected").attr("title", "Hide left pane");
+                let wdt = parseInt($("#fvt-leftside").css("width"));
+                $("#fv-rightvol").css("max-width", `calc(100% - ${wdt}px)`);
+            }
+            else {
+                $("#fv-leftvol, #fv-middlevol").hide();
+                $("#fvt-leftside").removeClass("fvcbs-selected").attr("title", "Show left pane");
+                $("#fv-rightvol").css("max-width", "100%")
+            }
+        }
+        function hideItemSvg(el) {
+            if (EPageInfo.gridType === "grid") {
+                if ($(el).attr("picture") === "yes") {
+                    $(el).find("svg").hide();
+                    $(el).find("img").show();
+                }
+                else {
+                    $(el).find("svg").show();
+                    $(el).find("img").hide();
+                }
+            }
+            else {
+                $(el).find("img").hide();
+                $(el).find("svg").show();
+            }
+        }
+        function addItemInMain(info) {
+            let tp = "show-" + info.type;
+            let con1 = EPageInfo.sortOption[3].includes(tp);
+            let con2 = EPageInfo.sortOption[3].includes("show-file") &&
+                !EPageInfo.sortOption[3].includes(tp) &&
+                !["folder", "image", "video", "audio", "text", "pdf", "word", "excel", "pwp"].includes(info.type);
+            if (con1 || con2) {
+                $(".fvrm-item").removeClass("fvtsoi-selected");
+                let item = document.createElement("div"),
+                    icon = document.createElement("div"),
+                    name = document.createElement("div"),
+                    date = document.createElement("div"),
+                    type = document.createElement("div"),
+                    size = document.createElement("div");
+                $(item).addClass(`fvrm-item fvtsoi-selected ${EPageInfo.gridType === "list" ? "f-line flex-fill d-flex flex-row" : "f-block"}`);
+                $(icon).addClass("fvr-icon");
+                $(name).addClass(`fvr-name fvr-name-d ${EPageInfo.gridType === "list" ? "flex-fill" : ""}`).text(info.name);
+                $(date).addClass("fvr-date").text(info.date);
+                $(type).addClass("fvr-type").text(info.type);
+                $(size).addClass("fvr-size").text(info.type === "folder" ? "" : info.size);
+                let iname = document.createElement("input");
+                iname.type = "text";
+                iname.value = info.name;
+                $(iname).addClass(`fvr-name fvr-name-i flex-fill`);
+                item.appendChild(icon);
+                item.appendChild(name);
+                item.appendChild(iname);
+                item.appendChild(date);
+                item.appendChild(type);
+                item.appendChild(size);
+                icon.innerHTML += (info.svg + info.pfp);
+                $(icon).attr("picture", info.iconP);
+                hideItemSvg(icon);
+                $(item).attr({
+                    "cible": info.cible,
+                    "type": info.type,
+                    "name": info.name,
+                    "title": info.name
+                });
+                document.getElementById("fvr-main").appendChild(item);
+            }
+            actualizeFuntions();
+        }
+        function addItemInSelFile(info = {}) {
+            if (!EXPLORE.selected.includes(info.name) || EXPLORE.selected.length == 0) {
+                if (Object.values(info).length > 0) {
+                    EXPLORE.selected.push(info.name);
+                }
+                $("#fvl-selfile").find(".fvlc-liste").html("");
+                EXPLORE.selected.forEach(function (el) {
+                    let main = document.createElement("div");
+                    let chc = document.createElement("div");
+                    let input = document.createElement("input");
+                    let name = document.createElement("div");
+                    let icon = document.createElement("div");
+                    main.className = "fvlc-item d-flex flex-row flex-fill";
+                    main.setAttribute("cible", $(`.fvrm-item[name="${el}"]`).attr("cible"));
+                    main.setAttribute("name", el);
+                    chc.className = "fvlci-check";
+                    chc.appendChild(input);
+                    input.type = "checkbox";
+                    input.checked = true;
+                    name.className = "fvlci-name flex-fill";
+                    name.innerText = el;
+                    main.appendChild(chc);
+                    main.appendChild(name);
+                    $("#fvl-selfile").find(".fvlc-liste").append(main);
+                    $(input).on("click", function () {
+                        let n = $(this).closest(".fvlc-item").attr("name");
+                        if ($(this).prop("checked")) {
+                            if (!EXPLORE.selected.includes(n)) {
+                                EXPLORE.selected.push(n);
+                            }
+                            $(`.fvrm-item[name="${n}"]`).addClass("fvtsoi-selected");
+                        }
+                        else {
+                            if (EXPLORE.selected.includes(n)) {
+                                EXPLORE.selected.splice(EXPLORE.selected.indexOf(n), 1);
+                            }
+                            $(`.fvrm-item[name="${n}"]`).removeClass("fvtsoi-selected");
+                        }
+                    });
+                });
+            }
+            actualizeFuntions();
+
+        }
+        function addItemInRecFile(info = {}) {
+            let main = document.createElement("div");
+            let name = document.createElement("div");
+            let icon = document.createElement("div");
+            main.className = "fvlc-item d-flex flex-row flex-fill";
+            main.setAttribute("cible", info.cible);
+            main.setAttribute("name", info.name);
+            main.setAttribute("title", info.cible + "/" + info.name);
+            name.className = "fvlci-name flex-fill";
+            name.innerText = info.name;
+            icon.className = "fvlci-folder";
+            icon.innerHTML = getIcon("open");
+            icon.setAttribute("title", `Open ${info.name}`)
+            main.appendChild(name);
+            main.appendChild(icon);
+            $("#fvl-recfile").find(".fvlc-liste").append(main);
+            $(icon).on("click", function () {
+                let dir = $(this).closest(".fvlc-item").attr("title");
+                pywebview.api.runFile(dir).then(hist => {
+                    if (hist.history.length > 0) {
+                        $("#fvl-recfile").find(".fvlc-liste").html("");
+                        hist.history.forEach(function (el) {
+                            let cible = Object.keys(el)[0];
+                            let name = Object.values(el)[0];
+                            addItemInRecFile({ "cible": cible, "name": name })
+                        });
+                    }
+                });
+            });
+        }
+        function setGridType(type = "list") {
+            if (type === "list") {
+                $(".fvrm-item").removeClass("f-block").addClass("f-line flex-fill d-flex flex-row");
+                $("#fvt-gmod").find(".fvt-item").removeClass("fvcbs-selected");
+                $("#fvt-gmod").find(`.fvt-item[cible="list-show-style"]`).addClass("fvcbs-selected");
+                EPageInfo.gridType = "list";
+            }
+            else {
+                $(".fvrm-item").removeClass("f-line flex-fill d-flex flex-row").addClass("f-block");
+                $("#fvt-gmod").find(".fvt-item").removeClass("fvcbs-selected");
+                $("#fvt-gmod").find(`.fvt-item[cible="grid-show-style"]`).addClass("fvcbs-selected");
+                EPageInfo.gridType = "grid";
+            }
+            document.querySelectorAll(".fvrm-item").forEach(function (el) {
+                let a = $(el).find(".fvr-icon");
+                hideItemSvg(a[0]);
+            });
+
+        }
+        function applyAllSorting(sort = true, filter = {}) {
+            if (sort) {
+                $(`.fvt-item[cible="apply-sort"]`).addClass("fvcbs-selected");
+                EPageInfo.applySort = true;
+            }
+            else {
+                $(`.fvt-item[cible="apply-sort"]`).removeClass("fvcbs-selected");
+                EPageInfo.applySort = false;
+            }
+        }
+        function downSortTable(down = true) {
+            if (down) {
+                $(`.fvt-item[cible="down-sort"]`).addClass("fvcbs-selected");
+                $("#fvt-soption").fadeIn(200);
+            }
+            else {
+                $(`.fvt-item[cible="down-sort"]`).removeClass("fvcbs-selected");
+                $("#fvt-soption").fadeOut(200);
+            }
+        }
+        function setSortOption(option, value = true) {
+
+            let p = $(`.fvtso-item[cible="${option}"]`).closest("form");
+            let t = $(`.fvtso-item[cible="${option}"]`);
+
+            if (parseInt($(p).attr("cible")) < 3) {
+                $(p).find(".fvtso-item").removeClass("fvcbs-selected").find("input").prop("checked", false);
+                $(t).addClass("fvcbs-selected").find("input").prop("checked", true);
+                EPageInfo.sortOption[parseInt($(p).attr("cible"))] = option;
+            } else if (parseInt($(p).attr("cible")) === 3) {
+                if ($(t).find("input").prop("checked") == true) {
+                    $(t).find("input").prop("checked", false);
+                    if (EPageInfo.sortOption[3].includes(option)) {
+                        EPageInfo.sortOption[3].splice(EPageInfo.sortOption[3].indexOf(option), 1);
+                    }
+                } else {
+                    $(t).find("input").prop("checked", true);
+                    EPageInfo.sortOption[3].push(option);
+                }
+            }
+            refreshPage();
+        }
+        function actualizeFuntions() {
+            $(document).on("keydown", function (e) {
+                if (e.key === "Backspace") {
+                    $("#fvt-back").click();
+                }
+                if (e.key === "Delete") {
+                    EXPLORE.currentSel = $("#fvr-main").find(".fvtsoi-selected");
+                    $(".fvtso-item[cible='do-delete']").click();
+                }
+                if (e.key === "Control") {
+                    isControlDown = true;
+                }
+                if (e.key === "F2") {
+                    e.preventDefault();
+                    e.stopImmediatePropagation();
+                    let item = $("#fvr-main").find(".fvtsoi-selected");
+                    if (item.length === 1) {
+                        activeRenameItem(item[0]);
+                    }
+                }
+                if(e.key === "F5"){
+                    e.preventDefault();
+                    e.stopImmediatePropagation();
+                    e.stopPropagation();
+                    $(".fvtso-item[cible='refresh']").click();
+                }
+                if (e.key === "Shift") {
+                    isShiftDown = true
+                }
+            });
+            $(document).on("keyup", function (e) {
+                if (e.key === "Control") {
+                    isControlDown = false;
+                }
+                if (e.key === "Shift") {
+                    isShiftDown = false;
+                }
+            });
+
+            $(".fvrm-item").on("click mousedown", function (e) {
+                e.stopPropagation();
+                e.stopImmediatePropagation();
+                e.preventDefault();
+                switch (e.type) {
+                    case "contextmenu":
+                        e.stopPropagation();
+                        e.stopImmediatePropagation();
+                        e.preventDefault();
+                        break;
+                    case "click":
+                        if (!isControlDown) {
+                            EdeSelectItem($(".fvrm-item"));
+                            $("#fvl-selfile").find(".fvlc-liste").html("");
+                            EXPLORE.selected = [];
+                        }
+                        EselectItem(this);
+                        let cible = $(this).attr("cible");
+                        let name = $(this).attr("name");
+                        addItemInSelFile({ "cible": cible, "name": name });
+                }
+            });
+            $(".fvrm-item").on("dblclick", function (e) {
+                e.stopPropagation();
+                e.stopImmediatePropagation();
+                e.preventDefault();
+                switch (e.type) {
+                    case "contextmenu":
+                    case "click":
+                        e.stopPropagation();
+                        e.stopImmediatePropagation();
+                        e.preventDefault();
+                        break;
+                    case "dblclick":
+                        if ($(this).attr("type") === "folder") {
+                            if (!EXPLORE.past.includes(EXPLORE.current)) {
+                                if (EXPLORE.past[EXPLORE.past.length - 1] != EXPLORE.current) EXPLORE.past.push(EXPLORE.current);
+                            }
+                            EXPLORE.next = [];
+                            let cible = $(this).attr("cible") + "/" + $(this).attr("name");
+                            pywebview.api.setLibDir(cible, false).then(data => {
+                                $("#fvl-defpath").find(".fvlc-item").removeClass("fvtsoi-selected");
+                                EXPLORE.listDir = organizeData(data.data);
+                                EXPLORE.category = data.category;
+                                EXPLORE.current = data.dir;
+                                $("#fvl-defpath").find(`.fvlc-item[cible="${data.category}"]`).addClass("fvtsoi-selected");
+                                refreshPage();
+                            });
+                        }
+                        else {
+                            let cible = $(this).attr("cible") + "/" + $(this).attr("name");
+                            pywebview.api.runFile(cible).then(hist => {
+                                if (hist.history.length > 0) {
+                                    $("#fvl-recfile").find(".fvlc-liste").html("");
+                                    hist.history.forEach(function (el) {
+                                        let cible = Object.keys(el)[0];
+                                        let name = Object.values(el)[0];
+                                        addItemInRecFile({ "cible": cible, "name": name })
+                                    });
+                                }
+                            });
+                        }
+                }
+            });
+        }
+        function activeRenameItem(item) {
+            $(item).find(".fvr-name-d").hide();
+            $(item).find(".fvr-name-i").show().focus().on("focusout keypress", function (e) {
+                e.stopPropagation();
+                e.stopImmediatePropagation();
+                if (e.type === "focusout" || (e.type === "keypress" && e.key === "Enter")) {
+                    let dir = EXPLORE.current
+                    let old = $(item).attr("name");
+                    let val = $(this).val().toString().trim();
+                    if (val.length > 0) {
+                        pywebview.api.askRename(dir, old, val).then(response => {
+                            if (response.statut) {
+                                $(this).hide().val(response.data.name);
+                                $(item).find(".fvr-name-d").show();
+                                $(item).find(".fvr-name-d").text(response.data.name);
+                                $(item).attr({
+                                    "cible": response.data.path,
+                                    "name": response.data.name,
+                                    "type": response.data.type,
+                                    "title": response.data.name
+                                });
+                                let svg = getIcon(response.data.type);
+                                let img = `<img src="" alt="" style="object-fit:contain;"`;
+                                $(item).find(".fvr-icon").html("").append([svg, img]).attr("picture", "no");
+                                $(item).find(".fvr-date").text(response.data.data);
+                                $(item).find(".fvr-type").text(response.data.type);
+                                $(item).find(".fvr-size").text(response.data.size)
+                            }
+                            else {
+                                $(this).hide();
+                                $(item).find(".fvr-name-d").show();
+                                $(this).val($(item).find(".fvr-name-d").text().trim());
+                            }
+                        });
+                    }
+                    else {
+                        $(this).hide();
+                        $(item).find(".fvr-name-d").show();
+                        $(this).val($(item).find(".fvr-name-d").text().trim());
+                    }
+                }
+            }).on("input keydown keyup", function (e) {
+                e.stopImmediatePropagation();
+                e.stopPropagation();
+                switch (e.key) {
+                    case "F1":
+                    case "F2":
+                    case "F3":
+                    case "F4":
+                    case "F5":
+                    case "F6":
+                    case "F7":
+                    case "F8":
+                    case "F9":
+                    case "F10":
+                    case "F11":
+                    case "F12":
+                    case "F5":
+                        e.preventDefault();
+                        break;
+                    default:
+                        null;
+                }
+            });
+
+            let n = $(item).find(".fvr-name-i");
+            n[0].setSelectionRange(0, $(n[0]).val().toString().length)
+        }
+        function EdeSelectItem(item) {
+            $(item).removeClass("fvtsoi-selected");
+            $("#fvrb-itext").val("");
+        }
+        function EselectItem(item) {
+            $(item).addClass("fvtsoi-selected");
+            let name = $(item).attr("name");
+            let cible = $(item).attr("cible");
+            $("#fvrb-itext").val(name);
+            addItemInSelFile({ "name": name, "cible": cible });
+            let el = $("#fvr-main").find(".fvtsoi-selected");
+            EXPLORE.lastSel = el;
+        }
+        function checkIfItsInSelector(el, interval = [0, 0, 0, 0]) {
+            let [x1, y1, x2, y2] = interval;
+            let ex1 = $(el).position().left;
+            let ey1 = $(el).position().top;
+            let ex2 = ex1 + $(el).outerWidth();
+            let ey2 = ey1 + $(el).outerHeight();
+            let overlapX = ex1 < x2 && ex2 > x1;
+            let overlapY = ey1 < y2 && ey2 > y1;
+            return overlapX && overlapY;
+        }
+        function sortByName(sort, order = "sort-by-ascending") {
+            if (Object.values(sort).length > 0) {
+                let listFo = [];
+                let listFi = [];
+                Object.values(sort).forEach(function (el) {
+                    if (el.type === "folder") {
+                        listFo.push(el);
+                    }
+                });
+                Object.values(sort).forEach(function (el) {
+                    if (el.type !== "folder") {
+                        listFi.push(el)
+                    }
+                });
+                if (order === "sort-by-ascending") {
+                    listFo.forEach(addItemInMain);
+                    listFi.forEach(addItemInMain);
+                }
+                else {
+                    listFi.reverse().forEach(addItemInMain);
+                    listFo.reverse().forEach(addItemInMain);
+                }
+            }
+        }
+        function sortByType(sort, order = "sort-by-ascending") {
+            if (Object.values(sort).length > 0) {
+                dict = {};
+                Object.values(sort).forEach(function (el, ind) {
+                    if (dict[el.type.trim().toLowerCase()] === undefined) {
+                        dict[el.type.trim().toLowerCase()] = {};
+                    }
+                    dict[el.type.trim().toLowerCase()][ind] = el;
+                });
+                let listT = ["folder", "image", "video", "audio", "text", "pdf", "word", "excel", "pwp"];
+                let listA = [];
+                listT.forEach(function (el) {
+                    if (dict[el] !== undefined) {
+                        let listF = [];
+                        Object.values(dict[el]).forEach(function (le) {
+                            listF.push(le);
+                        });
+                        listA.push(listF);
+                    }
+                });
+                Object.values(dict).forEach(function (el) {
+                    let listF = [];
+                    Object.values(el).forEach(function (le) {
+                        if (!listT.includes(le.type.trim().toLowerCase())) {
+                            listF.push(le);
+                        }
+                    });
+                    listA.push(listF);
+
+                });
+                if (order === "sort-by-ascending") {
+                    listA.forEach(function (el) {
+                        el.forEach(addItemInMain);
+                    });
+                }
+                else {
+                    listA.reverse().forEach(function (el) {
+                        el.reverse().forEach(addItemInMain);
+                    });
+                }
+            }
+        }
+        function sortBySize(sort, order = "sort-by-ascending") {
+            if (Object.values(sort).length > 0) {
+                let listFo = [];
+                let listFi = [];
+                Object.values(sort).forEach(function (el) {
+                    if (el.type === "folder") {
+                        listFo.push(el);
+                    }
+                    else {
+                        listFi.push(el);
+                    }
+                });
+
+                while (true) {
+                    let test = true;
+                    for (let i = 0; i < listFi.length - 1; i++) {
+                        if (listFi[i].brutSize > listFi[i + 1].brutSize) {
+                            [listFi[i], listFi[i + 1]] = [listFi[i + 1], listFi[i]];
+                            test = false;
+                        }
+                    }
+                    if (test) {
+                        break;
+                    }
+                }
+                if (order === "sort-by-ascending") {
+                    listFo.forEach(addItemInMain);
+                    listFi.forEach(addItemInMain);
+                }
+                else {
+                    listFi.reverse().forEach(addItemInMain);
+                    listFo.reverse().forEach(addItemInMain);
+                }
+
+            }
+        }
+        function sortByDate(sort, order = "sort-by-ascending") {
+            if (Object.values(sort).length > 0) {
+                let listFo = [];
+                let listFi = [];
+                Object.values(sort).forEach(function (el) {
+                    if (el.type === "folder") {
+                        listFo.push(el);
+                    }
+                    else {
+                        listFi.push(el);
+                    }
+                });
+                while (true) {
+                    let test = true;
+                    for (let i = 0; i < listFo.length - 1; i++) {
+                        let d1 = new Date(listFo[i].brutDate.replace(" ", "T"));
+                        let d2 = new Date(listFo[i + 1].brutDate.replace(" ", "T"))
+                        if (d1 > d2) {
+                            [listFo[i], listFo[i + 1]] = [listFo[i + 1], listFo[i]];
+                            test = false;
+                        }
+                    }
+                    if (test) {
+                        break;
+                    }
+                }
+                while (true) {
+                    let test = true;
+                    for (let i = 0; i < listFi.length - 1; i++) {
+                        let d1 = new Date(listFi[i].brutDate.replace(" ", "T"));
+                        let d2 = new Date(listFi[i + 1].brutDate.replace(" ", "T"))
+                        if (d1 > d2) {
+                            [listFi[i], listFi[i + 1]] = [listFi[i + 1], listFi[i]];
+                            test = false;
+                        }
+                    }
+                    if (test) {
+                        break;
+                    }
+                }
+                if (order === "sort-by-ascending") {
+                    listFo.forEach(addItemInMain);
+                    listFi.forEach(addItemInMain);
+                }
+                else {
+                    listFi.reverse().forEach(addItemInMain);
+                    listFo.reverse().forEach(addItemInMain);
+                }
+
+            }
+        }
+        function organizeData(data) {
+            let dict = {};
+            Object.values(data).forEach(function (el, ind) {
+                let info = {
+                    "name": el.name,
+                    "date": el.date,
+                    "type": el.isDir === true ? "folder" : el.type.trim().toLowerCase(),
+                    "size": el.size,
+                    "iconP": el.icon === false ? "no" : "yes",
+                    "svg": getIcon(el.isDir === true ? "folder" : el.type),
+                    "pfp": `<img src="${el.icon !== false ? el.icon : ''}" alt="" style="object-fit: contain;">`,
+                    "cible": el.path,
+                    "brutSize": el.brutSize,
+                    "brutDate": el.brutDate
+                }
+                dict[ind] = info;
+            });
+            return dict;
+        }
+        function refreshPage() {
+            document.getElementById("fvr-main").innerHTML = "";
+            document.getElementById("fvr-main").scrollTop = 0;
+            EXPLORE.lastSel = [];
+            $("#fvt-currentdir").val(EXPLORE.current);
+            $("#fvrb-itext").val("");
+            let in_;
+            if (EXPLORE.current.toLowerCase() === "c:/") {
+                in_ = "C:/";
+            }
+            else {
+                in_ = EXPLORE.current.split("/").pop();
+            }
+            $("#fvt-search").val("").attr("placeholder", "Search in " + in_);
+            switch (EPageInfo.sortOption[1]) {
+                case "sort-by-name":
+                    sortByName(EXPLORE.listDir, EPageInfo.sortOption[2]);
+                    break;
+                case "sort-by-type":
+                    sortByType(EXPLORE.listDir, EPageInfo.sortOption[2]);
+                    break;
+                case "sort-by-size":
+                    sortBySize(EXPLORE.listDir, EPageInfo.sortOption[2]);
+                    break;
+                case "sort-by-date":
+                    sortByDate(EXPLORE.listDir, EPageInfo.sortOption[2]);
+                    break;
+            }
+            try {
+                refreshRecent();
+            }
+            catch { }
+            $("#fvr-main").click();
+
+        };
+        function refreshRecent() {
+            pywebview.api.runFile(null).then(hist => {
+                if (hist.history.length > 0) {
+                    $("#fvl-recfile").find(".fvlc-liste").html("");
+                    hist.history.forEach(function (el) {
+                        let cible = Object.keys(el)[0];
+                        let name = Object.values(el)[0];
+                        addItemInRecFile({ "cible": cible, "name": name })
+                    });
+                }
+            });
+        }
+        function refreshSelected() {
+            $("#fvl-selfile").find(".fvlc-liste").html("");
+            EXPLORE.selected = [];
+            $("#fvr-main").find(".fvtsoi-selected").each(function (ind, el) {
+                let name = $(el).attr("name");
+                let cible = $(el).attr("cible");
+                addItemInSelFile({ "name": name, "cible": cible });
+            })
+        }
+        function searchFile(name) {
+            pywebview.api.searchFile(EXPLORE.current, name).then(data => {
+                if (!EXPLORE.past.includes(EXPLORE.current)) {
+                    if (EXPLORE.past[EXPLORE.past.length - 1] != EXPLORE.current) EXPLORE.past.push(EXPLORE.current);
+                }
+                EXPLORE.next = [];
+                $("#fvl-defpath").find(".fvlc-item").removeClass("fvtsoi-selected");
+                EXPLORE.listDir = organizeData(data.data);
+                EXPLORE.category = data.category;
+                EXPLORE.current = data.dir;
+                $("#fvl-defpath").find(`.fvlc-item[cible="${data.category}"]`).addClass("fvtsoi-selected");
+                refreshPage();
+            });
+        }
+
+        var EPageInfo = {
+            "gridType": "list",
+            "applySort": true,
+            "sortOption": {
+                1: "",
+                2: "",
+                3: []
+            }
+        }
+        var isShiftDown = false, isControlDown = false;
+        EXPLORE = {
+            "past": [],
+            "next": [],
+            "current": "",
+            "listDir": {},
+            "category": "",
+            "selected": [],
+            "lastSel": [],
+            "currentSel": [],
+            "action": null,
+            "copy": []
+        }
+    </script>
+</head>
+
+<body data-bs-theme="dark" style="width: 100vw; height: 100vh; overflow: hidden;">
+    <div id="div" style="width: 100%; height: 100%; border: 1px solid black; position: relative">
+        <div id="fv-taskbar" class="d-flex flex-row flex-fill">
+            <wataba id="fvt-leftside" class="fvcbs-selected" title="Hide left pane">
+                <svg xmlns="http://www.w3.org/2000/svg" width="100%" height="100%" fill="currentColor"
+                    class="bi bi-layout-sidebar" viewBox="0 0 16 16">
+                    <path
+                        d="M0 3a2 2 0 0 1 2-2h12a2 2 0 0 1 2 2v10a2 2 0 0 1-2 2H2a2 2 0 0 1-2-2zm5-1v12h9a1 1 0 0 0 1-1V3a1 1 0 0 0-1-1zM4 2H2a1 1 0 0 0-1 1v10a1 1 0 0 0 1 1h2z" />
+                </svg>
+                <svg xmlns="http://www.w3.org/2000/svg" width="100%" height="100%" fill="currentColor"
+                    class="bi bi-layout-sidebar-inset fv-svg-selected" viewBox="0 0 16 16">
+                    <path
+                        d="M14 2a1 1 0 0 1 1 1v10a1 1 0 0 1-1 1H2a1 1 0 0 1-1-1V3a1 1 0 0 1 1-1zM2 1a2 2 0 0 0-2 2v10a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V3a2 2 0 0 0-2-2z" />
+                    <path d="M3 4a1 1 0 0 1 1-1h2a1 1 0 0 1 1 1v8a1 1 0 0 1-1 1H4a1 1 0 0 1-1-1z" />
+                </svg>
+            </wataba>
+            <div class="fvt-separator"></div>
+            <wataba id="fvt-back" title="Prev">
+                <svg xmlns="http://www.w3.org/2000/svg" width="100%" height="100%" fill="currentColor"
+                    class="bi bi-arrow-left" viewBox="0 0 16 16">
+                    <path fill-rule="evenodd"
+                        d="M15 8a.5.5 0 0 0-.5-.5H2.707l3.147-3.146a.5.5 0 1 0-.708-.708l-4 4a.5.5 0 0 0 0 .708l4 4a.5.5 0 0 0 .708-.708L2.707 8.5H14.5A.5.5 0 0 0 15 8" />
+                </svg>
+            </wataba>
+            <wataba id="fvt-fore" title="Next">
+                <svg xmlns="http://www.w3.org/2000/svg" width="100%" height="100%" fill="currentColor"
+                    class="bi bi-arrow-right" viewBox="0 0 16 16">
+                    <path fill-rule="evenodd"
+                        d="M1 8a.5.5 0 0 1 .5-.5h11.793l-3.147-3.146a.5.5 0 0 1 .708-.708l4 4a.5.5 0 0 1 0 .708l-4 4a.5.5 0 0 1-.708-.708L13.293 8.5H1.5A.5.5 0 0 1 1 8" />
+                </svg>
+            </wataba>
+            <wataba id="fvt-parent" title="Parent folder">
+                <svg xmlns="http://www.w3.org/2000/svg" width="100%" height="100%" fill="currentColor"
+                    class="bi bi-arrow-90deg-up" viewBox="0 0 16 16">
+                    <path fill-rule="evenodd"
+                        d="M4.854 1.146a.5.5 0 0 0-.708 0l-4 4a.5.5 0 1 0 .708.708L4 2.707V12.5A2.5 2.5 0 0 0 6.5 15h8a.5.5 0 0 0 0-1h-8A1.5 1.5 0 0 1 5 12.5V2.707l3.146 3.147a.5.5 0 1 0 .708-.708z" />
+                </svg>
+            </wataba>
+            <div class="fvt-separator"></div>
+            <wataba id="fvt-newfolder" title="New folder">
+                <svg xmlns="http://www.w3.org/2000/svg" width="100%" height="100%" fill="currentColor"
+                    class="bi bi-folder-plus" viewBox="0 0 16 16">
+                    <path
+                        d="m.5 3 .04.87a2 2 0 0 0-.342 1.311l.637 7A2 2 0 0 0 2.826 14H9v-1H2.826a1 1 0 0 1-.995-.91l-.637-7A1 1 0 0 1 2.19 4h11.62a1 1 0 0 1 .996 1.09L14.54 8h1.005l.256-2.819A2 2 0 0 0 13.81 3H9.828a2 2 0 0 1-1.414-.586l-.828-.828A2 2 0 0 0 6.172 1H2.5a2 2 0 0 0-2 2m5.672-1a1 1 0 0 1 .707.293L7.586 3H2.19q-.362.002-.683.12L1.5 2.98a1 1 0 0 1 1-.98z" />
+                    <path
+                        d="M13.5 9a.5.5 0 0 1 .5.5V11h1.5a.5.5 0 1 1 0 1H14v1.5a.5.5 0 1 1-1 0V12h-1.5a.5.5 0 0 1 0-1H13V9.5a.5.5 0 0 1 .5-.5" />
+                </svg>
+            </wataba>
+            <wataba id="fvt-newfile" title="New file">
+                <svg xmlns="http://www.w3.org/2000/svg" width="100%" height="100" fill="currentColor"
+                    class="bi bi-file-earmark-plus" viewBox="0 0 16 16">
+                    <path
+                        d="M8 6.5a.5.5 0 0 1 .5.5v1.5H10a.5.5 0 0 1 0 1H8.5V11a.5.5 0 0 1-1 0V9.5H6a.5.5 0 0 1 0-1h1.5V7a.5.5 0 0 1 .5-.5" />
+                    <path
+                        d="M14 4.5V14a2 2 0 0 1-2 2H4a2 2 0 0 1-2-2V2a2 2 0 0 1 2-2h5.5zm-3 0A1.5 1.5 0 0 1 9.5 3V1H4a1 1 0 0 0-1 1v12a1 1 0 0 0 1 1h8a1 1 0 0 0 1-1V4.5z" />
+                </svg>
+            </wataba>
+            <input type="text" id="fvt-currentdir" class="flex-fill">
+            <div class="fvt-separator"></div>
+            <input type="search" id="fvt-search" placeholder="Search in">
+            <div class="fvt-separator"></div>
+            <div class="fv-compressWtb d-flex flex-row" id="fvt-gmod">
+                <wataba class="fvcb-seletable fvt-item fvcbs-selected" cible="list-show-style" title="List view">
+                    <svg xmlns="http://www.w3.org/2000/svg" width="100%" height="100%" fill="currentColor"
+                        class="bi bi-list-ul" viewBox="0 0 16 16">
+                        <path fill-rule="evenodd"
+                            d="M5 11.5a.5.5 0 0 1 .5-.5h9a.5.5 0 0 1 0 1h-9a.5.5 0 0 1-.5-.5m0-4a.5.5 0 0 1 .5-.5h9a.5.5 0 0 1 0 1h-9a.5.5 0 0 1-.5-.5m0-4a.5.5 0 0 1 .5-.5h9a.5.5 0 0 1 0 1h-9a.5.5 0 0 1-.5-.5m-3 1a1 1 0 1 0 0-2 1 1 0 0 0 0 2m0 4a1 1 0 1 0 0-2 1 1 0 0 0 0 2m0 4a1 1 0 1 0 0-2 1 1 0 0 0 0 2" />
+                    </svg>
+                </wataba>
+                <wataba class="fvcb-seletable fvt-item" cible="grid-show-style" title="Icon view">
+                    <svg xmlns="http://www.w3.org/2000/svg" width="100%" height="100%" fill="currentColor"
+                        class="bi bi-grid" viewBox="0 0 16 16">
+                        <path
+                            d="M1 2.5A1.5 1.5 0 0 1 2.5 1h3A1.5 1.5 0 0 1 7 2.5v3A1.5 1.5 0 0 1 5.5 7h-3A1.5 1.5 0 0 1 1 5.5zM2.5 2a.5.5 0 0 0-.5.5v3a.5.5 0 0 0 .5.5h3a.5.5 0 0 0 .5-.5v-3a.5.5 0 0 0-.5-.5zm6.5.5A1.5 1.5 0 0 1 10.5 1h3A1.5 1.5 0 0 1 15 2.5v3A1.5 1.5 0 0 1 13.5 7h-3A1.5 1.5 0 0 1 9 5.5zm1.5-.5a.5.5 0 0 0-.5.5v3a.5.5 0 0 0 .5.5h3a.5.5 0 0 0 .5-.5v-3a.5.5 0 0 0-.5-.5zM1 10.5A1.5 1.5 0 0 1 2.5 9h3A1.5 1.5 0 0 1 7 10.5v3A1.5 1.5 0 0 1 5.5 15h-3A1.5 1.5 0 0 1 1 13.5zm1.5-.5a.5.5 0 0 0-.5.5v3a.5.5 0 0 0 .5.5h3a.5.5 0 0 0 .5-.5v-3a.5.5 0 0 0-.5-.5zm6.5.5A1.5 1.5 0 0 1 10.5 9h3a1.5 1.5 0 0 1 1.5 1.5v3a1.5 1.5 0 0 1-1.5 1.5h-3A1.5 1.5 0 0 1 9 13.5zm1.5-.5a.5.5 0 0 0-.5.5v3a.5.5 0 0 0 .5.5h3a.5.5 0 0 0 .5-.5v-3a.5.5 0 0 0-.5-.5z" />
+                    </svg>
+                    <svg xmlns="http://www.w3.org/2000/svg" width="100%" height="100%" fill="currentColor"
+                        class="bi bi-grid-fill fv-svg-selected" viewBox="0 0 16 16">
+                        <path
+                            d="M1 2.5A1.5 1.5 0 0 1 2.5 1h3A1.5 1.5 0 0 1 7 2.5v3A1.5 1.5 0 0 1 5.5 7h-3A1.5 1.5 0 0 1 1 5.5zm8 0A1.5 1.5 0 0 1 10.5 1h3A1.5 1.5 0 0 1 15 2.5v3A1.5 1.5 0 0 1 13.5 7h-3A1.5 1.5 0 0 1 9 5.5zm-8 8A1.5 1.5 0 0 1 2.5 9h3A1.5 1.5 0 0 1 7 10.5v3A1.5 1.5 0 0 1 5.5 15h-3A1.5 1.5 0 0 1 1 13.5zm8 0A1.5 1.5 0 0 1 10.5 9h3a1.5 1.5 0 0 1 1.5 1.5v3a1.5 1.5 0 0 1-1.5 1.5h-3A1.5 1.5 0 0 1 9 13.5z" />
+                    </svg>
+                </wataba>
+            </div>
+            <div class="fvt-separator"></div>
+            <div class="fv-compressWtb d-flex flex-row" id="fvt-sort">
+                <!-- <wataba class="fvcb-seletable fvt-item " cible="apply-sort">
+                    <svg xmlns="http://www.w3.org/2000/svg" width="100%" height="100%" fill="currentColor"
+                        class="bi bi-funnel" viewBox="0 0 16 16">
+                        <path
+                            d="M1.5 1.5A.5.5 0 0 1 2 1h12a.5.5 0 0 1 .5.5v2a.5.5 0 0 1-.128.334L10 8.692V13.5a.5.5 0 0 1-.342.474l-3 1A.5.5 0 0 1 6 14.5V8.692L1.628 3.834A.5.5 0 0 1 1.5 3.5zm1 .5v1.308l4.372 4.858A.5.5 0 0 1 7 8.5v5.306l2-.666V8.5a.5.5 0 0 1 .128-.334L13.5 3.308V2z" />
+                    </svg>
+                    <svg xmlns="http://www.w3.org/2000/svg" width="100%" height="100%" fill="currentColor"
+                        class="bi bi-funnel-fill fv-svg-selected" viewBox="0 0 16 16">
+                        <path
+                            d="M1.5 1.5A.5.5 0 0 1 2 1h12a.5.5 0 0 1 .5.5v2a.5.5 0 0 1-.128.334L10 8.692V13.5a.5.5 0 0 1-.342.474l-3 1A.5.5 0 0 1 6 14.5V8.692L1.628 3.834A.5.5 0 0 1 1.5 3.5z" />
+                    </svg>
+                </wataba> -->
+                <wataba class="fvcb-seletable fvt-item" cible="down-sort" title="Sort options">
+                    <svg xmlns="http://www.w3.org/2000/svg" width="100%" height="100%" fill="currentColor"
+                        class="bi bi-caret-down" viewBox="0 0 16 16">
+                        <path
+                            d="M3.204 5h9.592L8 10.481zm-.753.659 4.796 5.48a1 1 0 0 0 1.506 0l4.796-5.48c.566-.647.106-1.659-.753-1.659H3.204a1 1 0 0 0-.753 1.659" />
+                    </svg>
+                    <svg xmlns="http://www.w3.org/2000/svg" width="100%" height="100%" fill="currentColor"
+                        class="bi bi-caret-down-fill fv-svg-selected" viewBox="0 0 16 16">
+                        <path
+                            d="M7.247 11.14 2.451 5.658C1.885 5.013 2.345 4 3.204 4h9.592a1 1 0 0 1 .753 1.659l-4.796 5.48a1 1 0 0 1-1.506 0z" />
+                    </svg>
+                </wataba>
+                <div id="fvt-soption">
+                    <form class="fvtso-container" cible="1">
+                        <div class="fvtso-item d-flex flex-row" cible="sort-by-name">
+                            <div class="fvtsoi-radio">
+                                <input type="radio" name="sort_by" value="name">
+                            </div>
+                            <div class="fvtsoi-name">
+                                Name
+                            </div>
+                        </div>
+                        <div class="fvtso-item d-flex flex-row" cible="sort-by-type">
+                            <div class="fvtsoi-radio">
+                                <input type="radio" name="sort_by" value="type">
+                            </div>
+                            <div class="fvtsoi-name">
+                                Type
+                            </div>
+                        </div>
+                        <div class="fvtso-item d-flex flex-row" cible="sort-by-date">
+                            <div class="fvtsoi-radio">
+                                <input type="radio" name="sort_by" value="date">
+                            </div>
+                            <div class="fvtsoi-name">
+                                Modifed date
+                            </div>
+                        </div>
+                        <div class="fvtso-item d-flex flex-row" cible="sort-by-size">
+                            <div class="fvtsoi-radio">
+                                <input type="radio" name="sort_by" value="size">
+                            </div>
+                            <div class="fvtsoi-name">
+                                Size
+                            </div>
+                        </div>
+                    </form>
+                    <div class="fv-vertical-separator"></div>
+                    <form class="fvtso-container" cible="2">
+                        <div class="fvtso-item d-flex flex-row" cible="sort-by-ascending">
+                            <div class="fvtsoi-radio">
+                                <input type="radio" name="sort_by" value="asc">
+                            </div>
+                            <div class="fvtsoi-name">
+                                Ascending order
+                            </div>
+                        </div>
+                        <div class="fvtso-item d-flex flex-row" cible="sort-by-descending">
+                            <div class="fvtsoi-radio">
+                                <input type="radio" name="sort_by" value="desc">
+                            </div>
+                            <div class="fvtsoi-name">
+                                Descending order
+                            </div>
+                        </div>
+                    </form>
+                    <div class="fv-vertical-separator"></div>
+                    <form class="fvtso-container" cible="3">
+                        <div class="fvtso-item d-flex flex-row" cible="show-folder">
+                            <div class="fvtsoi-svg">
+                                <svg xmlns="http://www.w3.org/2000/svg" width="100%" height="100%" fill="currentColor"
+                                    class="bi bi-folder2" viewBox="0 0 16 16">
+                                    <path
+                                        d="M1 3.5A1.5 1.5 0 0 1 2.5 2h2.764c.958 0 1.76.56 2.311 1.184C7.985 3.648 8.48 4 9 4h4.5A1.5 1.5 0 0 1 15 5.5v7a1.5 1.5 0 0 1-1.5 1.5h-11A1.5 1.5 0 0 1 1 12.5zM2.5 3a.5.5 0 0 0-.5.5V6h12v-.5a.5.5 0 0 0-.5-.5H9c-.964 0-1.71-.629-2.174-1.154C6.374 3.334 5.82 3 5.264 3zM14 7H2v5.5a.5.5 0 0 0 .5.5h11a.5.5 0 0 0 .5-.5z" />
+                                </svg>
+                            </div>
+                            <div class="fvtsoi-check">
+                                <input type="checkbox">
+                            </div>
+                            <div class="fvtsoi-name">
+                                Folder
+                            </div>
+                        </div>
+                        <div class="fvtso-item d-flex flex-row" cible="show-image">
+                            <div class="fvtsoi-svg">
+                                <svg xmlns="http://www.w3.org/2000/svg" width="00%" height="100%" fill="currentColor"
+                                    class="bi bi-file-earmark-image" viewBox="0 0 16 16">
+                                    <path d="M6.502 7a1.5 1.5 0 1 0 0-3 1.5 1.5 0 0 0 0 3" />
+                                    <path
+                                        d="M14 14a2 2 0 0 1-2 2H4a2 2 0 0 1-2-2V2a2 2 0 0 1 2-2h5.5L14 4.5zM4 1a1 1 0 0 0-1 1v10l2.224-2.224a.5.5 0 0 1 .61-.075L8 11l2.157-3.02a.5.5 0 0 1 .76-.063L13 10V4.5h-2A1.5 1.5 0 0 1 9.5 3V1z" />
+                                </svg>
+                            </div>
+                            <div class="fvtsoi-check">
+                                <input type="checkbox">
+                            </div>
+                            <div class="fvtsoi-name">
+                                Image
+                            </div>
+                        </div>
+                        <div class="fvtso-item d-flex flex-row" cible="show-video">
+                            <div class="fvtsoi-svg">
+                                <svg xmlns="http://www.w3.org/2000/svg" width="100%" height="100%" fill="currentColor"
+                                    class="bi bi-file-earmark-play" viewBox="0 0 16 16">
+                                    <path
+                                        d="M6 6.883v4.234a.5.5 0 0 0 .757.429l3.528-2.117a.5.5 0 0 0 0-.858L6.757 6.454a.5.5 0 0 0-.757.43z" />
+                                    <path
+                                        d="M14 14V4.5L9.5 0H4a2 2 0 0 0-2 2v12a2 2 0 0 0 2 2h8a2 2 0 0 0 2-2M9.5 3A1.5 1.5 0 0 0 11 4.5h2V14a1 1 0 0 1-1 1H4a1 1 0 0 1-1-1V2a1 1 0 0 1 1-1h5.5z" />
+                                </svg>
+                            </div>
+                            <div class="fvtsoi-check">
+                                <input type="checkbox">
+                            </div>
+                            <div class="fvtsoi-name">
+                                Video
+                            </div>
+                        </div>
+                        <div class="fvtso-item d-flex flex-row" cible="show-audio">
+                            <div class="fvtsoi-svg">
+                                <svg xmlns="http://www.w3.org/2000/svg" width="100%" height="100%" fill="currentColor"
+                                    class="bi bi-file-earmark-music" viewBox="0 0 16 16">
+                                    <path
+                                        d="M11 6.64a1 1 0 0 0-1.243-.97l-1 .25A1 1 0 0 0 8 6.89v4.306A2.6 2.6 0 0 0 7 11c-.5 0-.974.134-1.338.377-.36.24-.662.628-.662 1.123s.301.883.662 1.123c.364.243.839.377 1.338.377s.974-.134 1.338-.377c.36-.24.662-.628.662-1.123V8.89l2-.5z" />
+                                    <path
+                                        d="M14 14V4.5L9.5 0H4a2 2 0 0 0-2 2v12a2 2 0 0 0 2 2h8a2 2 0 0 0 2-2M9.5 3A1.5 1.5 0 0 0 11 4.5h2V14a1 1 0 0 1-1 1H4a1 1 0 0 1-1-1V2a1 1 0 0 1 1-1h5.5z" />
+                                </svg>
+                            </div>
+                            <div class="fvtsoi-check">
+                                <input type="checkbox">
+                            </div>
+                            <div class="fvtsoi-name">
+                                Audio
+                            </div>
+                        </div>
+                        <div class="fvtso-item d-flex flex-row" cible="show-text">
+                            <div class="fvtsoi-svg">
+                                <svg xmlns="http://www.w3.org/2000/svg" width="100%" height="100%" fill="currentColor"
+                                    class="bi bi-file-earmark-text" viewBox="0 0 16 16">
+                                    <path
+                                        d="M5.5 7a.5.5 0 0 0 0 1h5a.5.5 0 0 0 0-1zM5 9.5a.5.5 0 0 1 .5-.5h5a.5.5 0 0 1 0 1h-5a.5.5 0 0 1-.5-.5m0 2a.5.5 0 0 1 .5-.5h2a.5.5 0 0 1 0 1h-2a.5.5 0 0 1-.5-.5" />
+                                    <path
+                                        d="M9.5 0H4a2 2 0 0 0-2 2v12a2 2 0 0 0 2 2h8a2 2 0 0 0 2-2V4.5zm0 1v2A1.5 1.5 0 0 0 11 4.5h2V14a1 1 0 0 1-1 1H4a1 1 0 0 1-1-1V2a1 1 0 0 1 1-1z" />
+                                </svg>
+                            </div>
+                            <div class="fvtsoi-check">
+                                <input type="checkbox">
+                            </div>
+                            <div class="fvtsoi-name">
+                                Text
+                            </div>
+                        </div>
+                        <div class="fvtso-item d-flex flex-row" cible="show-pdf">
+                            <div class="fvtsoi-svg">
+                                <svg xmlns="http://www.w3.org/2000/svg" width="100%" height="100%" fill="currentColor"
+                                    class="bi bi-file-earmark-pdf" viewBox="0 0 16 16">
+                                    <path
+                                        d="M14 14V4.5L9.5 0H4a2 2 0 0 0-2 2v12a2 2 0 0 0 2 2h8a2 2 0 0 0 2-2M9.5 3A1.5 1.5 0 0 0 11 4.5h2V14a1 1 0 0 1-1 1H4a1 1 0 0 1-1-1V2a1 1 0 0 1 1-1h5.5z" />
+                                    <path
+                                        d="M4.603 14.087a.8.8 0 0 1-.438-.42c-.195-.388-.13-.776.08-1.102.198-.307.526-.568.897-.787a7.7 7.7 0 0 1 1.482-.645 20 20 0 0 0 1.062-2.227 7.3 7.3 0 0 1-.43-1.295c-.086-.4-.119-.796-.046-1.136.075-.354.274-.672.65-.823.192-.077.4-.12.602-.077a.7.7 0 0 1 .477.365c.088.164.12.356.127.538.007.188-.012.396-.047.614-.084.51-.27 1.134-.52 1.794a11 11 0 0 0 .98 1.686 5.8 5.8 0 0 1 1.334.05c.364.066.734.195.96.465.12.144.193.32.2.518.007.192-.047.382-.138.563a1.04 1.04 0 0 1-.354.416.86.86 0 0 1-.51.138c-.331-.014-.654-.196-.933-.417a5.7 5.7 0 0 1-.911-.95 11.7 11.7 0 0 0-1.997.406 11.3 11.3 0 0 1-1.02 1.51c-.292.35-.609.656-.927.787a.8.8 0 0 1-.58.029m1.379-1.901q-.25.115-.459.238c-.328.194-.541.383-.647.547-.094.145-.096.25-.04.361q.016.032.026.044l.035-.012c.137-.056.355-.235.635-.572a8 8 0 0 0 .45-.606m1.64-1.33a13 13 0 0 1 1.01-.193 12 12 0 0 1-.51-.858 21 21 0 0 1-.5 1.05zm2.446.45q.226.245.435.41c.24.19.407.253.498.256a.1.1 0 0 0 .07-.015.3.3 0 0 0 .094-.125.44.44 0 0 0 .059-.2.1.1 0 0 0-.026-.063c-.052-.062-.2-.152-.518-.209a4 4 0 0 0-.612-.053zM8.078 7.8a7 7 0 0 0 .2-.828q.046-.282.038-.465a.6.6 0 0 0-.032-.198.5.5 0 0 0-.145.04c-.087.035-.158.106-.196.283-.04.192-.03.469.046.822q.036.167.09.346z" />
+                                </svg>
+                            </div>
+                            <div class="fvtsoi-check">
+                                <input type="checkbox">
+                            </div>
+                            <div class="fvtsoi-name">
+                                PDF
+                            </div>
+                        </div>
+                        <div class="fvtso-item d-flex flex-row" cible="show-word">
+                            <div class="fvtsoi-svg">
+                                <svg xmlns="http://www.w3.org/2000/svg" width="100%" height="100%" fill="currentColor"
+                                    class="bi bi-file-earmark-word" viewBox="0 0 16 16">
+                                    <path
+                                        d="M5.485 6.879a.5.5 0 1 0-.97.242l1.5 6a.5.5 0 0 0 .967.01L8 9.402l1.018 3.73a.5.5 0 0 0 .967-.01l1.5-6a.5.5 0 0 0-.97-.242l-1.036 4.144-.997-3.655a.5.5 0 0 0-.964 0l-.997 3.655L5.485 6.88z" />
+                                    <path
+                                        d="M14 14V4.5L9.5 0H4a2 2 0 0 0-2 2v12a2 2 0 0 0 2 2h8a2 2 0 0 0 2-2M9.5 3A1.5 1.5 0 0 0 11 4.5h2V14a1 1 0 0 1-1 1H4a1 1 0 0 1-1-1V2a1 1 0 0 1 1-1h5.5z" />
+                                </svg>
+                            </div>
+                            <div class="fvtsoi-check">
+                                <input type="checkbox">
+                            </div>
+                            <div class="fvtsoi-name">
+                                Word
+                            </div>
+                        </div>
+                        <div class="fvtso-item d-flex flex-row" cible="show-excel">
+                            <div class="fvtsoi-svg">
+                                <svg xmlns="http://www.w3.org/2000/svg" width="100%" height="100%" fill="currentColor"
+                                    class="bi bi-file-earmark-excel" viewBox="0 0 16 16">
+                                    <path
+                                        d="M5.884 6.68a.5.5 0 1 0-.768.64L7.349 10l-2.233 2.68a.5.5 0 0 0 .768.64L8 10.781l2.116 2.54a.5.5 0 0 0 .768-.641L8.651 10l2.233-2.68a.5.5 0 0 0-.768-.64L8 9.219l-2.116-2.54z" />
+                                    <path
+                                        d="M14 14V4.5L9.5 0H4a2 2 0 0 0-2 2v12a2 2 0 0 0 2 2h8a2 2 0 0 0 2-2M9.5 3A1.5 1.5 0 0 0 11 4.5h2V14a1 1 0 0 1-1 1H4a1 1 0 0 1-1-1V2a1 1 0 0 1 1-1h5.5z" />
+                                </svg>
+                            </div>
+                            <div class="fvtsoi-check">
+                                <input type="checkbox">
+                            </div>
+                            <div class="fvtsoi-name">
+                                Excel
+                            </div>
+                        </div>
+                        <div class="fvtso-item d-flex flex-row" cible="show-pwp">
+                            <div class="fvtsoi-svg">
+                                <svg xmlns="http://www.w3.org/2000/svg" width="100%" height="100%" fill="currentColor"
+                                    class="bi bi-file-earmark-ppt" viewBox="0 0 16 16">
+                                    <path
+                                        d="M7 5.5a1 1 0 0 0-1 1V13a.5.5 0 0 0 1 0v-2h1.188a2.75 2.75 0 0 0 0-5.5zM8.188 10H7V6.5h1.188a1.75 1.75 0 1 1 0 3.5" />
+                                    <path
+                                        d="M14 4.5V14a2 2 0 0 1-2 2H4a2 2 0 0 1-2-2V2a2 2 0 0 1 2-2h5.5zm-3 0A1.5 1.5 0 0 1 9.5 3V1H4a1 1 0 0 0-1 1v12a1 1 0 0 0 1 1h8a1 1 0 0 0 1-1V4.5z" />
+                                </svg>
+                            </div>
+                            <div class="fvtsoi-check">
+                                <input type="checkbox">
+                            </div>
+                            <div class="fvtsoi-name">
+                                PowerPoint
+                            </div>
+                        </div>
+                        <div class="fvtso-item d-flex flex-row" cible="show-file">
+                            <div class="fvtsoi-svg">
+                                <svg xmlns="http://www.w3.org/2000/svg" width="100%" height="100%" fill="currentColor"
+                                    class="bi bi-file-earmark" viewBox="0 0 16 16">
+                                    <path
+                                        d="M14 4.5V14a2 2 0 0 1-2 2H4a2 2 0 0 1-2-2V2a2 2 0 0 1 2-2h5.5zm-3 0A1.5 1.5 0 0 1 9.5 3V1H4a1 1 0 0 0-1 1v12a1 1 0 0 0 1 1h8a1 1 0 0 0 1-1V4.5z" />
+                                </svg>
+                            </div>
+                            <div class="fvtsoi-check">
+                                <input type="checkbox">
+                            </div>
+                            <div class="fvtsoi-name">
+                                Others
+                            </div>
+                        </div>
+                    </form>
+                </div>
+            </div>
+        </div>
+        <div id="fv-main" class="d-flex flex-row flex-fill">
+            <div id="fv-leftvol">
+                <div class="fvl-container" id="fvl-defpath">
+                    <div class="fvlc-name d-flex flex-row">
+                        <div class="fvlcn-svg">
+                            <svg xmlns="http://www.w3.org/2000/svg" width="100%" height="100%" fill="currentColor"
+                                class="bi bi-chevron-right" viewBox="0 0 16 16">
+                                <path fill-rule="evenodd"
+                                    d="M4.646 1.646a.5.5 0 0 1 .708 0l6 6a.5.5 0 0 1 0 .708l-6 6a.5.5 0 0 1-.708-.708L10.293 8 4.646 2.354a.5.5 0 0 1 0-.708" />
+                            </svg>
+                        </div>
+                        <div class="fvlcn-name">
+                            Library
+                        </div>
+                    </div>
+                    <div class="fvlc-liste">
+                        <div class="fvlc-item d-flex flex-row flex-fill" cible="c">
+                            <div class="fvlci-name flex-fill">(C:)</div>
+                        </div>
+                        <div class="fvlc-item d-flex flex-row flex-fill" cible="desktop">
+                            <div class="fvlci-name flex-fill">Desktop</div>
+                        </div>
+                        <div class="fvlc-item d-flex flex-row flex-fill" cible="downloads">
+                            <div class="fvlci-name flex-fill">Downloads</div>
+                        </div>
+                        <div class="fvlc-item d-flex flex-row flex-fill" cible="documents">
+                            <div class="fvlci-name flex-fill">Documents</div>
+                        </div>
+                        <div class="fvlc-item d-flex flex-row flex-fill" cible="music">
+                            <div class="fvlci-name flex-fill">Musics</div>
+                        </div>
+                        <div class="fvlc-item d-flex flex-row flex-fill" cible="pictures">
+                            <div class="fvlci-name flex-fill">Pictures</div>
+                        </div>
+                        <div class="fvlc-item d-flex flex-row flex-fill" cible="videos">
+                            <div class="fvlci-name flex-fill">Videos</div>
+                        </div>
+                    </div>
+                    <div class="fvlc-resize"></div>
+                </div>
+                <div class="fvl-container" id="fvl-selfile">
+                    <div class="fvlc-name d-flex flex-row">
+                        <div class="fvlcn-svg">
+                            <svg xmlns="http://www.w3.org/2000/svg" width="100%" height="100%" fill="currentColor"
+                                class="bi bi-chevron-right" viewBox="0 0 16 16">
+                                <path fill-rule="evenodd"
+                                    d="M4.646 1.646a.5.5 0 0 1 .708 0l6 6a.5.5 0 0 1 0 .708l-6 6a.5.5 0 0 1-.708-.708L10.293 8 4.646 2.354a.5.5 0 0 1 0-.708" />
+                            </svg>
+                        </div>
+                        <div class="fvlcn-name">
+                            Selected files
+                        </div>
+                    </div>
+                    <div class="fvlc-liste">
+                        <div class="fvlc-item d-flex flex-row flex-fill" cible="path_way">
+                            <div class="fvlci-check">
+                                <input type="checkbox">
+                            </div>
+                            <div class="fvlci-name flex-fill">Name</div>
+                            <div class="fvlci-folder">
+                                <svg xmlns="http://www.w3.org/2000/svg" width="100%" height="100%" fill="currentColor"
+                                    class="bi bi-folder-fill" viewBox="0 0 16 16">
+                                    <path
+                                        d="M9.828 3h3.982a2 2 0 0 1 1.992 2.181l-.637 7A2 2 0 0 1 13.174 14H2.825a2 2 0 0 1-1.991-1.819l-.637-7a2 2 0 0 1 .342-1.31L.5 3a2 2 0 0 1 2-2h3.672a2 2 0 0 1 1.414.586l.828.828A2 2 0 0 0 9.828 3m-8.322.12q.322-.119.684-.12h5.396l-.707-.707A1 1 0 0 0 6.172 2H2.5a1 1 0 0 0-1 .981z" />
+                                </svg>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="fvlc-resize"></div>
+                </div>
+                <div class="fvl-container" id="fvl-recfile">
+                    <div class="fvlc-name d-flex flex-row">
+                        <div class="fvlcn-svg">
+                            <svg xmlns="http://www.w3.org/2000/svg" width="100%" height="100%" fill="currentColor"
+                                class="bi bi-chevron-right" viewBox="0 0 16 16">
+                                <path fill-rule="evenodd"
+                                    d="M4.646 1.646a.5.5 0 0 1 .708 0l6 6a.5.5 0 0 1 0 .708l-6 6a.5.5 0 0 1-.708-.708L10.293 8 4.646 2.354a.5.5 0 0 1 0-.708" />
+                            </svg>
+                        </div>
+                        <div class="fvlcn-name">
+                            Recent files
+                        </div>
+                    </div>
+                    <div class="fvlc-liste">
+                        <div class="fvlc-item d-flex flex-row flex-fill" cible="path_way">
+                            <div class="fvlci-name flex-fill">Name</div>
+                            <div class="fvlci-folder">
+                                <svg xmlns="http://www.w3.org/2000/svg" width="100%" height="100%" fill="currentColor"
+                                    class="bi bi-folder-fill" viewBox="0 0 16 16">
+                                    <path
+                                        d="M9.828 3h3.982a2 2 0 0 1 1.992 2.181l-.637 7A2 2 0 0 1 13.174 14H2.825a2 2 0 0 1-1.991-1.819l-.637-7a2 2 0 0 1 .342-1.31L.5 3a2 2 0 0 1 2-2h3.672a2 2 0 0 1 1.414.586l.828.828A2 2 0 0 0 9.828 3m-8.322.12q.322-.119.684-.12h5.396l-.707-.707A1 1 0 0 0 6.172 2H2.5a1 1 0 0 0-1 .981z" />
+                                </svg>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="fvlc-resize"></div>
+                </div>
+            </div>
+            <div id="fv-middlevol">
+                <div id="fv-middlevol-inside"></div>
+            </div>
+            <div id="fv-rightvol" class=" flex-fill">
+                <!-- <div id="fvr-top" class="flex-fill d-flex flex-row f-line" hidden>
+                    <div class="fvr-icon"></div>
+                    <div class="fvr-name flex-fill">Name</div>
+                    <div class="fvr-type">Type</div>
+                    <div class="fvr-date">Modified date</div>
+                    <div class="fvr-size">Size</div>
+                </div> -->
+                <div id="fv-selector"></div>
+                <div id="fvr-main" class="flex-fill">
+                    <div class="fvrm-item f-line flex-fill d-flex flex-row" cible="madara.jpg">
+                        <div class="fvr-icon" picture="yes">
+                            <svg xmlns="http://www.w3.org/2000/svg" width="100%" height="100%" fill="currentColor"
+                                class="bi bi-file-earmark" viewBox="0 0 16 16">
+                                <path
+                                    d="M14 4.5V14a2 2 0 0 1-2 2H4a2 2 0 0 1-2-2V2a2 2 0 0 1 2-2h5.5zm-3 0A1.5 1.5 0 0 1 9.5 3V1H4a1 1 0 0 0-1 1v12a1 1 0 0 0 1 1h8a1 1 0 0 0 1-1V4.5z" />
+                            </svg>
+                            <img alt="" src="">
+                        </div>
+                        <div class="fvr-name fvr-name-d flex-fill">madara.jpg</div>
+                        <input type="text" class="fvr-name fvr-name-i flex-fill" value="madara.jpg">
+                        <div class="fvr-date">01/01/2025</div>
+                        <div class="fvr-type">jpg</div>
+                        <div class="fvr-size">1.2MB</div>
+                    </div>
+                    <div class="fvrm-item f-block" cible="raiden.png">
+                        <div class="fvr-icon" picture="yes">
+                            <svg xmlns="http://www.w3.org/2000/svg" width="100%" height="100%" fill="currentColor"
+                                class="bi bi-file-earmark" viewBox="0 0 16 16">
+                                <path
+                                    d="M14 4.5V14a2 2 0 0 1-2 2H4a2 2 0 0 1-2-2V2a2 2 0 0 1 2-2h5.5zm-3 0A1.5 1.5 0 0 1 9.5 3V1H4a1 1 0 0 0-1 1v12a1 1 0 0 0 1 1h8a1 1 0 0 0 1-1V4.5z" />
+                            </svg>
+                            <img alt="" src="">
+                        </div>
+                        <div class="fvr-name fvr-name-d">Raiden.png</div>
+                        <input type="text" class="fvr-name fvr-name-i" value="Raiden.png">
+                        <div class="fvr-date">01/01/2025</div>
+                        <div class="fvr-type">PNG</div>
+                        <div class="fvr-size">3.5MB</div>
+                    </div>
+                </div>
+                <div id="fvr-bottom" class="flex-fill d-flex flex-row">
+                    <input type="text" id="fvrb-itext" class="flex-fill">
+                    <div id="fvrb-form">
+                        <select class="form-select" id="fvrb-select">
+                            <option cible="*">All Files (*.*)</option>
+                        </select>
+                    </div>
+                    <wataba id="fvrb-open">
+                        <span>Open</span>
+                    </wataba>
+                    <wataba id="fvrb-save">
+                        <span>Save</span>
+                    </wataba>
+                    <wataba id="fvrb-cancel">
+                        <span>Cancel</span>
+                    </wataba>
+                </div>
+            </div>
+        </div>
+        <div id="fv-context">
+            <form class="fvtso-container" cible="4">
+                <div class="fvtso-item d-flex flex-row" cible="go-back">
+                    <div class="fvtsoi-name">
+                        Backward
+                    </div>
+                </div>
+                <div class="fvtso-item d-flex flex-row" cible="go-fore">
+                    <div class="fvtsoi-name">
+                        Foreward
+                    </div>
+                </div>
+                <div class="fvtso-item d-flex flex-row" cible="go-parent">
+                    <div class="fvtsoi-name">
+                        Parent
+                    </div>
+                </div>
+                <div class="fvtso-item d-flex flex-row" cible="refresh">
+                    <div class="fvtsoi-name">
+                        Refresh
+                    </div>
+                </div>
+                <!-- <div class="fvtso-item d-flex flex-row" cible="open">
+                    <div class="fvtsoi-name">
+                        Open
+                    </div>
+                </div> -->
+            </form>
+            <div class="fv-vertical-separator"></div>
+            <form class="fvtso-container" cible="5">
+                <div class="fvtso-item d-flex flex-row" cible="do-cut">
+                    <div class="fvtsoi-name">
+                        Cut
+                    </div>
+                </div>
+                <div class="fvtso-item d-flex flex-row" cible="do-copy">
+                    <div class="fvtsoi-name">
+                        Copy
+                    </div>
+                </div>
+                <div class="fvtso-item d-flex flex-row" cible="do-paste">
+                    <div class="fvtsoi-name">
+                        Paste
+                    </div>
+                </div>
+            </form>
+            <div class="fv-vertical-separator"></div>
+            <form class="fvtso-container" cible="6">
+                <div class="fvtso-item d-flex flex-row" cible="do-rename">
+                    <div class="fvtsoi-name">
+                        Rename
+                    </div>
+                </div>
+                <div class="fvtso-item d-flex flex-row" cible="do-delete">
+                    <div class="fvtsoi-name">
+                        Delete
+                    </div>
+                </div>
+                <div class="fvtso-item d-flex flex-row" cible="do-folder">
+                    <div class="fvtsoi-name">
+                        New Folder
+                    </div>
+                </div>
+                <div class="fvtso-item d-flex flex-row" cible="do-file">
+                    <div class="fvtsoi-name">
+                        New File
+                    </div>
+                </div>
+            </form>
+        </div>
+        <script>
+            $(document).ready(function () {
+                $("#fvt-leftside").on("click", () => {
+                    if ($("#fv-leftvol").is(":visible")) {
+                        toggleLeftSide(false);
+                    }
+                    else {
+                        toggleLeftSide(true);
+                    }
+                });
+                $("#fvt-newfolder, .fvtso-item[cible='do-folder']").on("click", () => {
+                    pywebview.api.askNew(EXPLORE.current, "folder").then(response => {
+                        if (response.message) {
+                            let info = {
+                                "name": response.data.name,
+                                "date": response.data.date,
+                                "type": "folder",
+                                "size": response.data.size,
+                                "iconP": "no",
+                                "svg": getIcon("folder"),
+                                "pfp": `<img src="" alt="" style="object-fit:contain;">`,
+                                "cible": EXPLORE.current,
+                                "brutSize": response.data.brutSize,
+                                "brutDate": response.data.brutDate,
+                            }
+                            addItemInMain(info);
+                        }
+                    });
+                });
+                $("#fvt-newfile, .fvtso-item[cible='do-file']").on("click", () => {
+                    pywebview.api.askNew(EXPLORE.current, "file").then(response => {
+                        if (response.message) {
+                            let info = {
+                                "name": response.data.name,
+                                "date": response.data.date,
+                                "type": response.data.type,
+                                "size": response.data.size,
+                                "iconP": "no",
+                                "svg": getIcon(response.data.type),
+                                "pfp": `<img src="" alt="" style="object-fit:contain;">`,
+                                "cible": EXPLORE.current,
+                                "brutSize": response.data.brutSize,
+                                "brutDate": response.data.brutDate,
+                            }
+                            addItemInMain(info);
+                        }
+                    });
+                });
+                $("#fvt-back, .fvtso-item[cible='go-back']").on("click", () => {
+                    if (EXPLORE.past.length > 0) {
+                        EXPLORE.next.unshift(EXPLORE.current);
+                        EXPLORE.current = EXPLORE.past.pop();
+                        pywebview.api.setLibDir(EXPLORE.current, false).then(data => {
+                            $("#fvl-defpath").find(".fvlc-item").removeClass("fvtsoi-selected");
+                            EXPLORE.listDir = organizeData(data.data);
+                            EXPLORE.category = data.category;
+                            EXPLORE.current = data.dir;
+                            $("#fvl-defpath").find(`.fvlc-item[cible="${data.category}"]`).addClass("fvtsoi-selected");
+                            refreshPage();
+                        });
+                    }
+                });
+                $("#fvt-fore, .fvtso-item[cible='go-fore']").on("click", () => {
+                    if (EXPLORE.next.length > 0) {
+                        EXPLORE.past.push(EXPLORE.current);
+                        EXPLORE.current = EXPLORE.next.shift();
+                        pywebview.api.setLibDir(EXPLORE.current, false).then(data => {
+                            $("#fvl-defpath").find(".fvlc-item").removeClass("fvtsoi-selected");
+                            EXPLORE.listDir = organizeData(data.data);
+                            EXPLORE.category = data.category;
+                            EXPLORE.current = data.dir;
+                            $("#fvl-defpath").find(`.fvlc-item[cible="${data.category}"]`).addClass("fvtsoi-selected");
+                            refreshPage();
+                        });
+                    }
+                });
+                $("#fvt-parent, .fvtso-item[cible='go-parent']").on("click", () => {
+                    EXPLORE.past.push(EXPLORE.current);
+                    EXPLORE.next = [];
+                    pywebview.api.setLibDir(EXPLORE.current, false, true).then(data => {
+                        $("#fvl-defpath").find(".fvlc-item").removeClass("fvtsoi-selected");
+                        EXPLORE.listDir = organizeData(data.data);
+                        EXPLORE.category = data.category;
+                        EXPLORE.current = data.dir;
+                        $("#fvl-defpath").find(`.fvlc-item[cible="${data.category}"]`).addClass("fvtsoi-selected");
+                        refreshPage();
+                    });
+                });
+                $("#fvt-currentdir").on("focusout keyup", function (e) {
+                    e.stopPropagation();
+                    e.stopImmediatePropagation();
+                    switch (e.key) {
+                        case "F1":
+                        case "F2":
+                        case "F3":
+                        case "F4":
+                        case "F5":
+                        case "F6":
+                        case "F7":
+                        case "F8":
+                        case "F9":
+                        case "F10":
+                        case "F11":
+                        case "F12":
+                            e.stopImmediatePropagation();
+                            e.stopPropagation();
+                            e.preventDefault();
+                            break;
+                    }
+
+                    if (e.type === "focusout" || e.key === "Enter") {
+                        let val = $(this).val();
+                        pywebview.api.setLibDir(val, false).then(data => {
+                            if (EXPLORE.past[EXPLORE.past.length - 1] != EXPLORE.current) {
+                                EXPLORE.past.push(EXPLORE.current);
+                            }
+                            EXPLORE.next = [];
+                            $("#fvl-defpath").find(".fvlc-item").removeClass("fvtsoi-selected");
+                            EXPLORE.listDir = organizeData(data.data);
+                            EXPLORE.category = data.category;
+                            EXPLORE.current = data.dir;
+                            $("#fvl-defpath").find(`.fvlc-item[cible="${data.category}"]`).addClass("fvtsoi-selected");
+                            refreshPage();
+                        });
+                    }
+
+                }).on("input keydown keyup", function (e) {
+                    switch (e.key) {
+                        case "F1":
+                        case "F2":
+                        case "F3":
+                        case "F4":
+                        case "F5":
+                        case "F6":
+                        case "F7":
+                        case "F8":
+                        case "F9":
+                        case "F10":
+                        case "F11":
+                        case "F12":
+                            e.stopImmediatePropagation();
+                            e.stopPropagation();
+                            e.preventDefault();
+                            break;
+                    }
+                });
+                $("#fvt-search").on("keydown", function (e) {
+                    e.stopImmediatePropagation();
+                    e.stopPropagation();
+                    switch (e.key) {
+                        case "F1":
+                        case "F2":
+                        case "F3":
+                        case "F4":
+                        case "F5":
+                        case "F6":
+                        case "F7":
+                        case "F8":
+                        case "F9":
+                        case "F10":
+                        case "F11":
+                        case "F12":
+                            e.stopImmediatePropagation();
+                            e.stopPropagation();
+                            e.preventDefault();
+                            break;
+                    }
+
+                    if (e.key === "Enter") {
+                        let val = $(this).val();
+                        searchFile(val);
+                    }
+                }).on("input keyup", function (el) {
+                    switch (e.key) {
+                        case "F1":
+                        case "F2":
+                        case "F3":
+                        case "F4":
+                        case "F5":
+                        case "F6":
+                        case "F7":
+                        case "F8":
+                        case "F9":
+                        case "F10":
+                        case "F11":
+                        case "F12":
+                        case "F5":
+                            e.stopImmediatePropagation();
+                            e.stopPropagation();
+                            e.preventDefault();
+                            break;
+                    }
+                });
+                $(".fvt-item").on("click", function () {
+                    if ($(this).attr("cible") === "list-show-style") {
+                        setGridType("list");
+                    }
+                    if ($(this).attr("cible") === "grid-show-style") {
+                        setGridType("grid");
+                    }
+                    if ($(this).attr("cible") === "apply-sort") {
+                        if (EPageInfo.applySort) {
+                            applyAllSorting(false);
+                            $(this).removeClass("fvcbs-selected");
+                        }
+                        else {
+                            applyAllSorting(true, EPageInfo.sortOption);
+                            $(this).addClass("fvcbs-selected");
+                        }
+                    }
+                    if ($(this).attr("cible") === "down-sort") {
+                        if ($("#fvt-soption").is(":visible")) {
+                            downSortTable(false);
+                        }
+                        else {
+                            downSortTable();
+                        }
+                    }
+                });
+                $("#fvt-soption").on("mouseleave", () => {
+                    downSortTable(false);
+                });
+                $(".fvtso-item").find("input").on("click", function (e) {
+                    let el = $(this).closest(".fvtso-item");
+                    let cible = $(el[0]).attr("cible");
+                    let check = $(this).prop("checked");
+                    setSortOption(cible.toString(), check);
+                });
+                $(".fvtso-item").on("click", function (e) {
+                    setSortOption($(this).attr("cible"), $(this).find("input").prop("checked"));
+                });
+                $("#fvr-main").click("click", function (e) {
+                    e.stopPropagation();
+                    e.stopImmediatePropagation();
+                    e.preventDefault();
+                    switch (e.type) {
+                        case "contextmenu":
+                            e.stopImmediatePropagation();
+                            e.stopPropagation();
+                            e.preventDefault();
+                            break;
+                        case "click":
+                            $(".fvrm-item").removeClass("fvtsoi-selected");
+                            $(this).focus();
+                            EXPLORE.selected = [];
+                            $("#fvl-selfile").find(".fvlc-liste").html("");
+                            selectCoord = [e.offsetX, e.offsetY];
+                            break;
+                    }
+                });
+                $(".fvlc-name").on("click", function () {
+                    let div = $(this).closest(".fvl-container").find(".fvlc-liste");
+                    let svg = $(this).find(".fvlcn-svg");
+                    if ($(div).is(":visible")) {
+                        $(div).hide(200);
+                        $(svg).css("transform", "rotate(0deg)")
+                    }
+                    else {
+                        $(div).show(200);
+                        $(svg).css("transform", "rotate(90deg)")
+                    }
+                });
+                var isMiddleVolDown = false;
+                var middleVolCoordPoint = [0, 0];
+                $("#fv-middlevol").on("mousedown", function (e) {
+                    isMiddleVolDown = true;
+                    middleVolCoordPoint = [e.offsetX, e.offsetY];
+                });
+                $(document).on("mouseup focusout mouseleave", function () {
+                    isMiddleVolDown = false;
+                    middleVolCoordPoint = [0, 0];
+                });
+                $(document).on("mousemove", function (e) {
+                    if (isMiddleVolDown) {
+                        let x = e.clientX;
+                        let wdt = x - middleVolCoordPoint[0];
+                        if (x >= 300 && x <= 800) {
+                            $("#fv-leftvol").css("width", wdt + "px");
+                            $("#fv-rightvol").css("max-width", `calc(100% - ${wdt}px)`);
+                        }
+                    }
+                });
+                $("#fvr-main").on("contextmenu", function (e) {
+                    e.stopImmediatePropagation();
+                    e.stopPropagation();
+                    e.preventDefault();
+                    let x = e.clientX;
+                    let y = e.clientY;
+                    let wdt = parseInt($("#fv-context").css("width"));
+                    let hgt = parseInt($("#fv-context").css("height"));
+                    if ($(document).width() - x < wdt) {
+                        x = $(document).width() - wdt;
+                    }
+                    if ($(document).height() - y < hgt) {
+                        y = $(document).height() - hgt;
+                    }
+                    $("#fv-context").css({
+                        "top": y - 1,
+                        "left": x - 1
+                    }).focus().show().on("mouseleave focusout", function () {
+                        $(this).hide();
+                    });
+                    EXPLORE.currentSel = $("#fvr-main").find(".fvtsoi-selected");
+                    EXPLORE.lastSel = $("#fvr-main").find(".fvtsoi-selected");
+                });
+                $("#fv-context").on("click", function (e) {
+                    e.stopImmediatePropagation();
+                    e.stopPropagation();
+                    e.preventDefault();
+                }).find(".fvtso-item").on("click", function () {
+                    $("#fv-context").hide();
+                });
+                $("body").on("keydown", function (e) {
+                    if (e.ctrlKey) {
+                        switch (e.key) {
+                            case "c":
+                            case "C":
+                                EXPLORE.currentSel = $("#fvr-main").find(".fvtsoi-selected");
+                                $(".fvtso-item[cible='do-copy']").click();
+                                break;
+                            case "x":
+                            case "X":
+                                EXPLORE.currentSel = $("#fvr-main").find(".fvtsoi-selected");
+                                $(".fvtso-item[cible='do-cut']").click();
+                                break;
+                            case "v":
+                            case "V":
+                                $(".fvtso-item[cible='do-paste']").click();
+                                break;
+                            case "n":
+                            case "N":
+                                if (e.shiftKey) {
+                                    $("#fvt-newfolder").click();
+                                }
+                                else {
+                                    $("#fvt-newfile").click();
+                                }
+                                break;
+                            case "a":
+                            case "A":
+                                $("#fvr-main").find(".fvrm-item").addClass("fvtsoi-selected");
+                                refreshSelected();
+                                break;
+                        }
+                    }
+                    if (e.altKey) {
+                        switch (e.key) {
+                            case "ArrowLeft":
+                                $("#fvt-back").click();
+                                break;
+                            case "ArrowRight":
+                                $("#fvt-fore").click();
+                                break;
+                            case "ArrowUp":
+                                $("#fvt-parent").click();
+                                break;
+                        }
+                    }
+                });
+                $(document).on("contextmenu", function (e) {
+                    e.stopImmediatePropagation();
+                    e.stopPropagation();
+                    e.preventDefault();
+                });
+                var selectCoord = [0, 0];
+                var isSelectorOn = false;
+                $("#fvr-main").on("mousedown", function (e) {
+                    isSelectorOn = true;
+                    selectCoord = [e.offsetX, e.offsetY];
+                });
+                $(document).on("mouseup", function (e) {
+                    isSelectorOn = false;
+                    $("#fv-selector").hide().css({
+                        "width": 0,
+                        "height": 0,
+                        "top": 0,
+                        "left": 0
+                    });
+                    selectCoord = [0, 0];
+                });
+                $(document).on("mousemove", function (e) {
+                    if (isSelectorOn === true) {
+                        if (!$("#fv-selector").is(":visible")) {
+                            $("#fv-selector").show();
+                        }
+                        let ole = $("#fvr-main").offset().left;
+                        let ori = $("#fvr-main").offset().top;
+                        let x = e.clientX - ole;
+                        let y = e.clientY - ori;
+                        x = Math.max(0, Math.min(x, $("#fvr-main").width()));
+                        y = Math.max(0, Math.min(y, $("#fvr-main").height()));
+                        let wdt = Math.max(selectCoord[0], x) - Math.min(selectCoord[0], x);
+                        let hgt = Math.max(selectCoord[1], y) - Math.min(selectCoord[1], y);
+                        $("#fv-selector").css({
+                            "left": Math.min(x, selectCoord[0]),
+                            "top": Math.min(y, selectCoord[1]),
+                            "width": wdt,
+                            "height": hgt
+                        });
+                        $(".fvrm-item").each(function (i, el) {
+                            if (checkIfItsInSelector(el, [Math.min(x, selectCoord[0]),
+                            Math.min(y, selectCoord[1]),
+                            Math.min(x, selectCoord[0]) + wdt,
+                            Math.min(y, selectCoord[1]) + hgt])) {
+                                EselectItem(el);
+                            }
+                            else {
+                                EdeSelectItem(el)
+                            }
+                        });
+
+                        refreshSelected();
+
+                    } else {
+                        isSelectorOn = false;
+                        $("#fv-selector").hide().css({
+                            "width": 0,
+                            "height": 0,
+                            "top": 0,
+                            "left": 0
+                        });
+                        selectCoord = [0, 0];
+                    }
+                });
+                $("#fvrb-itext").on("focusout keydown input", function (e) {
+                    e.stopImmediatePropagation();
+                    e.stopPropagation();
+                    let val = $(this).val().trim().toLowerCase();
+                    let item;
+                    $("#fvr-main").find(`.fvrm-item`).each(function (ind, el) {
+                        if ($(el).attr("name").toLowerCase() === val) {
+                            item = el;
+                        }
+                    });
+                    if (item) {
+                        $(item).addClass("fvtsoi-selected");
+                        $("#fvl-selfile").find(".fvlc-liste").html("");
+                        let name = $(item).attr("name");
+                        let cible = $(item).attr("cible");
+                        EXPLORE.selected = [];
+                        addItemInSelFile({ "name": name, "cible": cible });
+                    }
+                    else {
+                        $("#fvr-main").find(`.fvrm-item`).removeClass("fvtsoi-selected");
+                        $("#fvl-selfile").find(".fvlc-liste").html("");
+                    }
+                    if (e.key === "Enter") {
+                        if (item) {
+                            $(item).click();
+                        }
+                        else {
+                            $("#fvr-main").click();
+                        }
+                    }
+                });
+                $("#fvl-defpath").find(".fvlc-item").on("click", function () {
+                    let cible = $(this).attr("cible");
+
+                    if (EXPLORE.past[EXPLORE.past.length - 1] != EXPLORE.current) EXPLORE.past.push(EXPLORE.current);
+                    EXPLORE.next = [];
+                    pywebview.api.setLibDir(cible).then(data => {
+                        $("#fvl-defpath").find(".fvlc-item").removeClass("fvtsoi-selected");
+                        $(this).addClass("fvtsoi-selected");
+                        EXPLORE.listDir = organizeData(data.data);
+                        EXPLORE.category = data.category;
+                        EXPLORE.current = data.dir;
+                        refreshPage();
+                    });
+                });
+                $(".fvtso-item[cible='do-rename']").on("click", function () {
+                    let name = $(EXPLORE.currentSel[0]).attr("name");
+                    let el = $(`.fvrm-item[name="${name}"]`);
+                    EselectItem(el);
+                    activeRenameItem(el);
+                });
+                $(".fvtso-item[cible='refresh']").on("click", () => {
+                    pywebview.api.setLibDir(EXPLORE.current, false).then(data => {
+                        $("#fvl-defpath").find(".fvlc-item").removeClass("fvtsoi-selected");
+                        EXPLORE.listDir = organizeData(data.data);
+                        EXPLORE.category = data.category;
+                        EXPLORE.current = data.dir;
+                        $("#fvl-defpath").find(`.fvlc-item[cible="${data.category}"]`).addClass("fvtsoi-selected");
+                        refreshPage();
+                        refreshSelected();
+                        refreshRecent();
+                        $("#fvr-main").click();
+                    });
+                })
+                $(".fvtso-item[cible='do-delete']").on("click", function () {
+                    let list = [];
+                    EXPLORE.currentSel.each(function (ind, el) {
+                        list.push(EXPLORE.current + "/" + $(el).attr("name"))
+                    });
+                    pywebview.api.askDelete(list).then(response => {
+                        Object.values(response).forEach(function (el) {
+                            if (el === false) {
+                                console.log("Failed");
+                            }
+                            else if (el === null) {
+                                console.log("Not found");
+                            }
+                            else {
+                                $("#fvr-main").find(`.fvrm-item[name="${el}"]`).remove();
+                            }
+                        });
+                    });
+                });
+                $(".fvtso-item[cible='do-copy'], .fvtso-item[cible='do-cut'], .fvtso-item[cible='do-paste']").on("click", function () {
+                    let list = [];
+                    EXPLORE.currentSel.each(function (ind, el) {
+                        list.push(EXPLORE.current + "/" + $(el).attr("name"))
+                    });
+                    switch ($(this).attr("cible")) {
+                        case "do-copy":
+                            EXPLORE.action = "copy";
+                            EXPLORE.copy = list;
+                            break;
+                        case "do-cut":
+                            EXPLORE.action = "cut";
+                            EXPLORE.copy = list;
+                            break;
+                        case "do-paste":
+                            if (EXPLORE.action) {
+                                pywebview.api.askCopy(EXPLORE.copy, EXPLORE.current, EXPLORE.action).then(data => {
+                                    let dict = {};
+                                    Object.values(data.data).forEach(function (el, ind) {
+                                        if (el.isOk) {
+                                            dict[ind] = el;
+                                        }
+                                        else {
+                                        }
+                                    });
+                                    Object.values(organizeData(dict)).forEach(addItemInMain);
+
+                                });
+                                if (EXPLORE.action === "cut") {
+                                    EXPLORE.copy = [];
+                                    EXPLORE.action = null;
+                                }
+                            }
+                            break;
+                    }
+                });
+
+                function openSaveCancel(open = true, save = true, cancel = true){
+                    open? $("#fvrb-open").show(): $("#fvrb-open").hide();
+                    save? $("#fvrb-save").show(): $("#fvrb-save").hide();
+                    cancel? $("#fvrb-cancel").show(): $("#fvrb-cancel").hide();
+                }
+
+                $(".fvtso-item[cible='sort-by-name']").click();
+                $(".fvtso-item[cible='sort-by-ascending']").click();
+                $(".fvtso-container[cible='3']").find(".fvtso-item").click();
+                setGridType("grid");
+                actualizeFuntions();
+                openSaveCancel(true, false, true);
+            });
+        </script>
+    </div>
+
+</body>
+
+</html>
