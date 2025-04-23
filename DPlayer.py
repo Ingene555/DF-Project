@@ -1,11 +1,4 @@
-import os
 import sys
-import webview
-import time
-import datetime as dt
-import flask
-from win32api import GetSystemMetrics as gsm
-import mainFunctions as mf
 import tools
 from win32api import GetSystemMetrics
 
@@ -17,6 +10,7 @@ IMAGE_DIR = []
 
 
 class MainApp(tools.Window):
+
     def __init__(self, title, url=None, html=None, api=None, picture=None):
         global APP
         tools.Window.__init__(self, title, url, html, api)
@@ -32,8 +26,6 @@ class API:
 
 
 if __name__ == "__main__":
-    # mf.run_as_admin
-    mf.clearDirectory("tempcaches")
     main = MainApp("DPlayer", url="D-Player/DPlayer.html", api=API())
     tools.serverRequierement()
     

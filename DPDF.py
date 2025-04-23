@@ -1,11 +1,4 @@
-import os
 import sys
-import webview
-import time
-import datetime as dt
-import flask
-from win32api import GetSystemMetrics as gsm
-import mainFunctions as mf
 import tools
 
 
@@ -23,7 +16,6 @@ class API:
         main.window.set_title("Dpdf | "+name)
 
 if __name__ == "__main__":
-    mf.clearDirectory("tempcaches")
     api = API()
     main = MainApp("Dpdf", url="D-PDF/DPDF.html", api=api)
     tools.serverRequierement()

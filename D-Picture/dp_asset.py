@@ -17,7 +17,7 @@ asset = """
     <link rel="stylesheet" href="http://127.0.0.1:5555/bootstrap-5.3.3-dist/css/bootstrap-grid.css">
     <link rel="stylesheet" href="http://127.0.0.1:5555/bootstrap-5.3.3-dist/css/bootstrap-grid.rtl.css">
     <link rel="stylesheet" href="http://127.0.0.1:5555/bootstrap-5.3.3-dist/css/bootstrap-grid.min.css">
-    <link rel="stylesheet" href="bootstrap-5.3.3-dist/css/bootstrap-grid.rtl.min.css">
+    <link rel="stylesheet" href="http://127.0.0.1:5555/bootstrap-5.3.3-dist/css/bootstrap-grid.rtl.min.css">
 
     <!-- Fichiers pour les utilitaires -->
     <link rel="stylesheet" href="http://127.0.0.1:5555/bootstrap-5.3.3-dist/css/bootstrap-utilities.css">

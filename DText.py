@@ -1,11 +1,7 @@
 import os
 import sys
 import webview
-import time
-import datetime as dt
 import flask
-from win32api import GetSystemMetrics as gsm
-import mainFunctions as mf
 import tools
 
 
@@ -63,7 +59,6 @@ class API:
 
 
 if __name__ == "__main__":
-    mf.clearDirectory("tempcaches")
     api = API()
     main = MainApp("DText", url="D-Text/DText.html", api=api)
     tools.serverRequierement()

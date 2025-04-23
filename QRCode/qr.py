@@ -9,6 +9,8 @@ from datetime import datetime as dt
 import os
 from wand.image import Image as WandImage
 import win32api
+from docx2pdf import convert as cwp
+from pptx import Presentation 
 import qrcode
 
 TEMPCACHES = 'tempcaches'

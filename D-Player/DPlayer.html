@@ -2356,13 +2356,13 @@
                     });
                     $(BROWSE2).click();
                 }
-                MQC.addButton("\tNew list", "newListBtn", function () {
+                MQC.addButton("\tNew list", undefined, function () {
                     newTitles();
                 });
-                MQC.addButton("\tAdd\t", "addBtn", function () {
+                MQC.addButton("\tAdd\t", undefined, function () {
                     addTitles();
                 });
-                MQC.addButton("\tOrder\t", "orderBtn", function () {
+                MQC.addButton("\tOrder\t", undefined, function () {
                     MDC.random = true;
                     $("#gc-random").click();
                 })

@@ -12,6 +12,12 @@ import send2trash as s2t
 import shutil
 
 
+IS_IT_USED = False
+EXTERNAL_FUNC = None
+STATIC = "http://127.0.0.1:5555/static/DExplorer"
+STATIC_FOLDER = "static/DExplorer"
+TEMPCACHES = "tempcaches"
+
 def convertOct(value):
     units = ["B", "KB", "MB", "GB", "TB", "PB"]
     size = float(value)
@@ -133,9 +139,10 @@ class API:
         return paths
 
     def setLibDir(self, lib, setLD=True, parent=False):
+        mf.clearDirectory(STATIC_FOLDER)
         data = {"data":{}}
         data["category"] = get_folder_category(lib)
-        data["dir"] = dir = self.getLibDir()[lib] if setLD else lib if os.path.exists(lib) else self.getLibDir()["c"]
+        data["dir"] = dir = self.getLibDir().get(lib, self.getLibDir()["c"]) if setLD else lib if os.path.exists(lib) else self.getLibDir()["c"]
         if parent:data["dir"] = dir = os.path.dirname(dir)
         for ww in os.listdir(dir):
             icon = False
@@ -145,7 +152,7 @@ class API:
                 save_path = os.path.join(tools.APP.config["UPLOAD_FOLDER"], filename)
                 if not os.path.exists(save_path):
                     shutil.copyfile(file_path, save_path)
-                icon = f"http://127.0.0.1:5555/static/img/{filename}"
+                icon = f"{STATIC}/{filename}"
             
             stat = os.stat(file_path) if os.path.exists(file_path) else None
             temps = convertDate(stat.st_mtime if stat else 0)
@@ -157,7 +164,8 @@ class API:
                         "brutSize": stat.st_size if stat else 0,
                         "icon": icon,
                         "path": dir,
-                        "type": getKind(file_path.split(".")[-1].lower()) if "." in os.path.basename(file_path) else ""
+                        "type": getKind(file_path.split(".")[-1].lower()) if "." in os.path.basename(file_path) else "",
+                        "ext": file_path.split(".")[-1].lower().strip() if "." in os.path.basename(file_path) else ""
                         }
         return data
 
@@ -192,6 +200,7 @@ class API:
         return {"history": [{os.path.dirname(ww): os.path.basename(ww)} for ww in hist]}
 
     def searchFile(self, dir, name):
+        mf.clearDirectory(STATIC_FOLDER)
         data = {"dir": False, "data": {}, "category": "c"}
         if os.path.exists(dir):
             data["dir"] = dir
@@ -206,7 +215,7 @@ class API:
                     save_path = os.path.join(tools.APP.config["UPLOAD_FOLDER"], filename)
                     if not os.path.exists(save_path):
                         shutil.copyfile(file_path, save_path)
-                    icon = f"http://127.0.0.1:5555/static/img/{filename}"
+                    icon = f"{STATIC}/{filename}"
                 
                 stat = os.stat(file_path) if os.path.exists(file_path) else None
                 temps = convertDate(stat.st_mtime if stat else 0)
@@ -218,7 +227,8 @@ class API:
                             "brutSize": stat.st_size if stat else 0,
                             "icon": icon,
                             "path": dir,
-                            "type": getKind(file_path.split(".")[-1].lower()) if "." in os.path.basename(file_path) else ""
+                            "type": getKind(file_path.split(".")[-1].lower()) if "." in os.path.basename(file_path) else "",
+                            "ext": file_path.split(".")[-1].lower().strip() if "." in os.path.basename(file_path) else ""
                             }
         return data
     
@@ -245,7 +255,8 @@ class API:
                         "brutSize": stat.st_size if stat else 0,
                         "icon": False,
                         "path": dir,
-                        "type": getKind(file_path.split(".")[-1].lower()) if "." in os.path.basename(file_path) else ""
+                        "type": getKind(file_path.split(".")[-1].lower()) if "." in os.path.basename(file_path) else "",
+                        "ext": file_path.split(".")[-1].lower().strip() if "." in os.path.basename(file_path) else ""
                         }
             response["message"]=True
         except Exception as e:
@@ -283,7 +294,8 @@ class API:
                             "brutSize": stat.st_size if stat else 0,
                             "icon": False,
                             "path": dir,
-                            "type": getKind(file_path.split(".")[-1].lower()) if "." in os.path.basename(file_path) else ""
+                            "type": getKind(file_path.split(".")[-1].lower()) if "." in os.path.basename(file_path) else "",
+                            "ext": file_path.split(".")[-1].lower().strip() if "." in os.path.basename(file_path) else ""
                             }
                 response["statut"]=True
             except Exception as e:
@@ -324,7 +336,7 @@ class API:
                     save_path = os.path.join(tools.APP.config["UPLOAD_FOLDER"], filename)
                     if not os.path.exists(save_path):
                         shutil.copyfile(file_path, save_path)
-                    icon = f"http://127.0.0.1:5555/static/img/{filename}"
+                    icon = f"{STATIC}/{filename}"
                 
                 stat = os.stat(file_path) if os.path.exists(file_path) else None
                 temps = convertDate(stat.st_mtime if stat else 0)
@@ -337,7 +349,8 @@ class API:
                             "brutSize": stat.st_size if stat else 0,
                             "icon": icon,
                             "path": dir,
-                            "type": getKind(file_path.split(".")[-1].lower()) if "." in os.path.basename(file_path) else ""
+                            "type": getKind(file_path.split(".")[-1].lower()) if "." in os.path.basename(file_path) else "",
+                            "ext": file_path.split(".")[-1].lower().strip() if "." in os.path.basename(file_path) else ""
                             }
             except Exception as e:
                 print(e)
@@ -347,23 +360,29 @@ class API:
                 }
         return data
 
+    def openSaveCancel(self, list_, method = "EXPLORE"):
+        if IS_IT_USED and method!="EXPLORE":
+            EXTERNAL_FUNC(method, list_)
+        else:
+            print(method, list_, sep=": ")
+        return {"none": None}
+
 if __name__ == "__main__":
     script = """$("#fvl-defpath").find(".fvlc-item[cible='c']").click();"""
-    mf.clearDirectory("tempcaches")
-    mf.clearDirectory("static/img")
+    mf.clearDirectory("static/DExplorer")
     main = MainApp("DExplorer", url="D-Explorer/DExplorer.html", api=API())
     tools.serverRequierement()
     
-    UPLOAD_FOLDER = os.path.join(tools.APP.root_path, "static", "img")
+    UPLOAD_FOLDER = os.path.join(tools.APP.root_path, "static", "DExplorer")
     os.makedirs(UPLOAD_FOLDER, exist_ok=True) 
     tools.APP.config["UPLOAD_FOLDER"] = UPLOAD_FOLDER
     
-    @tools.APP.route('/static/img/<filename>')
+    @tools.APP.route('/static/DExplorer/<filename>')
     def serve_image(filename):
         return flask.send_from_directory(tools.APP.config["UPLOAD_FOLDER"], filename)
     def st():
         import time
-        time.sleep(3)
+        time.sleep(4)
         main.window.run_js(script)
         
     thread = tools.Thread()

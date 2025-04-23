@@ -1,0 +1,3005 @@
+<!DOCTYPE HTML>
+<html>
+
+<head>
+    <title>FormatFlex Work Area</title>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link href="http://127.0.0.1:5555/bootstrap-5.3.3-dist/css/bootstrap.min.css">
+    <!-- Fichiers Bootstrap principaux -->
+    <link rel="stylesheet" href="http://127.0.0.1:5555/bootstrap-5.3.3-dist/css/bootstrap.css">
+    <link rel="stylesheet" href="http://127.0.0.1:5555/bootstrap-5.3.3-dist/css/bootstrap.min.css">
+    <link rel="stylesheet" href="http://127.0.0.1:5555/bootstrap-5.3.3-dist/css/bootstrap.rtl.css">
+    <link rel="stylesheet" href="http://127.0.0.1:5555/bootstrap-5.3.3-dist/css/bootstrap.rtl.min.css">
+
+    <!-- Fichiers pour le système de grille -->
+    <link rel="stylesheet" href="http://127.0.0.1:5555/bootstrap-5.3.3-dist/css/bootstrap-grid.css">
+    <link rel="stylesheet" href="http://127.0.0.1:5555/bootstrap-5.3.3-dist/css/bootstrap-grid.rtl.css">
+    <link rel="stylesheet" href="http://127.0.0.1:5555/bootstrap-5.3.3-dist/css/bootstrap-grid.min.css">
+    <link rel="stylesheet" href="http://127.0.0.1:5555/bootstrap-5.3.3-dist/css/bootstrap-grid.rtl.min.css">
+
+    <!-- Fichiers pour les utilitaires -->
+    <link rel="stylesheet" href="http://127.0.0.1:5555/bootstrap-5.3.3-dist/css/bootstrap-utilities.css">
+    <link rel="stylesheet" href="http://127.0.0.1:5555/bootstrap-5.3.3-dist/css/bootstrap-utilities.rtl.css">
+    <link rel="stylesheet" href="http://127.0.0.1:5555/bootstrap-5.3.3-dist/css/bootstrap-utilities.min.css">
+    <link rel="stylesheet" href="http://127.0.0.1:5555/bootstrap-5.3.3-dist/css/bootstrap-utilities.rtl.min.css">
+
+    <!-- Fichiers pour le reboot -->
+    <link rel="stylesheet" href="http://127.0.0.1:5555/bootstrap-5.3.3-dist/css/bootstrap-reboot.css">
+    <link rel="stylesheet" href="http://127.0.0.1:5555/bootstrap-5.3.3-dist/css/bootstrap-reboot.rtl.css">
+    <link rel="stylesheet" href="http://127.0.0.1:5555/bootstrap-5.3.3-dist/css/bootstrap-reboot.min.css">
+    <link rel="stylesheet" href="http://127.0.0.1:5555/bootstrap-5.3.3-dist/css/bootstrap-reboot.rtl.min.css">
+
+    <script src="http://127.0.0.1:5555/bootstrap-5.3.3-dist/js/bootstrap.min.js"></script>
+    <!-- Fichiers JavaScript principaux avec les bundles -->
+    <script src="http://127.0.0.1:5555/bootstrap-5.3.3-dist/js/bootstrap.bundle.js"></script>
+    <script src="http://127.0.0.1:5555/bootstrap-5.3.3-dist/js/bootstrap.bundle.min.js"></script>
+
+    <!-- Fichiers JavaScript sans les plugins de dépendance -->
+    <script src="http://127.0.0.1:5555/bootstrap-5.3.3-dist/js/bootstrap.js"></script>
+    <script src="http://127.0.0.1:5555/bootstrap-5.3.3-dist/js/bootstrap.min.js"></script>
+
+    <script src="http://127.0.0.1:5555/jquery/jquery-3.7.1.js"></script>
+    <link href="http://127.0.0.1:5555/ressources/util/variables.css">
+
+    <style>
+        @import url("http://127.0.0.1:5555/ressources/util/variables.css");
+
+        #ff-taskbar {
+            width: 100%;
+            height: 100px;
+            position: relative;
+            margin: 0;
+            padding: 0;
+            border-bottom: 3px solid var(--light-color-trans-50);
+        }
+
+        #fft-component {
+            width: 100%;
+            height: 70px;
+            margin: 0;
+            padding: 0 5px;
+            overflow: hidden;
+            overflow-x: auto;
+        }
+
+        #fft-component::-webkit-scrollbar {
+            height: 7px;
+        }
+
+        #fft-component::-webkit-scrollbar-thumb {
+            border-radius: 5px;
+            background-color: var(--light-color);
+        }
+
+        .fftc-item {
+            width: 70px;
+            height: 70px;
+            margin: 0 5px;
+            padding: 3px;
+            border-radius: 5px;
+            transition: all .3s;
+            cursor: pointer;
+        }
+
+        .fftc-item:hover {
+            background-color: var(--light-color-trans-50);
+        }
+
+        .fftci-icon {
+            width: 100%;
+            height: calc(100% - 25px);
+        }
+
+        .fftci-name {
+            height: 25px;
+            width: 100%;
+            overflow: hidden;
+            text-wrap: nowrap;
+            text-overflow: ellipsis;
+            font-weight: 500;
+            font-size: 15px;
+            text-align: center;
+        }
+
+        #fftcmd {
+            width: 100%;
+            height: 30px;
+            position: relative;
+            padding: 0;
+            margin: 0;
+        }
+
+        .ffbtn {
+            border: 0;
+            border-radius: 5px;
+            font-weight: 400;
+            background-color: var(--dark-blue);
+            color: var(--light-color);
+            transition: all .3s;
+        }
+
+        .ffbtn:hover {
+            opacity: .8;
+        }
+
+        #convert-all,
+        #cancel-all {
+            position: absolute;
+            left: calc(calc(100% - 14px) / 2);
+            transform: translateX(-50%);
+        }
+
+        #cancel-all {
+            display: none;
+        }
+
+        #ff-body {
+            width: 100%;
+            height: calc(100% - 100px);
+            position: relative;
+            margin: 0;
+            padding: 0;
+        }
+
+        #ffb-bottom {
+            width: 100%;
+            height: 100px;
+            padding: 10px;
+            margin: 0;
+        }
+
+        #ffbb-drop {
+            width: 100%;
+            height: 100%;
+            border-radius: 10px;
+            border: 3px dashed var(--light-color);
+            position: relative;
+            transition: all .3s;
+        }
+
+        #ffbb-drop h4 {
+            position: absolute;
+            left: 50%;
+            top: 50%;
+            transform: translate(-50%, -50%);
+        }
+
+        #ffb-main {
+            width: 100%;
+            height: calc(100% - 100px);
+            margin: 0;
+            padding: 5px;
+            padding-bottom: calc(100vh - 300px);
+            position: relative;
+            overflow: hidden;
+            overflow-y: auto;
+        }
+
+        #ffb-main::-webkit-scrollbar {
+            width: 12px;
+        }
+
+        #ffb-main::-webkit-scrollbar-thumb {
+            border-radius: 5px;
+            background-color: var(--light-color);
+        }
+
+        .ffb-group {
+            width: 100%;
+            position: relative;
+            padding: 0;
+            transition: all .5s ease-in-out;
+            border-bottom: 3px solid var(--dark-color-1);
+        }
+
+        .ffbg-input {
+            width: calc(50% - 50px);
+            position: relative;
+        }
+
+        .ffbgi-option {
+            width: 100%;
+            height: 80px;
+            margin: 0;
+            padding: 0;
+            position: relative;
+            border-bottom: 1px solid var(--dark-color-1);
+        }
+
+        .ffbgio-ddown {
+            width: 25px;
+            min-width: 25px;
+            height: 60px;
+            margin: calc(calc(80px - 60px) / 2) 2.5px;
+            position: relative;
+            transition: all .3s;
+            border-radius: 5px;
+            cursor: pointer;
+        }
+
+        .ffbgio-ddown:hover {
+            background-color: var(--light-color-trans-50);
+        }
+
+        .ffbgio-ddown svg {
+            position: absolute;
+            left: 50%;
+            top: 50%;
+            transform: translate(-50%, -50%) rotate(0deg);
+            transition: all .3s ease-in;
+        }
+
+        .ffbgio-right {
+            height: 100%;
+            position: relative;
+            padding: 0;
+            margin: 0;
+        }
+
+        .ffbgio-gtitle {
+            width: 100%;
+            height: 35px;
+            max-width: 100% !important;
+            padding: 5px;
+            text-align: left;
+            text-wrap: nowrap;
+            overflow: hidden;
+            text-overflow: ellipsis;
+            font-size: 17px;
+            font-weight: 500;
+        }
+
+        .ffbgio-gel {
+            width: 100%;
+            max-width: 100% !important;
+            height: calc(100% - 35px);
+            overflow: hidden;
+            overflow-x: auto;
+        }
+
+        .ffbgio-gel::-webkit-scrollbar {
+            height: 7px;
+        }
+
+        .ffbgio-gel::-webkit-scrollbar-thumb {
+            border-radius: 3px;
+            background-color: var(--light-color);
+        }
+
+        .ffsvg {
+            width: 30px;
+            height: 30px;
+            min-width: 30px;
+            min-height: 30px;
+            position: relative;
+            padding: 0;
+        }
+
+        .ffsvg svg,
+        .ffsvg img {
+            position: absolute;
+            left: 50%;
+            top: 50%;
+            transform: translate(-50%, -50%);
+            width: 100%;
+            height: 100%;
+            margin: 0;
+            object-fit: cover;
+        }
+
+        .ffcircular {
+            border-radius: 50%;
+            overflow: hidden;
+        }
+
+        .ffborder {
+            border: 1px solid var(--dark-color-1);
+        }
+
+        .ffbgio-gel .ffsvg {
+            transition: all .3s;
+            cursor: pointer;
+        }
+
+        .ffbgio-gel .ffsvg:hover {
+            background-color: var(--light-color-trans-50);
+        }
+
+        .ffbgio-item {
+            min-width: 75px !important;
+            width: 75px;
+            max-width: 75px !important;
+            height: 100%;
+            margin: 0 2px;
+            position: relative;
+        }
+
+        .ffbgio-element[for="show-ext"] {
+            width: 100%;
+            max-width: 75px !important;
+            height: 35px;
+            border-radius: 5px;
+            position: relative;
+            transition: all .3s;
+            cursor: pointer;
+        }
+
+        .ffbgio-element[for="show-ext"]:hover {
+            background-color: var(--light-color-trans-50);
+        }
+
+        .ffbgio-element[for="show-ext"]:hover .ff-container[for="select-ext"] {
+            display: inline;
+        }
+
+        .ffbgio-element[for="show-ext"] .ff-container[for="select-ext"] {
+            display: none;
+            width: clamp(200px, 20vw, 400px);
+            max-height: calc(100vh - 300px);
+        }
+
+        .ffbgio-ename {
+            text-align: center;
+            overflow: hidden;
+            text-overflow: ellipsis;
+            text-wrap: nowrap;
+            font-size: 13px;
+            padding: 5px 2px 5px 2px;
+            font-weight: 400;
+            height: 100%;
+            align-content: center;
+            align-items: center;
+        }
+
+        .ffbgio-esvg {
+            height: 100%;
+            width: 18px;
+            position: relative;
+        }
+
+        .ffbgio-esvg svg {
+            position: absolute;
+            left: 50%;
+            top: 50%;
+            transform: translate(-50%, -50%);
+        }
+
+        .ffbgi-list,
+        .ffbgc-list {
+            width: 100%;
+            margin: 0;
+            padding: 0 10px 10px 10px;
+            position: relative;
+            display: none;
+        }
+        .ffbgc-list{
+            min-height: 100% !important;
+        }
+
+        .ffbgil-item,
+        .ff-il-fill {
+            width: 100%;
+            height: 25px;
+            position: relative;
+            transition: all .3s;
+            border-radius: 3px;
+            overflow: hidden;
+        }
+
+        .ffbgil-item:hover {
+            background-color: var(--light-color-trans-50);
+        }
+
+        .ffbgc-list .ffbgil-item:hover {
+            background-color: transparent;
+        }
+
+        .ffbgc-list .ffbgil-item {
+            border: 1px solid var(--dark-color-1);
+            display: none !important;
+            min-height: 25px !important;
+            min-width: 100% !important;
+            position: relative;
+        }
+
+        .ffbgc-list .ff-il-fill {
+            position: absolute;
+            background-color: var(--dark-green-trans-100);
+            width: 0%;
+            z-index: 1;
+        }
+
+        .ff-il-fill.failed {
+            background-color: var(--dark-red) !important;
+        }
+
+        .ffbgc-list .ff-il-name {
+            font-weight: 700;
+            text-align: center;
+            z-index: 3;
+            position: absolute;
+            left: 50%;
+            top: 50%;
+            transform: translate(-50%, -50%);
+        }
+
+        .ffb-additem:hover {
+            background-color: var(--dark-blue);
+        }
+
+        .ff-il-name {
+            text-wrap: nowrap;
+            overflow: hidden;
+            text-overflow: ellipsis;
+        }
+
+        .ffb-additem .ff-il-name {
+            text-align: center;
+            cursor: pointer;
+            font-weight: 600;
+        }
+
+        .ff-il-topdown {
+            width: 40px;
+            min-width: 40px !important;
+            height: 100%;
+            margin: 0;
+            position: relative;
+        }
+
+        .ff-il-topdown>div {
+            width: 50%;
+            height: 100%;
+            position: relative;
+            border-radius: 5px;
+            cursor: pointer;
+            transition: all .3s;
+        }
+
+        .ff-il-tdtop:hover {
+            color: var(--dark-turquoise);
+        }
+
+        .ff-il-tddown:hover {
+            color: var(--light-red);
+        }
+
+        .ff-il-topdown>div svg,
+        .ff-il-check input,
+        .ff-il-show svg {
+            position: absolute;
+            left: 50%;
+            top: 50%;
+            transform: translate(-50%, -50%);
+        }
+
+        .ff-il-check {
+            width: 20px;
+            height: 100%;
+            transition: all .3s;
+            position: relative;
+        }
+
+        .ff-il-size {
+            width: 75px;
+            min-width: 75px !important;
+            font-size: 13px;
+            text-align: center;
+            font-weight: 300;
+            height: 100%;
+            text-wrap: nowrap;
+            overflow: hidden;
+            text-overflow: ellipsis;
+        }
+
+        .ff-il-ext {
+            width: 75px;
+            min-width: 75px !important;
+            font-size: 14px;
+            text-align: center;
+            font-weight: 300;
+            height: 100%;
+            text-wrap: nowrap;
+            overflow: hidden;
+            text-overflow: ellipsis;
+        }
+
+        .ff-il-show {
+            width: 20px;
+            min-width: 20px !important;
+            height: 100%;
+            position: relative;
+            cursor: pointer;
+            transition: all .3s;
+        }
+
+        .ff-il-show:hover {
+            color: var(--dark-blue);
+        }
+
+        .ff-il-show:hover .bi-eye-fill {
+            display: inline;
+        }
+
+        .ff-il-show:hover .bi-eye {
+            display: none;
+        }
+
+        .ff-il-show .bi-eye-fill {
+            display: none;
+        }
+
+        .ffbg-convert {
+            width: 100px;
+            position: relative;
+            height: 80px;
+            border-bottom: 1px solid var(--dark-color-1);
+        }
+
+        .ffbg-convert button {
+            width: 90%;
+            margin: auto 5%;
+        }
+
+        .ffbg-convert button[for="cancel"] {
+            display: none;
+        }
+
+        .ffbg-convert wataba {
+            width: 35%;
+            height: 35px;
+            display: block;
+            margin: auto calc(calc(100% - 35px) / 2);
+            border-radius: 50%;
+            position: relative;
+            display: none;
+        }
+
+        .ffbg-convert svg {
+            position: absolute;
+            left: 50%;
+            top: 50%;
+            transform: translate(-50%, -50%);
+            width: 30px;
+            height: 30px;
+        }
+
+        .ffsuccess {
+            color: var(--light-green);
+        }
+
+        .ffwarning {
+            color: var(--light-yellow);
+        }
+
+        .ffbg-convert div[for="percent"] {
+            width: 100%;
+            height: 25px;
+            margin-top: 10px;
+            border-radius: 5px;
+            border: 1px solid var(--dark-color-1);
+            text-align: center;
+            font-size: 14px;
+            overflow: hidden;
+            position: relative;
+            display: none;
+        }
+
+        .ffbg-convert div[for="percent"] .ff-il-fill {
+            position: absolute;
+            width: 0%;
+            background-color: var(--dark-green-trans-100);
+            z-index: 1 !important;
+        }
+
+        .ffbg-convert div[for="percent"] .ff-il-name {
+            font-weight: 600;
+            position: absolute;
+            left: 50%;
+            top: 50%;
+            transform: translate(-50%, -50%);
+            z-index: 3 !important;
+        }
+
+        .ffbg-output {
+            width: calc(50% - 50px);
+            position: relative;
+            height: 80px;
+            padding: auto 20px auto 20px;
+            border-bottom: 1px solid var(--dark-color-1);
+        }
+
+        .entry-area {
+            width: 96%;
+            height: 25px;
+            margin: 10px 2%;
+            padding: 0;
+            position: relative;
+        }
+
+        .ffea-fill {
+            height: 100%;
+            background-color: var(--dark-color-1);
+            width: 0;
+            max-width: calc(100% - 25px);
+            border-radius: 5px 0 0 5px;
+            position: absolute;
+            display: none;
+        }
+
+        .ffea-name {
+            width: calc(100% - 25px);
+            height: 100%;
+            background-color: transparent;
+            border-radius: 5px 0 0 5px;
+            border: 1px solid var(--dark-color-1-trans-80);
+            border-right: 0;
+            z-index: 3;
+            outline: 0;
+        }
+
+        .ffea-name:focus {
+            border: 1px solid var(--dark-blue);
+            border-right: 0;
+        }
+
+        .ffea-name:focus+.ffea-browse {
+            border: 1px solid var(--dark-blue);
+            border-left: 0;
+        }
+
+        .ffea-browse {
+            width: 25px !;
+            min-width: 25px !important;
+            max-width: 25px !important;
+            height: 25px !important;
+            border-radius: 0 5px 5px 0;
+            border: 1px solid var(--dark-color-1-trans-80);
+            border-left: 0;
+            cursor: pointer;
+            transition: all .3s;
+            color: var(--dark-blue);
+            position: relative;
+        }
+
+        .ffea-browse:hover {
+            background-color: var(--light-color-trans-50);
+        }
+
+        .ffea-browse svg {
+            position: absolute;
+            left: 50%;
+            top: 50%;
+            transform: translate(-50%, -50%);
+            stroke-width: 1.5;
+            stroke: var(--dark-blue);
+        }
+
+        .ff-container {
+            background-color: var(--dark-color);
+            border-radius: 5px;
+            z-index: 10;
+            overflow: hidden;
+            overflow-y: auto;
+            box-shadow: 3px 3px 3px rgba(0, 0, 0, 0.825);
+            cursor: default;
+        }
+
+        .ff-container::-webkit-scrollbar {
+            width: 10px;
+        }
+
+        .ff-container::-webkit-scrollbar-thumb {
+            border-radius: 5px;
+            background-color: var(--light-color);
+        }
+
+        .ff-absolute {
+            position: absolute;
+        }
+
+        .ff-left {
+            left: 0;
+        }
+
+        .ff-top {
+            top: 100%;
+        }
+
+        .ffform,
+        .ffsection,
+        .ffsec-contain {
+            width: 100%;
+            position: relative;
+        }
+
+        .fffs-title {
+            width: 100%;
+            font-size: 16px;
+            font-weight: 600;
+        }
+
+        .ff-fitem {
+            font-size: 14px;
+            margin: 5px 5px;
+            display: inline-flex;
+            padding: 3px;
+            cursor: pointer;
+        }
+
+        .ff-fitem.selected {
+            background-color: var(--dark-color-1);
+            border: 1px solid var(--dark-blue);
+        }
+
+        .ffseparator {
+            width: 80%;
+            height: 2px;
+            border-radius: 2px;
+            background-color: var(--light-color);
+            margin: 7px 10%;
+        }
+
+        .ff-show-warning {
+            border: 1px solid var(--light-yellow) !important;
+            animation: shake .7s ease;
+        }
+
+        .ff-show-error {
+            border: 1px solid var(--dark-red) !important;
+            animation: shake .7s ease;
+        }
+
+        .ff-show-where {
+            animation: where .7s ease;
+        }
+
+        @keyframes shake {
+            0% {
+                transform: translateX(0);
+            }
+
+            10% {
+                transform: translateX(-5px);
+            }
+
+            20% {
+                transform: translateX(5px);
+            }
+
+            30% {
+                transform: translateX(-5px);
+            }
+
+            40% {
+                transform: translateX(5px);
+            }
+
+            50% {
+                transform: translateX(0);
+            }
+
+            60% {
+                transform: translateX(-5px);
+            }
+
+            70% {
+                transform: translateX(5px);
+            }
+
+            80% {
+                transform: translateX(0);
+            }
+
+            90% {
+                transform: translateX(-5px);
+            }
+
+            100% {
+                transform: translateX(0);
+            }
+        }
+
+        @keyframes where {
+            0% {
+                border: 1px solid var(--dark-blue);
+                background-color: var(--dark-purple-trans-90);
+                transform: translateX(0);
+            }
+
+            10% {
+                border: 1px solid var(--dark-blue);
+                background-color: var(--dark-purple-trans-90);
+                transform: translateX(-5px);
+            }
+
+            20% {
+                border: 1px solid var(--dark-blue);
+                background-color: var(--dark-purple-trans-90);
+                transform: translateX(5px);
+            }
+
+            30% {
+                border: 1px solid var(--dark-blue);
+                background-color: var(--dark-purple-trans-90);
+                transform: translateX(-5px);
+            }
+
+            40% {
+                border: 1px solid var(--dark-blue);
+                background-color: var(--dark-purple-trans-90);
+                transform: translateX(5px);
+            }
+
+            50% {
+                border: 1px solid var(--dark-blue);
+                background-color: var(--dark-purple-trans-90);
+                transform: translateX(0);
+            }
+
+            60% {
+                border: 1px solid var(--dark-blue);
+                background-color: var(--dark-purple-trans-90);
+                transform: translateX(-5px);
+            }
+
+            70% {
+                border: 1px solid var(--dark-blue);
+                background-color: var(--dark-purple-trans-90);
+                transform: translateX(5px);
+            }
+
+            80% {
+                border: 1px solid var(--dark-blue);
+                background-color: var(--dark-purple-trans-90);
+                transform: translateX(0);
+            }
+
+            90% {
+                border: 1px solid var(--dark-blue);
+                background-color: var(--dark-purple-trans-90);
+                transform: translateX(-5px);
+            }
+
+            100% {
+                border: 1px solid var(--dark-blue);
+                background-color: var(--dark-purple-trans-90);
+                transform: translateX(0);
+            }
+        }
+
+        #ff-preview,
+        #ff-history,
+        #ff-about,
+        #ff-modal-osc,
+        #ff-modal-iew {
+            width: 100vw;
+            height: 100vh;
+            position: fixed;
+            z-index: 50;
+            left: 0;
+            top: 0;
+            display: none;
+        }
+
+        .ff-fill {
+            width: 100% !important;
+            height: 100% !important;
+            min-width: 100% !important;
+            min-height: 100% !important;
+            position: absolute;
+            left: 0;
+            top: 0;
+            background-color: var(--dark-color-1-trans-50);
+            z-index: 11;
+        }
+
+        .ffsc-contain {
+            width: clamp(500px, 60vw, 1000px);
+            height: clamp(400px, 60vh, 900px);
+            position: absolute;
+            left: 50%;
+            top: 50%;
+            transform: translate(-50%, -50%);
+            z-index: 12;
+        }
+
+        .ff-close-sc {
+            width: 40px;
+            height: 40px;
+            cursor: pointer;
+            position: absolute;
+            top: 10px;
+            right: 20px;
+            z-index: 13;
+            transition: all .3s;
+            color: var(--dark-red);
+            stroke-width: 1.3;
+            stroke: var(--dark-red);
+        }
+
+        .ff-close-sc:hover {
+            filter: drop-shadow(0px 0px 5px var(--dark-red));
+        }
+
+        #ffh-table {
+            position: relative;
+            width: 100%;
+            table-layout: fixed;
+        }
+
+        #ffh-table tr {
+            width: 100%;
+            margin-bottom: 10px;
+            border-bottom: 2px solid var(--light-color-trans-50);
+        }
+
+        #ffh-table tr td {
+            overflow: hidden;
+            text-overflow: ellipsis;
+            padding: 2px;
+            user-select: text;
+        }
+
+        #ffh-table tr td:nth-child(1) {
+            width: calc(calc(100% - 130px - 80px) / 2) !important;
+            max-width: calc(calc(100% - 75px) / 2) !important;
+            max-height: fit-content;
+            text-align: left;
+            align-items: flex-start;
+            align-content: flex-start;
+            white-space: normal;
+            word-wrap: break-word;
+            overflow-wrap: break-word;
+            border-right: 1px solid var(--dark-color-1);
+        }
+
+        #ffh-table tr td:nth-child(2) {
+            width: calc(calc(100% - 130px - 80px) / 2) !important;
+            max-width: calc(calc(100% - 75px) / 2) !important;
+            text-align: center;
+            align-items: flex-start;
+            align-content: flex-start;
+            border-right: 1px solid var(--dark-color-1);
+        }
+
+        #ffh-table tr td:nth-child(3) {
+            width: 130px;
+            max-width: 130px;
+            text-align: center;
+            align-items: flex-start;
+            align-content: flex-start;
+            font-size: 14px;
+            border-right: 1px solid var(--dark-color-1);
+        }
+
+        #ffh-table tr td:nth-child(4) {
+            width: 80px;
+            justify-content: center;
+            justify-items: center;
+            align-items: flex-start;
+            align-content: flex-start;
+            position: relative;
+            height: 40px;
+            min-height: 40px;
+        }
+
+        #ffh-table tr td:nth-child(4) button {
+            position: absolute;
+            left: 50%;
+            transform: translateX(-50%);
+        }
+
+        #ffh-table summary {
+            text-overflow: ellipsis;
+            overflow: hidden;
+            white-space: normal;
+            word-wrap: break-word;
+            overflow-wrap: break-word;
+        }
+
+        #ffh-table summary::marker {
+            display: none;
+        }
+
+        #ffh-table ul {
+            list-style: none;
+        }
+
+        #ffh-table ul li {
+            font-style: italic !important;
+            font-size: 13px !important;
+            font-weight: 200 !important;
+            text-overflow: ellipsis;
+            overflow: hidden;
+            white-space: normal;
+            word-wrap: break-word;
+            overflow-wrap: break-word;
+        }
+
+        .ff-border-top {
+            border-top: 2px solid var(--light-color);
+        }
+
+        .ff-border-bottom {
+            border-bottom: 2px solid var(--light-color);
+        }
+
+        .ffbgil-item.selected {
+            background-color: var(--dark-purple-trans-90);
+        }
+
+        #ff-mfill {
+            width: 100%;
+            height: 100%;
+            position: absolute;
+            left: 0;
+            top: 0;
+        }
+
+        #ff-modal-os,
+        #ff-modal-show-iew {
+            width: 900px;
+            height: clamp(440px, 80%, 600px);
+            overflow: hidden;
+            position: absolute;
+            padding: 0;
+            border-radius: 10px;
+            background-color: black;
+            box-shadow: 2px 2px 3px var(--light-color-trans-20);
+            z-index: 2;
+        }
+
+        #ff-modal-show-iew {
+            width: 500px;
+            height: 280px;
+        }
+
+        #ff-mos-titlebar,
+        #ff-msiew-titlebar {
+            padding: 0;
+            margin: 0;
+            width: 100%;
+            height: 34px;
+            overflow: hidden;
+            position: relative;
+        }
+
+        #ff-mostb-close,
+        #ff-msiew-close {
+            width: 40px !important;
+            min-width: 40px !important;
+            position: relative;
+            margin: 0;
+            transition: all .2s;
+        }
+
+        #ff-mostb-close:hover,
+        #ff-msiew-close:hover {
+            background-color: var(--dark-red);
+        }
+
+        #ff-mostb-close svg,
+        #ff-msiew-close svg {
+            position: absolute;
+            left: 50%;
+            top: 50%;
+            transform: translate(-50%, -50%);
+        }
+
+        #ff-mostb-title #ff-msiew-title {
+            height: 100%;
+            text-align: center;
+            padding: 4px;
+            position: relative;
+        }
+
+        #ff-mostb-icon {
+            width: 28px !important;
+            min-width: 28px !important;
+            height: 100%;
+            position: relative;
+            padding: 0;
+            margin: 0;
+        }
+
+        #ff-mostb-icon img {
+            width: 100%;
+            height: 100%;
+            position: absolute;
+            left: 50%;
+            top: 50%;
+            transform: translate(-50%, -50%);
+            object-fit: contain;
+        }
+
+        #ff-mostb-name,
+        #ff-msiew-name {
+            height: 100%;
+            padding-left: 2px;
+            align-items: center;
+            align-content: center;
+            text-align: left;
+            font-weight: 300;
+            text-wrap: nowrap;
+            overflow: hidden;
+            text-overflow: ellipsis;
+        }
+
+        #ff-mos-body {
+            width: 100%;
+            height: calc(100% - 34px);
+            position: relative;
+            overflow: hidden;
+        }
+
+        #ff-msiew-foot {
+            width: 100%;
+            height: 34px;
+            position: relative;
+            padding: 0;
+            margin: 0;
+            background-color: var(--dark-color);
+        }
+
+        #ff-msiew-foot button {
+            width: 75px !important;
+            height: 90%;
+            min-width: 75px !important;
+            margin: 1px 5px;
+        }
+
+        #ff-msiew-body {
+            width: 100%;
+            height: calc(100% - 34px - 34px);
+            margin: 0;
+            padding: 0;
+            position: relative;
+            background-color: var(--dark-color);
+        }
+
+        #ff-msiew-icon {
+            width: 100px;
+            min-width: 100px !important;
+            height: 100%;
+            position: relative;
+        }
+
+        #ff-msiew-icon svg {
+            position: absolute;
+            width: 90%;
+            height: 100%;
+            left: 50%;
+            top: 50%;
+            transform: translate(-50%, -50%);
+        }
+
+        #ff-msiew-icon .bi-info-circle-fill {
+            color: var(--dark-blue);
+            display: inline;
+        }
+
+        #ff-msiew-icon .bi-exclamation-triangle-fill {
+            color: var(--light-yellow);
+            display: none;
+        }
+
+        #ff-msiew-icon .bi-ban-fill {
+            color: var(--dark-red);
+            display: none;
+        }
+
+        #ff-msiew-contain {
+            max-width: calc(100% - 100px) !important;
+            height: 100%;
+            overflow-y: auto;
+            padding: 5px;
+        }
+
+        #ff-msiew-contain::-webkit-scrollbar {
+            width: 4px;
+            height: 0;
+        }
+
+        #ff-msiew-contain::-webkit-scrollbar-thumb {
+            background-color: var(--light-color-1);
+            border-radius: 2px;
+        }
+
+        #ff-msiew-contain,
+        #ff-msiew-contain * {
+            align-items: center;
+            align-content: center;
+            white-space: normal;
+            word-wrap: break-word;
+            overflow-wrap: break-word;
+
+        }
+
+        .ff-drag-hover {
+            background-color: var(--dark-color-1-trans-80);
+            animation-duration: 10s;
+            animation-iteration-count: infinite;
+            animation-name: dragAnime;
+        }
+
+        @keyframes dragAnime {
+            0% {
+                border: 5px solid var(--dark-blue);
+            }
+
+            10% {
+                border: 1px solid var(--dark-blue);
+            }
+
+            20% {
+                border: 5px solid var(--dark-blue);
+            }
+
+            30% {
+                border: 1px solid var(--dark-blue);
+            }
+
+            40% {
+                border: 5px solid var(--dark-blue);
+            }
+
+            50% {
+                border: 1px solid var(--dark-blue);
+            }
+
+            60% {
+                border: 5px solid var(--dark-blue);
+            }
+
+            70% {
+                border: 1px solid var(--dark-blue);
+            }
+
+            80% {
+                border: 5px solid var(--dark-blue);
+            }
+
+            90% {
+                border: 1px solid var(--dark-blue);
+            }
+        }
+    </style>
+    <script>
+        function FFgetIcon(fileType = "file") {
+            let dict = {
+                "open": `<svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor"
+                                    class="bi bi-folder-fill" viewBox="0 0 16 16">
+                                    <path
+                                        d="M9.828 3h3.982a2 2 0 0 1 1.992 2.181l-.637 7A2 2 0 0 1 13.174 14H2.825a2 2 0 0 1-1.991-1.819l-.637-7a2 2 0 0 1 .342-1.31L.5 3a2 2 0 0 1 2-2h3.672a2 2 0 0 1 1.414.586l.828.828A2 2 0 0 0 9.828 3m-8.322.12q.322-.119.684-.12h5.396l-.707-.707A1 1 0 0 0 6.172 2H2.5a1 1 0 0 0-1 .981z" />
+                                </svg>`,
+                "folder": `<svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="var(--dark-purple)"
+                                    class="bi bi-folder2" viewBox="0 0 16 16">
+                                    <path
+                                        d="M1 3.5A1.5 1.5 0 0 1 2.5 2h2.764c.958 0 1.76.56 2.311 1.184C7.985 3.648 8.48 4 9 4h4.5A1.5 1.5 0 0 1 15 5.5v7a1.5 1.5 0 0 1-1.5 1.5h-11A1.5 1.5 0 0 1 1 12.5zM2.5 3a.5.5 0 0 0-.5.5V6h12v-.5a.5.5 0 0 0-.5-.5H9c-.964 0-1.71-.629-2.174-1.154C6.374 3.334 5.82 3 5.264 3zM14 7H2v5.5a.5.5 0 0 0 .5.5h11a.5.5 0 0 0 .5-.5z" />
+                                </svg>`,
+                "image": `<svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="var(--light-yellow)"
+                                    class="bi bi-file-earmark-image" viewBox="0 0 16 16">
+                                    <path d="M6.502 7a1.5 1.5 0 1 0 0-3 1.5 1.5 0 0 0 0 3" />
+                                    <path
+                                        d="M14 14a2 2 0 0 1-2 2H4a2 2 0 0 1-2-2V2a2 2 0 0 1 2-2h5.5L14 4.5zM4 1a1 1 0 0 0-1 1v10l2.224-2.224a.5.5 0 0 1 .61-.075L8 11l2.157-3.02a.5.5 0 0 1 .76-.063L13 10V4.5h-2A1.5 1.5 0 0 1 9.5 3V1z" />
+                                </svg>`,
+                "video": `<svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="var(--dark-orange)"
+                                    class="bi bi-file-earmark-play" viewBox="0 0 16 16">
+                                    <path
+                                        d="M6 6.883v4.234a.5.5 0 0 0 .757.429l3.528-2.117a.5.5 0 0 0 0-.858L6.757 6.454a.5.5 0 0 0-.757.43z" />
+                                    <path
+                                        d="M14 14V4.5L9.5 0H4a2 2 0 0 0-2 2v12a2 2 0 0 0 2 2h8a2 2 0 0 0 2-2M9.5 3A1.5 1.5 0 0 0 11 4.5h2V14a1 1 0 0 1-1 1H4a1 1 0 0 1-1-1V2a1 1 0 0 1 1-1h5.5z" />
+                                </svg>`,
+                "pdf": `<svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="var(--dark-red)"
+                                    class="bi bi-file-earmark-pdf" viewBox="0 0 16 16">
+                                    <path
+                                        d="M14 14V4.5L9.5 0H4a2 2 0 0 0-2 2v12a2 2 0 0 0 2 2h8a2 2 0 0 0 2-2M9.5 3A1.5 1.5 0 0 0 11 4.5h2V14a1 1 0 0 1-1 1H4a1 1 0 0 1-1-1V2a1 1 0 0 1 1-1h5.5z" />
+                                    <path
+                                        d="M4.603 14.087a.8.8 0 0 1-.438-.42c-.195-.388-.13-.776.08-1.102.198-.307.526-.568.897-.787a7.7 7.7 0 0 1 1.482-.645 20 20 0 0 0 1.062-2.227 7.3 7.3 0 0 1-.43-1.295c-.086-.4-.119-.796-.046-1.136.075-.354.274-.672.65-.823.192-.077.4-.12.602-.077a.7.7 0 0 1 .477.365c.088.164.12.356.127.538.007.188-.012.396-.047.614-.084.51-.27 1.134-.52 1.794a11 11 0 0 0 .98 1.686 5.8 5.8 0 0 1 1.334.05c.364.066.734.195.96.465.12.144.193.32.2.518.007.192-.047.382-.138.563a1.04 1.04 0 0 1-.354.416.86.86 0 0 1-.51.138c-.331-.014-.654-.196-.933-.417a5.7 5.7 0 0 1-.911-.95 11.7 11.7 0 0 0-1.997.406 11.3 11.3 0 0 1-1.02 1.51c-.292.35-.609.656-.927.787a.8.8 0 0 1-.58.029m1.379-1.901q-.25.115-.459.238c-.328.194-.541.383-.647.547-.094.145-.096.25-.04.361q.016.032.026.044l.035-.012c.137-.056.355-.235.635-.572a8 8 0 0 0 .45-.606m1.64-1.33a13 13 0 0 1 1.01-.193 12 12 0 0 1-.51-.858 21 21 0 0 1-.5 1.05zm2.446.45q.226.245.435.41c.24.19.407.253.498.256a.1.1 0 0 0 .07-.015.3.3 0 0 0 .094-.125.44.44 0 0 0 .059-.2.1.1 0 0 0-.026-.063c-.052-.062-.2-.152-.518-.209a4 4 0 0 0-.612-.053zM8.078 7.8a7 7 0 0 0 .2-.828q.046-.282.038-.465a.6.6 0 0 0-.032-.198.5.5 0 0 0-.145.04c-.087.035-.158.106-.196.283-.04.192-.03.469.046.822q.036.167.09.346z" />
+                                </svg>`,
+                "audio": `<svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="var(--dark-pink)"
+                                    class="bi bi-file-earmark-music" viewBox="0 0 16 16">
+                                    <path
+                                        d="M11 6.64a1 1 0 0 0-1.243-.97l-1 .25A1 1 0 0 0 8 6.89v4.306A2.6 2.6 0 0 0 7 11c-.5 0-.974.134-1.338.377-.36.24-.662.628-.662 1.123s.301.883.662 1.123c.364.243.839.377 1.338.377s.974-.134 1.338-.377c.36-.24.662-.628.662-1.123V8.89l2-.5z" />
+                                    <path
+                                        d="M14 14V4.5L9.5 0H4a2 2 0 0 0-2 2v12a2 2 0 0 0 2 2h8a2 2 0 0 0 2-2M9.5 3A1.5 1.5 0 0 0 11 4.5h2V14a1 1 0 0 1-1 1H4a1 1 0 0 1-1-1V2a1 1 0 0 1 1-1h5.5z" />
+                                </svg>`,
+                "text": `<svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="var(--dark-color-1)"
+                                    class="bi bi-file-earmark-text" viewBox="0 0 16 16">
+                                    <path
+                                        d="M5.5 7a.5.5 0 0 0 0 1h5a.5.5 0 0 0 0-1zM5 9.5a.5.5 0 0 1 .5-.5h5a.5.5 0 0 1 0 1h-5a.5.5 0 0 1-.5-.5m0 2a.5.5 0 0 1 .5-.5h2a.5.5 0 0 1 0 1h-2a.5.5 0 0 1-.5-.5" />
+                                    <path
+                                        d="M9.5 0H4a2 2 0 0 0-2 2v12a2 2 0 0 0 2 2h8a2 2 0 0 0 2-2V4.5zm0 1v2A1.5 1.5 0 0 0 11 4.5h2V14a1 1 0 0 1-1 1H4a1 1 0 0 1-1-1V2a1 1 0 0 1 1-1z" />
+                                </svg>`,
+                "word": `<svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="var(--dark-blue)"
+                                    class="bi bi-file-earmark-word" viewBox="0 0 16 16">
+                                    <path
+                                        d="M5.485 6.879a.5.5 0 1 0-.97.242l1.5 6a.5.5 0 0 0 .967.01L8 9.402l1.018 3.73a.5.5 0 0 0 .967-.01l1.5-6a.5.5 0 0 0-.97-.242l-1.036 4.144-.997-3.655a.5.5 0 0 0-.964 0l-.997 3.655L5.485 6.88z" />
+                                    <path
+                                        d="M14 14V4.5L9.5 0H4a2 2 0 0 0-2 2v12a2 2 0 0 0 2 2h8a2 2 0 0 0 2-2M9.5 3A1.5 1.5 0 0 0 11 4.5h2V14a1 1 0 0 1-1 1H4a1 1 0 0 1-1-1V2a1 1 0 0 1 1-1h5.5z" />
+                                </svg>`,
+                "excel": `<svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="var(--dark-green)"
+                                    class="bi bi-file-earmark-excel" viewBox="0 0 16 16">
+                                    <path
+                                        d="M5.884 6.68a.5.5 0 1 0-.768.64L7.349 10l-2.233 2.68a.5.5 0 0 0 .768.64L8 10.781l2.116 2.54a.5.5 0 0 0 .768-.641L8.651 10l2.233-2.68a.5.5 0 0 0-.768-.64L8 9.219l-2.116-2.54z" />
+                                    <path
+                                        d="M14 14V4.5L9.5 0H4a2 2 0 0 0-2 2v12a2 2 0 0 0 2 2h8a2 2 0 0 0 2-2M9.5 3A1.5 1.5 0 0 0 11 4.5h2V14a1 1 0 0 1-1 1H4a1 1 0 0 1-1-1V2a1 1 0 0 1 1-1h5.5z" />
+                                </svg>`,
+                "pwp": `<svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="var(--dark-oranage-2)"
+                                    class="bi bi-file-earmark-ppt" viewBox="0 0 16 16">
+                                    <path
+                                        d="M7 5.5a1 1 0 0 0-1 1V13a.5.5 0 0 0 1 0v-2h1.188a2.75 2.75 0 0 0 0-5.5zM8.188 10H7V6.5h1.188a1.75 1.75 0 1 1 0 3.5" />
+                                    <path
+                                        d="M14 4.5V14a2 2 0 0 1-2 2H4a2 2 0 0 1-2-2V2a2 2 0 0 1 2-2h5.5zm-3 0A1.5 1.5 0 0 1 9.5 3V1H4a1 1 0 0 0-1 1v12a1 1 0 0 0 1 1h8a1 1 0 0 0 1-1V4.5z" />
+                                </svg>`,
+                "file": `<svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor"
+                                    class="bi bi-file-earmark" viewBox="0 0 16 16">
+                                    <path
+                                        d="M14 4.5V14a2 2 0 0 1-2 2H4a2 2 0 0 1-2-2V2a2 2 0 0 1 2-2h5.5zm-3 0A1.5 1.5 0 0 1 9.5 3V1H4a1 1 0 0 0-1 1v12a1 1 0 0 0 1 1h8a1 1 0 0 0 1-1V4.5z" />
+                                </svg>`,
+                "bin": `<svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor"
+                                    class="bi bi-file-earmark-binary" viewBox="0 0 16 16">
+                                    <path
+                                        d="M7.05 11.885c0 1.415-.548 2.206-1.524 2.206C4.548 14.09 4 13.3 4 11.885c0-1.412.548-2.203 1.526-2.203.976 0 1.524.79 1.524 2.203m-1.524-1.612c-.542 0-.832.563-.832 1.612q0 .133.006.252l1.559-1.143c-.126-.474-.375-.72-.733-.72zm-.732 2.508c.126.472.372.718.732.718.54 0 .83-.563.83-1.614q0-.129-.006-.25zm6.061.624V14h-3v-.595h1.181V10.5h-.05l-1.136.747v-.688l1.19-.786h.69v3.633z" />
+                                    <path
+                                        d="M14 14V4.5L9.5 0H4a2 2 0 0 0-2 2v12a2 2 0 0 0 2 2h8a2 2 0 0 0 2-2M9.5 3A1.5 1.5 0 0 0 11 4.5h2V14a1 1 0 0 1-1 1H4a1 1 0 0 1-1-1V2a1 1 0 0 1 1-1h5.5z" />
+                                </svg>`,
+                "code": `<svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="#777777"
+                                    class="bi bi-file-earmark-code" viewBox="0 0 16 16">
+                                    <path
+                                        d="M14 4.5V14a2 2 0 0 1-2 2H4a2 2 0 0 1-2-2V2a2 2 0 0 1 2-2h5.5zm-3 0A1.5 1.5 0 0 1 9.5 3V1H4a1 1 0 0 0-1 1v12a1 1 0 0 0 1 1h8a1 1 0 0 0 1-1V4.5z" />
+                                    <path
+                                        d="M8.646 6.646a.5.5 0 0 1 .708 0l2 2a.5.5 0 0 1 0 .708l-2 2a.5.5 0 0 1-.708-.708L10.293 9 8.646 7.354a.5.5 0 0 1 0-.708m-1.292 0a.5.5 0 0 0-.708 0l-2 2a.5.5 0 0 0 0 .708l2 2a.5.5 0 0 0 .708-.708L5.707 9l1.647-1.646a.5.5 0 0 0 0-.708" />
+                                </svg>`,
+                "ai": `<svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="#FF7C00"
+                                    class="bi bi-filetype-ai" viewBox="0 0 16 16">
+                                    <path fill-rule="evenodd"
+                                        d="M14 4.5V14a2 2 0 0 1-2 2H6v-1h6a1 1 0 0 0 1-1V4.5h-2A1.5 1.5 0 0 1 9.5 3V1H4a1 1 0 0 0-1 1v9H2V2a2 2 0 0 1 2-2h5.5zM1.113 14.82.8 15.85H0l1.342-3.999h.926l1.336 3.999h-.841l-.314-1.028H1.113Zm1.178-.588-.49-1.617h-.034l-.49 1.617zm2.425-2.382v3.999h-.791V11.85h.79Z" />
+                                </svg>`,
+                "cs": `<svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="#68217A"
+                                    class="bi bi-filetype-cs" viewBox="0 0 16 16">
+                                    <path fill-rule="evenodd"
+                                        d="M14 4.5V14a2 2 0 0 1-2 2H8v-1h4a1 1 0 0 0 1-1V4.5h-2A1.5 1.5 0 0 1 9.5 3V1H4a1 1 0 0 0-1 1v9H2V2a2 2 0 0 1 2-2h5.5zM3.629 15.29a1.2 1.2 0 0 1-.112-.449h.765a.58.58 0 0 0 .255.384q.105.073.249.114t.32.041q.245 0 .412-.07a.56.56 0 0 0 .255-.193.5.5 0 0 0 .085-.29.39.39 0 0 0-.152-.326q-.153-.12-.463-.193l-.618-.143a1.7 1.7 0 0 1-.54-.214 1 1 0 0 1-.35-.367 1.1 1.1 0 0 1-.124-.524q0-.366.19-.639.191-.272.528-.422t.776-.149q.458 0 .78.152.324.153.5.41.18.255.2.566h-.75a.56.56 0 0 0-.12-.258.6.6 0 0 0-.246-.181.9.9 0 0 0-.37-.068q-.324 0-.512.152a.47.47 0 0 0-.185.384q0 .18.144.3a1 1 0 0 0 .404.175l.621.143q.325.075.566.211t.375.358.134.56q0 .37-.187.656a1.2 1.2 0 0 1-.54.439q-.351.158-.858.158a2.2 2.2 0 0 1-.665-.09 1.4 1.4 0 0 1-.477-.252 1.1 1.1 0 0 1-.29-.375m-2.72-2.23a1.7 1.7 0 0 0-.103.633v.495q0 .369.102.627a.83.83 0 0 0 .299.392.85.85 0 0 0 .478.132.86.86 0 0 0 .4-.088.7.7 0 0 0 .273-.249.8.8 0 0 0 .118-.363h.764v.076a1.27 1.27 0 0 1-.225.674q-.205.29-.551.454a1.8 1.8 0 0 1-.785.164q-.54 0-.914-.217a1.4 1.4 0 0 1-.572-.626Q0 14.756 0 14.188v-.498q0-.569.196-.979a1.44 1.44 0 0 1 .572-.633q.378-.222.91-.222.33 0 .607.097.281.093.49.272a1.32 1.32 0 0 1 .465.964v.073h-.764a.85.85 0 0 0-.12-.38.7.7 0 0 0-.273-.261.8.8 0 0 0-.398-.097.8.8 0 0 0-.475.138.87.87 0 0 0-.302.398Z" />
+                                </svg>`,
+                "css": `<svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="#1572B6"
+                                    class="bi bi-filetype-css" viewBox="0 0 16 16">
+                                    <path fill-rule="evenodd"
+                                        d="M14 4.5V14a2 2 0 0 1-2 2h-1v-1h1a1 1 0 0 0 1-1V4.5h-2A1.5 1.5 0 0 1 9.5 3V1H4a1 1 0 0 0-1 1v9H2V2a2 2 0 0 1 2-2h5.5zM3.397 14.841a1.13 1.13 0 0 0 .401.823q.195.162.478.252.284.091.665.091.507 0 .859-.158.354-.158.539-.44.187-.284.187-.656 0-.336-.134-.56a1 1 0 0 0-.375-.357 2 2 0 0 0-.566-.21l-.621-.144a1 1 0 0 1-.404-.176.37.37 0 0 1-.144-.299q0-.234.185-.384.188-.152.512-.152.214 0 .37.068a.6.6 0 0 1 .246.181.56.56 0 0 1 .12.258h.75a1.1 1.1 0 0 0-.2-.566 1.2 1.2 0 0 0-.5-.41 1.8 1.8 0 0 0-.78-.152q-.439 0-.776.15-.337.149-.527.421-.19.273-.19.639 0 .302.122.524.124.223.352.367.228.143.539.213l.618.144q.31.073.463.193a.39.39 0 0 1 .152.326.5.5 0 0 1-.085.29.56.56 0 0 1-.255.193q-.167.07-.413.07-.175 0-.32-.04a.8.8 0 0 1-.248-.115.58.58 0 0 1-.255-.384zM.806 13.693q0-.373.102-.633a.87.87 0 0 1 .302-.399.8.8 0 0 1 .475-.137q.225 0 .398.097a.7.7 0 0 1 .272.26.85.85 0 0 1 .12.381h.765v-.072a1.33 1.33 0 0 0-.466-.964 1.4 1.4 0 0 0-.489-.272 1.8 1.8 0 0 0-.606-.097q-.534 0-.911.223-.375.222-.572.632-.195.41-.196.979v.498q0 .568.193.976.197.407.572.626.375.217.914.217.439 0 .785-.164t.55-.454a1.27 1.27 0 0 0 .226-.674v-.076h-.764a.8.8 0 0 1-.118.363.7.7 0 0 1-.272.25.9.9 0 0 1-.401.087.85.85 0 0 1-.478-.132.83.83 0 0 1-.299-.392 1.7 1.7 0 0 1-.102-.627zM6.78 15.29a1.2 1.2 0 0 1-.111-.449h.764a.58.58 0 0 0 .255.384q.106.073.25.114.142.041.319.041.245 0 .413-.07a.56.56 0 0 0 .255-.193.5.5 0 0 0 .085-.29.39.39 0 0 0-.153-.326q-.152-.12-.463-.193l-.618-.143a1.7 1.7 0 0 1-.539-.214 1 1 0 0 1-.351-.367 1.1 1.1 0 0 1-.123-.524q0-.366.19-.639.19-.272.527-.422t.777-.149q.456 0 .779.152.326.153.5.41.18.255.2.566h-.75a.56.56 0 0 0-.12-.258.6.6 0 0 0-.246-.181.9.9 0 0 0-.37-.068q-.324 0-.512.152a.47.47 0 0 0-.184.384q0 .18.143.3a1 1 0 0 0 .404.175l.621.143q.326.075.566.211t.375.358.135.56q0 .37-.188.656a1.2 1.2 0 0 1-.539.439q-.351.158-.858.158-.381 0-.665-.09a1.4 1.4 0 0 1-.478-.252 1.1 1.1 0 0 1-.29-.375" />
+                                </svg>`,
+                "exe": `<svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="#00CC00"
+                                    class="bi bi-filetype-exe" viewBox="0 0 16 16">
+                                    <path fill-rule="evenodd"
+                                        d="M14 4.5V14a2 2 0 0 1-2 2h-1v-1h1a1 1 0 0 0 1-1V4.5h-2A1.5 1.5 0 0 1 9.5 3V1H4a1 1 0 0 0-1 1v9H2V2a2 2 0 0 1 2-2h5.5zM2.575 15.202H.785v-1.073H2.47v-.606H.785v-1.025h1.79v-.648H0v3.999h2.575zM6.31 11.85h-.893l-.823 1.439h-.036l-.832-1.439h-.931l1.227 1.983-1.239 2.016h.861l.853-1.415h.035l.85 1.415h.908l-1.254-1.992zm1.025 3.352h1.79v.647H6.548V11.85h2.576v.648h-1.79v1.025h1.684v.606H7.334v1.073Z" />
+                                </svg>`,
+                "html": `<svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="#E34F26"
+                                    class="bi bi-filetype-html" viewBox="0 0 16 16">
+                                    <path fill-rule="evenodd"
+                                        d="M14 4.5V11h-1V4.5h-2A1.5 1.5 0 0 1 9.5 3V1H4a1 1 0 0 0-1 1v9H2V2a2 2 0 0 1 2-2h5.5zm-9.736 7.35v3.999h-.791v-1.714H1.79v1.714H1V11.85h.791v1.626h1.682V11.85h.79Zm2.251.662v3.337h-.794v-3.337H4.588v-.662h3.064v.662zm2.176 3.337v-2.66h.038l.952 2.159h.516l.946-2.16h.038v2.661h.715V11.85h-.8l-1.14 2.596H9.93L8.79 11.85h-.805v3.999zm4.71-.674h1.696v.674H12.61V11.85h.79v3.325Z" />
+                                </svg>`,
+                "java": `<svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="#E76F00"
+                                    class="bi bi-filetype-java" viewBox="0 0 16 16">
+                                    <path fill-rule="evenodd"
+                                        d="M14 4.5V11h-1V4.5h-2A1.5 1.5 0 0 1 9.5 3V1H4a1 1 0 0 0-1 1v9H2V2a2 2 0 0 1 2-2h5.5zM1.521 15.175a1.3 1.3 0 0 1-.082-.466h.765a.6.6 0 0 0 .073.27.5.5 0 0 0 .454.246q.285 0 .422-.164.138-.165.138-.466V11.85h.79v2.725q0 .66-.357 1.005-.354.345-.984.345a1.6 1.6 0 0 1-.568-.094 1.1 1.1 0 0 1-.408-.266 1.1 1.1 0 0 1-.243-.39m3.972-.354-.314 1.028h-.8l1.342-3.999h.926l1.336 3.999h-.84l-.314-1.028zm1.178-.59-.49-1.616h-.035l-.49 1.617zm2.342 1.618h.952l1.327-3.999h-.878l-.888 3.138h-.038L8.59 11.85h-.917zm3.087-1.028-.314 1.028h-.8l1.342-3.999h.926l1.336 3.999h-.84l-.314-1.028zm1.178-.59-.49-1.616h-.035l-.49 1.617z" />
+                                </svg>`,
+                "js": `<svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="#F7DF1E"
+                                    class="bi bi-filetype-js" viewBox="0 0 16 16">
+                                    <path fill-rule="evenodd"
+                                        d="M14 4.5V14a2 2 0 0 1-2 2H8v-1h4a1 1 0 0 0 1-1V4.5h-2A1.5 1.5 0 0 1 9.5 3V1H4a1 1 0 0 0-1 1v9H2V2a2 2 0 0 1 2-2h5.5zM3.186 15.29a1.2 1.2 0 0 1-.111-.449h.765a.58.58 0 0 0 .255.384q.105.073.249.114.143.041.319.041.246 0 .413-.07a.56.56 0 0 0 .255-.193.5.5 0 0 0 .085-.29.39.39 0 0 0-.153-.326q-.151-.12-.462-.193l-.619-.143a1.7 1.7 0 0 1-.539-.214 1 1 0 0 1-.351-.367 1.1 1.1 0 0 1-.123-.524q0-.366.19-.639.19-.272.528-.422.336-.15.776-.149.457 0 .78.152.324.153.5.41.18.255.2.566h-.75a.56.56 0 0 0-.12-.258.6.6 0 0 0-.247-.181.9.9 0 0 0-.369-.068q-.325 0-.513.152a.47.47 0 0 0-.184.384q0 .18.143.3a1 1 0 0 0 .405.175l.62.143q.327.075.566.211.24.136.375.358t.135.56q0 .37-.188.656a1.2 1.2 0 0 1-.539.439q-.351.158-.858.158-.381 0-.665-.09a1.4 1.4 0 0 1-.478-.252 1.1 1.1 0 0 1-.29-.375m-3.104-.033A1.3 1.3 0 0 1 0 14.791h.765a.6.6 0 0 0 .073.27.5.5 0 0 0 .454.246q.285 0 .422-.164.138-.165.138-.466v-2.745h.79v2.725q0 .66-.357 1.005-.354.345-.984.345a1.6 1.6 0 0 1-.569-.094 1.15 1.15 0 0 1-.407-.266 1.1 1.1 0 0 1-.243-.39" />
+                                </svg>`,
+                "json": `<svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="#CCCCCC"
+                                    class="bi bi-filetype-json" viewBox="0 0 16 16">
+                                    <path fill-rule="evenodd"
+                                        d="M14 4.5V11h-1V4.5h-2A1.5 1.5 0 0 1 9.5 3V1H4a1 1 0 0 0-1 1v9H2V2a2 2 0 0 1 2-2h5.5zM4.151 15.29a1.2 1.2 0 0 1-.111-.449h.764a.58.58 0 0 0 .255.384q.105.073.25.114.142.041.319.041.245 0 .413-.07a.56.56 0 0 0 .255-.193.5.5 0 0 0 .084-.29.39.39 0 0 0-.152-.326q-.152-.12-.463-.193l-.618-.143a1.7 1.7 0 0 1-.539-.214 1 1 0 0 1-.352-.367 1.1 1.1 0 0 1-.123-.524q0-.366.19-.639.192-.272.528-.422.337-.15.777-.149.456 0 .779.152.326.153.5.41.18.255.2.566h-.75a.56.56 0 0 0-.12-.258.6.6 0 0 0-.246-.181.9.9 0 0 0-.37-.068q-.324 0-.512.152a.47.47 0 0 0-.185.384q0 .18.144.3a1 1 0 0 0 .404.175l.621.143q.326.075.566.211a1 1 0 0 1 .375.358q.135.222.135.56 0 .37-.188.656a1.2 1.2 0 0 1-.539.439q-.351.158-.858.158-.381 0-.665-.09a1.4 1.4 0 0 1-.478-.252 1.1 1.1 0 0 1-.29-.375m-3.104-.033a1.3 1.3 0 0 1-.082-.466h.764a.6.6 0 0 0 .074.27.5.5 0 0 0 .454.246q.285 0 .422-.164.137-.165.137-.466v-2.745h.791v2.725q0 .66-.357 1.005-.355.345-.985.345a1.6 1.6 0 0 1-.568-.094 1.15 1.15 0 0 1-.407-.266 1.1 1.1 0 0 1-.243-.39m9.091-1.585v.522q0 .384-.117.641a.86.86 0 0 1-.322.387.9.9 0 0 1-.47.126.9.9 0 0 1-.47-.126.87.87 0 0 1-.32-.387 1.55 1.55 0 0 1-.117-.641v-.522q0-.386.117-.641a.87.87 0 0 1 .32-.387.87.87 0 0 1 .47-.129q.265 0 .47.129a.86.86 0 0 1 .322.387q.117.255.117.641m.803.519v-.513q0-.565-.205-.973a1.46 1.46 0 0 0-.59-.63q-.38-.22-.916-.22-.534 0-.92.22a1.44 1.44 0 0 0-.589.628q-.205.407-.205.975v.513q0 .562.205.973.205.407.589.626.386.217.92.217.536 0 .917-.217.384-.22.589-.626.204-.41.205-.973m1.29-.935v2.675h-.746v-3.999h.662l1.752 2.66h.032v-2.66h.75v4h-.656l-1.761-2.676z" />
+                                </svg>`,
+                "jsx": `<svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="#F7DF1E"
+                                    class="bi bi-filetype-jsx" viewBox="0 0 16 16">
+                                    <path fill-rule="evenodd"
+                                        d="M14 4.5V14a2 2 0 0 1-2 2h-1v-1h1a1 1 0 0 0 1-1V4.5h-2A1.5 1.5 0 0 1 9.5 3V1H4a1 1 0 0 0-1 1v9H2V2a2 2 0 0 1 2-2h5.5zM3.075 14.841a1.13 1.13 0 0 0 .401.823q.194.162.478.252.284.091.665.091.507 0 .858-.158.355-.158.54-.44a1.17 1.17 0 0 0 .187-.656q0-.336-.135-.56a1 1 0 0 0-.375-.357 2 2 0 0 0-.565-.21l-.621-.144a1 1 0 0 1-.405-.176.37.37 0 0 1-.143-.299q0-.234.184-.384.188-.152.513-.152.214 0 .37.068a.6.6 0 0 1 .245.181.56.56 0 0 1 .12.258h.75a1.1 1.1 0 0 0-.199-.566 1.2 1.2 0 0 0-.5-.41 1.8 1.8 0 0 0-.78-.152q-.44 0-.776.15-.337.149-.528.421-.19.273-.19.639 0 .302.123.524t.351.367q.229.143.54.213l.618.144q.31.073.462.193a.39.39 0 0 1 .153.326.5.5 0 0 1-.085.29.56.56 0 0 1-.255.193q-.167.07-.413.07-.176 0-.32-.04a.8.8 0 0 1-.248-.115.58.58 0 0 1-.255-.384zM0 14.791q0 .247.082.466.083.22.243.39.165.17.407.267.246.093.569.093.63 0 .984-.346.357-.345.358-1.004v-2.725h-.791v2.745q0 .302-.138.466t-.422.164a.5.5 0 0 1-.454-.246.6.6 0 0 1-.073-.27zm8.907-2.859H9.8l-1.274 2.007L9.78 15.93h-.908l-.85-1.415h-.035l-.853 1.415h-.861l1.24-2.016-1.228-1.983h.931l.832 1.438h.036l.823-1.438Z" />
+                                </svg>`,
+                "md": `<svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="#4287f5"
+                                    class="bi bi-filetype-md" viewBox="0 0 16 16">
+                                    <path fill-rule="evenodd"
+                                        d="M14 4.5V14a2 2 0 0 1-2 2H9v-1h3a1 1 0 0 0 1-1V4.5h-2A1.5 1.5 0 0 1 9.5 3V1H4a1 1 0 0 0-1 1v9H2V2a2 2 0 0 1 2-2h5.5zM.706 13.189v2.66H0V11.85h.806l1.14 2.596h.026l1.14-2.596h.8v3.999h-.716v-2.66h-.038l-.946 2.159h-.516l-.952-2.16H.706Zm3.919 2.66V11.85h1.459q.609 0 1.005.234t.589.68q.195.445.196 1.075 0 .634-.196 1.084-.197.451-.595.689-.396.237-1 .237H4.626Zm1.353-3.354h-.562v2.707h.562q.279 0 .484-.082a.8.8 0 0 0 .334-.252 1.1 1.1 0 0 0 .196-.422q.067-.252.067-.592a2.1 2.1 0 0 0-.117-.753.9.9 0 0 0-.354-.454q-.238-.152-.61-.152" />
+                                </svg>`,
+                "mdx": `<svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="#4287f5"
+                                    class="bi bi-filetype-mdx" viewBox="0 0 16 16">
+                                    <path fill-rule="evenodd"
+                                        d="M14 4.5V14a2 2 0 0 1-2 2v-1a1 1 0 0 0 1-1V4.5h-2A1.5 1.5 0 0 1 9.5 3V1H4a1 1 0 0 0-1 1v9H2V2a2 2 0 0 1 2-2h5.5zM.706 15.849v-2.66h.038l.952 2.159h.516l.946-2.16h.038v2.661h.715V11.85h-.8l-1.14 2.596h-.026L.805 11.85H0v3.999zm3.559-3.999v3.999h1.459q.603 0 .999-.237a1.45 1.45 0 0 0 .595-.689q.195-.45.196-1.084 0-.63-.196-1.075a1.43 1.43 0 0 0-.59-.68q-.395-.234-1.004-.234zm.79.645h.563q.372 0 .61.152a.9.9 0 0 1 .354.454q.117.302.117.753 0 .34-.067.592a1.1 1.1 0 0 1-.196.422.8.8 0 0 1-.334.252 1.3 1.3 0 0 1-.484.082h-.562v-2.707Zm4.787-.645h.894L9.46 13.857l1.254 1.992h-.908l-.85-1.415h-.035l-.852 1.415h-.862l1.24-2.016L7.22 11.85h.932l.832 1.439h.035z" />
+                                </svg>`,
+                "php": `<svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="#777BB4"
+                                    class="bi bi-filetype-php" viewBox="0 0 16 16">
+                                    <path fill-rule="evenodd"
+                                        d="M14 4.5V14a2 2 0 0 1-2 2h-1v-1h1a1 1 0 0 0 1-1V4.5h-2A1.5 1.5 0 0 1 9.5 3V1H4a1 1 0 0 0-1 1v9H2V2a2 2 0 0 1 2-2h5.5zM1.6 11.85H0v3.999h.791v-1.342h.803q.43 0 .732-.173.305-.175.463-.474a1.4 1.4 0 0 0 .161-.677q0-.375-.158-.677a1.2 1.2 0 0 0-.46-.477q-.3-.18-.732-.179m.545 1.333a.8.8 0 0 1-.085.38.57.57 0 0 1-.238.241.8.8 0 0 1-.375.082H.788V12.48h.66q.327 0 .512.181.185.182.185.522m4.48 2.666V11.85h-.79v1.626H4.153V11.85h-.79v3.999h.79v-1.714h1.682v1.714zm.703-3.999h1.6q.433 0 .732.179.3.175.46.477.158.302.158.677t-.161.677q-.159.299-.463.474a1.45 1.45 0 0 1-.733.173H8.12v1.342h-.791zm2.06 1.714a.8.8 0 0 0 .084-.381q0-.34-.184-.521-.184-.182-.513-.182h-.66v1.406h.66a.8.8 0 0 0 .375-.082.57.57 0 0 0 .237-.24Z" />
+                                </svg>`,
+                "py": `<svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="#FFD43B"
+                                    class="bi bi-filetype-py" viewBox="0 0 16 16">
+                                    <path fill-rule="evenodd"
+                                        d="M14 4.5V14a2 2 0 0 1-2 2H7v-1h5a1 1 0 0 0 1-1V4.5h-2A1.5 1.5 0 0 1 9.5 3V1H4a1 1 0 0 0-1 1v9H2V2a2 2 0 0 1 2-2h5.5zM0 11.85h1.6q.434 0 .732.179.302.175.46.477t.158.677-.16.677q-.158.299-.464.474a1.45 1.45 0 0 1-.732.173H.79v1.342H0zm2.06 1.714a.8.8 0 0 0 .085-.381q0-.34-.185-.521-.185-.182-.513-.182H.788v1.406h.66a.8.8 0 0 0 .374-.082.57.57 0 0 0 .238-.24m2.963.75v1.535H4.23v-1.52L2.89 11.85h.876l.853 1.696h.032l.856-1.696h.855z" />
+                                </svg>`,
+                "sql": `<svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="#00758F"
+                                    class="bi bi-filetype-sql" viewBox="0 0 16 16">
+                                    <path fill-rule="evenodd"
+                                        d="M14 4.5V14a2 2 0 0 1-2 2v-1a1 1 0 0 0 1-1V4.5h-2A1.5 1.5 0 0 1 9.5 3V1H4a1 1 0 0 0-1 1v9H2V2a2 2 0 0 1 2-2h5.5zM0 14.841a1.13 1.13 0 0 0 .401.823q.194.162.478.252c.284.09.411.091.665.091q.507 0 .858-.158.355-.159.54-.44a1.17 1.17 0 0 0 .187-.656q0-.336-.135-.56a1 1 0 0 0-.375-.357 2 2 0 0 0-.565-.21l-.621-.144a1 1 0 0 1-.405-.176.37.37 0 0 1-.143-.299q0-.234.184-.384.187-.152.513-.152.214 0 .37.068a.6.6 0 0 1 .245.181.56.56 0 0 1 .12.258h.75a1.1 1.1 0 0 0-.199-.566 1.2 1.2 0 0 0-.5-.41 1.8 1.8 0 0 0-.78-.152q-.44 0-.776.15-.337.149-.528.421-.19.273-.19.639 0 .302.123.524t.351.367q.229.143.54.213l.618.144q.31.073.462.193a.39.39 0 0 1 .153.325q0 .165-.085.29A.56.56 0 0 1 2 15.31q-.167.07-.413.07-.176 0-.32-.04a.8.8 0 0 1-.248-.115.58.58 0 0 1-.255-.384zm6.878 1.489-.507-.739q.264-.243.401-.6.138-.358.138-.806v-.501q0-.556-.208-.967a1.5 1.5 0 0 0-.589-.636q-.383-.225-.917-.225-.527 0-.914.225-.384.223-.592.636a2.14 2.14 0 0 0-.205.967v.5q0 .554.205.965.208.41.592.636a1.8 1.8 0 0 0 .914.222 1.8 1.8 0 0 0 .6-.1l.294.422h.788ZM4.262 14.2v-.522q0-.369.114-.63a.9.9 0 0 1 .325-.398.9.9 0 0 1 .495-.138q.288 0 .495.138a.9.9 0 0 1 .325.398q.115.261.115.63v.522q0 .246-.053.445-.053.196-.155.34l-.106-.14-.105-.147h-.733l.451.65a.6.6 0 0 1-.251.047.87.87 0 0 1-.487-.147.9.9 0 0 1-.32-.404 1.7 1.7 0 0 1-.11-.644m3.986 1.057h1.696v.674H7.457v-3.999h.79z" />
+                                </svg>`,
+                "lnk": `<svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="#1E90FF"
+                                        class="bi bi-window" viewBox="0 0 16 16">
+                                        <path
+                                            d="M2.5 4a.5.5 0 1 0 0-1 .5.5 0 0 0 0 1m2-.5a.5.5 0 1 1-1 0 .5.5 0 0 1 1 0m1 .5a.5.5 0 1 0 0-1 .5.5 0 0 0 0 1" />
+                                        <path
+                                            d="M2 1a2 2 0 0 0-2 2v10a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V3a2 2 0 0 0-2-2zm13 2v2H1V3a1 1 0 0 1 1-1h12a1 1 0 0 1 1 1M2 14a1 1 0 0 1-1-1V6h14v7a1 1 0 0 1-1 1z" />
+                                    </svg>`,
+                "archive": `<svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="#FFD700"
+                                        class="bi bi-file-earmark-zip" viewBox="0 0 16 16">
+                                        <path
+                                            d="M5 7.5a1 1 0 0 1 1-1h1a1 1 0 0 1 1 1v.938l.4 1.599a1 1 0 0 1-.416 1.074l-.93.62a1 1 0 0 1-1.11 0l-.929-.62a1 1 0 0 1-.415-1.074L5 8.438zm2 0H6v.938a1 1 0 0 1-.03.243l-.4 1.598.93.62.929-.62-.4-1.598A1 1 0 0 1 7 8.438z" />
+                                        <path
+                                            d="M14 4.5V14a2 2 0 0 1-2 2H4a2 2 0 0 1-2-2V2a2 2 0 0 1 2-2h5.5zm-3 0A1.5 1.5 0 0 1 9.5 3V1h-2v1h-1v1h1v1h-1v1h1v1H6V5H5V4h1V3H5V2h1V1H4a1 1 0 0 0-1 1v12a1 1 0 0 0 1 1h8a1 1 0 0 0 1-1V4.5z" />
+                                    </svg>`,
+                "right": `<svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor"
+                                        class="bi bi-caret-right-fill" viewBox="0 0 16 16">
+                                        <path
+                                            d="m12.14 8.753-5.482 4.796c-.646.566-1.658.106-1.658-.753V3.204a1 1 0 0 1 1.659-.753l5.48 4.796a1 1 0 0 1 0 1.506z" />
+                                    </svg>`,
+                "dropdown": `<svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor"
+                                        class="bi bi-chevron-down" viewBox="0 0 16 16">
+                                        <path fill-rule="evenodd"
+                                            d="M1.646 4.646a.5.5 0 0 1 .708 0L8 10.293l5.646-5.647a.5.5 0 0 1 .708.708l-6 6a.5.5 0 0 1-.708 0l-6-6a.5.5 0 0 1 0-.708" />
+                                    </svg>`,
+                "circle": `<svg xmlns="http://www.w3.org/2000/svg" width="70%" height="70%" fill="currentColor"
+                                        class="bi bi-circle" viewBox="0 0 16 16">
+                                        <path d="M8 15A7 7 0 1 1 8 1a7 7 0 0 1 0 14m0 1A8 8 0 1 0 8 0a8 8 0 0 0 0 16" />
+                                    </svg>`,
+                "tdtop": `<svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor"
+                                        class="bi bi-chevron-double-up" viewBox="0 0 16 16">
+                                        <path fill-rule="evenodd"
+                                            d="M7.646 2.646a.5.5 0 0 1 .708 0l6 6a.5.5 0 0 1-.708.708L8 3.707 2.354 9.354a.5.5 0 1 1-.708-.708z" />
+                                        <path fill-rule="evenodd"
+                                            d="M7.646 6.646a.5.5 0 0 1 .708 0l6 6a.5.5 0 0 1-.708.708L8 7.707l-5.646 5.647a.5.5 0 0 1-.708-.708z" />
+                                    </svg>`,
+                "tddown": `<svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor"
+                                        class="bi bi-chevron-double-down" viewBox="0 0 16 16">
+                                        <path fill-rule="evenodd"
+                                            d="M1.646 6.646a.5.5 0 0 1 .708 0L8 12.293l5.646-5.647a.5.5 0 0 1 .708.708l-6 6a.5.5 0 0 1-.708 0l-6-6a.5.5 0 0 1 0-.708" />
+                                        <path fill-rule="evenodd"
+                                            d="M1.646 2.646a.5.5 0 0 1 .708 0L8 8.293l5.646-5.647a.5.5 0 0 1 .708.708l-6 6a.5.5 0 0 1-.708 0l-6-6a.5.5 0 0 1 0-.708" />
+                                    </svg>`,
+                "eye": `<svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor"
+                                        class="bi bi-eye" viewBox="0 0 16 16">
+                                        <path
+                                            d="M16 8s-3-5.5-8-5.5S0 8 0 8s3 5.5 8 5.5S16 8 16 8M1.173 8a13 13 0 0 1 1.66-2.043C4.12 4.668 5.88 3.5 8 3.5s3.879 1.168 5.168 2.457A13 13 0 0 1 14.828 8q-.086.13-.195.288c-.335.48-.83 1.12-1.465 1.755C11.879 11.332 10.119 12.5 8 12.5s-3.879-1.168-5.168-2.457A13 13 0 0 1 1.172 8z" />
+                                        <path
+                                            d="M8 5.5a2.5 2.5 0 1 0 0 5 2.5 2.5 0 0 0 0-5M4.5 8a3.5 3.5 0 1 1 7 0 3.5 3.5 0 0 1-7 0" />
+                                    </svg>`,
+                "eyefill": `<svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor"
+                                        class="bi bi-eye-fill" viewBox="0 0 16 16">
+                                        <path d="M10.5 8a2.5 2.5 0 1 1-5 0 2.5 2.5 0 0 1 5 0" />
+                                        <path
+                                            d="M0 8s3-5.5 8-5.5S16 8 16 8s-3 5.5-8 5.5S0 8 0 8m8 3.5a3.5 3.5 0 1 0 0-7 3.5 3.5 0 0 0 0 7" />
+                                    </svg>`,
+                "success": `<svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor"
+                                        class="bi bi-check-circle-fill" viewBox="0 0 16 16">
+                                        <path
+                                            d="M16 8A8 8 0 1 1 0 8a8 8 0 0 1 16 0m-3.97-3.03a.75.75 0 0 0-1.08.022L7.477 9.417 5.384 7.323a.75.75 0 0 0-1.06 1.06L6.97 11.03a.75.75 0 0 0 1.079-.02l3.992-4.99a.75.75 0 0 0-.01-1.05z" />
+                                    </svg>`,
+                "failed": `<svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor"
+                                        class="bi bi-exclamation-diamond-fill" viewBox="0 0 16 16">
+                                        <path
+                                            d="M9.05.435c-.58-.58-1.52-.58-2.1 0L.436 6.95c-.58.58-.58 1.519 0 2.098l6.516 6.516c.58.58 1.519.58 2.098 0l6.516-6.516c.58-.58.58-1.519 0-2.098zM8 4c.535 0 .954.462.9.995l-.35 3.507a.552.552 0 0 1-1.1 0L7.1 4.995A.905.905 0 0 1 8 4m.002 6a1 1 0 1 1 0 2 1 1 0 0 1 0-2" />
+                                    </svg>`,
+                "close": `<svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor"
+                                        class="bi bi-x-lg" viewBox="0 0 16 16">
+                                        <path
+                                            d="M2.146 2.854a.5.5 0 1 1 .708-.708L8 7.293l5.146-5.147a.5.5 0 0 1 .708.708L8.707 8l5.147 5.146a.5.5 0 0 1-.708.708L8 8.707l-5.146 5.147a.5.5 0 0 1-.708-.708L7.293 8z" />
+                                    </svg>`,
+
+            }
+            let svg = Object.keys(dict).includes(fileType.trim().toLowerCase()) ? dict[fileType] : dict["file"];
+            return svg;
+        }
+
+    </script>
+    <script>
+        function capitalize(str) {
+            return str.charAt(0).toUpperCase() + str.slice(1);
+        }
+        function FFshowHistory() {
+            document.getElementById("ffh-table").innerHTML = "";
+            pywebview.api.askHist().then(data=>{
+                data.data.forEach(el=>{
+                    FFaddTR(el);
+                });
+            });
+            $("#ff-history").show();
+        }
+        function FFshowAbout() {
+            $("#ff-about").show();
+        }
+        function FFaddItem(group, info) {
+            let main = document.createElement("div");
+            let topdown = {
+                "main": document.createElement("div"),
+                "top": document.createElement("div"),
+                "down": document.createElement("div")
+            };
+            let check = {
+                "main": document.createElement("div"),
+                "input": document.createElement("input")
+            };
+            let name = document.createElement("div");
+            let size = document.createElement("div");
+            let ext = document.createElement("div");
+            let show = document.createElement("div");
+            main.className = "ffbgil-item d-flex flex-row";
+            $(main).attr({
+                "cible": info.cible,
+                "preview": info.preview,
+                "ext": info.ext,
+                "title": info.cible
+            });
+            topdown.top.className = "ff-il-tdtop";
+            topdown.top.innerHTML = FFgetIcon("tdtop");
+            topdown.down.className = "ff-il-tddown";
+            topdown.down.innerHTML = FFgetIcon("tddown");
+            topdown.main.className = "ff-il-topdown d-flex flex-row";
+            topdown.main.appendChild(topdown.top);
+            topdown.main.appendChild(topdown.down);
+            $(check.input).attr({
+                "type": "checkbox",
+                "checked": info.checked
+            });
+            check.main.className = "ff-il-check";
+            check.main.appendChild(check.input)
+            name.className = "ff-il-name flex-fill";
+            name.innerText = info.name;
+            size.className = "ff-il-size";
+            size.innerText = info.size ? info.size : "";
+            ext.className = "ff-il-ext";
+            ext.innerText = info.ext;
+            show.className = "ff-il-show";
+            show.innerHTML = FFgetIcon("eye") + FFgetIcon("eyefill");
+            main.id=`${group.id}-ff-item${++GID.listID[group.id].mainID}`;
+            GID.listID[group.id].listID.push(main.id);
+            main.appendChild(topdown.main);
+            main.appendChild(check.main);
+            main.appendChild(name);
+            main.appendChild(size);
+            main.appendChild(ext);
+            if (info.preview) {
+                main.appendChild(show);
+            }
+            $(group).find(".ffb-additem").before(main);
+            let svg = document.createElement("div");
+            let img = document.createElement("img");
+            img.setAttribute("alt", "");
+            img.setAttribute("src", info.preview);
+            svg.innerHTML = FFgetIcon(info.type);
+            svg.appendChild(img);
+            svg.className = "ffsvg ffcircular ffborder";
+            $(svg).attr({
+                "cible": main.id,
+                "svg": info.type,
+                "title": info.name
+            });
+            if (info.type !== "image") {
+                img.setAttribute("hidden", true);
+            }
+            else {
+                svg.querySelector("svg").setAttribute("hidden", true);
+            }
+            group.querySelector(".ffbgio-gel").appendChild(svg);
+            let prog = {
+                "main": document.createElement("div"),
+                "fill": document.createElement("div"),
+                "name": document.createElement("div")
+            }
+            prog.fill.className = "ff-il-fill";
+            prog.name.className = "ff-il-name flex-fill";
+            prog.name.innerText = "0%";
+            prog.main.className = "ffbgil-item d-flex flex-row ffbgil-pgs";
+            $(prog.main).attr({"cible": main.id, "percent":"0"});
+            prog.main.appendChild(prog.fill);
+            prog.main.appendChild(prog.name);
+            group.querySelector(".ffbgc-list").appendChild(prog.main);
+            FFactualizeFunction();
+            return { "main": main, "svg": svg, "prog": prog.main };
+        }
+        function FFsetFormItem(items) {
+            main = document.createElement("div");
+            items.forEach(function (item) {
+                let section = document.createElement("div");
+                let title = document.createElement("h4");
+                let contain = document.createElement("div");
+                let separator = document.createElement("div");
+                item.ext.sort().forEach(function (el) {
+                    let item = document.createElement("wataba");
+                    $(item).attr("ext", el.ext);
+                    $(item).attr("method", el.method);
+                    $(item).attr("title", el.title);
+                    $(item).addClass("ff-fitem ffbtn");
+                    item.innerText = el.name;
+                    contain.appendChild(item);
+                });
+                title.className = "fffs-title";
+                title.innerText = capitalize(item.name);
+                contain.className = "ffsec-contain";
+                section.className = "ffsection";
+                section.appendChild(title);
+                section.appendChild(contain);
+                separator.className = "ffseparator";
+                main.appendChild(section);
+            });
+            main.className = "ffform";
+            return main;
+        }
+        function FFaddGroup(info) {
+            let main = document.createElement("div");
+            let input = {
+                "main": document.createElement("div"),
+                "option": {
+                    "main": document.createElement("div"),
+                    "ddown": {
+                        "main": document.createElement("div")
+                    },
+                    "right": {
+                        "main": document.createElement("div"),
+                        "a": {
+                            "main": document.createElement("div"),
+                            "title": document.createElement("div"),
+                            "gel": document.createElement("div")
+                        },
+                        "b": {
+                            "main": document.createElement("div"),
+                            "show": document.createElement("div"),
+                            "name": document.createElement("div"),
+                            "svg": document.createElement("div"),
+                            "select": document.createElement("div")
+                        },
+                        "c": {
+                            "main": document.createElement("div"),
+                            "button": document.createElement("button")
+                        }
+                    }
+                },
+                "list": {
+                    "main": document.createElement("div"),
+                    "add": {
+                        "main": document.createElement("div"),
+                        "name": document.createElement("div")
+                    }
+                }
+            }
+            input.option.ddown.main.className = "ffbgio-ddown";
+            input.option.ddown.main.innerHTML = FFgetIcon("right");
+            input.option.right.a.title.className = "ffbgio-gtitle";
+            input.option.right.a.title.innerText = info.title;
+            input.option.right.a.gel.className = "ffbgio-gel d-flex flex-row";
+            input.option.right.a.main.className = "h-100 flex-fill";
+            input.option.right.a.main.style.setProperty("max-width", "calc(calc(100vw - 120px) / 2 - 185px)", "important");
+            input.option.right.a.main.style.setProperty("position", "relative");
+            input.option.right.a.main.appendChild(input.option.right.a.title);
+            input.option.right.a.main.appendChild(input.option.right.a.gel);
+            input.option.right.b.name.className = "ffbgio-ename flex-fill";
+            input.option.right.b.svg.className = "ffbgio-esvg";
+            input.option.right.b.svg.innerHTML = FFgetIcon("dropdown");
+            input.option.right.b.select.className = "ff-container ff-absolute f-left ff-top";
+            input.option.right.b.select.setAttribute("for", "select-ext");
+            //input.option.right.b.select.appendChild(FFsetFormItem(info.formExt));
+            input.option.right.b.main.className = "ffbgio-element d-flex flex-row";
+            input.option.right.b.main.setAttribute("for", "show-ext");
+            input.option.right.b.main.setAttribute('ext', "");
+            input.option.right.b.main.appendChild(input.option.right.b.name);
+            input.option.right.b.main.appendChild(input.option.right.b.svg);
+            input.option.right.b.main.appendChild(input.option.right.b.select);
+            input.option.right.c.button.className = "btn btn-danger";
+            input.option.right.c.button.setAttribute("for", "delete");
+            input.option.right.c.button.innerText = "Delete";
+            input.option.right.c.main.className = "ffbgio-item";
+            input.option.right.c.main.appendChild(input.option.right.c.button);
+            input.option.right.main.className = "ffbgio-right flex-fill d-flex flex-row";
+            input.option.right.main.appendChild(input.option.right.a.main);
+            input.option.right.main.appendChild(input.option.right.b.main);
+            input.option.right.main.appendChild(input.option.right.c.main);
+            input.option.main.className = "ffbgi-option d-flex flex-row flex-fill";
+            input.option.main.appendChild(input.option.ddown.main);
+            input.option.main.appendChild(input.option.right.main);
+            input.list.add.name.className = "ff-il-name flex-fill";
+            input.list.add.name.innerText = "Add";
+            input.list.add.main.className = "ffb-additem ffbgil-item d-flex flex-row";
+            input.list.add.main.appendChild(input.list.add.name);
+            input.list.main.className = "ffbgi-list flex-fill";
+            input.list.main.appendChild(input.list.add.main);
+            input.main.className = "ffbg-input";
+            input.main.appendChild(input.option.main);
+            input.main.appendChild(input.list.main);
+
+            let convert = {
+                "main": document.createElement("div"),
+                "a": {
+                    "main": document.createElement("div"),
+                    "convert": document.createElement("button"),
+                    "cancel": document.createElement("button"),
+                    "success": document.createElement("wataba"),
+                    "failed": document.createElement("wataba"),
+                    "percent": {
+                        "main": document.createElement("div"),
+                        "fill": document.createElement("div"),
+                        "name": document.createElement("div")
+                    }
+                },
+                "b": {
+                    "main": document.createElement("div")
+                }
+            }
+            convert.a.convert.className = "btn btn-primary";
+            convert.a.convert.setAttribute("for", "convert");
+            convert.a.convert.innerText = "Convert";
+            convert.a.cancel.className = "btn btn-danger";
+            convert.a.cancel.setAttribute("for", "cancel");
+            convert.a.cancel.innerText = "Cancel";
+            convert.a.success.className = "ffsuccess";
+            convert.a.success.setAttribute("for", "success");
+            convert.a.success.innerHTML = FFgetIcon("success");
+            convert.a.failed.className = "ffwarning";
+            convert.a.failed.setAttribute("for", "failed");
+            convert.a.failed.innerHTML = FFgetIcon("failed");
+            convert.a.percent.fill.className = "ff-il-fill";
+            convert.a.percent.name.className = "ff-il-name";
+            convert.a.percent.name.innerText = "0%";
+            convert.a.percent.main.setAttribute("for", "percent");
+            convert.a.percent.main.appendChild(convert.a.percent.fill);
+            convert.a.percent.main.appendChild(convert.a.percent.name);
+            convert.a.main.className = "h-100 m-0 p-0";
+            convert.a.main.style.setProperty("position", "relative");
+            convert.a.main.appendChild(convert.a.convert);
+            convert.a.main.appendChild(convert.a.cancel);
+            convert.a.main.appendChild(convert.a.success);
+            convert.a.main.appendChild(convert.a.failed);
+            convert.a.main.appendChild(convert.a.percent.main);
+            convert.b.main.className = "ffbgc-list";
+            convert.main.className = "ffbg-convert";
+            convert.main.appendChild(convert.a.main);
+            convert.main.appendChild(convert.b.main);
+
+            let output = {
+                "main": document.createElement("div"),
+                "entr": {
+                    "main": document.createElement("div"),
+                    "fill": document.createElement("div"),
+                    "name": document.createElement("input"),
+                    "browse": document.createElement("wataba")
+                }
+            }
+            output.entr.fill.className = "ffea-fill";
+            output.entr.name.className = "ffea-name";
+            output.entr.name.setAttribute("type", "text");
+            output.entr.name.setAttribute("placeholder", "Enter output path");
+            output.entr.name.setAttribute("valid", "no");
+            output.entr.browse.className = "ffea-browse";
+            output.entr.browse.innerHTML = FFgetIcon("circle");
+            output.entr.main.className = "entry-area d-flex flex-row";
+            output.entr.main.appendChild(output.entr.fill);
+            output.entr.main.appendChild(output.entr.name);
+            output.entr.main.appendChild(output.entr.browse);
+            output.main.className = "ffbg-output";
+            output.main.appendChild(output.entr.main);
+
+            main.className = "ffb-group d-flex flex-row";
+            main.id = `ff-group-${++GID.mainID}`;
+            main.setAttribute("converting", "no");
+            main.setAttribute("cible", info.cible);
+            main.appendChild(input.main);
+            main.appendChild(convert.main);
+            main.appendChild(output.main);
+            document.getElementById("ffb-main").appendChild(main);
+            FFactualizeFunction();
+            GID.listID[main.id] = {"mainID":0, "listID": []};
+            $($(main).find(".ff-fitem")[0]).click();
+            return main;
+        }
+        function FFshowMessage(message, type = "") {
+            let toastLive = document.getElementById('liveToast');
+            let class_
+            if (type === "warning") {
+                class_ = "ff-show-warning";
+            }
+            else if (type === "error") {
+                class_ = "ff-show-error";
+            }
+            else {
+                class_ = "";
+            }
+            $(toastLive).removeClass("ff-show-warning ff-show-error").addClass(class_).find(".toast-body").html(message);
+            let toastBootstrap = bootstrap.Toast.getOrCreateInstance(toastLive);
+            toastBootstrap.show();
+
+        }
+        function FFactualizeFunction() {
+            //Off to prevent Click event duplication
+            //Show Items in group
+            $(".ffbgio-ddown").off("click");
+            $(".ffbgio-ddown").on("click", function () {
+                let el = $(this).closest(".ffb-group").find(".ffbgi-list");
+                let el2 = $(this).closest(".ffb-group").find(".ffbgc-list");
+                if (!$(el[0]).is(":visible")) {
+                    $(el[0]).slideDown(200);
+                    $(el2[0]).slideDown(200);
+                    $(this).find("svg").css("transform", "translate(-50%, -50%) rotate(90deg)");
+                }
+                else {
+                    $(el[0]).slideUp(200);
+                    $(el2[0]).slideUp(200)
+                    $(this).find("svg").css("transform", "translate(-50%, -50%) rotate(0deg)");
+                }
+            });
+
+            //Select Output extension
+            $(".ff-fitem").off("click");
+            $(".ff-fitem").on("click", function () {
+                $(this).closest(".ffform").find(".ff-fitem").removeClass("selected");
+                $(this).addClass("selected");
+                $(this).closest("div[for='show-ext']").attr({
+                    "ext": $(this).attr("ext"),
+                    "method": $(this).attr("method")
+                })
+                    .find(".ffbgio-ename").text($(this).attr("ext"));
+            });
+
+            //Remove group
+            $("button[for='delete']").off("click");
+            $("button[for='delete']").on("click", function () {
+                $(this).closest(".ffb-group").remove();
+            });
+
+            //Click on circular element
+            $(".ffbgio-gel").find(".ffcircular").off("click");
+            $(".ffbgio-gel").find(".ffcircular").on("click", function () {
+                let item = $(this).closest(".ffb-group").find(`#${$(this).attr("cible")}`);
+                let cont = $("#ffb-main");
+                let dd = $(this).closest(".ffb-group").find(".ffbgi-list");
+                let tm = 0;
+                if (!$(dd[0]).is(":visible")) {
+                    $(this).closest(".ffb-group").find(".ffbgio-ddown").click();
+                    tm = 200;
+                }
+                let targetPosition = item[0].offsetTop - cont[0].offsetTop;
+                cont[0].scrollTo({
+                    top: targetPosition,
+                    behavior: "instant"
+                });
+                setTimeout(() => {
+                    $(item).addClass("ff-show-where");
+                    setTimeout(() => {
+                        $(item).removeClass("ff-show-where");
+                    }, 700);
+                }, tm);
+            });
+
+            //Show Preview
+            $(".ff-il-show").off("click");
+            $(".ff-il-show").on("click", function () {
+                let link = $(this).closest(".ffbgil-item").attr("preview");
+                let name = $(this).closest(".ffbgil-item").attr("cible");
+                pywebview.api.askShowPreview(name).then(response => {
+                    if (response.op) {
+                        $("#ff-preview").show().find("iframe").attr("src", link);
+                    }
+                });
+
+            });
+
+            //Delete History
+            $("#ffh-table").find("button").off("click")
+            $("#ffh-table").find("button").on("click", function () {
+                let cible = $(this).closest("tr").attr("cible");
+                pywebview.api.removeHist(cible);
+                $(this).closest("tr").remove();
+            });
+
+            //toggle Item place
+            $(".ff-il-tdtop, .ff-il-tddown").off("click");
+            $(".ff-il-tdtop, .ff-il-tddown").on("click", function () {
+                let el = $(this).closest(".ffbgil-item");
+                let cibleVal = el[0].getAttribute("id");
+
+                let group = $(this).closest(".ffb-group");
+
+                let svg = group.find(`.ffcircular[cible="${cibleVal}"]`);
+                let progress = group.find(".ffbgc-list").find(`.ffbgil-pgs[cible="${cibleVal}"]`);
+
+                if (this.className === "ff-il-tdtop") {
+                    let prev1 = el.prev(".ffbgil-item");
+                    let prev2 = svg.prev(".ffcircular");
+                    let prev3 = progress.prev(".ffbgil-pgs");
+                    if (prev1.length) {
+                        prev1.before(el);
+                        prev2.before(svg);
+                        prev3.before(progress);
+                    }
+                }
+                else {
+                    let next1 = el.next(".ffbgil-item");
+                    let next2 = svg.next(".ffcircular");
+                    let next3 = progress.next(".ffbgil-pgs");
+                    if (next1.length && next1[0] !== $(this).closest(".ffb-group").find(".ffb-additem")[0]) {
+                        next1.after(el);
+                        next2.after(svg);
+                        next3.after(progress);
+                    }
+                }
+            });
+
+            //add new Item
+            $(".ffb-additem").off("click");
+            $(".ffb-additem").on("click", function () {
+                FFEpageInfo.groupTarget = $(this).closest(".ffb-group")[0];
+                FFEpageInfo.modalMethod = "add-item";
+                pywebview.api.askAllModalExt().then(data => {
+                    FFopenModalOS("open", data.data, true, "c", true);
+                });
+            });
+
+            //Check button checked
+            $(".ffbgil-item").find("input[type='checkbox']").off("click");
+            $(".ffbgil-item").find("input[type='checkbox']").on("click", function () {
+                let item = $(this).closest(".ffb-group").find(".ffbgil-item");
+                let ext = [];
+                item.each(function () {
+                    if ($(this).find('input[type="checkbox"]').prop("checked") == true) {
+                        ext.push($(this).attr("ext"));
+                    }
+                });
+                pywebview.api.ffSetFormItem(ext).then(data => {
+                    let html = FFsetFormItem(data.data);
+                    $(this).closest(".ffb-group").find("div[for='select-ext']").html(html);
+                    FFactualizeFunction();
+                    $($(this).closest(".ffb-group").find('.ff-fitem')[0]).click();
+                    FFcheckIfExt($(this).closest(".ffb-group")[0]);
+                });
+            });
+
+            //Input the output path
+            $(".ffea-name").off("keydown keyup focusout");
+            $(".ffea-name").on("keydown keyup focusout", function (e) {
+                pywebview.api.checkDir($(this).val()).then(response => {
+                    if (e.key === "Enter" || e.type === "focusout") {
+                        let ths = this;
+                        if (e.key === "Enter") {
+                            $(this).blur();
+                        }
+                        if (!response.check) {
+                            $(ths).addClass("ff-show-error");
+                            $(ths).attr("valid", "no");
+                            FFshowMessage("Invalid path", "error");
+                        }
+                        else {
+                            $(ths).removeClass("ff-show-error");
+                            $(ths).attr("valid", "yes");
+                        }
+                    }
+                });
+            });
+
+            //Browse to save
+            $(".ffea-browse").off("click");
+            $(".ffea-browse").on("click", function () {
+                let ext = $(this).closest(".ffb-group").find('div[for="show-ext"]').attr("ext");
+                let info = {
+                    "cible": ext,
+                    "list": [ext],
+                    "text": `${ext.toUpperCase()} files (*.${ext})`
+                }
+                FFopenModalOS("save", [info], false, "c", true);
+                EPageInfo.special = true;
+                EPageInfo.allowed = [ext]
+                FFEpageInfo.groupTarget = $(this).closest(".ffb-group")[0];
+                FFEpageInfo.modalMethod = "save-file";
+            });
+        
+            //single Convert function
+            $(".ffbg-convert").find("button[for='convert']").off('click')
+            .on("click", function(){
+                let group = $(this).closest(".ffb-group")[0];
+                FFconvertGroup(group);
+            });
+        }
+        function FFopenModalOS(method = "open", ext = [], all = true, dir = "c", def = false) {
+            if (!FF_MOS_CONTROL.isModalOpened) {
+                FF_MOS_CONTROL.isModalOpened = true;
+                $("#ff-modal-osc").show();
+                let modal = $("#ff-modal-os");
+                let w = parseInt(modal.css("width"));
+                let h = parseInt(modal.css("height"));
+                $("#ff-modal-os").css({
+                    "left": `calc(50% - ${w / 2}px)`,
+                    "top": `calc(50% - ${h / 2}px)`,
+                });
+                $("#ff-mostb-name").text(method === "open" ? "Open File" : "Save File");
+                let mos = document.getElementById("ff-mos-body");
+                o = method === "open";
+                s = method === "save";
+                openSaveCancel(o, s, true);
+                setDir(dir, def);
+                setAllowedExt(ext, all);
+                OSCFunc.cancel = function () {
+                    FF_MOS_CONTROL = false;
+                    $("#ff-modal-osc").hide();
+                };
+
+            }
+        }
+        function FFaddDetails(info) {
+            let main = document.createElement("details");
+            let summary = document.createElement("summary");
+            let p = document.createElement("p");
+            let ul = document.createElement("ul");
+            info.details.forEach(function (el) {
+                let li = document.createElement("li");
+                li.innerText = el;
+                ul.appendChild(li);
+            });
+            p.appendChild(ul);
+            summary.innerText = info.title;
+            main.appendChild(summary);
+            main.appendChild(p);
+            FFactualizeFunction();
+            return main;
+        }
+        function FFaddTR(info) {
+            let main = document.createElement("tr");
+            let td = {
+                "a": document.createElement("td"),
+                "b": document.createElement("td"),
+                "c": document.createElement("td"),
+                "d": {
+                    "main": document.createElement("td"),
+                    "delete": document.createElement("button")
+                }
+            };
+            td.a.appendChild(FFaddDetails(info.input));
+            td.b.innerText = info.output;
+            td.c.innerText = info.date;
+            td.d.delete.className = "btn btn-danger";
+            td.d.delete.innerText = "Delete";
+            td.d.main.appendChild(td.d.delete);
+            main.setAttribute("cible", info.cible)
+            main.appendChild(td.a);
+            main.appendChild(td.b);
+            main.appendChild(td.c);
+            main.appendChild(td.d.main);
+            document.getElementById("ffh-table").appendChild(main);
+            FFactualizeFunction();
+            return main
+        }
+        function FFmodalMethod() {
+            pywebview.api.askQueu().then(response => {
+                switch (FFEpageInfo.modalMethod) {
+                    case "add-group":
+                        response.opname.forEach(function (el) {
+                            let ginfo = {
+                                "title": el.name,
+                                "cible": el.path,
+                                "info": {
+                                    "cible": undefined,
+                                    "preview": undefined,
+                                    "name": undefined,
+                                    "checked": false,
+                                    "size": undefined,
+                                    "ext": undefined,
+                                    "type": undefined
+                                }
+                            };
+                            let group = FFaddGroup(ginfo);
+                            pywebview.api.askInfo(el.path).then(data => {
+                                data.data.forEach(function (ele) {
+                                    ginfo.info.cible = ele.cible;
+                                    ginfo.info.preview = ele.preview;
+                                    ginfo.info.name = ele.name;
+                                    ginfo.info.checked = ele.checked;
+                                    ginfo.info.size = ele.size;
+                                    ginfo.info.ext = ele.ext;
+                                    ginfo.info.type = ele.type;
+                                    FFaddItem(group, ginfo.info);
+                                    //set defaault ext
+                                    let item = $(group).find(".ffbgil-item");
+                                    let ext = [];
+                                    item.each(function () {
+                                        if ($(this).find('input[type="checkbox"]').prop("checked") == true) {
+                                            ext.push($(this).attr("ext"));
+                                        }
+                                    });
+                                    pywebview.api.ffSetFormItem(ext).then(dat => {
+                                        let html = FFsetFormItem(dat.data);
+                                        $(group).find("div[for='select-ext']").html(html);
+                                        FFactualizeFunction();
+                                        $($(group).find('.ff-fitem')[0]).click();
+                                        FFcheckIfExt(group);
+                                    });
+                                });
+                            });
+
+
+                        });
+                        break;
+                    case "add-item":
+                        response.open.forEach(function (el) {
+                            let info = {
+                                "cible": undefined,
+                                "preview": undefined,
+                                "name": undefined,
+                                "checked": false,
+                                "size": undefined,
+                                "ext": undefined,
+                                "type": undefined
+                            };
+                            pywebview.api.askInfo(el).then(data => {
+                                data.data.forEach(function (ele) {
+                                    info.cible = ele.cible;
+                                    info.preview = ele.preview;
+                                    info.name = ele.name;
+                                    info.checked = ele.checked;
+                                    info.size = ele.size;
+                                    info.ext = ele.ext;
+                                    info.type = ele.type;
+                                    FFaddItem(FFEpageInfo.groupTarget, info);
+                                });
+                                FFcheckIfExt(FFEpageInfo.groupTarget);
+                            });
+                        });
+                        break;
+                    case "save-file":
+                        $(FFEpageInfo.groupTarget).find(".ffea-name").removeClass("ff-show-error").val(response.save);
+                        $(FFEpageInfo.groupTarget).find(".ffea-name").attr("valid", "yes");
+                        break;
+                    default:
+                        break;
+                }
+            });
+        }
+        function FFpanelShow(message, type = "info") {
+            $("#ff-modal-iew").show();
+            $("#ff-msiew-icon").find("svg").hide();
+            $("#ff-msiew-foot").find("button").hide();
+            let modal = $("#ff-modal-show-iew");
+            let w = parseInt(modal.css("width"));
+            let h = parseInt(modal.css("height"));
+            $("#ff-modal-show-iew").css({
+                "left": `calc(50% - ${w / 2}px)`,
+                "top": `calc(50% - ${h / 2}px)`
+            });
+            switch (type) {
+                case "info":
+                    $("#ff-msiew-icon").find(".bi-info-circle-fill").show();
+                    break;
+                case "warning":
+                    $("#ff-msiew-icon").find(".bi-exclamation-triangle-fill").show();
+                    break;
+                case "error":
+                    $("#ff-msiew-icon").find(".bi-exclamation-triangle-fill").show();
+                    break;
+            }
+            document.getElementById("ff-msiew-contain").innerHTML = message;
+            $("#ff-msiew-foot").find("button[for='canc']")
+                .off("click").on("click", function(){
+                    if(IEW_COMMAND.cancel.command){
+                        IEW_COMMAND.cancel.command();
+                    }
+                    $("#ff-modal-iew").hide();
+                });
+            if (IEW_COMMAND.ok.statut) {
+                $("#ff-msiew-foot").find("button[for='ok']").show()
+                    .off("click").on("click", function () {
+                        if (IEW_COMMAND.ok.command) {
+                            IEW_COMMAND.ok.command();
+                        }
+                        $("#ff-modal-iew").hide();
+                    });
+            }
+            if (IEW_COMMAND.cancel.statut) {
+                $("#ff-msiew-foot").find("button[for='cancel']").show()
+                    .off("click").on("click", function () {
+                        if (IEW_COMMAND.cancel.command) {
+                            IEW_COMMAND.cancel.command();
+                        }
+                        $("#ff-modal-iew").hide();
+                    });
+            }
+            if (IEW_COMMAND.ignore.statut) {
+                $("#ff-msiew-foot").find("button[for='ignore']").show()
+                    .off("click").on("click", function () {
+                        if (IEW_COMMAND.ignore.command) {
+                            IEW_COMMAND.ignore.command();
+                        }
+                        $("#ff-modal-iew").hide();
+                    });
+            }
+            if (IEW_COMMAND.retry.statut) {
+                $("#ff-msiew-foot").find("button[for='retry']").show()
+                    .off("click").on("click", function () {
+                        if (IEW_COMMAND.retry.command) {
+                            IEW_COMMAND.retry.command();
+                        }
+                        $("#ff-modal-iew").hide();
+                    });
+            }
+        }
+        function FFcheckIfExt(group) {
+            let ext = $(group).find(".ff-fitem");
+            if (ext.length == 0) {
+                let cont = $("#ffb-main");
+                let targetPosition = group.offsetTop - cont[0].offsetTop;
+                cont[0].scrollTo({
+                    top: targetPosition,
+                    behavior: "instant"
+                });
+                $(group).addClass("ff-show-warning");
+                let html = `<p>No output extension was found for group <span style='color: var(--light-yellow); font-weight: 700;'>${$(group).find(".ffbgio-gtitle").text()}</span>
+                    <br>Check selected files in the group</p>`;
+                function c() {
+                    let el = $(group).find(".ffbgio-element");
+                    $(el).attr({
+                        "cible": "",
+                        "ext": "",
+                        "method": ""
+                    });
+                    $(el).find(".ffbgio-ename").text("");
+                    $(".ffb-group").removeClass("ff-show-warning");
+                    $(group).find("button[for='convert']").hide();
+                };
+                IEW_COMMAND = {
+                    "ok": {
+                        "statut": true,
+                        "command": c
+                    },
+                    "cancel": {
+                        "statut": false,
+                        "command": c
+                    },
+                    "ignore": {
+                        "statut": false,
+                        "command": undefined
+                    },
+                    "retry": {
+                        "statut": false,
+                        "command": undefined
+                    },
+                }
+                FFpanelShow(html, "warning");
+            }
+            else{
+                if(!$(group).find("button[for='cancel']").is(":visible")){
+                    $(group).find("button[for='convert']").show();
+                }
+            }
+        }
+        function FFconvertGroup(group){
+                if($(group).find(".ffea-name").attr("valid")==="yes" && group.getAttribute("converting")==="no"){
+                    group.setAttribute("converting", "yes");
+                    let info = {
+                        "name":$(group).find(".ffbgio-gtitle").text(),
+                        "cible":$(group).attr("cible"),
+                        "output": $(group).find(".ffea-name").val(),
+                        "ext": $(group).find(".ffbgio-element").attr("ext"),
+                        "method": $(group).find(".ffbgio-element").attr("method"),
+                        "input": [],
+                        "id": group.id
+                    }
+                    $(group).find(".ffbgil-item").each(function(ind, el){
+                        if($(el).find("input[type='checkbox']").prop("checked")==true){
+                            info.input.push({"name": $(el).attr("cible"), "ext": $(el).attr("ext"), "id": el.id});
+                        }
+                    });
+                    $(group).find("button[for='convert']").hide();
+                    $(group).find("button[for='cancel']").show();
+                    $(group).find("div[for='percent']").show();
+                    $(group).find("button[for='delete']").hide();
+                    $(group).find(".ffea-browse").hide();
+                    $(group).find("input[type='text']").prop("disabled", true);
+                    $(group).find(".ffbgio-element")[0].style.setProperty("display", "none", "important");
+                    $(group).find(".ffb-additem")[0].style.setProperty("display", "none", "important");
+                    $(group).find("input[type='checkbox']").hide();
+                    $(group).find(".ff-il-tdtop, .ff-il-tddown").hide();
+                    $(group).find(".ffbgc-list").find(".ffbgil-item").each(function(ind, el){
+                        el.style.setProperty("display", "block", "important");
+                    });
+                    pywebview.api.convertThis(info);
+                }
+        }
+
+        var FF_MOS_CONTROL = {
+            "isMouseDown": false,
+            "closeModal": undefined
+        }
+        var FFEpageInfo = {
+            "modalMethod": undefined,
+            "groupTarget": undefined,
+            "convertGroup": [],
+        }
+        var IEW_COMMAND = {
+            "ok": {
+                "statut": true,
+                "command": undefined
+            },
+            "cancel": {
+                "statut": false,
+                "command": undefined
+            },
+            "ignore": {
+                "statut": false,
+                "command": undefined
+            },
+            "retry": {
+                "statut": false,
+                "command": undefined
+            },
+        }
+        var GID = {
+            "mainID":0,
+            "listID":{}
+        };
+    </script>
+</head>
+
+<body data-bs-theme="dark" class="text-white" style="width: 100%; height: 100%; overflow: hidden;">
+    <div id="ffdiv" style="width: 100vw; height: 100vh; border: 1px solid black; position: relative;">
+        <div id="ff-taskbar">
+            <div id="fft-component" class="d-flex flex-row">
+                <wataba id="addgroup" class="fftc-item" style="color: var(--dark-blue);">
+                    <div class="fftci-icon">
+                        <svg xmlns="http://www.w3.org/2000/svg" width="100%" height="100%" fill="currentColor"
+                            class="bi bi-plus-circle" viewBox="0 0 16 16">
+                            <path d="M8 15A7 7 0 1 1 8 1a7 7 0 0 1 0 14m0 1A8 8 0 1 0 8 0a8 8 0 0 0 0 16" />
+                            <path
+                                d="M8 4a.5.5 0 0 1 .5.5v3h3a.5.5 0 0 1 0 1h-3v3a.5.5 0 0 1-1 0v-3h-3a.5.5 0 0 1 0-1h3v-3A.5.5 0 0 1 8 4" />
+                        </svg>
+                    </div>
+                    <div class="fftci-name">
+                        Add
+                    </div>
+                </wataba>
+                <wataba id="history" class="fftc-item" style="color: var(--light-color);">
+                    <div class="fftci-icon">
+                        <svg xmlns="http://www.w3.org/2000/svg" width="100%" height="100%" fill="currentColor"
+                            class="bi bi-clock-history" viewBox="0 0 16 16">
+                            <path
+                                d="M8.515 1.019A7 7 0 0 0 8 1V0a8 8 0 0 1 .589.022zm2.004.45a7 7 0 0 0-.985-.299l.219-.976q.576.129 1.126.342zm1.37.71a7 7 0 0 0-.439-.27l.493-.87a8 8 0 0 1 .979.654l-.615.789a7 7 0 0 0-.418-.302zm1.834 1.79a7 7 0 0 0-.653-.796l.724-.69q.406.429.747.91zm.744 1.352a7 7 0 0 0-.214-.468l.893-.45a8 8 0 0 1 .45 1.088l-.95.313a7 7 0 0 0-.179-.483m.53 2.507a7 7 0 0 0-.1-1.025l.985-.17q.1.58.116 1.17zm-.131 1.538q.05-.254.081-.51l.993.123a8 8 0 0 1-.23 1.155l-.964-.267q.069-.247.12-.501m-.952 2.379q.276-.436.486-.908l.914.405q-.24.54-.555 1.038zm-.964 1.205q.183-.183.35-.378l.758.653a8 8 0 0 1-.401.432z" />
+                            <path d="M8 1a7 7 0 1 0 4.95 11.95l.707.707A8.001 8.001 0 1 1 8 0z" />
+                            <path
+                                d="M7.5 3a.5.5 0 0 1 .5.5v5.21l3.248 1.856a.5.5 0 0 1-.496.868l-3.5-2A.5.5 0 0 1 7 9V3.5a.5.5 0 0 1 .5-.5" />
+                        </svg>
+                    </div>
+                    <div class="fftci-name">
+                        History
+                    </div>
+                </wataba>
+                <wataba id="about" class="fftc-item" style="color: var(--light-yellow);">
+                    <div class="fftci-icon">
+                        <svg xmlns="http://www.w3.org/2000/svg" width="100%" height="100%" fill="currentColor"
+                            class="bi bi-info-circle" viewBox="0 0 16 16">
+                            <path d="M8 15A7 7 0 1 1 8 1a7 7 0 0 1 0 14m0 1A8 8 0 1 0 8 0a8 8 0 0 0 0 16" />
+                            <path
+                                d="m8.93 6.588-2.29.287-.082.38.45.083c.294.07.352.176.288.469l-.738 3.468c-.194.897.105 1.319.808 1.319.545 0 1.178-.252 1.465-.598l.088-.416c-.2.176-.492.246-.686.246-.275 0-.375-.193-.304-.533zM9 4.5a1 1 0 1 1-2 0 1 1 0 0 1 2 0" />
+                        </svg>
+                    </div>
+                    <div class="fftci-name">
+                        About
+                    </div>
+                </wataba>
+            </div>
+            <div id="fft-cmd">
+                <button id="convert-all" class="ffbtn">
+                    Convert all
+                </button>
+                <button id="cancel-all" class="ffbtn">
+                    Cancel all
+                </button>
+            </div>
+        </div>
+        <div id="ff-body">
+            <div id="ffb-main">
+                <noscript>
+                    <div class="ffb-group d-flex flex-row" cible="cible">
+                        <div class="ffbg-input">
+                            <div class="ffbgi-option d-flex flex-row flex-fill">
+                                <div class="ffbgio-ddown">
+                                    <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor"
+                                        class="bi bi-caret-right-fill" viewBox="0 0 16 16">
+                                        <path
+                                            d="m12.14 8.753-5.482 4.796c-.646.566-1.658.106-1.658-.753V3.204a1 1 0 0 1 1.659-.753l5.48 4.796a1 1 0 0 1 0 1.506z" />
+                                    </svg>
+                                </div>
+                                <div class="ffbgio-right flex-fill d-flex flex-row">
+                                    <div class="h-100 flex-fill"
+                                        style="max-width: calc(calc(100vw - 120px) / 2 - 185px) !important; position: relative;">
+                                        <div class="ffbgio-gtitle">
+                                            Title of group or File
+                                        </div>
+                                        <div class="ffbgio-gel d-flex flex-row">
+                                            <div class="ffsvg ffcircular ffborder" cible="item1" svg="audio">
+                                                <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16"
+                                                    fill="currentColor" class="bi bi-file-font" viewBox="0 0 16 16">
+                                                    <path
+                                                        d="M10.943 4H5.057L5 6h.5c.18-1.096.356-1.192 1.694-1.235l.293-.01v6.09c0 .47-.1.582-.898.655v.5H9.41v-.5c-.803-.073-.903-.184-.903-.654V4.755l.298.01c1.338.043 1.514.14 1.694 1.235h.5l-.057-2z" />
+                                                </svg>
+                                            </div>
+                                            <div class="ffsvg ffcircular ffborder" cible="item2" svg="audio">
+                                                <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16"
+                                                    fill="red" class="bi bi-file-font" viewBox="0 0 16 16">
+                                                    <path
+                                                        d="M50.943 4H5.07L5 6h.5c.18-1.096.36-1.192 1.694-1.235l.293-.01v6.09c0 .47-.1.52-.898.655v.5H9.41v-.5c-.803-.073-.903-.184-.903-.654V4.755l.298.01c1.338.043 1.514.14 1.694 1.235h.5l-.057-2z" />
+                                                </svg>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div class="ffbgio-item">
+                                        <div for="show-ext" ext="ext 1" class="ffbgio-element d-flex flex-row">
+                                            <div class="ffbgio-ename flex-fill">
+                                                ext 1
+                                            </div>
+                                            <div class="ffbgio-esvg">
+                                                <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16"
+                                                    fill="currentColor" class="bi bi-chevron-down" viewBox="0 0 16 16">
+                                                    <path fill-rule="evenodd"
+                                                        d="M1.646 4.646a.5.5 0 0 1 .708 0L8 10.293l5.646-5.647a.5.5 0 0 1 .708.708l-6 6a.5.5 0 0 1-.708 0l-6-6a.5.5 0 0 1 0-.708" />
+                                                </svg>
+                                            </div>
+                                            <div for="select-ext" class="ff-container ff-absolute ff-left ff-top">
+                                                <div class="ffform">
+                                                    <div class="ffsection">
+                                                        <h4 class="fffs-title">Section</h4>
+                                                        <div class="ffsec-contain">
+                                                            <wataba class="ff-fitem ffbtn selected" ext="ext 1">ext 1
+                                                            </wataba>
+                                                            <wataba class="ff-fitem ffbtn" ext="ext 2">ext 2</wataba>
+                                                            <wataba class="ff-fitem ffbtn" ext="ext 3">ext 3</wataba>
+                                                            <wataba class="ff-fitem ffbtn" ext="ext 4">ext 4</wataba>
+                                                            <wataba class="ff-fitem ffbtn" ext="ext 5">ext 5</wataba>
+                                                            <wataba class="ff-fitem ffbtn" ext="ext 6">ext 6</wataba>
+                                                            <wataba class="ff-fitem ffbtn" ext="ext 7">ext 7</wataba>
+                                                            <wataba class="ff-fitem ffbtn" ext="ext 8">ext 8</wataba>
+                                                            <wataba class="ff-fitem ffbtn" ext="ext 9">ext 9</wataba>
+                                                            <wataba class="ff-fitem ffbtn" ext="ext 10">ext 10</wataba>
+                                                        </div>
+                                                    </div>
+                                                    <div class="ffseparator"></div>
+                                                    <div class="ffsection">
+                                                        <h4 class="fffs-title">Section 2</h4>
+                                                        <div class="ffsec-contain">
+                                                            <wataba class="ff-fitem ffbtn" ext="ext 11">ext 11</wataba>
+                                                            <wataba class="ff-fitem ffbtn" ext="ext 12">ext 12</wataba>
+                                                            <wataba class="ff-fitem ffbtn" ext="ext 13">ext 13</wataba>
+                                                            <wataba class="ff-fitem ffbtn" ext="ext 14">ext 14</wataba>
+                                                            <wataba class="ff-fitem ffbtn" ext="ext 15">ext 15</wataba>
+                                                            <wataba class="ff-fitem ffbtn" ext="ext 16">ext 16</wataba>
+                                                            <wataba class="ff-fitem ffbtn" ext="ext 17">ext 17</wataba>
+                                                            <wataba class="ff-fitem ffbtn" ext="ext 18">ext 18</wataba>
+                                                            <wataba class="ff-fitem ffbtn" ext="ext 19">ext 19</wataba>
+                                                            <wataba class="ff-fitem ffbtn" ext="ext 20">ext 20</wataba>
+                                                        </div>
+                                                    </div>
+                                                    <div class="ffseparator"></div>
+                                                    <div class="ffsection">
+                                                        <h4 class="fffs-title">Section 3</h4>
+                                                        <div class="ffsec-contain">
+                                                            <wataba class="ff-fitem ffbtn" ext="ext 21">ext 21</wataba>
+                                                            <wataba class="ff-fitem ffbtn" ext="ext 22">ext 22</wataba>
+                                                            <wataba class="ff-fitem ffbtn" ext="ext 23">ext 23</wataba>
+                                                            <wataba class="ff-fitem ffbtn" ext="ext 24">ext 24</wataba>
+                                                            <wataba class="ff-fitem ffbtn" ext="ext 25">ext 25</wataba>
+                                                            <wataba class="ff-fitem ffbtn" ext="ext 26">ext 26</wataba>
+                                                            <wataba class="ff-fitem ffbtn" ext="ext 27">ext 27</wataba>
+                                                            <wataba class="ff-fitem ffbtn" ext="ext 28">ext 28</wataba>
+                                                            <wataba class="ff-fitem ffbtn" ext="ext 29">ext 29</wataba>
+                                                            <wataba class="ff-fitem ffbtn" ext="ext 30">ext 30</wataba>
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div class="ffbgio-item">
+                                        <button for="delete" class="btn btn-danger">
+                                            Delete
+                                        </button>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="ffbgi-list flex-fill">
+                                <div class="ffbgil-item d-flex flex-row" cible="item1"
+                                    preview="http://127.0.0.1:5555/static/img/seisaki.mp4">
+                                    <div class="ff-il-topdown d-flex flex-row">
+                                        <div class="ff-il-tdtop">
+                                            <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16"
+                                                fill="currentColor" class="bi bi-chevron-double-up" viewBox="0 0 16 16">
+                                                <path fill-rule="evenodd"
+                                                    d="M7.646 2.646a.5.5 0 0 1 .708 0l6 6a.5.5 0 0 1-.708.708L8 3.707 2.354 9.354a.5.5 0 1 1-.708-.708z" />
+                                                <path fill-rule="evenodd"
+                                                    d="M7.646 6.646a.5.5 0 0 1 .708 0l6 6a.5.5 0 0 1-.708.708L8 7.707l-5.646 5.647a.5.5 0 0 1-.708-.708z" />
+                                            </svg>
+                                        </div>
+                                        <div class="ff-il-tddown">
+                                            <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16"
+                                                fill="currentColor" class="bi bi-chevron-double-down"
+                                                viewBox="0 0 16 16">
+                                                <path fill-rule="evenodd"
+                                                    d="M1.646 6.646a.5.5 0 0 1 .708 0L8 12.293l5.646-5.647a.5.5 0 0 1 .708.708l-6 6a.5.5 0 0 1-.708 0l-6-6a.5.5 0 0 1 0-.708" />
+                                                <path fill-rule="evenodd"
+                                                    d="M1.646 2.646a.5.5 0 0 1 .708 0L8 8.293l5.646-5.647a.5.5 0 0 1 .708.708l-6 6a.5.5 0 0 1-.708 0l-6-6a.5.5 0 0 1 0-.708" />
+                                            </svg>
+                                        </div>
+                                    </div>
+                                    <div class="ff-il-check">
+                                        <input type="checkbox" checked="false">
+                                    </div>
+                                    <div class="ff-il-name flex-fill">
+                                        Name of file
+                                    </div>
+                                    <div class="ff-il-size">
+                                        xxx MB
+                                    </div>
+                                    <div class="ff-il-ext">
+                                        EXT
+                                    </div>
+                                    <div class="ff-il-show">
+                                        <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16"
+                                            fill="currentColor" class="bi bi-eye" viewBox="0 0 16 16">
+                                            <path
+                                                d="M16 8s-3-5.5-8-5.5S0 8 0 8s3 5.5 8 5.5S16 8 16 8M1.173 8a13 13 0 0 1 1.66-2.043C4.12 4.668 5.88 3.5 8 3.5s3.879 1.168 5.168 2.457A13 13 0 0 1 14.828 8q-.086.13-.195.288c-.335.48-.83 1.12-1.465 1.755C11.879 11.332 10.119 12.5 8 12.5s-3.879-1.168-5.168-2.457A13 13 0 0 1 1.172 8z" />
+                                            <path
+                                                d="M8 5.5a2.5 2.5 0 1 0 0 5 2.5 2.5 0 0 0 0-5M4.5 8a3.5 3.5 0 1 1 7 0 3.5 3.5 0 0 1-7 0" />
+                                        </svg>
+                                        <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16"
+                                            fill="currentColor" class="bi bi-eye-fill" viewBox="0 0 16 16">
+                                            <path d="M10.5 8a2.5 2.5 0 1 1-5 0 2.5 2.5 0 0 1 5 0" />
+                                            <path
+                                                d="M0 8s3-5.5 8-5.5S16 8 16 8s-3 5.5-8 5.5S0 8 0 8m8 3.5a3.5 3.5 0 1 0 0-7 3.5 3.5 0 0 0 0 7" />
+                                        </svg>
+                                    </div>
+                                </div>
+                                <div class="ffbgil-item d-flex flex-row" cible="item2"
+                                    preview="http://192.168.3.218/preau-culture">
+                                    <div class="ff-il-topdown d-flex flex-row">
+                                        <div class="ff-il-tdtop">
+                                            <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16"
+                                                fill="currentColor" class="bi bi-chevron-double-up" viewBox="0 0 16 16">
+                                                <path fill-rule="evenodd"
+                                                    d="M7.646 2.646a.5.5 0 0 1 .708 0l6 6a.5.5 0 0 1-.708.708L8 3.707 2.354 9.354a.5.5 0 1 1-.708-.708z" />
+                                                <path fill-rule="evenodd"
+                                                    d="M7.646 6.646a.5.5 0 0 1 .708 0l6 6a.5.5 0 0 1-.708.708L8 7.707l-5.646 5.647a.5.5 0 0 1-.708-.708z" />
+                                            </svg>
+                                        </div>
+                                        <div class="ff-il-tddown">
+                                            <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16"
+                                                fill="currentColor" class="bi bi-chevron-double-down"
+                                                viewBox="0 0 16 16">
+                                                <path fill-rule="evenodd"
+                                                    d="M1.646 6.646a.5.5 0 0 1 .708 0L8 12.293l5.646-5.647a.5.5 0 0 1 .708.708l-6 6a.5.5 0 0 1-.708 0l-6-6a.5.5 0 0 1 0-.708" />
+                                                <path fill-rule="evenodd"
+                                                    d="M1.646 2.646a.5.5 0 0 1 .708 0L8 8.293l5.646-5.647a.5.5 0 0 1 .708.708l-6 6a.5.5 0 0 1-.708 0l-6-6a.5.5 0 0 1 0-.708" />
+                                            </svg>
+                                        </div>
+                                    </div>
+                                    <div class="ff-il-check">
+                                        <input type="checkbox" value="false">
+                                    </div>
+                                    <div class="ff-il-name flex-fill">
+                                        An-g
+                                    </div>
+                                    <div class="ff-il-size">
+                                        xxx MB
+                                    </div>
+                                    <div class="ff-il-ext">
+                                        EXT
+                                    </div>
+                                    <div class="ff-il-show">
+                                        <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16"
+                                            fill="currentColor" class="bi bi-eye" viewBox="0 0 16 16">
+                                            <path
+                                                d="M16 8s-3-5.5-8-5.5S0 8 0 8s3 5.5 8 5.5S16 8 16 8M1.173 8a13 13 0 0 1 1.66-2.043C4.12 4.668 5.88 3.5 8 3.5s3.879 1.168 5.168 2.457A13 13 0 0 1 14.828 8q-.086.13-.195.288c-.335.48-.83 1.12-1.465 1.755C11.879 11.332 10.119 12.5 8 12.5s-3.879-1.168-5.168-2.457A13 13 0 0 1 1.172 8z" />
+                                            <path
+                                                d="M8 5.5a2.5 2.5 0 1 0 0 5 2.5 2.5 0 0 0 0-5M4.5 8a3.5 3.5 0 1 1 7 0 3.5 3.5 0 0 1-7 0" />
+                                        </svg>
+                                        <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16"
+                                            fill="currentColor" class="bi bi-eye-fill" viewBox="0 0 16 16">
+                                            <path d="M10.5 8a2.5 2.5 0 1 1-5 0 2.5 2.5 0 0 1 5 0" />
+                                            <path
+                                                d="M0 8s3-5.5 8-5.5S16 8 16 8s-3 5.5-8 5.5S0 8 0 8m8 3.5a3.5 3.5 0 1 0 0-7 3.5 3.5 0 0 0 0 7" />
+                                        </svg>
+                                    </div>
+                                </div>
+                                <div class="ffb-additem ffbgil-item d-flex flex-row">
+                                    <div class="ff-il-name flex-fill">
+                                        Add
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="ffbg-convert">
+                            <div class="h-100 m-0 p-0" style="position: relative;">
+                                <button for="convert" class="btn btn-primary">
+                                    Convert
+                                </button>
+                                <button for="cancel" class="btn btn-danger">
+                                    Cancel
+                                </button>
+                                <wataba for="success" class="ffsuccess">
+                                    <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor"
+                                        class="bi bi-check-circle-fill" viewBox="0 0 16 16">
+                                        <path
+                                            d="M16 8A8 8 0 1 1 0 8a8 8 0 0 1 16 0m-3.97-3.03a.75.75 0 0 0-1.08.022L7.477 9.417 5.384 7.323a.75.75 0 0 0-1.06 1.06L6.97 11.03a.75.75 0 0 0 1.079-.02l3.992-4.99a.75.75 0 0 0-.01-1.05z" />
+                                    </svg>
+                                </wataba>
+                                <wataba for="failed" class="ffwarning">
+                                    <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor"
+                                        class="bi bi-exclamation-diamond-fill" viewBox="0 0 16 16">
+                                        <path
+                                            d="M9.05.435c-.58-.58-1.52-.58-2.1 0L.436 6.95c-.58.58-.58 1.519 0 2.098l6.516 6.516c.58.58 1.519.58 2.098 0l6.516-6.516c.58-.58.58-1.519 0-2.098zM8 4c.535 0 .954.462.9.995l-.35 3.507a.552.552 0 0 1-1.1 0L7.1 4.995A.905.905 0 0 1 8 4m.002 6a1 1 0 1 1 0 2 1 1 0 0 1 0-2" />
+                                    </svg>
+                                </wataba>
+                                <div for="percent">
+                                    <div class="ff-il-fill"></div>
+                                    <div class="ff-il-name">
+                                        100%
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="ffbgc-list">
+                                <div class="ffbgil-item d-flex flex-row ffbgil-pgs" cible="item1">
+                                    <div class="ff-il-fill"></div>
+                                    <div class="ff-il-name flex-fill">
+                                        0%
+                                    </div>
+                                </div>
+                                <div class="ffbgil-item d-flex flex-row ffbgil-pgs" cible="item2">
+                                    <div class="ff-il-fill"></div>
+                                    <div class="ff-il-name flex-fill">
+                                        10%
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="ffbg-output">
+                            <div class="entry-area d-flex flex-row">
+                                <div class="ffea-fill"></div>
+                                <input class="ffea-name" type="text" placeholder="Enter output path">
+                                <wataba class="ffea-browse">
+                                    <svg xmlns="http://www.w3.org/2000/svg" width="70%" height="70%" fill="currentColor"
+                                        class="bi bi-circle" viewBox="0 0 16 16">
+                                        <path d="M8 15A7 7 0 1 1 8 1a7 7 0 0 1 0 14m0 1A8 8 0 1 0 8 0a8 8 0 0 0 0 16" />
+                                    </svg>
+                                </wataba>
+                            </div>
+                        </div>
+                    </div>
+                </noscript>
+            </div>
+            <div id="ffb-bottom">
+                <div id="ffbb-drop">
+                    <h4>Drop here</h4>
+                </div>
+            </div>
+        </div>
+        <div class="toast-container position-fixed bottom-0 right-0 p-3" style="right: 10px !important;">
+            <div id="liveToast" class="toast" role="alert" aria-live="assertive" aria-atomic="true">
+                <div class="toast-body">
+                </div>
+            </div>
+        </div>
+        <div id="ff-preview" class="ff-from-fff">
+            <div class="ff-fill"></div>
+            <div class="ffsc-contain">
+                <iframe width="100%" height="100%" src="" style="background-color: black;"></iframe>
+            </div>
+            <wataba class="ff-close-sc">
+                <svg xmlns="http://www.w3.org/2000/svg" width="100%" height="100%" fill="currentColor"
+                    class="bi bi-x-lg" viewBox="0 0 16 16">
+                    <path
+                        d="M2.146 2.854a.5.5 0 1 1 .708-.708L8 7.293l5.146-5.147a.5.5 0 0 1 .708.708L8.707 8l5.147 5.146a.5.5 0 0 1-.708.708L8 8.707l-5.146 5.147a.5.5 0 0 1-.708-.708L7.293 8z" />
+                </svg>
+            </wataba>
+        </div>
+        <div id="ff-history" class="ff-from-fff">
+            <div class="ff-fill"></div>
+            <div class="ffsc-contain">
+                <div class="ff-container w-100 h-100 p-3">
+                    <table id="ffh-table">
+                        <tr info="">
+                            <td>
+                                <details>
+                                    <summary>
+                                        Input Group or File Name
+                                    </summary>
+                                    <p>
+                                    <ul>
+                                        <li>Path of item 1</li>
+                                        <li>Path of item 2</li>
+                                    </ul>
+                                    </p>
+                                </details>
+                            </td>
+                            <td>
+                                Output path name
+                            </td>
+                            <td>
+                                xx/xx/xxxx xx:xx:xx
+                            </td>
+                            <td>
+                                <button class="btn btn-danger">
+                                    Delete
+                                </button>
+                            </td>
+                        </tr>
+                    </table>
+                </div>
+            </div>
+            <wataba class="ff-close-sc">
+                <svg xmlns="http://www.w3.org/2000/svg" width="100%" height="100%" fill="currentColor"
+                    class="bi bi-x-lg" viewBox="0 0 16 16">
+                    <path
+                        d="M2.146 2.854a.5.5 0 1 1 .708-.708L8 7.293l5.146-5.147a.5.5 0 0 1 .708.708L8.707 8l5.147 5.146a.5.5 0 0 1-.708.708L8 8.707l-5.146 5.147a.5.5 0 0 1-.708-.708L7.293 8z" />
+                </svg>
+            </wataba>
+        </div>
+        <div id="ff-about" class="ff-from-fff">
+            <div class="ff-fill"></div>
+            <div class="ffsc-contain">
+                <div class="ff-container w-100 h-100 p-3">
+
+                </div>
+            </div>
+            <wataba class="ff-close-sc">
+                <svg xmlns="http://www.w3.org/2000/svg" width="100%" height="100%" fill="currentColor"
+                    class="bi bi-x-lg" viewBox="0 0 16 16">
+                    <path
+                        d="M2.146 2.854a.5.5 0 1 1 .708-.708L8 7.293l5.146-5.147a.5.5 0 0 1 .708.708L8.707 8l5.147 5.146a.5.5 0 0 1-.708.708L8 8.707l-5.146 5.147a.5.5 0 0 1-.708-.708L7.293 8z" />
+                </svg>
+            </wataba>
+        </div>
+        <div id="ff-modal-osc" class="ff-from-fff" style="overflow: hidden;">
+            <div id="ff-mfill"></div>
+            <div id="ff-modal-os">
+                <div id="ff-mos-titlebar" class="d-flex flex-row">
+                    <div id="ff-mostb-title" class="flex-fill d-flex flex-row">
+                        <div id="ff-mostb-icon">
+                            <img src="https://anime-sama.fr/images/icon.png" alt="">
+                        </div>
+                        <div id="ff-mostb-name" class="flex-fill">
+                            DExplorer
+                        </div>
+                    </div>
+                    <div id="ff-mostb-close">
+                        <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor"
+                            class="bi bi-x-lg" viewBox="0 0 16 16">
+                            <path
+                                d="M2.146 2.854a.5.5 0 1 1 .708-.708L8 7.293l5.146-5.147a.5.5 0 0 1 .708.708L8.707 8l5.147 5.146a.5.5 0 0 1-.708.708L8 8.707l-5.146 5.147a.5.5 0 0 1-.708-.708L7.293 8z" />
+                        </svg>
+                    </div>
+                </div>
+                <div id="ff-mos-body">***HERE***</div>
+            </div>
+        </div>
+        <div id="ff-modal-iew" class="ff-form-fff" style="overflow: hidden;">
+            <div class="ff-fill" style="background-color: transparent; z-index: 1;"></div>
+            <div id="ff-modal-show-iew">
+                <div id="ff-msiew-titlebar" class="d-flex flex-row">
+                    <div id="ff-msiew-title" class="flex-fill d-flex flex-row">
+                        <div id="ff-msiew-name" class="flex-fill">
+                            FormatFlex
+                        </div>
+                    </div>
+                    <div id="ff-msiew-close">
+                        <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor"
+                            class="bi bi-x-lg" viewBox="0 0 16 16">
+                            <path
+                                d="M2.146 2.854a.5.5 0 1 1 .708-.708L8 7.293l5.146-5.147a.5.5 0 0 1 .708.708L8.707 8l5.147 5.146a.5.5 0 0 1-.708.708L8 8.707l-5.146 5.147a.5.5 0 0 1-.708-.708L7.293 8z" />
+                        </svg>
+                    </div>
+                </div>
+                <div id="ff-msiew-body" class="d-flex flex-row">
+                    <div id="ff-msiew-icon">
+                        <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor"
+                            class="bi bi-info-circle-fill" viewBox="0 0 16 16">
+                            <path
+                                d="M8 16A8 8 0 1 0 8 0a8 8 0 0 0 0 16m.93-9.412-1 4.705c-.07.34.029.533.304.533.194 0 .487-.07.686-.246l-.088.416c-.287.346-.92.598-1.465.598-.703 0-1.002-.422-.808-1.319l.738-3.468c.064-.293.006-.399-.287-.47l-.451-.081.082-.381 2.29-.287zM8 5.5a1 1 0 1 1 0-2 1 1 0 0 1 0 2" />
+                        </svg>
+                        <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor"
+                            class="bi bi-exclamation-triangle-fill" viewBox="0 0 16 16">
+                            <path
+                                d="M8.982 1.566a1.13 1.13 0 0 0-1.96 0L.165 13.233c-.457.778.091 1.767.98 1.767h13.713c.889 0 1.438-.99.98-1.767zM8 5c.535 0 .954.462.9.995l-.35 3.507a.552.552 0 0 1-1.1 0L7.1 5.995A.905.905 0 0 1 8 5m.002 6a1 1 0 1 1 0 2 1 1 0 0 1 0-2" />
+                        </svg>
+                        <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor"
+                            class="bi bi-ban-fill" viewBox="0 0 16 16">
+                            <path
+                                d="M16 8A8 8 0 1 1 0 8a8 8 0 0 1 16 0M2.71 12.584q.328.378.706.707l9.875-9.875a7 7 0 0 0-.707-.707l-9.875 9.875Z" />
+                        </svg>
+                    </div>
+                    <div id="ff-msiew-contain" class="flex-fill">
+
+                    </div>
+                </div>
+                <div id="ff-msiew-foot" class="d-flex flex-row">
+                    <div class="flex-fill"></div>
+                    <button for="ok" class="btn btn-primary">
+                        Ok
+                    </button>
+                    <button for="retry" class="btn btn-info">
+                        Retry
+                    </button>
+                    <button for="ignore" class="btn btn-secondary">
+                        Ignore
+                    </button>
+                    <button for="cancel" class="btn btn-danger">
+                        Cancel
+                    </button>
+                    <button for="canc" style="position: absolute; bottom: -1000px;"></button>
+                </div>
+            </div>
+        </div>
+        <script>
+            $(document).ready(() => {
+                var FFMOS_MD = false, FFMOS_C = [];
+                var FFIEW_MD = false, FFIEW_C = [];
+                $(".fftc-item").on("click", function () {
+                    switch (this.id) {
+                        case "history":
+                            FFshowHistory();
+                            break;
+                        case "about":
+                            FFshowAbout();
+                            break;
+                        case "addgroup":
+                            pywebview.api.askAllModalExt().then(data => {
+                                FFopenModalOS("open", data.data, true, "c", true);
+                            });
+                            FFEpageInfo.groupTarget = undefined;
+                            FFEpageInfo.modalMethod = "add-group";
+                            break;
+                    }
+                });
+                $(".ff-close-sc, .ff-fill").on("click", function () {
+                    $(this).closest(".ff-from-fff").hide().find("iframe").attr("src", "");
+                    pywebview.api.askClearStatic();
+                });
+                $("#ff-mostb-close").on("click mousedown", function (e) {
+                    e.stopPropagation();
+                    e.stopImmediatePropagation();
+                    $("#fvrb-cancel").click()
+                });
+                $("#ff-mos-titlebar").on("mousedown", function (e) {
+                    e.stopPropagation();
+                    FFMOS_MD = true;
+                    FFMOS_C = [e.offsetX, e.offsetY];
+                });
+                $("#ff-modal-osc").on("mousemove", function (e) {
+                    if (FFMOS_MD == true) {
+                        let x = e.clientX - FFMOS_C[0];
+                        let y = e.clientY - FFMOS_C[1];
+                        $("#ff-modal-os").css({
+                            "left": x + "px",
+                            "top": y + "px"
+                        });
+                    }
+                });
+                $("#ff-modal-osc").on("mouseup", function (e) {
+                    FFMOS_MD = false;
+                    FFMOS_C = [];
+                });
+                $("#ff-msiew-close").on("click mousedown", function (e) {
+                    e.stopPropagation();
+                    e.stopImmediatePropagation();
+                    $("#ff-msiew-foot").find("button[for='canc']").click();
+                });
+                $("#ff-msiew-titlebar").on("mousedown", function (e) {
+                    e.stopPropagation();
+                    FFIEW_MD = true;
+                    FFIEW_C = [e.offsetX, e.offsetY];
+                });
+                $("#ff-modal-iew").on("mousemove", function (e) {
+                    if (FFIEW_MD == true) {
+                        let x = e.clientX - FFIEW_C[0];
+                        let y = e.clientY - FFIEW_C[1];
+                        $("#ff-modal-show-iew").css({
+                            "left": x + "px",
+                            "top": y + "px"
+                        });
+                    }
+                });
+                $("#ff-modal-iew").on("mouseup", function (e) {
+                    FFIEW_MD = false;
+                    FFIEW_C = [];
+                });
+                $("#ffbb-drop").on("dragover dragend dragleave drop mouseleave", function (e) {
+                    e.preventDefault();
+                    switch (e.type) {
+                        case "drop":
+                            let list = Array.from(e.originalEvent.dataTransfer.files).map(el => el.name);
+                            pywebview.api.verifyDrop(list).then(response => {
+                                if (response.ok) {
+                                    response.data.forEach(function (el) {
+                                        let ginfo = {
+                                            "title": el.name,
+                                            "cible": el.path,
+                                            "info": {
+                                                "cible": undefined,
+                                                "preview": undefined,
+                                                "name": undefined,
+                                                "checked": false,
+                                                "size": undefined,
+                                                "ext": undefined,
+                                                "type": undefined
+                                            }
+                                        };
+                                        let group = FFaddGroup(ginfo);
+                                        pywebview.api.askInfo(el.path).then(data => {
+                                            data.data.forEach(function (ele) {
+                                                ginfo.info.cible = ele.cible;
+                                                ginfo.info.preview = ele.preview;
+                                                ginfo.info.name = ele.name;
+                                                ginfo.info.checked = ele.checked;
+                                                ginfo.info.size = ele.size;
+                                                ginfo.info.ext = ele.ext;
+                                                ginfo.info.type = ele.type;
+                                                FFaddItem(group, ginfo.info);
+                                                //set defaault ext
+                                                let item = $(group).find(".ffbgil-item");
+                                                let ext = [];
+                                                item.each(function () {
+                                                    if ($(this).find('input[type="checkbox"]').prop("checked") == true) {
+                                                        ext.push($(this).attr("ext"));
+                                                    }
+                                                });
+                                                pywebview.api.ffSetFormItem(ext).then(dat => {
+                                                    let html = FFsetFormItem(dat.data);
+                                                    $(group).find("div[for='select-ext']").html(html);
+                                                    FFactualizeFunction();
+                                                    $($(group).find('.ff-fitem')[0]).click();
+                                                });
+                                            });
+                                        });
+
+                                    });
+                                }
+                                else {
+                                    FFshowMessage("Unable to open files", "error")
+                                }
+                            });
+                            $(this).removeClass("ff-drag-hover")
+                            break;
+                        case "dragover":
+                            $(this).addClass("ff-drag-hover");
+                            break;
+                        case "dragend":
+                        case "mouseleave":
+                            $(this).removeClass("ff-drag-hover");
+                            break;
+                    }
+                });
+                $("#convert-all").on("click", function(){
+                    $(".ffb-group").each(function(){
+                        FFconvertGroup(this);
+                    });
+                });
+                $(window).on("resize", () => {
+                    let modal = $("#ff-modal-os");
+                    let w = parseInt(modal.css("width"));
+                    let h = parseInt(modal.css("height"));
+                    $("#ff-modal-os").css({
+                        "left": `calc(50% - ${w / 2}px)`,
+                        "top": `calc(50% - ${h / 2}px)`,
+                    });
+                    modal = $("#ff-modal-show-iew");
+                    w = parseInt(modal.css("width"));
+                    h = parseInt(modal.css("height"));
+                    $("#ff-modal-show-iew").css({
+                        "left": `calc(50% - ${w / 2}px)`,
+                        "top": `calc(50% - ${h / 2}px)`
+                    });
+                });
+
+                FFactualizeFunction();
+            });
+        </script>
+</body>
+
+</html>

@@ -1,11 +1,8 @@
 import os
 import sys
 import webview
-import time
 import datetime as dt
-import flask
 from win32api import GetSystemMetrics as gsm
-import mainFunctions as mf
 import tools
 from win32api import GetSystemMetrics
 sys.path.append("D-Picture")
@@ -27,9 +24,6 @@ class MainApp(tools.Window):
 
         
 class Api:
-
-    def setUrl(self):
-        main.window.load_url("http://127.0.0.1:5555/DPicture/madara.jpg")
         
     def unsetFullscreen(self):
         try:
@@ -80,8 +74,6 @@ class Api:
 
 
 if __name__ == "__main__":
-    # mf.run_as_admin
-    mf.clearDirectory("tempcaches")
     main = MainApp("DPicture", html=dp_asset.asset)
     main.window._js_api = Api()
     tools.serverRequierement()
